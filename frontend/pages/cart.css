@@ -1,0 +1,19 @@
+.cart-item {
+    height: 100px;
+}
+
+.cart-item-thumb img {
+    width: 50px;
+}
+
+.cart-item-label span {
+    font-size: 1.2rem;
+}
+
+.cart-item-quantity {
+    /* background-color: aqua; */
+}
+
+.cart-item-quantity .qty-btn {
+    ;
+}
