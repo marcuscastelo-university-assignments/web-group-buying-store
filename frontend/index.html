@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta lang="pt-br">
     <title>Pagina Principal</title>
-    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -24,8 +23,8 @@
 </head>
 
 <body>
-
     <div id="top-bar">Sobre nós</div>
+
     <header id="heading">
         <div id="heading-inner">
             <img id="logo-img" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png" alt="Logo" />
@@ -46,67 +45,26 @@
                     <a href="pages/cart.html"><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
                 </div>
             </div>
-            <!-- <div id="login">
+
+            <!-- 
+            <div id="login">
                 <img src="" alt="Cadastrar icon">
                 <button>Cadastrar</button>
             </div> -->
 
-
         </div>
-
     </header>
 
-    <nav class="col-9 mx-auto mt-3" id="categories">
-        <!-- Populated with JS -->
+    <div class="row">
+        <nav class="col-9 mx-auto mt-3" id="categories">
+            <!-- Populated with JS (populateLayers, populateCarrousel) -->       
+        </nav>
+    </div>
 
-
-                    </div>
-                </div>
-            </div>
-        
-        
-    </nav>
-
-    <br>
-    <div class="row mt-3">
-        <div class="col-9 mx-auto bg-danger">
-            <h3>Produtos</h3>
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active row-car">
-                        <div class="row g-1">
-                            <div class="col">
-                                <img src="./img/a.jpeg" class="d-block w-100" alt="pato1" />
-                            </div>
-                            <div class="col">
-                                <img src="./img/b.jpg" class="d-block w-100" alt="pato2" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item row-ca">
-                        <div class="row g-1">
-                            <div class="col">
-                                <img src="./img/c.jpg" class="d-block w-100" alt="pato3" />
-                            </div>
-                            <div class="col">
-                                <img src="./img/d.jpeg" class="d-block w-100" alt="pato4" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+    <div class="row mt-5">
+        <div class="col-9 mx-auto mt-5" id="sales">
+            <!-- Populated with JS (populateCarrousel) -->       
         </div>
-
     </div>
 
 

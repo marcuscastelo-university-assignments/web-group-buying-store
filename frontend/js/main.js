@@ -1,145 +1,206 @@
 let layerInfo = {
     "layers": {
         "1": [
-            { "name": "item0", "id": "id0", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item1", "id": "id1", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item2", "id": "id2", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item3", "id": "id3", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item4", "id": "id4", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item5", "id": "id5", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item6", "id": "id6", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item7", "id": "id7", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item8", "id": "id8", "parent": "undefined", "imageSrc": "./img/a.jpeg" },
-            { "name": "item9", "id": "id9", "parent": "undefined", "imageSrc": "./img/a.jpeg" }
+            { "name": "item0", "id": "id0", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item1", "id": "id1", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item2", "id": "id2", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item3", "id": "id3", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item4", "id": "id4", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item5", "id": "id5", "parent": "undefined", "imageSrc": "https://picsum.photos/200" }/*,
+            { "name": "item6", "id": "id6", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item7", "id": "id7", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item8", "id": "id8", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item9", "id": "id9", "parent": "undefined", "imageSrc": "https://picsum.photos/200" }*/
         ],
         "11": [
-            { "name": "item10a", "id": "id10a", "parent": "id0", "imageSrc": "./img/a.jpeg" },
-            { "name": "item10b", "id": "id10b", "parent": "id0", "imageSrc": "./img/a.jpeg" },
-            { "name": "item10c", "id": "id10c", "parent": "id0", "imageSrc": "./img/a.jpeg" },
-            { "name": "item10d", "id": "id10d", "parent": "id0", "imageSrc": "./img/a.jpeg" },
-            { "name": "item10e", "id": "id10e", "parent": "id0", "imageSrc": "./img/a.jpeg" },
-            { "name": "item11", "id": "id11", "parent": "id1", "imageSrc": "./img/a.jpeg" },
-            { "name": "item12", "id": "id12", "parent": "id2", "imageSrc": "./img/a.jpeg" },
-            { "name": "item13", "id": "id13", "parent": "id3", "imageSrc": "./img/a.jpeg" },
-            { "name": "item14", "id": "id14", "parent": "id4", "imageSrc": "./img/a.jpeg" },
-            { "name": "item15", "id": "id15", "parent": "id5", "imageSrc": "./img/a.jpeg" },
-            { "name": "item16", "id": "id16", "parent": "id6", "imageSrc": "./img/a.jpeg" },
-            { "name": "item17", "id": "id17", "parent": "id7", "imageSrc": "./img/a.jpeg" },
-            { "name": "item18", "id": "id18", "parent": "id8", "imageSrc": "./img/a.jpeg" },
-            { "name": "item19", "id": "id19", "parent": "id9", "imageSrc": "./img/a.jpeg" }
+            { "name": "item10a", "id": "id10a", "parent": "id0", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item10b", "id": "id10b", "parent": "id0", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item10c", "id": "id10c", "parent": "id0", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item10d", "id": "id10d", "parent": "id0", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item10e", "id": "id10e", "parent": "id0", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item11", "id": "id11", "parent": "id1", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item12", "id": "id12", "parent": "id2", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item13", "id": "id13", "parent": "id3", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item14", "id": "id14", "parent": "id4", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item15", "id": "id15", "parent": "id5", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item16", "id": "id16", "parent": "id6", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item17", "id": "id17", "parent": "id7", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item18", "id": "id18", "parent": "id8", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item19", "id": "id19", "parent": "id9", "imageSrc": "https://picsum.photos/200" }
 
         ],
         "111": [
-            { "name": "item20", "id": "id20", "parent": "id10a", "imageSrc": "./img/a.jpeg" },
-            { "name": "item21", "id": "id21", "parent": "id11", "imageSrc": "./img/a.jpeg" },
-            { "name": "item22", "id": "id22", "parent": "id12", "imageSrc": "./img/a.jpeg" },
-            { "name": "item23", "id": "id23", "parent": "id13", "imageSrc": "./img/a.jpeg" },
-            { "name": "item24", "id": "id24", "parent": "id14", "imageSrc": "./img/a.jpeg" },
-            { "name": "item25", "id": "id25", "parent": "id15", "imageSrc": "./img/a.jpeg" },
-            { "name": "item26", "id": "id26", "parent": "id16", "imageSrc": "./img/a.jpeg" },
-            { "name": "item27", "id": "id27", "parent": "id17", "imageSrc": "./img/a.jpeg" },
-            { "name": "item28", "id": "id28", "parent": "id18", "imageSrc": "./img/a.jpeg" },
-            { "name": "item29", "id": "id29", "parent": "id19", "imageSrc": "./img/a.jpeg" }
+            { "name": "item20", "id": "id20", "parent": "id10a", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item21", "id": "id21", "parent": "id11", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item22", "id": "id22", "parent": "id12", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item23", "id": "id23", "parent": "id13", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item24", "id": "id24", "parent": "id14", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item25", "id": "id25", "parent": "id15", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item26", "id": "id26", "parent": "id16", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item27", "id": "id27", "parent": "id17", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item28", "id": "id28", "parent": "id18", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item29", "id": "id29", "parent": "id19", "imageSrc": "https://picsum.photos/200" }
         ]
     }
 };
 
 let carrouselLayerInfo = {
-    "itemsPerPage": 3,
+    "itemsPerPage": 5,
     "items": [
-        { "alt": "item0", "id": "id0", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item1", "id": "id1", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item2", "id": "id2", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item3", "id": "id3", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item4", "id": "id4", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item5", "id": "id5", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item6", "id": "id6", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item7", "id": "id7", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item8", "id": "id8", "link": "url", "imageSrc": "./img/a.jpeg" },
-        { "alt": "item9", "id": "id9", "link": "url", "imageSrc": "./img/a.jpeg" }
+        { "alt": "item0", "id": "id0", "link": "url", "imageSrc": "https://picsum.photos/2100" },
+        { "alt": "item1", "id": "id1", "link": "url", "imageSrc": "https://picsum.photos/2200" },
+        { "alt": "item2", "id": "id2", "link": "url", "imageSrc": "https://picsum.photos/2300" },
+        { "alt": "item3", "id": "id3", "link": "url", "imageSrc": "https://picsum.photos/2400" },
+        { "alt": "item4", "id": "id4", "link": "url", "imageSrc": "https://picsum.photos/2500" },
+        { "alt": "item5", "id": "id5", "link": "url", "imageSrc": "https://picsum.photos/2600" },
+        { "alt": "item6", "id": "id6", "link": "url", "imageSrc": "https://picsum.photos/2700" },
+        { "alt": "item7", "id": "id7", "link": "url", "imageSrc": "https://picsum.photos/2000" },
+        { "alt": "item8", "id": "id8", "link": "url", "imageSrc": "https://picsum.photos/2900" },
+        { "alt": "item9", "id": "id9", "link": "url", "imageSrc": "https://picsum.photos/2200" },
+        { "alt": "item10", "id": "id10", "link": "url", "imageSrc": "https://picsum.photos/3000" },
+        { "alt": "item11", "id": "id11", "link": "url", "imageSrc": "https://picsum.photos/3100" },
+        { "alt": "item12", "id": "id12", "link": "url", "imageSrc": "https://picsum.photos/3200" },
+        { "alt": "item13", "id": "id13", "link": "url", "imageSrc": "https://picsum.photos/3200" },
+        { "alt": "item14", "id": "id14", "link": "url", "imageSrc": "https://picsum.photos/3400" },
+        { "alt": "item15", "id": "id15", "link": "url", "imageSrc": "https://picsum.photos/3000" },
+        { "alt": "item16", "id": "id16", "link": "url", "imageSrc": "https://picsum.photos/3600" },
+        { "alt": "item17", "id": "id17", "link": "url", "imageSrc": "https://picsum.photos/2700" },
+        { "alt": "item18", "id": "id18", "link": "url", "imageSrc": "https://picsum.photos/3800" },
+        { "alt": "item19", "id": "id19", "link": "url", "imageSrc": "https://picsum.photos/3900" }
 
     ]
 };
 
+let carrouselSalesInfo = [
+    {
+        "itemsPerPage": 5,
+        "items": [
+            { "alt": "item0", "id": "id1c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item1", "id": "id1c1", "link": "url", "imageSrc": "https://picsum.photos/300" },
+            { "alt": "item2", "id": "id1c2", "link": "url", "imageSrc": "https://picsum.photos/400" },
+            { "alt": "item3", "id": "id1c3", "link": "url", "imageSrc": "https://picsum.photos/500" },
+            { "alt": "item4", "id": "id1c4", "link": "url", "imageSrc": "https://picsum.photos/600" },
+            { "alt": "item5", "id": "id1c5", "link": "url", "imageSrc": "https://picsum.photos/700" },
+            { "alt": "item6", "id": "id1c6", "link": "url", "imageSrc": "https://picsum.photos/800" },
+            { "alt": "item7", "id": "id1c7", "link": "url", "imageSrc": "https://picsum.photos/900" },
+            { "alt": "item8", "id": "id1c8", "link": "url", "imageSrc": "https://picsum.photos/1000" },
+            { "alt": "item9", "id": "id1c9", "link": "url", "imageSrc": "https://picsum.photos/1100" }
 
-/*
+        ]
+    },
 
-                            <div class="carousel-item row-car">
+    {
+        "itemsPerPage": 2,
+        "items": [
+            { "alt": "item0", "id": "id2c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item1", "id": "id2c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item2", "id": "id2c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item3", "id": "id2c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item4", "id": "id2c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item5", "id": "id2c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item6", "id": "id2c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item7", "id": "id2c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item8", "id": "id2c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item9", "id": "id2c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
 
+        ]
+    },
+    {
+        "itemsPerPage": 6,
+        "items": [
+            { "alt": "item0", "id": "id3c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item1", "id": "id3c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item2", "id": "id3c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item3", "id": "id3c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item4", "id": "id3c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item5", "id": "id3c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item6", "id": "id3c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item7", "id": "id3c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item8", "id": "id3c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item9", "id": "id3c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
 
-                            <div class="carousel-item active row-car">
-                                <div class="row g-1">
-                                    <div class="col">
-                                        <img src="./img/a.jpeg" class="d-block w-100" alt="pato1" />
-                                    </div>
-                                    <div class="col">
-                                        <img src="./img/b.jpg" class="d-block w-100" alt="pato2" />
-                                    </div>
-                                </div>
-                            </div>
+        ]
+    },
+    {
+        "itemsPerPage": 1,
+        "items": [
+            { "alt": "item0", "id": "id4c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item1", "id": "id4c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item2", "id": "id4c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item3", "id": "id4c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item4", "id": "id4c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item5", "id": "id4c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item6", "id": "id4c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item7", "id": "id4c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item8", "id": "id4c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "alt": "item9", "id": "id4c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
 
+        ]
+    },
+];
 
-*/
-
-
+function generateItem(item) {
+    return `
+        <div class="col">
+            <a href="${item.link}">
+                <img src="${item.imageSrc}" class="d-block img-thumbnail mx-auto" alt="${item.alt}" />
+            </a>
+        </div>
+    `
+}
 
 
 $(document).ready(function () {
-    function populateCarrouselLayer() {
-        let itemsPerPage = Math.min(carrouselLayerInfo.itemsPerPage, carrouselLayerInfo.items.length);
+    async function populateCarrousel(carrouselType, location, idName, generateItem, classes) {
+        classes = classes || '';
+
+        let itemsPerPage = Math.min(carrouselType.itemsPerPage, carrouselType.items.length);
         if (itemsPerPage <= 0) return;
 
-        let newHtml = `<div class="row layer d-none" id="layer-carousel">
-                        <div class="col-9 mx-auto">
-                            <div class="carousel slide" id="top-carousel" data-bs-ride="carousel">
-                                <div class="carousel-inner">`;
+        let newHtml = `<div class="row layer ${classes}  mt-3" id="carousel-${idName}-row">
+                        <div class="col-9 mx-auto w-100">
+                            <div class="carousel slide" id="carousel-${idName}" data-bs-ride="carousel">
+                                <div class="carousel-inner w-75 mx-auto">`;
 
 
-        let pageCount = Math.ceil(carrouselLayerInfo.items.length / itemsPerPage);
-        let lastPageItemsToAdd = (itemsPerPage - carrouselLayerInfo.items.length % itemsPerPage) % itemsPerPage;
+        let pageCount = Math.ceil(carrouselType.items.length / itemsPerPage);
+        let lastPageItemsToAdd = (itemsPerPage - carrouselType.items.length % itemsPerPage) % itemsPerPage;
         for (let i = 0; i < pageCount; i++) {
             newHtml += `<div class="${'carousel-item row-car ' + (i === 0 ? 'active' : '')} ">
                             <div class="row g-1">`
             let k = i * itemsPerPage;
-    
+
             if (i === pageCount - 1) k -= lastPageItemsToAdd;
-            
-            for(let j = 0; j < itemsPerPage; j++) {
-                let item = carrouselLayerInfo.items[k+j];
-                newHtml +=  `   <div class="col">
-                                    <a href="${item.link}">
-                                        <img src="${item.imageSrc}" class="d-block w-100" alt="${item.alt}" />
-                                    </a>
-                                </div>`;
+
+            for (let j = 0; j < itemsPerPage; j++) {
+                let item = carrouselType.items[k + j];
+                newHtml += generateItem(item);
             }
             newHtml += `
                             </div>
                         </div>
-            `;            
+            `;
         }
         newHtml += "</div>";
         newHtml += `
-                    <button class="carousel-control-prev" type="button" data-bs-target="#top-carousel" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-${idName}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#top-carousel" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-${idName}" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
         `
 
-
-
-
         newHtml += `
                         </div>
                     </div>
                 </div>
-    `;
+            `;
 
-        let currHtml = $('#categories').html();
-        $('#categories').html(currHtml + newHtml);
+        let currHtml = $(location).html();
+        $(location).html(currHtml + newHtml);
 
     }
 
@@ -162,7 +223,7 @@ $(document).ready(function () {
 
         }
 
-        
+
         let currHtml = $('#categories').html();
         $('#categories').html(currHtml + newHtml);
 
@@ -175,15 +236,13 @@ $(document).ready(function () {
             let id = $(cat).attr('data-parent');
             $('.category#' + id).addClass('parent');
         }
-        
+
     }
 
     populateLayers();
-    populateCarrouselLayer();
+    populateCarrousel(carrouselLayerInfo, '#categories', 'layer', generateItem, 'd-none');
 
-
-
-
+    for (let i = 0; i < carrouselSalesInfo.length; i++) populateCarrousel(carrouselSalesInfo[i], '#sales', `sale-${i}`, generateItem);
 
 
     //Mouse Events
@@ -191,8 +250,11 @@ $(document).ready(function () {
         e.preventDefault();
         let self = $(this);
         let selfLayer = $(this).parent().parent().attr('data-layer');
-        let targetRemoveLayer = selfLayer + '1';
-        $(`#categories .layer[data-layer^=${targetRemoveLayer}]`).find('.category').addClass('d-none')
+        let targetRemoveLayerNum = selfLayer + '1';
+
+        let targetRemoveLayer = $(`#categories .layer[data-layer^=${targetRemoveLayerNum}]`);
+        targetRemoveLayer.addClass('d-none');
+        targetRemoveLayer.find('.category').addClass('d-none');
 
 
         let targets = $('#categories [data-parent="' + self.attr('id') + '"]');
@@ -200,11 +262,12 @@ $(document).ready(function () {
         targetLayers.removeClass('d-none');
         targets.removeClass('d-none');
         console.log(self.hasClass('parent'))
+
         if (!self.hasClass('parent')) {
-            $('#layer-carousel').removeClass('d-none');
+            $('#carousel-layer-row').removeClass('d-none');
         }
         else {
-            $('#layer-carousel').addClass('d-none');
+            $('#carousel-layer-row').addClass('d-none');
         }
 
     });
@@ -215,7 +278,7 @@ $(document).ready(function () {
         let layers = $(this).find(".layer[data-layer]:not([data-layer='1']")
         layers.addClass('d-none');
         layers.find('.category').addClass('d-none');
-        $('#layer-carousel').addClass('d-none');
+        $('#carousel-layer-row').addClass('d-none');
 
 
     });

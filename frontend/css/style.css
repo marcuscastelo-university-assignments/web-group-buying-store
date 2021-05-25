@@ -126,22 +126,30 @@ div.search-bar-container > input[type="search"] {
 }
 
 .layer {
-    background-color: red;
+    background-color: #cccccc1a;
     padding: 10px 0;
     display: flex;
     flex-wrap: wrap;
-    transition: all 1s 1s!important;
-
+    box-shadow: 0 0 0.3rem -0.1em rgba(0, 0, 0, 1);
 }
 
-.category {
+.category { 
     height: 25px;
     width: 25px;
     background-color: green;
     border-radius: 50%;
     text-align: end;
     color: aqua;
-    padding: 5rem;
+    padding: 4rem;
     background-position: center !important;
     background-size: contain !important;
+}
+
+#carouselExampleControls {
+
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
 }
