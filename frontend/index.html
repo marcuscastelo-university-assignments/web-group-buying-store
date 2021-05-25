@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+
 </head>
 
 <body>
@@ -30,10 +40,10 @@
 
             <div id="heading-icons">
                 <div class="heading-icon-container heading-vertical-center heading-icon">
-                     <a href=""><i class="fa fa-heart-o" id="favorite-icon"></i></a>
+                    <a href=""><i class="fa fa-heart-o" id="favorite-icon"></i></a>
                 </div>
                 <div class="heading-icon-container heading-vertical-center heading-icon">
-                    <a href=""><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
+                    <a href="pages/cart.html"><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
                 </div>
             </div>
             <!-- <div id="login">
@@ -45,89 +55,59 @@
         </div>
 
     </header>
-    <div id="searches">
-        <div class="first-layer layer-search">
-            <div class="parent prod-type" id="cellphone">
-                <img class="prod-type-img" src="">
+
+    <nav class="col-9 mx-auto mt-3" id="categories">
+        <!-- Populated with JS -->
+
+
+                    </div>
+                </div>
             </div>
-
-            <div class="parent prod-type" id="mixer-legal">
-                <img class="prod-type-img" src="">
-            </div>
-
-            <div class="children prod-type" id="geladeira-lg">
-                <img class="prod-type-img" src="">
-            </div>
-
-        </div>
-        <div class="second-layer layer-search">
-            <div class="children prod-type" id="samsung" data-ref-par="cellphone">
-                <img class="prod-type-img" src="">
-            </div>
-
-            <div class="children prod-type" id="motorola" data-ref-par="cellphone">
-                <img class="prod-type-img" src="">
-            </div>
-
-            <div class="children prod-type" id="geladeira-lg-legal" data-ref-par="geladeira-lg">
-                <img class="prod-type-img" src="">
-            </div>
-
-            <div class="children prod-type" id="geladeira-lg-chata" data-ref-par="geladeira-lg">
-                <img class="prod-type-img" src="">
-            </div>
-
-
-        </div>
-        <div class="third-layer layer-search">
-            <div class="children prod-type" id="galaxy-1" data-ref-par="samsung">
-                <img class="prod-type-img" src="">
-            </div>
-
-            <div class="children prod-type" id="galaxy-2" data-ref-par="samsung">
-                <img class="prod-type-img" src="">
-            </div>
-
-            <div class="children prod-type" id="galaxy-3" data-ref-par="samsung">
-                <img class="prod-type-img" src="">
-            </div>
-
-            <div class="children prod-type" id="moto-4" data-ref-par="motorola">
-                <img class="prod-type-img" src="">
-            </div>
-        </div>
-
         
+        
+    </nav>
 
+    <br>
+    <div class="row mt-3">
+        <div class="col-9 mx-auto bg-danger">
+            <h3>Produtos</h3>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active row-car">
+                        <div class="row g-1">
+                            <div class="col">
+                                <img src="./img/a.jpeg" class="d-block w-100" alt="pato1" />
+                            </div>
+                            <div class="col">
+                                <img src="./img/b.jpg" class="d-block w-100" alt="pato2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item row-ca">
+                        <div class="row g-1">
+                            <div class="col">
+                                <img src="./img/c.jpg" class="d-block w-100" alt="pato3" />
+                            </div>
+                            <div class="col">
+                                <img src="./img/d.jpeg" class="d-block w-100" alt="pato4" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
-
 
     </div>
-    <!--
-
-        <div id="content-container">
-            <div id="content">
-                <nav id="categories">
-    
-                    <ul class="hor-list">
-    
-                        <li clas="site-topic">G</li>
-    
-                        <li clas="site-topic">P</li>
-    
-                        <li clas="site-topic">H</li>
-    
-                        <li clas="site-topic">L</li>
-    
-                        <li clas="site-topic">M</li>
-    
-                        <li clas="site-topic">N</li>
-    
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    -->
 
 
     <footer>
