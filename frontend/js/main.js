@@ -45,7 +45,7 @@ let layerInfo = {
 };
 
 let carrouselLayerInfo = {
-    "itemsPerPage": 5,
+    "itemsPerPage": 3,
     "items": [
         { "alt": "item0", "id": "id0", "link": "url", "imageSrc": "./img/a.jpeg" },
         { "alt": "item1", "id": "id1", "link": "url", "imageSrc": "./img/a.jpeg" },
@@ -86,23 +86,26 @@ let carrouselLayerInfo = {
 
 $(document).ready(function () {
     function populateCarrouselLayer() {
+        let itemsPerPage = Math.min(carrouselLayerInfo.itemsPerPage, carrouselLayerInfo.items.length);
+        if (itemsPerPage <= 0) return;
+
         let newHtml = `<div class="row layer d-none" id="layer-carousel">
                         <div class="col-9 mx-auto">
                             <div class="carousel slide" id="top-carousel" data-bs-ride="carousel">
                                 <div class="carousel-inner">`;
 
-        let pagesCount = Math.ceil(carrouselLayerInfo.items.length / carrouselLayerInfo.itemsPerPage);
-        let exceedingItemsNeed = carrouselLayerInfo.items.length % carrouselLayerInfo.itemsPerPage;
-        let imagesPerPage;
-        for (let i = 0; i < pagesCount; i++) {
+
+        let pageCount = Math.ceil(carrouselLayerInfo.items.length / itemsPerPage);
+        let lastPageItemsToAdd = (itemsPerPage - carrouselLayerInfo.items.length % itemsPerPage) % itemsPerPage;
+        for (let i = 0; i < pageCount; i++) {
             newHtml += `<div class="${'carousel-item row-car ' + (i === 0 ? 'active' : '')} ">
                             <div class="row g-1">`
-            let k = i * carrouselLayerInfo.itemsPerPage;
+            let k = i * itemsPerPage;
     
-            if (i === pagesCount - 1) k -= exceedingItemsNeed;
-
-            for(let j = 0; j < carrouselLayerInfo.itemsPerPage; j++) {
-                let item = carrouselLayerInfo.items[k+j]
+            if (i === pageCount - 1) k -= lastPageItemsToAdd;
+            
+            for(let j = 0; j < itemsPerPage; j++) {
+                let item = carrouselLayerInfo.items[k+j];
                 newHtml +=  `   <div class="col">
                                     <a href="${item.link}">
                                         <img src="${item.imageSrc}" class="d-block w-100" alt="${item.alt}" />
