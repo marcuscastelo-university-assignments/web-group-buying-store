@@ -149,7 +149,15 @@ div.search-bar-container > input[type="search"] {
 
 }
 
+button.carousel-control-prev, button.carousel-control-next {
+    max-width: 7vw;
+}
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   filter: invert(1);
+}
+
+.buy-buttom{
+    
 }
