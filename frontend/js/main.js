@@ -1,7 +1,7 @@
 let layerInfo = {
     "layers": {
         "1": [
-            { "name": "item0", "id": "id0", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
+            { "name": "item0", "id": "id0", "parent": "undefined", "imageSrc": "./img/fridge.png" },
             { "name": "item1", "id": "id1", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
             { "name": "item2", "id": "id2", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
             { "name": "item3", "id": "id3", "parent": "undefined", "imageSrc": "https://picsum.photos/200" },
@@ -74,8 +74,9 @@ let carrouselLayerInfo = {
 let carrouselSalesInfo = [
     {
         "itemsPerPage": 5,
+        "title": "Interesses",
         "items": [
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item0", "id": "id1c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "alt": "item0", "id": "id1c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
             { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "id1c1", "link": "url", "imageSrc": "https://picsum.photos/300" },
             { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "id1c2", "link": "url", "imageSrc": "https://picsum.photos/400" },
             { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "id1c3", "link": "url", "imageSrc": "https://picsum.photos/500" },
@@ -91,56 +92,59 @@ let carrouselSalesInfo = [
 
     {
         "itemsPerPage": 2,
+        "title": "Para você",
         "items": [
             { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item0", "id": "id2c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "id2c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "id2c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "id2c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "id2c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "id2c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "id2c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "id2c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "id2c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "id2c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "id2c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "id2c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "id2c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "id2c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "id2c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "id2c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "id2c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "id2c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "id2c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
 
         ]
     },
     {
         "itemsPerPage": 6,
+        "title": "Próximos de esgotar",
         "items": [
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item0", "id": "id3c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "id3c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "id3c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "id3c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "id3c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "id3c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "id3c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "id3c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "id3c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "id3c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
+            { "curQtty": 4, "milestones": [{ "quantity": 30, "price": 25 }, { "quantity": 500, "price": 15 }], "alt": "item0", "id": "id3c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "id3c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "id3c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "id3c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "id3c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "id3c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "id3c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "id3c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "id3c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "id3c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
 
         ]
     },
     {
         "itemsPerPage": 1,
+        "title": "Em promoção",
         "items": [
             { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item0", "id": "id4c0", "link": "product?id=id4c0", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "id4c1", "link": "product?id=id4c1", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "id4c2", "link": "product?id=id4c2", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "id4c3", "link": "product?id=id4c3", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "id4c4", "link": "product?id=id4c4", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "id4c5", "link": "product?id=id4c5", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "id4c6", "link": "product?id=id4c6", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "id4c7", "link": "product?id=id4c7", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "id4c8", "link": "product?id=id4c8", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "id4c9", "link": "product?id=id4c9", "imageSrc": "https://picsum.photos/200" }
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "id4c1", "link": "product?id=id4c1", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "id4c2", "link": "product?id=id4c2", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "id4c3", "link": "product?id=id4c3", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "id4c4", "link": "product?id=id4c4", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "id4c5", "link": "product?id=id4c5", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "id4c6", "link": "product?id=id4c6", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "id4c7", "link": "product?id=id4c7", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "id4c8", "link": "product?id=id4c8", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "id4c9", "link": "product?id=id4c9", "imageSrc": "https://picsum.photos/200" }
 
         ]
     },
 ];
 
 function getItemAttrs(item) {
-    let minPriceMile = { price: item.milestones[0].price+1 };
+    let minPriceMile = { price: item.milestones[0].price + 1 };
     let curPrice;
     let curQtty = item.curQtty;
     let nearestMile = { "quantity": -1 };
@@ -148,11 +152,11 @@ function getItemAttrs(item) {
     for (milestone of item.milestones) {
         if (milestone.quantity > biggestMile.quantity)
             biggestMile.quantity = milestone.quantity;
-        
+
         if (curQtty > milestone.quantity && milestone.quantity > nearestMile.quantity)
             nearestMile = milestone;
-            
-        if(milestone.price < minPriceMile.price) minPriceMile = milestone;
+
+        if (milestone.price < minPriceMile.price) minPriceMile = milestone;
     }
 
     if (biggestMile.quantity === -1) {
@@ -170,11 +174,12 @@ function generateItem(item) {
     return `
         <div class="col mx-auto" style="min-width:00px; max-width:200px">
             <div class="card">
-                <img src="${item.imageSrc}" class="d-block img-thumbnail mx-auto" alt="${item.alt}" />
+                <a href=${item.link}>
+                    <img src="${item.imageSrc}" class="d-block img-thumbnail mx-auto" alt="${item.alt}" />
+                </a>
                 <div class="card-body px-1 pt-2">
                     <div class="row g-0 p-0">
-                        <div class="col-10"> Computador </div>
-                        <span class="col-2 badge border px-0 text-center bg-light text-dark">${itemAttrs.curQtty}/${itemAttrs.maxQuantity}</span>
+                        <div class="col-10" style="text-transform:capitalize;"> ${item.alt} </div>
                     </div>
                     <div class="row flex-direction-row mt-2 px-1">
                         <div class="col-6">
@@ -185,14 +190,10 @@ function generateItem(item) {
                         </div>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: ${100*itemAttrs.curQtty/itemAttrs.maxQuantity}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="row flex-direction-row">
-                        <div class="col-6">
+                        <div class="progress-bar text-center bg-warning" role="progressbar" style="width: ${100 * itemAttrs.curQtty / itemAttrs.maxQuantity}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                        <small class="justify-content-center d-flex position-absolute w-100 text-dark fw-bold">${itemAttrs.curQtty}/${itemAttrs.maxQuantity}</small>
+                        
                         </div>
-                    </div>
-                    <div class="col-12 d-flex justify-items-center mt-3 px-1">
-                        <a href="${item.link}" class="btn btn-primary flex-grow-1">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -208,7 +209,8 @@ $(document).ready(function () {
         let itemsPerPage = Math.min(carrouselType.itemsPerPage, carrouselType.items.length);
         if (itemsPerPage <= 0) return;
 
-        let newHtml = `<div class="row layer ${classes}  mt-3" id="carousel-${idName}-row">
+        let newHtml = `<div class="row layer ${classes} carousel-container mt-2" id="carousel-${idName}-row">
+                        <h4 class="${classes || 'mt-5'} w-100 text-center ${classes}  ">${carrouselType.title}</h4>
                         <div class="col-9 mx-auto w-100">
                             <div class="carousel slide" id="carousel-${idName}" data-bs-ride="carousel">
                                 <div class="carousel-inner w-75 mx-auto">`;

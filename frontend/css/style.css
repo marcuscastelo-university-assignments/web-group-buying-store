@@ -11,18 +11,17 @@
 }
 
 body {
-    background-color: var(--body-background);
-}
+    background-color: hsl(264, 56%, 88%) !important;
+} 
 
 #top-bar {
-    background-color: blue;
+    background-color: #31263E;
     min-height: 2em;
-    width: 100vw;
     /* margin-bottom: 0.5em; */
 }
 
 #heading {
-    background-color: #B3DEC1;
+    background-color: #ECA72C;
     height: 100px;
 }
 
@@ -121,16 +120,15 @@ div.search-bar-container > input[type="search"] {
     color:black;
 }
 
-#categories {
-
-}
-
 .layer {
-    background-color: #cccccc1a;
-    padding: 10px 0;
     display: flex;
     flex-wrap: wrap;
+}
+
+.layer > div {
+    background-color: #eee;
     box-shadow: 0 0 0.3rem -0.1em rgba(0, 0, 0, 1);
+    padding: 10px 0;
 }
 
 .category { 
@@ -139,14 +137,10 @@ div.search-bar-container > input[type="search"] {
     background-color: green;
     border-radius: 50%;
     text-align: end;
-    color: aqua;
+    font-size: 0;
     padding: 4rem;
     background-position: center !important;
     background-size: contain !important;
-}
-
-#carouselExampleControls {
-
 }
 
 button.carousel-control-prev, button.carousel-control-next {
@@ -158,6 +152,8 @@ button.carousel-control-prev, button.carousel-control-next {
   filter: invert(1);
 }
 
-.buy-buttom{
-    
+footer {
+    background-color: #221E22;
+    color: white;
+    font-size: 0.7em;
 }
