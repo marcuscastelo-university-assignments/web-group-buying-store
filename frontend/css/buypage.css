@@ -3,3 +3,13 @@
 .comment-rating   {
     color: #FDCC0D !important;
 }
+
+.milestone-progress-waypoint {
+    margin-top: -15px !important;
+    font-size: 2.5em !important;
+}
+
+.half{
+    display: inline-block;
+    width: 50%;
+}

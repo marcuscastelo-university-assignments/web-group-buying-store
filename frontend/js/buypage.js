@@ -186,47 +186,73 @@ $(document).ready(function () {
 
     }
     */
-    function populateMilestones(milestoneInfo) {
+    function populateMilestones(product) {
         let newHtml = ''
 
-        for(let milestone in milestoneInfo){
-            console.log("foi mais um");
-            newHtml += `
+        let milestoneInfo = product.milestones;
 
+        console.log("foda?", milestoneInfo);
+        let i =  1
+
+        
+        for (let milestone of milestoneInfo) {
+            console.log("foda");
+            newHtml += `
             <div class="milestone-item row card mx-auto m-2 p-1 w-100" data-milestone="${'foda'}">
-                <div class="card-header">
-                    a
+                <div class="card-header bg-transparent">
+                    Meta: ${product.curQtty}/${milestone.quantity} 
                 </div>
                 <div class="card-body d-none">
-                    <h5 class="card-title">Special title treatment</h5>
+                    <h5 class="card-title">R$${milestone.price}</h5>
                     <p class="card-text d-none">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
             </div>
-            `  
+            `
         }
 
 
         let currHtml = $('#milestone-list').html();
-        $('#milestoneList').html(currHtml + newHtml);
+        $('#milestone-list').html(currHtml + newHtml);
     }
 
-    populateMilestones(carrouselSalesInfo[0].milestones);
+    function populateMilestoneTriangles(milestones){
+        
+    }
+
+
+    populateMilestones(carrouselSalesInfo[0].items[0]);
+    populateMilestoneTriangles(carrouselSalesInfo[0].items[0].milestones);
+
+
     //Mouse Events
-    $('.milestone-item').click(function (e) {
+    $('.milestone-item .card-header').click(function (e) {
         e.preventDefault();
         console.log('asas')
 
         //Hides every other milestone in the list
-        let self = $(this);
-        
+        let self = $(this).parent();
+
         let isActive = self.hasClass('active');
-        
+
         let targets = $('#milestone-list .milestone-item')
-        targets.addClass('d-none');
-        self.removeClass('d-none');
-        
-        targets.find('.card-body').addClass('d-none');
-        self.find('.card-body').removeClass('d-none');
+
+        if (!isActive) {
+            targets.addClass('d-none');
+            self.removeClass('d-none');
+
+                
+            targets.find('.card-body').addClass('d-none');
+            self.find('.card-body').removeClass('d-none');
+
+            self.addClass('active');
+            self.addClass('h-100');
+        } else {
+            targets.removeClass('d-none');
+            targets.find('.card-body').addClass('d-none');
+            
+            self.removeClass('active');
+            self.removeClass('h-100');
+        }
 
     });
     /*

@@ -8,3 +8,23 @@ span.cart-item-total  {
     font-size: 1.5em;
     font-weight: 500;
 }
+
+#footersimples {
+    background-color: #221E22;
+    color: white;
+    font-size: 0.7em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+button {
+    background-color: #0dcaf0;
+    border: 2px solid black;
+}
+
+#frete {
+    text-align: center;
+    width: 30%;
+}

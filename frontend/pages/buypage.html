@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta lang="pt-br">
     <title>Pagina Principal</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/buypage.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -57,81 +57,108 @@
     </header>
 
     <div class="row mt-5">
-        <div class="col-8  mx-auto">
+        <div class=" col-10 col-md-8  mx-auto">
             <div class="row">
                 <div class="card col-6 text-center mx-auto ">
                     <div class="card col-12" style="width:18gw">
                         <img src="../img/a.jpeg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
+                            <p class="card-text">Patos fresquinhos Lorem ipsum dolor sit amet consectetur, adipisicing
+                                elit. Eum, magni. Eu gosto de patos
                             </p>
                         </div>
                     </div>
                 </div>
-                <div id="milestones-list" class="col-6 d-flex bg-info align-items-end flex-column">
-
-                    <!-- <div class="row card mx-auto mt-auto m-2 p-1 w-100">
+                <div id="milestone-list" class="col-6 d-flex bg-info align-items-end flex-column">
+                    <div class="milestone-item row card mt-auto mx-auto m-2 p-3 w-100" data-milestone="buy"
+                        style="order: 99;">
                         <div class="card-header">
-                          Comprar
+                            Comprar
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div class="card-body d-none">
+                            <h5 class="card-title">Como Comprar</h5>
+                            <p class="card-text d-none">Texto de como comprar.</p>
                         </div>
-                    </div> -->
-
-
-                    <!--
-                        <div class="row mx-auto bg-light m-2 rounded p-1 w-100">a</div>
-                        <div class="row mx-auto bg-light m-2 rounded p-1 w-100">b</div>
-                        <div class="row mx-auto bg-light m-2 rounded p-1 w-100">c</div>
-                        <div class="row mx-auto bg-light m-2 rounded p-1 w-100">d</div>
-                        <div class="row mx-auto bg-light m-2 rounded p-4 w-100 mt-auto">Compra</div>
-
-                    -->
-                    <!--Aqui é adicionado pelo js-->
+                    </div>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-12">
-                    <div class="progress">
+                    <div class="row progress">
                         <div class="progress-bar text-center bg-warning" role="progressbar" style="width: 25%"
                             aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-                            <small class="justify-content-center d-flex position-absolute w-100 text-dark fw-bold">2/8</small>
+                            <small
+                                class="justify-content-center d-flex position-absolute w-100 text-dark fw-bold">2/8</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--
+                            <div class="mx-auto bg-info align-self-center d-flex flex-row">
+                        mx-auto nos span
+                        -->
+                        <div class="mx-auto bg-info align-self-center d-flex flex-row">
+                            <span class="fa fa-caret-up milestone-progress-waypoint "></span>
+                            <span style="width:25%;"></span></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
+                            <span class="fa fa-caret-up milestone-progress-waypoint"></span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5 border border-info" id="comments">
+
+
+        </div>
+
+        <!-- Comentários -->
+        <div class="row" id="comments">
+            <div class="col-11 col-md-8 mx-auto">
                 <div class="col">
                     <div class="row">
-                        <div class="col-10 mx-auto">
+                        <div class="col mx-auto">
                             <h5>Comentários</h5>
                         </div>
                     </div>
                     <div class="row mt-1">
-                        <div class="col-12">
+                        <div class="col-12 mx-auto" id="comment-list">
 
-                            
-                            <div class="row mt-1">
-                                <div class="col-10 card mx-auto">
-                                    <div class="row mt-3">
-                                        <div class="col mx-auto text-center">
-                                            <img width="64" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png"
-                                                alt="">
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-1 px-2">
-                                                    <h5>Odiei</h5>
+                            <div class="row g-0 mt-1 border border-info">
+                                <div class="col card mx-auto">
+                                    <div class="row g-2 g-md-0">
+                                        <div class="col-12 col-md-2 border mx-auto bg-light">
+                                            <div class="row g-0">
+                                                <div class="col-2 col-md-12 text-center">
+                                                    <img class="img-fluid"
+                                                        src="https://tiao-a.magazineluiza.com.br/img/lu-header.png"
+                                                        alt="">
                                                 </div>
-                                                <div class="col fluid comment-rating">
+                                                <div class="col col-md-12 d-flex">
+                                                    <span class="align-self-end text-center">
+                                                        Fulana da Silva Tavares
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col p-3">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-1 fluid comment-rating">
                                                     <span class="fa fa-star"></span>
                                                     <span class="fa fa-star"></span>
                                                     <span class="fa fa-star"></span>
                                                     <span class="fa fa-star"></span>
                                                     <span class="fa fa-star"></span>
+                                                </div>
+                                                <div class="px-2">
+                                                    <h5>Odiei</h5>
                                                 </div>
                                             </div>
                                             <p>Pior produto que ja vi, quem vende computador verde?</p>
@@ -150,29 +177,38 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-1">
-                                <div class="col-10 card mx-auto">
-                                    <div class="row mt-3">
-                                        <div class="col mx-auto text-center">
-                                            <img width="64" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png"
-                                                alt="">
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-1 px-2">
-                                                    <h5>amei</h5>
+                            <div class="row g-0 mt-1 border border-info">
+                                <div class="col card mx-auto">
+                                    <div class="row g-2 g-md-0">
+                                        <div class="col-12 col-md-2 border mx-auto bg-light">
+                                            <div class="row g-0">
+                                                <div class="col-2 col-md-12 text-center">
+                                                    <img class="img-fluid"
+                                                        src="https://tiao-a.magazineluiza.com.br/img/lu-header.png"
+                                                        alt="">
                                                 </div>
-                                                <div class="col fluid comment-rating">
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
-                                                    <span class="fa fa-star-o"></span>
+                                                <div class="col col-md-12 d-flex">
+                                                    <span class="align-self-end text-center">
+                                                        Fulana da Silva Tavares
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <p>soh nao do cinco estrelas pq meu amigo me enganou e roubou meus móveis nesse site</p>
+                                        </div>
+                                        <div class="col p-3">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-1 fluid comment-rating">
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                </div>
+                                                <div class="px-2">
+                                                    <h5>Odiei</h5>
+                                                </div>
+                                            </div>
+                                            <p>Pior produto que ja vi, quem vende computador verde?</p>
                                             <div class="row">
-
                                                 <div class="col">
                                                     <span class="fa fa-thumbs-o-up"></span>
                                                     <span class="fa fa-thumbs-o-down"></span>
@@ -187,29 +223,38 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-1">
-                                <div class="col-10 card mx-auto">
-                                    <div class="row mt-3">
-                                        <div class="col mx-auto text-center">
-                                            <img width="64" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png"
-                                                alt="">
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-1 px-2">
-                                                    <h5>Venham ver meu canal no youtube</h5>
+                            <div class="row g-0 mt-1 border border-info">
+                                <div class="col card mx-auto">
+                                    <div class="row g-2 g-md-0">
+                                        <div class="col-12 col-md-2 border mx-auto bg-light">
+                                            <div class="row g-0">
+                                                <div class="col-2 col-md-12 text-center">
+                                                    <img class="img-fluid"
+                                                        src="https://tiao-a.magazineluiza.com.br/img/lu-header.png"
+                                                        alt="">
                                                 </div>
-                                                <div class="col fluid comment-rating">
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
+                                                <div class="col col-md-12 d-flex">
+                                                    <span class="align-self-end text-center">
+                                                        Fulana da Silva Tavares
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <p><a href="https://www.youtube.com/user/tseries">https://www.youtube.com/user/tseries</a></p>
+                                        </div>
+                                        <div class="col p-3">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-1 fluid comment-rating">
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                </div>
+                                                <div class="px-2">
+                                                    <h5>Odiei</h5>
+                                                </div>
+                                            </div>
+                                            <p>Pior produto que ja vi, quem vende computador verde?</p>
                                             <div class="row">
-
                                                 <div class="col">
                                                     <span class="fa fa-thumbs-o-up"></span>
                                                     <span class="fa fa-thumbs-o-down"></span>
@@ -223,7 +268,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                         </div>
                     </div>
@@ -233,34 +277,33 @@
     </div>
     </div>
 
+    <div class="row mt-5"></div>
 
-    <div class="row">
-        <footer>
-            <div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <h3>Informacoes</h3>
-                        <ul>
-                            <li><a href="index.html">Início</a></li>
-                            <li><a href="./pages/cart.html">Carrinho</a></li>
-                            <li>Quem Somos</li>
-                            <li>Nossas Lojas</li>
-                            <li>Duvidas na Compra?</li>
-                            <li>Codigo de Defesa do Consumidor</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <h3>Atendimento</h3>
-                        <img src="./img/mail.png" height="30" width="40" class="d-block w-">
-                        <p>emaildecontato@contato.com</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h3>Formas de Pagamento</h3>
-                    <img src="./img/pagamentos.png">
-                    </div>
+    <footer>
+        <div>
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Informacoes</h3>
+                    <ul>
+                        <li><a href="../index.html">Início</a></li>
+                        <li><a href="cart.html">Carrinho</a></li>
+                        <li><a href="whoweare.html">Quem Somos</a></li>
+                        <li>Nossas Lojas</li>
+                        <li>Duvidas na Compra?</li>
+                        <li><a href="http://www.planalto.gov.br/ccivil_03/Leis/L8078.htm">Codigo de Defesa do Consumidor</a></li>
+                    </ul>
                 </div>
-        </footer>
-    </div>
+                <div class="col-md-3">
+                    <h3>Atendimento</h3>
+                    <img src="../img/mail.png" height="30" width="40" class="d-block w-">
+                    <p>emaildecontato@contato.com</p>
+                </div>
+                <div class="col-md-3">
+                    <h3>Formas de Pagamento</h3>
+                <img src="../img/pagamentos.png">
+                </div>
+            </div>
+    </footer>
 </body>
 
 </html>
