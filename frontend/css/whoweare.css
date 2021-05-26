@@ -1,0 +1,17 @@
+h1 {
+    background-color: #0dcaf0;
+    text-align: left;
+    border-radius: 5px;
+    width: 20%;
+}
+
+#bloco {
+    background-color: #0dcaf0;
+    border-radius: 60px;
+}
+
+#descricaoSite {
+    position:fixed;
+    bottom: 140px;
+    left: 0;
+}

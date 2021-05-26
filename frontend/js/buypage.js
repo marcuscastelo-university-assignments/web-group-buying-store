@@ -4,7 +4,7 @@ let carrouselSalesInfo = [
         "itemsPerPage": 5,
         "title": "Interesses",
         "items": [
-            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "alt": "item0", "id": "aid1c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 3, "milestones": [{ "quantity": 0, "price": 25 },{ "quantity": 50, "price": 25 },{ "quantity": 75, "price": 25 }, { "quantity": 100, "price": 15 }], "alt": "item0", "id": "aid1c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
             { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid1c1", "link": "url", "imageSrc": "https://picsum.photos/300" },
             { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid1c2", "link": "url", "imageSrc": "https://picsum.photos/400" },
             { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid1c3", "link": "url", "imageSrc": "https://picsum.photos/500" },
@@ -70,7 +70,6 @@ let carrouselSalesInfo = [
         ]
     },
 ];
-/*
 function getItemAttrs(item) {
     let minPriceMile = { price: item.milestones[0].price + 1 };
     let curPrice;
@@ -79,23 +78,24 @@ function getItemAttrs(item) {
     let biggestMile = { "quantity": -1 };
     for (milestone of item.milestones) {
         if (milestone.quantity > biggestMile.quantity)
-            biggestMile.quantity = milestone.quantity;
+        biggestMile.quantity = milestone.quantity;
 
         if (curQtty > milestone.quantity && milestone.quantity > nearestMile.quantity)
             nearestMile = milestone;
-
+            
         if (milestone.price < minPriceMile.price) minPriceMile = milestone;
     }
-
+    
     if (biggestMile.quantity === -1) {
         console.error('Invalid product: no valid milestones. ID = ', item.id);
     }
 
     if (nearestMile.quantity === -1) curPrice = '-';
     else curPrice = nearestMile.price;
-
+    
     return { curQtty, maxQuantity: biggestMile.quantity, curPrice, minPrice: minPriceMile.price };
 }
+/*
 
 function generateItem(item) {
     let itemAttrs = getItemAttrs(item);
@@ -215,14 +215,26 @@ $(document).ready(function () {
         $('#milestone-list').html(currHtml + newHtml);
     }
 
-    function populateMilestoneTriangles(milestones){
-        
+    function populateMilestoneSpots(item){
+        newHtml = '';
+        let mileSpotsAttrs;
+        let milestones = item.milestones;
+        for(let milestone of milestones){
+            mileSpotsAttrs = getItemAttrs(item);
+            newHtml += `
+                <div class="w-100 noclick d-flex position-absolute start-0">
+                    <span class="invisible noclick" style="width:${100 * (1/6 +  (2 * milestone.quantity) / ( 3 * mileSpotsAttrs.maxQuantity ))}%;"></span>
+                    <a href=""><span class="fa noclick fa-caret-up milestone-progress-spot"></span></a>
+                </div> 
+            `;
+        }
+        let currHtml = $('#progress-spots').html();
+        $('#progress-spots').html(currHtml + newHtml);
     }
 
 
     populateMilestones(carrouselSalesInfo[0].items[0]);
-    populateMilestoneTriangles(carrouselSalesInfo[0].items[0].milestones);
-
+    populateMilestoneSpots(carrouselSalesInfo[0].items[0]);
 
     //Mouse Events
     $('.milestone-item .card-header').click(function (e) {
@@ -255,6 +267,40 @@ $(document).ready(function () {
         }
 
     });
+
+    /*
+    $('.milestone-item .card-header').click(function (e) {
+        e.preventDefault();
+        console.log('asas')
+
+        //Hides every other milestone in the list
+        let self = $(this).parent();
+
+        let isActive = self.hasClass('active');
+
+        let targets = $('#milestone-list .milestone-item')
+
+        if (!isActive) {
+            targets.addClass('d-none');
+            self.removeClass('d-none');
+
+                
+            targets.find('.card-body').addClass('d-none');
+            self.find('.card-body').removeClass('d-none');
+
+            self.addClass('active');
+            self.addClass('h-100');
+        } else {
+            targets.removeClass('d-none');
+            targets.find('.card-body').addClass('d-none');
+            
+            self.removeClass('active');
+            self.removeClass('h-100');
+        }
+
+    });*/
+
+
     /*
 
     $('#categories').mouseleave(function (e) {

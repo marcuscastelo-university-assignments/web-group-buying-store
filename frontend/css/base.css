@@ -138,9 +138,11 @@ footer {
     width: 100%;
 }
 
-#descricaoSite
-{
-    position:fixed;
-    bottom: 140px;
-    left: 0;
+
+.noclick {
+    pointer-events: none;
+}
+
+.noclick a {
+    pointer-events: all;
 }
