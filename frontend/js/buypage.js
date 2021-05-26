@@ -247,12 +247,10 @@ $(document).ready(function () {
 
         let milestoneInfo = product.milestones;
 
-        console.log("foda?", milestoneInfo);
         let i =  1
 
         fixProgressBar(product);
         for (let milestone of milestoneInfo) {
-            console.log("foda");
             newHtml += `
             <div class="milestone-item row card mx-auto m-2 p-1 w-100" data-milestone="${product.alt}-${milestone.quantity}">
                 <div class="card-header bg-transparent">
