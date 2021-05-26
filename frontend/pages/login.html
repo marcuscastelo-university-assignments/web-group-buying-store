@@ -38,16 +38,16 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md">
-                            <form name="login-registration-form">
+                            <form id="login-registration-form" action="../pages/product_creation.html">
                                 <div class="top-login input-group bg-light border p-3 registration d-none">
                                     <div class="row g-0 w-100">
                                         <label class="form-label" for="nome-completo">Nome completo</label>
-                                        <input name="nome-completo" required class="form-control" type="text"
+                                        <input name="nome-completo" class="form-control" type="text"
                                             placeholder="Fulano da silva">
                                     </div>
                                     <div class="row g-0 mt-3 w-100">
                                         <label lass="form-label" for="email">Email</label>
-                                        <input name="email" required class="form-control" type="email"
+                                        <input name="email" class="form-control" type="email"
                                             placeholder="fulano@gmail.com">
                                     </div>
                                     <div class="row g-0 mt-3 w-100">
@@ -59,14 +59,14 @@
                                 <div class="input-group bg-light border p-3 mt-3">
                                     <div class="row g-0 w-100">
                                         <input name="person-name" required class="form-control" type="text"
-                                            placeholder="Login">
+                                            placeholder="Login" id="login">
                                     </div>
                                     <div class="row g-0 mt-3 w-100">
                                         <input id="password" name="password" required class="form-control" type="password"
                                         placeholder="Senha" aria-describedby="validationServerUsernameFeedback">
                                     </div>
                                     <div class=" row g-0 mt-3 w-100 registration d-none">
-                                        <input id="password-confirmation" name="password-confirmation" required class="form-control"
+                                        <input id="password-confirmation" name="password-confirmation" class="form-control"
                                         type="password" placeholder="Confirmação de senha" aria-describedby="validationServerUsernameFeedback">
                                         <div id="validationServerUsernameFeedback" class="invalid-feedback ">
                                             Senhas não coincidem.
@@ -77,17 +77,16 @@
 
                                 <div class="row mt-3 login">
                                     <div class="col">
-                                        <button id="btn-to-registration" class="form-control btn"> Criar conta </button>
+                                        <a id="btn-to-registration" class="form-control btn"> Criar conta </a>
                                     </div>
                                     <div class="col">
-                                        <input class="form-control btn btn-dark" type="submit" value="Login">
+                                        <input id="go-login" class="form-control btn btn-dark" type="submit" value="Login">
                                     </div>
                                 </div>
 
                                 <div class="row mt-3 registration d-none">
                                     <div class="col">
-                                        <input id="btn-to-login" class="form-control btn" type="submit"
-                                            value="Já possuo conta">
+                                        <a id="btn-to-login" class="form-control btn"> Já possuo con </a>
                                     </div>
                                     <div class="col">
                                         <input class="form-control btn btn-dark" type="submit" value="Cadastrar">

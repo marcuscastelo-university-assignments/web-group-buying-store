@@ -5,6 +5,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         $('.login').addClass('d-none');
+        $('.login input').removeAttr('required');
+        $('.registration input').attr('required', '');
+
         $('.registration').removeClass('d-none');
         checkPasswordValidity();
     });
@@ -14,8 +17,16 @@ $(document).ready(function() {
         
         $('.login').removeClass('d-none');
         $('.registration').addClass('d-none');
+        $('.registration input').removeAttr('required');
+
         $('input[type="password"]').removeClass('is-invalid');
     });
+
+    $('#go-login').click(function(e) {
+        $('#login').val() === 'admin' && 
+        $('#password').val() === 'admin' ||
+        e.preventDefault();
+    })
     
     $('#password').keyup(function(e){
         if (!$(this).val() || $('#password-confirmation').val())
@@ -26,22 +37,15 @@ $(document).ready(function() {
         checkPasswordValidity();
     });
 
-    $('#login-registration-form').submit(function(e){
-       if (!checkPasswordValidity()) 
-            e.preventDefault();
-    });
-
     function checkPasswordValidity() {
         if($('#password-confirmation').parent().hasClass('d-none')) {
             $('input[type="password"]').removeClass('is-invalid');
-            return;
+            return true;
         };
 
         let passwordValue = $('#password').val();
         let confirmPasswordValue = $('#password-confirmation').val();
         
-        console.log(passwordValue, confirmPasswordValue);
-
         if (passwordValue !== confirmPasswordValue) {
             $('input[type="password"]').addClass('is-invalid');
         }
