@@ -130,6 +130,56 @@ function generateItem(item) {
 }
 */
 
+
+
+
+
+function workOnMilestones(milestoneCur){
+    let milestoneIsActive = milestoneCur.hasClass('active');
+
+    let milestoneTargets = $('#milestone-list .milestone-item')
+
+    if (!milestoneIsActive) {
+        milestoneTargets.addClass('d-none');
+        milestoneCur.removeClass('d-none');
+
+            
+        milestoneTargets.find('.card-body').addClass('d-none');
+        milestoneCur.find('.card-body').removeClass('d-none');
+
+        milestoneCur.addClass('active');
+        milestoneCur.addClass('h-100');
+    } else {
+        milestoneTargets.removeClass('d-none');
+        milestoneTargets.find('.card-body').addClass('d-none');
+        
+        milestoneCur.removeClass('active');
+        milestoneCur.removeClass('h-100');
+    }
+}
+
+function workOnMilestoneSpots(milestoneSpotCur){
+    let milestoneSpotIsActive = milestoneSpotCur.hasClass('active');
+
+    let milestoneSpotTargets = $('.milestone-progress-spot')
+
+    if (!milestoneSpotIsActive) {
+        milestoneSpotTargets.parent().parent().addClass('d-none');
+        milestoneSpotCur.removeClass('d-none');
+
+        milestoneSpotCur.addClass('active');
+    } else {
+        milestoneSpotTargets.parent().parent().removeClass('d-none');            
+        milestoneSpotCur.removeClass('active');
+    }
+}
+
+
+
+
+
+
+
 $(document).ready(function () {
     /*
     async function populateCarrousel(carrouselType, location, idName, generateItem, classes) {
@@ -186,6 +236,13 @@ $(document).ready(function () {
 
     }
     */
+
+    function fixProgressBar(product){
+        milestoneAttrs = getItemAttrs(product);
+        $('.progress-bar').attr("style",`width: ${100*(product.curQtty/milestoneAttrs.maxQuantity)}%`);
+        $('.progress-bar small').html(`${product.curQtty}/${milestoneAttrs.maxQuantity}`);
+    }
+
     function populateMilestones(product) {
         let newHtml = ''
 
@@ -194,11 +251,11 @@ $(document).ready(function () {
         console.log("foda?", milestoneInfo);
         let i =  1
 
-        
+        fixProgressBar(product);
         for (let milestone of milestoneInfo) {
             console.log("foda");
             newHtml += `
-            <div class="milestone-item row card mx-auto m-2 p-1 w-100" data-milestone="${'foda'}">
+            <div class="milestone-item row card mx-auto m-2 p-1 w-100" data-milestone="${product.alt}-${milestone.quantity}">
                 <div class="card-header bg-transparent">
                     Meta: ${product.curQtty}/${milestone.quantity} 
                 </div>
@@ -215,16 +272,18 @@ $(document).ready(function () {
         $('#milestone-list').html(currHtml + newHtml);
     }
 
-    function populateMilestoneSpots(item){
+    function populateMilestoneSpots(product){
         newHtml = '';
         let mileSpotsAttrs;
-        let milestones = item.milestones;
+        let milestones = product.milestones;
         for(let milestone of milestones){
-            mileSpotsAttrs = getItemAttrs(item);
+            mileSpotsAttrs = getItemAttrs(product);
             newHtml += `
                 <div class="w-100 noclick d-flex position-absolute start-0">
                     <span class="invisible noclick" style="width:${100 * (1/6 +  (2 * milestone.quantity) / ( 3 * mileSpotsAttrs.maxQuantity ))}%;"></span>
-                    <a href=""><span class="fa noclick fa-caret-up milestone-progress-spot"></span></a>
+                    <a data-milestone="${product.alt}-${milestone.quantity}" href="">
+                        <span class="milestone-progress-spot fa noclick fa-caret-up"></span>
+                    </a>
                 </div> 
             `;
         }
@@ -239,34 +298,19 @@ $(document).ready(function () {
     //Mouse Events
     $('.milestone-item .card-header').click(function (e) {
         e.preventDefault();
-        console.log('asas')
-
-        //Hides every other milestone in the list
-        let self = $(this).parent();
-
-        let isActive = self.hasClass('active');
-
-        let targets = $('#milestone-list .milestone-item')
-
-        if (!isActive) {
-            targets.addClass('d-none');
-            self.removeClass('d-none');
-
-                
-            targets.find('.card-body').addClass('d-none');
-            self.find('.card-body').removeClass('d-none');
-
-            self.addClass('active');
-            self.addClass('h-100');
-        } else {
-            targets.removeClass('d-none');
-            targets.find('.card-body').addClass('d-none');
-            
-            self.removeClass('active');
-            self.removeClass('h-100');
-        }
-
+        workOnMilestones($(this).parent());
+        workOnMilestoneSpots($(`a[data-milestone=${$(this).parent().attr("data-milestone")}]`).parent());
     });
+
+    //Mouse Events
+    
+    $('a:has(> span.milestone-progress-spot)').click(function (e) {
+        e.preventDefault();
+        workOnMilestoneSpots($(this).parent());
+        workOnMilestones($(`div[data-milestone=${$(this).attr("data-milestone")}]`));
+    });
+
+
 
     /*
     $('.milestone-item .card-header').click(function (e) {
