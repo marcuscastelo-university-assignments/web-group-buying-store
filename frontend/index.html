@@ -26,34 +26,38 @@
 <body>
     <div id="top-bar">Sobre nós</div>
 
-    <header id="heading">
-        <div id="heading-inner">
-            <img id="logo-img" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png" alt="Logo" />
-
-            <div class="search-bar-container">
-                <input type="search" id="search-bar" size="1">
-                <div id="submit-search-wrapper">
-                    <i id="submit-search" class="fa fa-search"></i>
+    <header class="row" id="heading">
+        <div class="col-12 col-md-9 mx-auto" style="max-width: 1920px;">
+            <div class="row">
+                <div class="col-4 col-sm-2">
+                    <a href="/">
+                        <img class="img" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png" alt="Logo" />
+                    </a>
                 </div>
-
-            </div>
-
-            <div id="heading-icons">
-                <div class="heading-icon-container heading-vertical-center heading-icon">
-                    <a href=""><i class="fa fa-heart-o" id="favorite-icon"></i></a>
+                <div class="col d-flex align-items-center">
+                    <input class="form-control" type="search" size="1" />
+                    <span class="px-2 heading-icon">
+                        <i class="fa fa-search"></i>
+                    </span>
                 </div>
-                <div class="heading-icon-container heading-vertical-center heading-icon">
-                    <a href="pages/cart.html"><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
+                <div class="col-12 col-md-3">
+                    <div class="row h-100 w-100 d-flex align-items-center ">
+                        <div class="col-6 heading-icon">
+                            <a href=""><i class="fa fa-heart-o" id="favorite-icon"></i></a>
+                        </div>
+                        <div class="col-6 heading-icon">
+                            <a href="pages/cart.html"><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <!-- 
+                <!-- 
             <div id="login">
                 <img src="" alt="Cadastrar icon">
                 <button>Cadastrar</button>
             </div> -->
-
+            </div>
         </div>
+
     </header>
 
     <div class="row">
@@ -68,31 +72,62 @@
         </div>
     </div>
 
-    <footer>
-        <div>
+    <footer class="row">
+        <div class="col-12 col-md-9 mx-auto">
             <div class="row">
-                <div class="col-md-3">
-                    <h3>Informacoes</h3>
+                <div class="col-12 col-md mt-3 text-center">
+                    <h3>Informações</h3>
                     <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="./pages/cart.html">Carrinho</a></li>
-                        <li><a href="./pages/whoweare.html">Quem Somos</a></li>
+                        <li><a href="../index.html">Início</a></li>
+                        <li><a href="cart.html">Carrinho</a></li>
+                        <li><a href="whoweare.html">Quem Somos</a></li>
                         <li>Nossas Lojas</li>
                         <li>Duvidas na Compra?</li>
                         <li><a href="http://www.planalto.gov.br/ccivil_03/Leis/L8078.htm">Codigo de Defesa do
-                        Consumidor</a></li>
+                                Consumidor</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-md mt-3 text-center">
                     <h3>Atendimento</h3>
-                    <img src="./img/mail.png" height="30" width="40" class="d-block w-">
+                    <img src="../img/mail.png" height="30" width="40">
                     <p>emaildecontato@contato.com</p>
                 </div>
-                <div class="col-md-3">
-                    <h3>Formas de Pagamento</h3>
-                    <img src="./img/pagamentos.png">
+                <div class="col-12 col-md mt-3">
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <h3>Formas de Pagamento</h3>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap g-0">
+                        <div class="payment-method">
+                            <img src="/frontend/img/pagamentos/amex.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/frontend/img/pagamentos/boleto.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/frontend/img/pagamentos/duble.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/frontend/img/pagamentos/elo.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/frontend/img/pagamentos/hipercard.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/frontend/img/pagamentos/hiper.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/frontend/img/pagamentos/mastercard.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/frontend/img/pagamentos/visa.png" />
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+
     </footer>
 
 </body>

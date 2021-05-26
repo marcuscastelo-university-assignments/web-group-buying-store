@@ -22,45 +22,10 @@ body {
 
 #heading {
     background-color: #ECA72C;
-    height: 100px;
 }
-
-#heading-inner {
-    max-width: 70%;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    gap: 1em;
-    /* min-width: 90vw; */
-}
-
-@media only screen and (max-width: 400px) {
-    #heading-inner {
-        max-width: 100%;
-    }
-}
-
-#logo-img {
-    height: 100%;
-    margin-right: 5%;
-    /* border: 3px solid green ; */
-}
-
-
-div.search-bar-container {
-    display: flex;
-    flex-grow: 2;
-    flex-shrink: 1;
-    height: 80%;
-    margin: auto 0;
-    flex-direction: row;
-}
-
 
 #heading-icons {
-    display: flex;
-    flex: 1;
-    max-width: 200px;
+    font-size: 1rem;
 }
 
 .heading-icon-container {
@@ -73,6 +38,11 @@ div.search-bar-container {
     text-align: center;
     width: fit-content;
     margin: 0 auto;
+    transition: font-size 0.2s;
+}
+
+.heading-icon:hover{
+    font-size: 2.4rem;
 }
 
 a.anodec {
@@ -120,23 +90,7 @@ div.search-bar-container > input[type="search"] {
     color: black;
 }
 
-footer {
-    background-color: #221E22;
-    color: white;
-    font-size: 0.7em;
-    position: static;
-}
 
-#footersimples
-{
-    background-color: #221E22;
-    color: white;
-    font-size: 0.7em;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-}
 
 
 .noclick {
@@ -145,4 +99,35 @@ footer {
 
 .noclick a {
     pointer-events: all;
+}
+
+
+/* FOOTER */
+
+footer {
+    padding: 1rem;
+    background-color: #221E22;
+    color: white;
+    font-size: 0.7em;
+    position: static;
+}
+
+footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+#footersimples
+{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.payment-method {
+    text-align: center;
+    padding: 0.2rem 0;
+    min-width: 80px;
 }
