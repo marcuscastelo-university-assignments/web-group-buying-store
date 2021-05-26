@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta lang="pt-br">
+
+    <!-- Basic imports -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/base.css">
+    <!-- /Basic imports -->
+
+    <script src="../js/login.js"></script>
+
+    <title>Buy Page</title>
+</head>
+
+<body>
+
+    <div class="d-flex flex-column vh-100">
+
+        <!-- <div id="top-bar">Sobre nós</div> -->
+
+        <div class="mt-4 flex-grow-1">
+
+            <div class="card col-11 col-md-8 col-lg-4 col-xl-3 mx-auto">
+                <div class="card-header bg-light fw-bold text-large m-2 login ">Login</div>
+                <div class="card-header bg-light fw-bold text-large m-2 registration d-none">Cadastro</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <form name="login-registration-form">
+                                <div class="top-login input-group bg-light border p-3 registration d-none">
+                                    <div class="row g-0 w-100">
+                                        <label class="form-label" for="nome-completo">Nome completo</label>
+                                        <input name="nome-completo" required class="form-control" type="text"
+                                            placeholder="Fulano da silva">
+                                    </div>
+                                    <div class="row g-0 mt-3 w-100">
+                                        <label lass="form-label" for="email">Email</label>
+                                        <input name="email" required class="form-control" type="email"
+                                            placeholder="fulano@gmail.com">
+                                    </div>
+                                    <div class="row g-0 mt-3 w-100">
+                                        <label class="form-label" for="birthday">Data de nascimento</label>
+                                        <input name="birthday" class="form-control text-muted" type="date">
+                                    </div>
+                                </div>
+
+                                <div class="input-group bg-light border p-3 mt-3">
+                                    <div class="row g-0 w-100">
+                                        <input name="person-name" required class="form-control" type="text"
+                                            placeholder="Login">
+                                    </div>
+                                    <div class="row g-0 mt-3 w-100">
+                                        <input id="password" name="password" required class="form-control" type="password"
+                                        placeholder="Senha" aria-describedby="validationServerUsernameFeedback">
+                                    </div>
+                                    <div class=" row g-0 mt-3 w-100 registration d-none">
+                                        <input id="password-confirmation" name="password-confirmation" required class="form-control"
+                                        type="password" placeholder="Confirmação de senha" aria-describedby="validationServerUsernameFeedback">
+                                        <div id="validationServerUsernameFeedback" class="invalid-feedback ">
+                                            Senhas não coincidem.
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mt-3 login">
+                                    <div class="col">
+                                        <button id="btn-to-registration" class="form-control btn"> Criar conta </button>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control btn btn-dark" type="submit" value="Login">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3 registration d-none">
+                                    <div class="col">
+                                        <input id="btn-to-login" class="form-control btn" type="submit"
+                                            value="Já possuo conta">
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control btn btn-dark" type="submit" value="Cadastrar">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <footer class="g-0 mt-5">
+            <div class="col-12 col-md-9 mx-auto">
+                <div class="row g-0">
+                    <div class="col-12 col-md mt-3 text-center">
+                        <h3>Informações</h3>
+                        <ul>
+                            <li><a href="/index.html">Início</a></li>
+                            <li><a href="../pages/cart.html">Carrinho</a></li>
+                            <li><a href="../pages/whoweare.html">Quem Somos</a></li>
+                            <li>Nossas Lojas</li>
+                            <li>Duvidas na Compra?</li>
+                            <li><a href="http://www.planalto.gov.br/ccivil_03/Leis/L8078.htm">Codigo de Defesa do
+                                    Consumidor</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md mt-3 text-center">
+                        <h3>Atendimento</h3>
+                        <img src="../img/mail.png" height="30" width="40">
+                        <p>emaildecontato@contato.com</p>
+                    </div>
+                    <div class="col-12 col-md mt-3">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h3>Formas de Pagamento</h3>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap g-0">
+                            <div class="payment-method">
+                                <img src="../img/pagamentos/amex.png" />
+                            </div>
+                            <div class="payment-method">
+                                <img src="../img/pagamentos/boleto.png" />
+                            </div>
+                            <div class="payment-method">
+                                <img src="../img/pagamentos/duble.png" />
+                            </div>
+                            <div class="payment-method">
+                                <img src="../img/pagamentos/elo.png" />
+                            </div>
+                            <div class="payment-method">
+                                <img src="../img/pagamentos/hipercard.png" />
+                            </div>
+                            <div class="payment-method">
+                                <img src="../img/pagamentos/hiper.png" />
+                            </div>
+                            <div class="payment-method">
+                                <img src="../img/pagamentos/mastercard.png" />
+                            </div>
+                            <div class="payment-method">
+                                <img src="../img/pagamentos/visa.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+    </footer>
+</body>
+
+</html>
