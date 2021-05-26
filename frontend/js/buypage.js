@@ -4,16 +4,16 @@ let carrouselSalesInfo = [
         "itemsPerPage": 5,
         "title": "Interesses",
         "items": [
-            { "curQtty": 3, "milestones": [{ "quantity": 0, "price": 25 },{ "quantity": 50, "price": 25 },{ "quantity": 75, "price": 25 }, { "quantity": 100, "price": 15 }], "alt": "item0", "id": "aid1c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid1c1", "link": "url", "imageSrc": "https://picsum.photos/300" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid1c2", "link": "url", "imageSrc": "https://picsum.photos/400" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid1c3", "link": "url", "imageSrc": "https://picsum.photos/500" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "aid1c4", "link": "url", "imageSrc": "https://picsum.photos/600" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "aid1c5", "link": "url", "imageSrc": "https://picsum.photos/700" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "aid1c6", "link": "url", "imageSrc": "https://picsum.photos/800" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "aid1c7", "link": "url", "imageSrc": "https://picsum.photos/900" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "aid1c8", "link": "url", "imageSrc": "https://picsum.photos/1000" },
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "aid1c9", "link": "url", "imageSrc": "https://picsum.photos/1100" }
+            { "curQtty": 3, "milestones": [{ "quantity": 0, "price": 50 },{ "quantity": 50, "price": 40 },{ "quantity": 75, "price": 25 }, { "quantity": 100, "price": 15 }], "alt": "item0", "id": "aid1c0", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid1c1", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/300" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid1c2", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/400" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid1c3", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/500" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "aid1c4", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/600" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "aid1c5", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/700" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "aid1c6", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/800" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "aid1c7", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/900" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "aid1c8", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/1000" },
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "aid1c9", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/1100" }
 
         ]
     },
@@ -22,16 +22,16 @@ let carrouselSalesInfo = [
         "itemsPerPage": 2,
         "title": "Para você",
         "items": [
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item0", "id": "aid2c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid2c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid2c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid2c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "aid2c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "aid2c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "aid2c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "aid2c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "aid2c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "aid2c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item0", "id": "aid2c0", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid2c1", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid2c2", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid2c3", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "aid2c4", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "aid2c5", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "aid2c6", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "aid2c7", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "aid2c8", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "aid2c9", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" }
 
         ]
     },
@@ -39,16 +39,16 @@ let carrouselSalesInfo = [
         "itemsPerPage": 6,
         "title": "Próximos de esgotar",
         "items": [
-            { "curQtty": 4, "milestones": [{ "quantity": 30, "price": 25 }, { "quantity": 500, "price": 15 }], "alt": "item0", "id": "aid3c0", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid3c1", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid3c2", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid3c3", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "aid3c4", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "aid3c5", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "aid3c6", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "aid3c7", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "aid3c8", "link": "url", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "aid3c9", "link": "url", "imageSrc": "https://picsum.photos/200" }
+            { "curQtty": 4, "milestones": [{ "quantity": 30, "price": 25 }, { "quantity": 500, "price": 15 }], "alt": "item0", "id": "aid3c0", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid3c1", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid3c2", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid3c3", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "aid3c4", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "aid3c5", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "aid3c6", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "aid3c7", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "aid3c8", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "aid3c9", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" }
 
         ]
     },
@@ -56,16 +56,16 @@ let carrouselSalesInfo = [
         "itemsPerPage": 1,
         "title": "Em promoção",
         "items": [
-            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item0", "id": "aid4c0", "link": "product?id=id4c0", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid4c1", "link": "product?id=id4c1", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid4c2", "link": "product?id=id4c2", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid4c3", "link": "product?id=id4c3", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "aid4c4", "link": "product?id=id4c4", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "aid4c5", "link": "product?id=id4c5", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "aid4c6", "link": "product?id=id4c6", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "aid4c7", "link": "product?id=id4c7", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "aid4c8", "link": "product?id=id4c8", "imageSrc": "https://picsum.photos/200" },
-            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "aid4c9", "link": "product?id=id4c9", "imageSrc": "https://picsum.photos/200" }
+            { "curQtty": 4, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item0", "id": "aid4c0", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item1", "id": "aid4c1", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 1, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item2", "id": "aid4c2", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 9, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item3", "id": "aid4c3", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 7, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item4", "id": "aid4c4", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item5", "id": "aid4c5", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item6", "id": "aid4c6", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 2, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item7", "id": "aid4c7", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 5, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item8", "id": "aid4c8", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" },
+            { "curQtty": 0, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 5, "price": 15 }], "alt": "item9", "id": "aid4c9", "link": "/pages/buypage.html", "imageSrc": "https://picsum.photos/200" }
 
         ]
     },
@@ -143,7 +143,6 @@ function workOnMilestones(milestoneCur){
         milestoneTargets.addClass('d-none');
         milestoneCur.removeClass('d-none');
 
-            
         milestoneTargets.find('.card-body').addClass('d-none');
         milestoneCur.find('.card-body').removeClass('d-none');
 
@@ -299,7 +298,10 @@ $(document).ready(function () {
     $('.milestone-item .card-header').click(function (e) {
         e.preventDefault();
         workOnMilestones($(this).parent());
-        workOnMilestoneSpots($(`a[data-milestone=${$(this).parent().attr("data-milestone")}]`).parent());
+
+        let spotID = $(this).parent().attr("data-milestone");
+        if (spotID != 'buy')
+            workOnMilestoneSpots($(`a[data-milestone=${spotID}]`).parent());
     });
 
     //Mouse Events

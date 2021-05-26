@@ -28,11 +28,6 @@ body {
     font-size: 1rem;
 }
 
-.heading-icon-container {
-    margin: auto 0;
-    flex:1;
-}
-
 .heading-icon{
     font-size: 2rem;
     text-align: center;
@@ -50,38 +45,6 @@ a.anodec {
     color: black;
 }
 
-.heading-vertical-center {
-    margin: auto 0;
-    display: block;
-}
-
-div.search-bar-container > input {
-    height: 50%;
-    padding: 0.3em;
-    margin: auto 0; /*arrumado*/
-    font-size: 1.5rem;
-}
-
-div.search-bar-container > input[type="search"] {
-    flex-grow: 1;
-    flex-shrink: 1;
-    /* font-size: 0; */
-}
-
-
-#submit-search-wrapper {
-    margin: auto 0;
-    height: 50%;
-    padding-top: 0.2rem;
-}
-
-#submit-search{
-    /* margin-top: -0.2rem; */
-    margin-left: 0.45em;
-    font-size: 2rem;
-    text-align: center;
-}
-
 #favorite-icon{
     color: #e31b23;
 }
@@ -89,9 +52,6 @@ div.search-bar-container > input[type="search"] {
 #cart-icon{
     color: black;
 }
-
-
-
 
 .noclick {
     pointer-events: none;
