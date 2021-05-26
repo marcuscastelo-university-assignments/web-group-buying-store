@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta lang="pt-br">
-    <title>Produto X</title>
 
     <!-- Basic imports -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700" rel="stylesheet">
@@ -17,16 +16,19 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="/css/base.css">
     <!-- /Basic imports -->
 
-    <script src="../js/cart.js"></script>
+    <title>Cart</title>
 
+    <script src="/js/cart.js"></script>
 
 </head>
 
 <body>
-    <header class="row" id="heading">
+    <div id="top-bar">Sobre nós</div>
+
+    <header class="row g-0" id="heading">
         <div class="col-12 col-md-9 mx-auto" style="max-width: 1920px;">
             <div class="row">
                 <div class="col-4 col-sm-2">
@@ -46,7 +48,7 @@
                             <a href=""><i class="fa fa-heart-o" id="favorite-icon"></i></a>
                         </div>
                         <div class="col-6 heading-icon">
-                            <a href="pages/cart.html"><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
+                            <a href="/pages/cart.html"><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
                         </div>
                     </div>
                 </div>
@@ -59,15 +61,32 @@
         </div>
 
     </header>
-    <div class="row bg-info" id="top">
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
         <div class="col-10 col-sm-9 col-md-8 mx-auto pt-3">
+
+
+
+
             <!-- Item -->
             <div class="card mb-3 mx-auto " style="max-width: 740px;">
                 <div class="row g-0">
                     <div class="col-12 col-sm-2 text-center">
-                        <img style="width: 96px;"
-                            src="https://http2.mlstatic.com/teclado-e-palmrest-dell-latitude-3490-com-biometria-D_Q_NP_934219-MLB40368160978_012020-Z.webp"
-                            alt="...">
+                        <a href="/pages/buypage.html">
+                            <img style="width: 96px;"
+                                src="https://http2.mlstatic.com/teclado-e-palmrest-dell-latitude-3490-com-biometria-D_Q_NP_934219-MLB40368160978_012020-Z.webp"
+                                alt="...">
+                        </a>
                     </div>
                     <div class="col-12 col-sm-10 col-md-7">
                         <div class="card-body">
@@ -122,6 +141,17 @@
                                             R$<span class="value">2000</span>
                                         </span>
                                     </div>
+                                    <div class="col-12 text-center">
+                                        <span class="cart-item-remaining-to-decrease">
+                                            Faltam <span class="value">5</span>
+                                        </span>
+                                        <span class="cart-item-next-value">
+                                            itens para o produto abaixar para R$<span class="value">10</span>
+                                        </span>
+                                        <span class="cart-item-min-next-value">
+                                            por produto - para um valor mínimo de R$<span class="value">100</span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -131,13 +161,16 @@
             </div>
             <!-- /Item -->
 
+
             <!-- Item -->
             <div class="card mb-3 mx-auto " style="max-width: 740px;">
                 <div class="row g-0">
                     <div class="col-12 col-sm-2 text-center">
-                        <img style="width: 96px;"
-                            src="https://http2.mlstatic.com/teclado-e-palmrest-dell-latitude-3490-com-biometria-D_Q_NP_934219-MLB40368160978_012020-Z.webp"
-                            alt="...">
+                        <a href="/pages/buypage.html">
+                            <img style="width: 96px;"
+                                src="https://http2.mlstatic.com/teclado-e-palmrest-dell-latitude-3490-com-biometria-D_Q_NP_934219-MLB40368160978_012020-Z.webp"
+                                alt="...">
+                        </a>
                     </div>
                     <div class="col-12 col-sm-10 col-md-7">
                         <div class="card-body">
@@ -192,6 +225,17 @@
                                             R$<span class="value">2000</span>
                                         </span>
                                     </div>
+                                    <div class="col-12 text-center">
+                                        <span class="cart-item-remaining-to-decrease">
+                                            Faltam <span class="value">5</span>
+                                        </span>
+                                        <span class="cart-item-next-value">
+                                            itens para o produto abaixar para R$<span class="value">10</span>
+                                        </span>
+                                        <span class="cart-item-min-next-value">
+                                            por produto - para um valor mínimo de R$<span class="value">100</span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -201,115 +245,160 @@
             </div>
             <!-- /Item -->
 
-            <div class="mx-auto" style="width: fit-content;">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination pagination">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
 
-        <div id="finalize-section" class="row">
-            <div class="col-9 mx-auto bg-white p-5">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col bg-light">
-                        <span class="cart-total">
-                            <span>
-                                Total:
-                            </span>
-                            <span>R$</span><span class="value">15000</span>
-                        </span>
-                        <span class="cart-total">
-                            <span>
-                                Total:
-                            </span>
-                            <span>R$</span><span class="value">15000</span>
-                        </span>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <input type="text" class="form-control" value="00000-0000">
-                        </div>
-                    </div>
-                    <div class="col bg-light">
-                        <span class="cart-total">
-                            <span>
-                                Informe seu CEP
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <footer class="row">
-            <div class="col-12 col-md-9 mx-auto">
-                <div class="row">
-                    <div class="col-12 col-md mt-3 text-center">
-                        <h3>Informações</h3>
-                        <ul>
-                            <li><a href="../index.html">Início</a></li>
-                            <li><a href="cart.html">Carrinho</a></li>
-                            <li><a href="whoweare.html">Quem Somos</a></li>
-                            <li>Nossas Lojas</li>
-                            <li>Duvidas na Compra?</li>
-                            <li><a href="http://www.planalto.gov.br/ccivil_03/Leis/L8078.htm">Codigo de Defesa do
-                                    Consumidor</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-md mt-3 text-center">
-                        <h3>Atendimento</h3>
-                        <img src="../img/mail.png" height="30" width="40">
-                        <p>emaildecontato@contato.com</p>
-                    </div>
-                    <div class="col-12 col-md mt-3">
-                        <div class="row text-center">
-                            <div class="col-12">
-                                <h3>Formas de Pagamento</h3>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row flex-wrap g-0">
-                            <div class="payment-method">
-                                <img src="/frontend/img/pagamentos/amex.png" />
-                            </div>
-                            <div class="payment-method">
-                                <img src="/frontend/img/pagamentos/boleto.png" />
-                            </div>
-                            <div class="payment-method">
-                                <img src="/frontend/img/pagamentos/duble.png" />
-                            </div>
-                            <div class="payment-method">
-                                <img src="/frontend/img/pagamentos/elo.png" />
-                            </div>
-                            <div class="payment-method">
-                                <img src="/frontend/img/pagamentos/hipercard.png" />
-                            </div>
-                            <div class="payment-method">
-                                <img src="/frontend/img/pagamentos/hiper.png" />
-                            </div>
-                            <div class="payment-method">
-                                <img src="/frontend/img/pagamentos/mastercard.png" />
-                            </div>
-                            <div class="payment-method">
-                                <img src="/frontend/img/pagamentos/visa.png" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-        </footer>
+
+
+        </div>
     </div>
+
+
+    <div class="row g-0">
+        <nav class="d-flex" aria-label="Page navigation">
+            <ul class="pagination pagination mx-auto">
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="row m-4">
+
+        <div class="card col-11 col-md-9 mx-auto">
+            <div class="card-header bg-transparent fw-bold text-large">Pagamento</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md bg-light border p-3 px-4">
+                        <form name="credit-card-info">
+                            <div class="row g-0">
+                                <label class="text-muted" for="person-name">Nome completo</label>
+                                <input name="person-name" class="form-control" type="text"
+                                    placeholder="Fulana da silva">
+                            </div>
+                            <div class="row g-0">
+                                <label class="text-muted" for="credit-card">Cartão de crédito</label>
+                                <input name="credit-card" class="form-control" type="text"
+                                    placeholder="00000-000000000">
+                            </div>
+                            <div class="row g-0">
+                                <div class="col pe-1">
+                                    <label class="text-muted" for="credit-card">Validade</label>
+                                    <input name="expiricy-date" class="form-control" type="text" placeholder="MM/YY">
+                                </div>
+                                <div class="col ps-1">
+                                    <label class="text-muted w-100 d-flex" for="credit-card">
+                                        CVV
+                                        <span class="text-end w-100 me-2">
+                                            <i class="fa fa-exclamation-circle"></i></label>
+                                    </span>
+                                    <input name="expiricy-date" class="form-control" type="text" placeholder="000">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col p-3 px-4">
+                        <form name="credit-address-info">
+                            <div class="row g-0">
+                                <label class="text-muted" for="email">Email</label>
+                                <input name="email" class="form-control" type="email" placeholder="email@domain.com">
+                            </div>
+
+                            <div class="row g-0">
+                                <label class="text-muted" for="cep">CEP</label>
+                                <input name="cep" class="form-control" type="text" placeholder="00000-000">
+                            </div>
+                            <div class="row g-0">
+                                <div class="col-12 col-lg pe-1">
+                                    <label class="text-muted" for="address">Endereço</label>
+                                    <input name="address" disabled class="form-control" type="text" placeholder="MM/YY">
+                                </div>
+                                <div class="col col-lg-3 px-1">
+                                    <label class="w-100 d-flex" for="number">Número </label>
+                                    <input name="number" class="form-control" type="text" placeholder="000">
+                                </div>
+                                <div class="col col-lg-3 ps-1">
+                                    <label class="w-100 d-flex" for="complement">Complemento </label>
+                                    <input name="complement" class="form-control" type="text" placeholder="000">
+                                </div>
+                            </div>
+                            <div class="row g-0 mt-3">
+                                <div class="col p-2">
+                                    <span class="cart-total" style="font-size: large;">
+                                        Total: R$<span class="value"></span>
+                                    </span>
+                                </div>
+                                <div class="col text-end">
+                                    <button class="btn btn-dark"> Finalizar compra </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <footer class="row g-0">
+        <div class="col-12 col-md-9 mx-auto">
+            <div class="row">
+                <div class="col-12 col-md mt-3 text-center">
+                    <h3>Informações</h3>
+                    <ul>
+                        <li><a href="/index.html">Início</a></li>
+                        <li><a href="/pages/cart.html">Carrinho</a></li>
+                        <li><a href="/pages/whoweare.html">Quem Somos</a></li>
+                        <li>Nossas Lojas</li>
+                        <li>Duvidas na Compra?</li>
+                        <li><a href="http://www.planalto.gov.br/ccivil_03/Leis/L8078.htm">Codigo de Defesa do
+                                Consumidor</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md mt-3 text-center">
+                    <h3>Atendimento</h3>
+                    <img src="/img/mail.png" height="30" width="40">
+                    <p>emaildecontato@contato.com</p>
+                </div>
+                <div class="col-12 col-md mt-3">
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <h3>Formas de Pagamento</h3>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap g-0">
+                        <div class="payment-method">
+                            <img src="/img/pagamentos/amex.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/img/pagamentos/boleto.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/img/pagamentos/duble.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/img/pagamentos/elo.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/img/pagamentos/hipercard.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/img/pagamentos/hiper.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/img/pagamentos/mastercard.png" />
+                        </div>
+                        <div class="payment-method">
+                            <img src="/img/pagamentos/visa.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
 </body>
 
 </html>
