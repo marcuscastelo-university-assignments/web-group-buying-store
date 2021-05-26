@@ -5,10 +5,10 @@ Theme: An Online Store
 
 ### Group Members: 
 
-- Marcus Vinicius Castelo Branco Martins
-- Vinícius Eduardo de Araújo
-- Lucas Yuji Matubara	
-- Leonardo Paulo Dallagnol
+- Marcus Vinicius Castelo Branco Martins - 11219237
+- Vinícius Eduardo de Araújo - 11275193
+- Lucas Yuji Matubara	- 10734432
+- Leonardo Paulo Dallagnol - 11795850
 
 # Requirements
 
@@ -34,5 +34,8 @@ Inside the _Online Store_ theme, the group decided to implement a [Group Buying 
 # Test Plan: Text describing the tests that will be performed. If an automatic test tool/framework is used (ex
 # Test Results
 # Build Procedures
+
+Currently, one can just open the html pages individually as normal files.
+
 # Problems
 # Comments
