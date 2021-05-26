@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta lang="pt-br">
-    <title>Produto X</title>
 
     <!-- Basic imports -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700" rel="stylesheet">
@@ -17,21 +16,22 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="/css/base.css">
     <!-- /Basic imports -->
+    
+    <title>Buy Page</title>
 
-
-    <link rel="stylesheet" href="../css/buypage.css">
-    <script src="../js/buypage.js"></script>
+    <link rel="stylesheet" href="/css/buypage.css">
+    <script src="/js/buypage.js"></script>
 
 </head>
 
 <body>
     <div id="top-bar">Sobre nós</div>
 
-    <header class="row" id="heading">
+    <header class="row g-0" id="heading">
         <div class="col-12 col-md-9 mx-auto" style="max-width: 1920px;">
-            <div class="row">
+            <div class="row g-0">
                 <div class="col-4 col-sm-2">
                     <a href="/">
                         <img class="img" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png" alt="Logo" />
@@ -49,26 +49,21 @@
                             <a href=""><i class="fa fa-heart-o" id="favorite-icon"></i></a>
                         </div>
                         <div class="col-6 heading-icon">
-                            <a href="pages/cart.html"><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
+                            <a href="/pages/cart.html"><i class="fa fa-shopping-cart" id="cart-icon"></i></a>
                         </div>
                     </div>
                 </div>
-                <!-- 
-            <div id="login">
-                <img src="" alt="Cadastrar icon">
-                <button>Cadastrar</button>
-            </div> -->
             </div>
         </div>
 
     </header>
 
-    <div class="row mt-5">
+    <div class="row g-0 mt-5">
         <div class=" col-10 col-md-8  mx-auto">
-            <div class="row">
+            <div class="row bg-light p-3">
                 <div class="card col-6 text-center mx-auto py-3">
                     <div class="card col-12">
-                        <img src="../img/a.jpeg" class="card-img-top" alt="...">
+                        <img src="/img/a.jpeg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text">Patos fresquinhos Lorem ipsum dolor sit amet consectetur, adipisicing
                                 elit. Eum, magni. Eu gosto de patos
@@ -76,22 +71,33 @@
                         </div>
                     </div>
                 </div>
-                <div id="milestone-list" class="col-6 d-flex bg-info align-items-end flex-column">
+                <div id="milestone-list" class="col-6 d-flex align-items-end flex-column">
                     <div class="milestone-item row card mt-auto mx-auto m-2 p-3 w-100" data-milestone="buy"
                         style="order: 99;">
                         <div class="card-header">
                             Comprar
                         </div>
-                        <div class="card-body d-none">
+                        <div class="card-body d-none d-flex flex-column">
                             <h5 class="card-title">Como Comprar</h5>
-                            <p class="card-text d-none">Texto de como comprar.</p>
+                            <p class="card-text">Texto de como comprar.</p>
+                            
+                            <div class="d-flex h-100 flex-row">
+                                <div class="align-self-end text-end w-100">
+                                    <a class="justify-self-end" href="/pages/cart.html">
+                                        <button class="btn btn-dark add-to-the-cart">
+                                            <span>Adicionar ao carrinho</span>
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row mt-3">
+    <div class="row g-0 mt-3">
         <div class="col-12">
             <div class="col-8 mx-auto">
                 <div class="row progress position-relative">
@@ -119,7 +125,7 @@
     </div>
 
     <!-- Comentários -->
-    <div class="row mt-5" id="comments">
+    <div class="row g-0 mt-5" id="comments">
         <div class="col-11 col-md-8 mx-auto">
             <div class="col">
                 <div class="row">
@@ -296,15 +302,15 @@
 
     <div class="row mt-5"></div>
 
-    <footer class="row">
+    <footer class="row g-0">
         <div class="col-12 col-md-9 mx-auto">
-            <div class="row">
+            <div class="row g-0">
                 <div class="col-12 col-md mt-3 text-center">
                     <h3>Informações</h3>
                     <ul>
-                        <li><a href="../index.html">Início</a></li>
-                        <li><a href="cart.html">Carrinho</a></li>
-                        <li><a href="whoweare.html">Quem Somos</a></li>
+                        <li><a href="/index.html">Início</a></li>
+                        <li><a href="/pages/cart.html">Carrinho</a></li>
+                        <li><a href="/pages/whoweare.html">Quem Somos</a></li>
                         <li>Nossas Lojas</li>
                         <li>Duvidas na Compra?</li>
                         <li><a href="http://www.planalto.gov.br/ccivil_03/Leis/L8078.htm">Codigo de Defesa do
@@ -313,7 +319,7 @@
                 </div>
                 <div class="col-12 col-md mt-3 text-center">
                     <h3>Atendimento</h3>
-                    <img src="../img/mail.png" height="30" width="40">
+                    <img src="/img/mail.png" height="30" width="40">
                     <p>emaildecontato@contato.com</p>
                 </div>
                 <div class="col-12 col-md mt-3">
@@ -324,28 +330,28 @@
                     </div>
                     <div class="d-flex flex-row flex-wrap g-0">
                         <div class="payment-method">
-                            <img src="/frontend/img/pagamentos/amex.png" />
+                            <img src="/img/pagamentos/amex.png" />
                         </div>
                         <div class="payment-method">
-                            <img src="/frontend/img/pagamentos/boleto.png" />
+                            <img src="/img/pagamentos/boleto.png" />
                         </div>
                         <div class="payment-method">
-                            <img src="/frontend/img/pagamentos/duble.png" />
+                            <img src="/img/pagamentos/duble.png" />
                         </div>
                         <div class="payment-method">
-                            <img src="/frontend/img/pagamentos/elo.png" />
+                            <img src="/img/pagamentos/elo.png" />
                         </div>
                         <div class="payment-method">
-                            <img src="/frontend/img/pagamentos/hipercard.png" />
+                            <img src="/img/pagamentos/hipercard.png" />
                         </div>
                         <div class="payment-method">
-                            <img src="/frontend/img/pagamentos/hiper.png" />
+                            <img src="/img/pagamentos/hiper.png" />
                         </div>
                         <div class="payment-method">
-                            <img src="/frontend/img/pagamentos/mastercard.png" />
+                            <img src="/img/pagamentos/mastercard.png" />
                         </div>
                         <div class="payment-method">
-                            <img src="/frontend/img/pagamentos/visa.png" />
+                            <img src="/img/pagamentos/visa.png" />
                         </div>
                     </div>
                 </div>
