@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box
 }
 
-.App-logo {
-  height: 40vmin;
+:root {
+  --body-background: #D9D9D9;
+  --card-background: #FFFFFF;
+}
+
+body {
+  background-color: hsl(264, 56%, 88%) !important;
+} 
+
+#top-bar {
+  background-color: #31263E;
+  min-height: 2em;
+  /* margin-bottom: 0.5em; */
+}
+
+#heading {
+  background-color: #ECA72C;
+}
+
+#heading-icons {
+  font-size: 1rem;
+}
+
+.heading-icon{
+  font-size: 2rem;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
+  transition: font-size 0.2s;
+}
+
+.heading-icon:hover{
+  font-size: 2.4rem;
+}
+
+a.anodec {
+  text-decoration: none;
+  color: black;
+}
+
+#favorite-icon{
+  color: #e31b23;
+}
+
+#cart-icon{
+  color: black;
+}
+
+.noclick {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.noclick a {
+  pointer-events: all;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+/* FOOTER */
+
+footer {
+  padding: 1rem;
+  background-color: #221E22;
   color: white;
+  font-size: 0.7em;
+  position: static;
 }
 
-.App-link {
-  color: #61dafb;
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#footersimples
+{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.payment-method {
+  text-align: center;
+  padding: 0.2rem 0;
+  min-width: 80px;
 }
