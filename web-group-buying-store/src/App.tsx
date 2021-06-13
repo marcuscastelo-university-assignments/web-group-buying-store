@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import './App.css';
 
-import MainPage from './MainPage';
+import MainPage from './pages/MainPage';
 
 import 'bootstrap'
 
