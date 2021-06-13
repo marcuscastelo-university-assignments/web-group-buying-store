@@ -48,31 +48,10 @@ const Carousel: React.FC<CarouselProps> = (props: CarouselProps) => {
     return (
         <React.Fragment>
             <div id={props.id} className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
+                <div className="carousel-inner mx-auto w-75">
                     {
                         itemsPerPageVec.map((pageItemsInfo, index) => <CarouselPage first={index === 0} component={props.component} carouselPageItemsInfo={pageItemsInfo} />)
                     }
-
-                    {/* <div className="carousel-item active row-car">
-                        <div className="row g-1">
-                            <div className="col bg-danger">
-                                <img src="./img/a.jpeg" className="d-block w-100" alt="pato1" />
-                            </div>
-                            <div className="col bg-warning">
-                                <img src="./img/b.jpg" className="d-block w-100" alt="pato2" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="carousel-item row-car">
-                        <div className="row g-1">
-                            <div className="col">
-                                <img src="./img/c.jpg" className="d-block w-100" alt="pato3" />
-                            </div>
-                            <div className="col">
-                                <img src="./img/d.jpeg" className="d-block w-100" alt="pato4" />
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target={`#${props.id}`}
                     data-bs-slide="prev">

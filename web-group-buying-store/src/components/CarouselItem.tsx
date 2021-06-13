@@ -13,8 +13,8 @@ const CarouselItem: React.FC<CarouselItemProps> = (props: CarouselItemProps) => 
     const Comp = props.component;
     return (
         <React.Fragment>
-            <div className="col bg-danger">
-                <img src="./img/a.jpeg" className="d-block w-100" alt={props.carouselItemInfo} />
+            <div className="col">
+                <Comp {...props.carouselItemInfo}/>
             </div>
         </React.Fragment>
     )
