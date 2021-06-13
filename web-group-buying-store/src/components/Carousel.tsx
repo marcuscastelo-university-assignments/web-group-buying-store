@@ -6,11 +6,11 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import CarouselItem from './CarouselItem';
 import CarouselPage from './CarouselPage';
 
-type CarouselProps = {
-    id: string,
+type CarouselProps<T> = {
+    carouselID: string,
     itemsPerPage: number,
-    carouselItemsInfo: any[],
-    component: React.FC;
+    carouselItemsInfo: T[],
+    component: React.FC<T>;
 };
 
 function subDivideItemsInPages(items: any[], itemsPerPage: number): any[][] {
@@ -42,23 +42,23 @@ function subDivideItemsInPages(items: any[], itemsPerPage: number): any[][] {
     return itemsPerPageVec;
 }
 
-const Carousel: React.FC<CarouselProps> = (props: CarouselProps) => {
+export default function Carousel<T>(props: CarouselProps<T>) {
 
     const itemsPerPageVec = subDivideItemsInPages(props.carouselItemsInfo, props.itemsPerPage);
     return (
         <React.Fragment>
-            <div id={props.id} className="carousel slide" data-bs-ride="carousel">
+            <div id={props.carouselID} className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner mx-auto w-75">
                     {
                         itemsPerPageVec.map((pageItemsInfo, index) => <CarouselPage first={index === 0} component={props.component} carouselPageItemsInfo={pageItemsInfo} />)
                     }
                 </div>
-                <button className="carousel-control-prev" type="button" data-bs-target={`#${props.id}`}
+                <button className="carousel-control-prev" type="button" data-bs-target={`#${props.carouselID}`}
                     data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
-                <button className="carousel-control-next" type="button" data-bs-target={`#${props.id}`}
+                <button className="carousel-control-next" type="button" data-bs-target={`#${props.carouselID}`}
                     data-bs-slide="next">
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
@@ -73,5 +73,3 @@ const Carousel: React.FC<CarouselProps> = (props: CarouselProps) => {
         </React.Fragment>
     )
 };
-
-export default Carousel;

@@ -10,37 +10,13 @@ import Carousel from './components/Carousel';
 import './MainPage.css'
 import CarouselItem from './components/CarouselItem';
 import { Link } from 'react-router-dom';
+import ProductCard, { ProductProps } from './components/ProductCard';
 
 const MainPage: React.FC = () => {
-    const props = { 'id': 'teste123' }
-    const TestComp = () => <div className="card">
-        <a href="./pages/buypage.html">
-            <img src="https://picsum.photos/300"
-                className="d-block img-thumbnail mx-auto" alt="item1" />
-        </a>
-        <div className="card-body px-1 pt-2">
-            <div className="row g-0 p-0">
-                <div className="col-10" style={{ textTransform: 'capitalize' }}> item1 </div>
-            </div>
-            <div className="row flex-direction-row mt-2 px-1">
-                <div className="col-6">
-                    R$25
-            </div>
-                <div className="col-6 text-end">
-                    R$15
-            </div>
-            </div>
-            <div className="progress">
-                <div className="progress-bar text-center bg-warning" role="progressbar"
-                    style={{ width: "80%" }} aria-valuenow={10} aria-valuemin={0}
-                    aria-valuemax={100}>
-                    <small
-                        className="justify-content-center d-flex position-absolute w-100 text-dark fw-bold">4/5</small>
 
-                </div>
-            </div>
-        </div>
-    </div>
+    const carrousels = getGiantDataBlob();
+
+    const props = { 'id': 'teste123' }
     return (
         <React.Fragment>
             <NavBar />
@@ -61,7 +37,7 @@ const MainPage: React.FC = () => {
                     <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
                         <h4 className="mt-5 w-100 text-center">Interesses</h4>
                         <div className="col-9 mx-auto w-100">
-                            <Carousel id="test123" carouselItemsInfo={[1, 2, 3, 4, 5]} itemsPerPage={2} component={TestComp} />
+                            <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={carrousels[0].items} itemsPerPage={carrousels[0].itemsPerPage} component={ProductCard} />
                         </div>
                     </div>
                 </div>
@@ -71,5 +47,30 @@ const MainPage: React.FC = () => {
         </React.Fragment >
     )
 };
+
+
+function getGiantDataBlob() {
+    return [
+        {
+            "itemsPerPage": 2,
+            "title": "Interesses",
+            "items": [
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
+            ]
+        },
+    ]
+}
+
 
 export default MainPage;
