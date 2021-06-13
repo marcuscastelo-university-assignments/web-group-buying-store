@@ -14,8 +14,8 @@ type CartProductProps = {
 
 const CartPage: React.FC = _ => {
     let cartProducts: CartProductProps[] = JSON.parse(localStorage.getItem('cart-products')??'[]');
-    let products: ProductProps[] = JSON.parse(localStorage.getItem('products')??'[]');
-    console.log(products)
+    const productMap = JSON.parse(localStorage.getItem('products')??'{}');
+    const products: ProductProps[] = Object.values(productMap);
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">

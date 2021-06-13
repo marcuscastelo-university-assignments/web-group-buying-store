@@ -9,7 +9,8 @@ import ProductCard, { ProductProps } from '../components/ProductCard';
 
 const MainPage: React.FC = () => {
 
-    const carrousels = getGiantDataBlob();
+    const productMap = JSON.parse(localStorage.getItem('products')??'{}');
+    const products = Object.values(productMap) as ProductProps[];
 
     return (
         <React.Fragment>
@@ -31,7 +32,7 @@ const MainPage: React.FC = () => {
                     <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
                         <h4 className="mt-5 w-100 text-center">Interesses</h4>
                         <div className="col-9 mx-auto w-100">
-                            <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={carrousels[0].items} itemsPerPage={carrousels[0].itemsPerPage} component={ProductCard} />
+                            <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={products} itemsPerPage={5} component={ProductCard} />
                         </div>
                     </div>
                 </div>
@@ -41,30 +42,5 @@ const MainPage: React.FC = () => {
         </React.Fragment >
     )
 };
-
-
-function getGiantDataBlob() {
-    return [
-        {
-            "itemsPerPage": 2,
-            "title": "Interesses",
-            "items": [
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-                { "currentQuantity": 3, "milestones": [{ "quantity": 3, "price": 25 }, { "quantity": 6, "price": 15 }], "title": "item0", "productID": 12, "imageURL": "https://picsum.photos/200" },
-            ]
-        },
-    ]
-}
-
 
 export default MainPage;
