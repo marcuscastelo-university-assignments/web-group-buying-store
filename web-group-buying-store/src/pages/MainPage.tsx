@@ -1,22 +1,16 @@
 import React from 'react';
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min.js'
-
-import Footer from './components/Footer';
-import NavBar from './components/NavBar';
-import Carousel from './components/Carousel';
+import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
+import Carousel from '../components/Carousel';
 
 import './MainPage.css'
-import CarouselItem from './components/CarouselItem';
-import { Link } from 'react-router-dom';
-import ProductCard, { ProductProps } from './components/ProductCard';
+import ProductCard, { ProductProps } from '../components/ProductCard';
 
 const MainPage: React.FC = () => {
 
     const carrousels = getGiantDataBlob();
 
-    const props = { 'id': 'teste123' }
     return (
         <React.Fragment>
             <NavBar />

@@ -1,9 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min.js'
-import CarouselItem from './CarouselItem';
 import CarouselPage from './CarouselPage';
 
 type CarouselProps<T> = {

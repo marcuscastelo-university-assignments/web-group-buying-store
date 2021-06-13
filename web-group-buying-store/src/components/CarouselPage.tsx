@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min.js'
 import CarouselItem from './CarouselItem';
 
 type CarouselPageProps<T> = {
@@ -12,7 +9,6 @@ type CarouselPageProps<T> = {
 };
 
 const CarouselPage = <T, >(props: CarouselPageProps<T>) => {
-    const Comp = props.component;
     return (
         <React.Fragment>
             <div className={`carousel-item row-car ${props.first?'active':''} `}>
