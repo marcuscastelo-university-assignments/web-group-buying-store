@@ -6,24 +6,70 @@ import MainPage from './pages/MainPage';
 
 import 'bootstrap'
 import CartPage from './pages/Cart';
+import { ProductProps } from './components/ProductCard';
+
+//This is a temporary function used to simulate server-side interacion.
+function injectProductsToLocalStorage() {
+    const products: {[key: string]: ProductProps}= {
+        "41e5b333": 
+        {
+            productID: '41e5b333',
+            currentQuantity: 10,
+            imageURL: '.e.e.',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Notebook"
+        },
+        "790dd7e3": 
+        {
+            productID: '790dd7e3',
+            currentQuantity: 10,
+            imageURL: '.e.e.',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Liquidificador"
+        },
+        "28221d6d": 
+        {
+            productID: '28221d6d',
+            currentQuantity: 10,
+            imageURL: '.e.e.',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Asas de borboleta"
+        },
+    };
+
+    localStorage.setItem('products', JSON.stringify(products));
+}
 
 function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={MainPage}/>
-          <Route path="/login" exact component={MainPage}/>
-          <Route path="/register" exact component={MainPage}/>
-          <Route path="/product/:id" component={MainPage}/>
-          <Route path="/create_product" exact component={MainPage}/>
-          <Route path="/cart" exact component={CartPage}/>
+    injectProductsToLocalStorage();
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Switch>
+                    <Route path="/" exact component={MainPage}/>
+                    <Route path="/login" exact component={MainPage}/>
+                    <Route path="/register" exact component={MainPage}/>
+                    <Route path="/product/:id" component={MainPage}/>
+                    <Route path="/create_product" exact component={MainPage}/>
+                    <Route path="/cart" exact component={CartPage}/>
 
-          {/* <Route path="/" component={NotFoundPage}/> */}
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
+                    {/* <Route path="/" component={NotFoundPage}/> */}
+                </Switch>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;

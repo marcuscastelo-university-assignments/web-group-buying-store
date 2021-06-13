@@ -10,7 +10,7 @@ type Milestone = {
 };
 
 export type ProductProps = {
-    productID: number,
+    productID: string,
     imageURL: string,
     title: string,
     milestones: Milestone[];
