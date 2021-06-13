@@ -7,7 +7,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 const NavBar: React.FC = () => {
     return (
         <React.Fragment>
-            <div id="top-bar">Sobre nós</div>
+            <div className="row" id="top-bar">Sobre nós</div>
             <header className="row" id="heading">
                 <div className="col-12 col-md-9 mx-auto" style={{ maxWidth: 1920 }}>
                     <div className="row">

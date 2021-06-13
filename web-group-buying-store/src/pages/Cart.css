@@ -3,6 +3,12 @@
     overflow: hidden;
 }
 
+.cart__empty {
+    text-align: center;
+    color: cornflowerblue;
+}
+
+
 span.cart-item-total  {
     font-size: 1.5em;
     font-weight: 500;
