@@ -17,24 +17,7 @@ const LoginPage: React.FC = () => {
                                 <div className="row">
                                     <div className="col-12 col-md">
                                         <form id="login-registration-form" action="../pages/product_creation.html">
-                                            <div className="top-login input-group bg-light border p-3 registration d-none">
-                                                <div className="row g-0 w-100">
-                                                    <label className="form-label" htmlFor="nome-completo">Nome completo</label>
-                                                    <input name="nome-completo" className="form-control" type="text"
-                                                        placeholder="Fulano da silva" />
-                                                </div>
-                                                <div className="row g-0 mt-3 w-100">
-                                                    <label className="form-label" htmlFor="email">Email</label>
-                                                    <input name="email" className="form-control" type="email"
-                                                        placeholder="fulano@gmail.com" />
-                                                </div>
-                                                <div className="row g-0 mt-3 w-100">
-                                                    <label className="form-label" htmlFor="birthday">Data de nascimento</label>
-                                                    <input name="birthday" className="form-control text-muted" type="date" />
-                                                </div>
-                                            </div>
-
-                                            <div className="input-group bg-light border p-3 mt-3">
+                                         <div className="input-group bg-light border p-3 mt-3">
                                                 <div className="row g-0 w-100">
                                                     <input name="person-name" required className="form-control" type="text"
                                                         placeholder="Login" id="login" />
@@ -43,14 +26,7 @@ const LoginPage: React.FC = () => {
                                                     <input id="password" name="password" required className="form-control" type="password"
                                                         placeholder="Senha" aria-describedby="validationServerUsernameFeedback" />
                                                 </div>
-                                                <div className=" row g-0 mt-3 w-100 registration d-none">
-                                                    <input id="password-confirmation" name="password-confirmation" className="form-control"
-                                                        type="password" placeholder="Confirmação de senha" aria-describedby="validationServerUsernameFeedback" />
-
-                                                    <div id="validationServerUsernameFeedback" className="invalid-feedback ">Senhas não coincidem.</div>
-                                                </div>
                                             </div>
-
 
                                             <div className="row mt-3 login">
                                                 <div className="col">
@@ -58,15 +34,6 @@ const LoginPage: React.FC = () => {
                                                 </div>
                                                 <div className="col">
                                                     <input id="go-login" className="form-control btn btn-dark" type="submit" value="Login" />
-                                                </div>
-                                            </div>
-
-                                            <div className="row mt-3 registration d-none">
-                                                <div className="col">
-                                                    <button id="btn-to-login" className="form-control btn"> Já possuo con </button>
-                                                </div>
-                                                <div className="col">
-                                                    <input className="form-control btn btn-dark" type="submit" value="Cadastrar" />
                                                 </div>
                                             </div>
                                         </form>
