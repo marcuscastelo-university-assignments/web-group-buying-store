@@ -7,6 +7,8 @@ import MainPage from './pages/MainPage';
 import 'bootstrap'
 import CartPage from './pages/Cart';
 import { ProductProps } from './components/ProductCard';
+import LoginPage from './pages/Login';
+import RegisterPage from './pages/Register';
 
 //This is a temporary function used to simulate server-side interacion.
 function injectProductsToLocalStorage() {
@@ -59,8 +61,8 @@ function App() {
             <BrowserRouter>
                 <Switch>
                     <Route path="/" exact component={MainPage}/>
-                    <Route path="/login" exact component={MainPage}/>
-                    <Route path="/register" exact component={MainPage}/>
+                    <Route path="/login" exact component={LoginPage}/>
+                    <Route path="/register" exact component={RegisterPage}/>
                     <Route path="/product/:id" component={MainPage}/>
                     <Route path="/create_product" exact component={MainPage}/>
                     <Route path="/cart" exact component={CartPage}/>
