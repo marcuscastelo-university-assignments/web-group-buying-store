@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const RegisterPage: React.FC = () => {
     return (
@@ -9,7 +10,7 @@ const RegisterPage: React.FC = () => {
                 <NavBar />
 
                 <div className="row flex-grow-1">
-                    <div className="mt-4">
+                    <div className="my-4">
                         <div className="card col-11 col-md-8 col-lg-4 col-xl-3 mx-auto">
                             <div className="card-header bg-light fw-bold text-large m-2 registration">Cadastro</div>
                             <div className="card-body">
@@ -52,7 +53,7 @@ const RegisterPage: React.FC = () => {
 
                                             <div className="row mt-3 registration">
                                                 <div className="col">
-                                                    <button id="btn-to-login" className="form-control btn"> Já possuo con </button>
+                                                    <Link to="/login" id="btn-to-login" className="form-control btn"> Já possuo conta </Link>
                                                 </div>
                                                 <div className="col">
                                                     <input className="form-control btn btn-dark" type="submit" value="Cadastrar" />
