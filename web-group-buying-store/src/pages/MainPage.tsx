@@ -9,14 +9,16 @@ import ProductCard, { ProductProps } from '../components/ProductCard';
 
 const MainPage: React.FC = () => {
 
-    const productMap = JSON.parse(localStorage.getItem('products')??'{}');
+    const productMap = JSON.parse(localStorage.getItem('products') ?? '{}');
     const products = Object.values(productMap) as ProductProps[];
 
     return (
         <React.Fragment>
-            <NavBar />
+            <div className="container-fluid d-flex flex-column vh-100">
 
-            {/* <div className="row">
+                <NavBar />
+
+                {/* <div className="row">
                 <nav className="col-9 mx-auto mt-3" id="categories">
                 </nav>
             </div>
@@ -27,18 +29,19 @@ const MainPage: React.FC = () => {
             </div> */}
 
 
-            <div className="row mt-5 flex-grow-1">
-                <div className="col-9 mx-auto mt-5">
-                    <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
-                        <h4 className="mt-5 w-100 text-center">Interesses</h4>
-                        <div className="col-9 mx-auto w-100">
-                            <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={products} itemsPerPage={5} component={ProductCard} />
+                <div className="row mt-5 flex-grow-1">
+                    <div className="col-9 mx-auto mt-5">
+                        <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
+                            <h4 className="mt-5 w-100 text-center">Interesses</h4>
+                            <div className="col-9 mx-auto w-100">
+                                <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={products} itemsPerPage={5} component={ProductCard} />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <Footer />
+                <Footer />
+            </div>
         </React.Fragment >
     )
 };
