@@ -14,7 +14,7 @@ const CarouselPage = <T, >(props: CarouselPageProps<T>) => {
             <div className={`carousel-item row-car ${props.first?'active':''} `}>
                 <div className="row row-flex gx-1 justify-content-center">
                     {
-                        props.carouselPageItemsInfo.map(itemInfo => <CarouselItem component={props.component} carouselItemInfo={itemInfo} />)
+                        props.carouselPageItemsInfo.map(itemInfo => <CarouselItem component={props.component} carouselItemInfo={itemInfo} key={`carousel-${Date.now()*Math.random()}-${props.carouselPageItemsInfo.length}`} />)
                     }
                 </div>
             </div>
