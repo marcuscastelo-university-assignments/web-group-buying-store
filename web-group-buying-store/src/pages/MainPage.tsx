@@ -10,6 +10,7 @@ import Category from '../components/Category';
 import CategoryLayer from '../components/CategoryLayer';
 
 import $ from 'jquery'
+import { CategoryLayersDescription } from '../util/mock-categories';
 
 
 //Got from 'https://icons8.com/icon/set/household/wired--black'
@@ -49,10 +50,9 @@ const MainPage: React.FC = () => {
         else {
             $('#carousel-layer-row').addClass('d-none');
         }
-
     }
 
-
+    const categoryLayers = JSON.parse(localStorage.getItem('categories') ?? '{}') as CategoryLayersDescription;
 
     return (
         <React.Fragment>
@@ -63,7 +63,33 @@ const MainPage: React.FC = () => {
                 <div className="row">
                     <nav className="col-9 mx-auto mt-3" id="categories" onMouseLeave={hideNonRoot}>
 
-                        <CategoryLayer className="parent" layer="1" onMouseLeave={hideNonRoot}>
+                        {
+                            Object.keys(categoryLayers).map(layerID => {
+                                const categoriesInLayer = categoryLayers[layerID];
+                                const layerRand = Math.floor(Math.random() * Date.now());
+                                return (
+                                    <CategoryLayer className="parent" layer={layerID} onMouseLeave={hideNonRoot} key={`${layerRand}layer-${layerID}`}>
+                                        {
+                                            categoriesInLayer.map(
+                                                (category, idx) => 
+                                                    <Category 
+                                                        layer={layerID}
+                                                        onMouseOver={genShowDescendents(category.id)}
+                                                        id={category.id}
+                                                        parent={category.parent ?? 'none'}
+                                                        subcategory={/* TODO: find if its a subcategory */ categoryLayers[layerID + '1'] !== undefined}
+                                                        imageSrc={category.imageSrc}
+                                                        key={`category-${layerRand}-layer${layerID}-${idx}`}
+                                                    />
+                                            )
+                                        }
+                                    </CategoryLayer>
+                                )
+                            })
+                        }
+
+
+                        {/* <CategoryLayer className="parent" layer="1" onMouseLeave={hideNonRoot}>
                             <Category onMouseOver={genShowDescendents("test11")} layer="1" id="test11" parent="none" subcategory imageSrc={BED} />
                             <Category onMouseOver={genShowDescendents("test12")} layer="1" id="test12" parent="none" subcategory imageSrc={BED} />
                             <Category onMouseOver={genShowDescendents("test13")} layer="1" id="test13" parent="none" subcategory imageSrc={BED} />
@@ -82,7 +108,7 @@ const MainPage: React.FC = () => {
                             <Category onMouseOver={genShowDescendents("test32")} layer="111" id="test32" parent="test21" subcategory={false} imageSrc={BED} />
                             <Category onMouseOver={genShowDescendents("test33")} layer="111" id="test33" parent="test21" subcategory={false} imageSrc={BED} />
                             <Category onMouseOver={genShowDescendents("test34")} layer="111" id="test34" parent="test22" subcategory={false} imageSrc={BED} />
-                        </CategoryLayer>
+                        </CategoryLayer> */}
 
                         <div className="row layer carousel-container" id="carousel-layer-row" data-layer="1111" onMouseLeave={hideNonRoot}>
                             <Carousel<ProductProps> carouselID="category-carousel" carouselItemsInfo={products} itemsPerPage={5} component={ProductCard} />
