@@ -7,12 +7,10 @@ import Category from './Category'
 
 export type CategoryLayerProps = {
     layer: string
-    children: React.ReactElement[],
+    children: React.ReactNode,
     className?: string
     onMouseLeave: MouseEventHandler
 };
-
-
 
 const CategoryLayer = (props: CategoryLayerProps) => {
     return (

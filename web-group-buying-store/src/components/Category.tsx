@@ -7,6 +7,7 @@ export type CategoryProps = {
     layer: string,
     id: string,
     parent: string,
+    subcategory: boolean,
     imageSrc: string,
     onMouseOver: MouseEventHandler
 };
@@ -17,7 +18,7 @@ const Category = (props: CategoryProps) => {
                     {/* FOR */}
 
                     <div 
-                        className={`category mx-auto ${props.layer !== '1' ? 'd-none' : ''}`} 
+                        className={`category mx-auto ${props.subcategory? 'parent': ''} ${props.layer !== '1' ? 'd-none' : ''}`} 
                         id={`${props.id}`} 
                         data-parent={`${props.parent}`} 
                         style={{background:`url(${props.imageSrc})`}}
