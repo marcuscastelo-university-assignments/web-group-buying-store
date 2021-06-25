@@ -21,10 +21,9 @@ const Category = (props: CategoryProps) => {
                         className={`category mx-auto ${props.subcategory? 'parent': ''} ${props.layer !== '1' ? 'd-none' : ''}`} 
                         id={`${props.id}`} 
                         data-parent={`${props.parent}`} 
-                        style={{background:`url(${props.imageSrc})`}}
                         onMouseOver={props.onMouseOver}
                     >
-                        {props.id}
+                        <img alt={'Categoria ' + props.id} src={props.imageSrc}/>
                     </div>
 
                     {/* END FOR */}

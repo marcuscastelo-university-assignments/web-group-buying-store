@@ -11,6 +11,11 @@ import CategoryLayer from '../components/CategoryLayer';
 
 import $ from 'jquery'
 
+
+//Got from 'https://icons8.com/icon/set/household/wired--black'
+//TODO: mention icons8 in some place (credits)
+import BED from '../assets/bed.png'
+
 const MainPage: React.FC = () => {
 
     const productMap = JSON.parse(localStorage.getItem('products') ?? '{}');
@@ -59,24 +64,24 @@ const MainPage: React.FC = () => {
                     <nav className="col-9 mx-auto mt-3" id="categories" onMouseLeave={hideNonRoot}>
 
                         <CategoryLayer className="parent" layer="1" onMouseLeave={hideNonRoot}>
-                            <Category onMouseOver={genShowDescendents("test11")} layer="1" id="test11" parent="none" subcategory imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test12")} layer="1" id="test12" parent="none" subcategory imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test13")} layer="1" id="test13" parent="none" subcategory imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test14")} layer="1" id="test14" parent="none" subcategory imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
+                            <Category onMouseOver={genShowDescendents("test11")} layer="1" id="test11" parent="none" subcategory imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test12")} layer="1" id="test12" parent="none" subcategory imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test13")} layer="1" id="test13" parent="none" subcategory imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test14")} layer="1" id="test14" parent="none" subcategory imageSrc={BED} />
                         </CategoryLayer>
 
                         <CategoryLayer className="parent" layer="11" onMouseLeave={hideNonRoot}>
-                            <Category onMouseOver={genShowDescendents("test21")} layer="11" id="test21" parent="test11" subcategory imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test22")} layer="11" id="test22" parent="test12" subcategory imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test23")} layer="11" id="test23" parent="test13" subcategory={false} imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test24")} layer="11" id="test24" parent="test14" subcategory={false} imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
+                            <Category onMouseOver={genShowDescendents("test21")} layer="11" id="test21" parent="test11" subcategory imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test22")} layer="11" id="test22" parent="test12" subcategory imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test23")} layer="11" id="test23" parent="test13" subcategory={false} imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test24")} layer="11" id="test24" parent="test14" subcategory={false} imageSrc={BED} />
                         </CategoryLayer>
 
                         <CategoryLayer layer="111" onMouseLeave={hideNonRoot}>
-                            <Category onMouseOver={genShowDescendents("test31")} layer="111" id="test31" parent="test21" subcategory={false} imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test32")} layer="111" id="test32" parent="test21" subcategory={false} imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test33")} layer="111" id="test33" parent="test21" subcategory={false} imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
-                            <Category onMouseOver={genShowDescendents("test34")} layer="111" id="test34" parent="test22" subcategory={false} imageSrc="https://tiao-a.magazineluiza.com.br/img/lu-header.png" />
+                            <Category onMouseOver={genShowDescendents("test31")} layer="111" id="test31" parent="test21" subcategory={false} imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test32")} layer="111" id="test32" parent="test21" subcategory={false} imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test33")} layer="111" id="test33" parent="test21" subcategory={false} imageSrc={BED} />
+                            <Category onMouseOver={genShowDescendents("test34")} layer="111" id="test34" parent="test22" subcategory={false} imageSrc={BED} />
                         </CategoryLayer>
 
                         <div className="row layer carousel-container" id="carousel-layer-row" data-layer="1111" onMouseLeave={hideNonRoot}>
