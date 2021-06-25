@@ -4,28 +4,30 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
+import './styles/Footer.css'
+
 const Footer: React.FC = () => {
     return (
         <React.Fragment>
             <footer className="row">
                 <div className="col-12 col-md-9 mx-auto">
                     <div className="row">
-                        <div className="col-12 col-md mt-3 text-center">
+                        <div className="col col-md mt-3 text-center">
                             <h3>Informações</h3>
                             <ul>
                                 <li><Link to="/">Início</Link></li>
                                 <li><Link to="/cart">Carrinho</Link></li>
                                 <li>Nossas Lojas</li>
                                 <li>Duvidas na Compra?</li>
-                                <li><Link to="http://www.planalto.gov.br/ccivil_03/Leis/L8078.htm">Codigo de Defesa do Consumidor</Link></li>
+                                <li><a href="http://www.planalto.gov.br/ccivil_03/Leis/L8078.htm">Codigo de Defesa do Consumidor</a></li>
                             </ul>
                         </div>
-                        <div className="col-12 col-md mt-3 text-center">
+                        <div className="col col-md mt-3 text-center">
                             <h3>Atendimento</h3>
                             <img alt="Email de contato" src="./img/mail.png" height="30" width="40" />
                             <p>emaildecontato@contato.com</p>
                         </div>
-                        <div className="col-12 col-md mt-3">
+                        <div className="col col-md mt-3">
                             <div className="row text-center">
                                 <div className="col-12">
                                     <h3>Formas de Pagamento</h3>

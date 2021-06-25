@@ -25,27 +25,18 @@ const MainPage: React.FC = () => {
     }
 
     const genShowDescendents = (parentId: string) => (e: any) => {
-        console.log("Zetsubou Billy!!!!")
-
         let self = $(`#${parentId}`);
         let selfLayer = self.parent().parent().attr('data-layer');
         let targetRemoveLayerNum = selfLayer + '1';
-
-        console.log(selfLayer)
 
         let targetRemoveLayer = $(`#categories .layer[data-layer^=${targetRemoveLayerNum}]`);
         targetRemoveLayer.addClass('d-none');
         targetRemoveLayer.find('.category').addClass('d-none');
 
-        console.log(targetRemoveLayer)
-
         let targets = $('#categories [data-parent="' + self.attr('id') + '"]');
         let targetLayers = targets.parent().parent();
         targetLayers.removeClass('d-none');
         targets.removeClass('d-none');
-        console.log(self.hasClass('parent'))
-
-        console.log(targetLayers)
 
         if (!self.hasClass('parent')) {
             $('#carousel-layer-row').removeClass('d-none');
