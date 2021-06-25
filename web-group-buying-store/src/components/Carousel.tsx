@@ -46,7 +46,7 @@ export default function Carousel<T>(props: CarouselProps<T>) {
             <div id={props.carouselID} className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner mx-auto w-75">
                     {
-                        itemsPerPageVec.map((pageItemsInfo, index) => <CarouselPage first={index === 0} component={props.component} carouselPageItemsInfo={pageItemsInfo} />)
+                        itemsPerPageVec.map((pageItemsInfo, index) => <CarouselPage first={index === 0} component={props.component} carouselPageItemsInfo={pageItemsInfo} key={`${props.carouselID}-${index}`}/>)
                     }
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target={`#${props.carouselID}`}

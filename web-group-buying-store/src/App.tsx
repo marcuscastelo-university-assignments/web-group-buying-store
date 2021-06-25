@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 import './App.css';
 
 import MainPage from './pages/MainPage';
@@ -11,15 +12,18 @@ import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import ProductPage from './pages/Product';
 import CreateProductPage from './pages/CreateProduct';
+import { generateMockCategories } from './util/mock-categories';
 
 //This is a temporary function used to simulate server-side interacion.
+//TODO: remove on last assignment
 function injectProductsToLocalStorage() {
     const products: {[key: string]: ProductProps}= {
         "41e5b333": 
         {
             productID: '41e5b333',
             currentQuantity: 10,
-            imageURL: '.e.e.',
+            imageURL: '/img/categories/bed.png',
+            category: 'PC',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
@@ -31,7 +35,8 @@ function injectProductsToLocalStorage() {
         {
             productID: '790dd7e3',
             currentQuantity: 10,
-            imageURL: '.e.e.',
+            category: 'Cozinha',
+            imageURL: '/img/categories/bed.png',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
@@ -43,7 +48,8 @@ function injectProductsToLocalStorage() {
         {
             productID: '28221d6d',
             currentQuantity: 10,
-            imageURL: '.e.e.',
+            category: 'Cozinha',
+            imageURL: '/img/categories/bed.png',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
@@ -56,8 +62,14 @@ function injectProductsToLocalStorage() {
     localStorage.setItem('products', JSON.stringify(products));
 }
 
+function injectCategoriesToLocalStorage() {
+    const layers = generateMockCategories();
+    localStorage.setItem('categories', JSON.stringify(layers));
+}
+
 function App() {
     injectProductsToLocalStorage();
+    injectCategoriesToLocalStorage();
     return (
         <div className="App">
             <BrowserRouter>
