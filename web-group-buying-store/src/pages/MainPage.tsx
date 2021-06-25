@@ -14,7 +14,7 @@ import $ from 'jquery'
 
 //Got from 'https://icons8.com/icon/set/household/wired--black'
 //TODO: mention icons8 in some place (credits)
-import BED from '../assets/bed.png'
+const BED = '/img/categories/bed.png';
 
 const MainPage: React.FC = () => {
 

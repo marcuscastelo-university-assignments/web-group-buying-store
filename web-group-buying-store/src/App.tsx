@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 import './App.css';
 
 import MainPage from './pages/MainPage';
@@ -13,6 +14,7 @@ import ProductPage from './pages/Product';
 import CreateProductPage from './pages/CreateProduct';
 
 //This is a temporary function used to simulate server-side interacion.
+//TODO: remove on last assignment
 function injectProductsToLocalStorage() {
     const products: {[key: string]: ProductProps}= {
         "41e5b333": 
