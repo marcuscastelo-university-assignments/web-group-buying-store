@@ -3,8 +3,6 @@ import React, { MouseEventHandler } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
-import Category from './Category'
-
 export type CategoryLayerProps = {
     layer: string
     children: React.ReactNode,

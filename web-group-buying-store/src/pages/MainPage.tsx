@@ -13,9 +13,6 @@ import $ from 'jquery'
 import { CategoryLayersDescription } from '../util/mock-categories';
 
 
-//Got from 'https://icons8.com/icon/set/household/wired--black'
-//TODO: mention icons8 in some place (credits)
-const BED = '/img/categories/bed.png';
 
 const MainPage: React.FC = () => {
 
@@ -77,7 +74,7 @@ const MainPage: React.FC = () => {
                                                         onMouseOver={genShowDescendents(category.id)}
                                                         id={category.id}
                                                         parent={category.parent ?? 'none'}
-                                                        subcategory={/* TODO: find if its a subcategory */ categoryLayers[layerID + '1'] !== undefined}
+                                                        subcategory={!category.final}
                                                         imageSrc={category.imageSrc}
                                                         key={`category-${layerRand}-layer${layerID}-${idx}`}
                                                     />
@@ -116,15 +113,7 @@ const MainPage: React.FC = () => {
                     </nav>
                 </div>
 
-                {/* 
-
-            <div className="row mt-5">
-                <div className="col-9 mx-auto mt-5" id="sales">
-                </div>
-            </div> */}
-
-
-                <div className="row mt-5 flex-grow-1">
+                <div className="row my-5 flex-grow-1">
                     <div className="col-9 mx-auto mt-5">
                         <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
                             <h4 className="mt-5 w-100 text-center">Interesses</h4>

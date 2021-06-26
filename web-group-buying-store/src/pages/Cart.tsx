@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
-import { ProductProps } from '../components/ProductCard';
+import { MilestoneProps, ProductProps } from '../components/ProductCard';
+import { getCartItem, getCartItems } from '../util/local-storage';
 
 import './Cart.css'
 
@@ -12,8 +13,48 @@ export type CartProductProps = {
     quantity: number,
 };
 
+function getProductData(product: ProductProps, qttyInCartItem: number) {
+    let curItems = product.currentQuantity + qttyInCartItem;
+    let maxNearest = { quantity: -1 } as MilestoneProps;
+    let nextMaxNearest = { quantity: 99999999999999 } as MilestoneProps;
+    for (let milestone of product.milestones) {
+        if (milestone.quantity > maxNearest.quantity && milestone.quantity <= curItems) {
+            maxNearest = milestone;
+        }
+    }
+    
+    
+    for (let milestone of product.milestones) {
+        if ((milestone.quantity < nextMaxNearest.quantity || nextMaxNearest === undefined) && milestone.quantity > maxNearest.quantity) {
+            nextMaxNearest = milestone;
+        }
+    }
+
+    if (maxNearest.price === undefined) maxNearest.price = -1;
+    if (nextMaxNearest.price === undefined) nextMaxNearest = {...maxNearest};
+
+    let currPricePerItem = maxNearest.price;
+    let nextPricePerItem = nextMaxNearest.price;
+    let remainingToReducePrice = ( nextMaxNearest.quantity !== maxNearest.quantity ? nextMaxNearest.quantity - curItems : 0);
+    return {
+        currPricePerItem,
+        nextPricePerItem,
+        remainingToReducePrice,
+    };
+}
+
+function calcTotal() {
+    //TODO: price
+    const price = 1;
+    return getCartItems().reduce((total, item) => total + item.quantity * price, 0);
+}
+
 const CartPage: React.FC = _ => {
-    let cartProducts: CartProductProps[] = JSON.parse(localStorage.getItem('cart-items')??'[]');
+    let cartProducts = getCartItems()
+
+    let [ total, setTotal ] = useState(calcTotal());
+    const onItemChanged = () => setTotal(calcTotal());
+
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
@@ -23,7 +64,7 @@ const CartPage: React.FC = _ => {
                     <div className="col-10 col-sm-9 col-md-8 mx-auto pt-3">
                         {
                             (cartProducts?.length > 0)
-                                ? cartProducts.map((product, index) => <CartItem itemInfo={product} key={`cart-item-${index}`}/>)
+                                ? cartProducts.map((product, index) => <CartItem itemInfo={product} key={`cart-item-${index}`} onChanged={onItemChanged}/>)
                                 : <h3 className="cart__empty my-5">O seu carrinho está vazio.</h3>
                         }
 
@@ -104,7 +145,7 @@ const CartPage: React.FC = _ => {
                                                     <div className="row g-0 mt-3">
                                                         <div className="col p-2">
                                                             <span className="cart-total" style={{ fontSize: 'large' }}>
-                                                                Total: R$<span className="value"></span>
+                                                                Total: R${total}
                                                             </span>
                                                         </div>
                                                         <div className="col text-end">
