@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useHistory, useParams } from 'react-router';
@@ -47,6 +47,9 @@ function calculateRuntimeInfo(item: ProductProps): ProductCalculatedRuntimeInfo 
 
 
 const ProductPage: React.FC = () => {
+    let _milesetoneState = useState(-1);
+    let [selectedMilestone, selectMilestone] = _milesetoneState;
+
     let history = useHistory();
     function addToCart(product: ProductProps) {
         let cartProducts = JSON.parse(localStorage.getItem('cart-items') ?? '[]') as CartProductProps[];
@@ -64,14 +67,6 @@ const ProductPage: React.FC = () => {
 
     const { id } = useParams<{ id: string }>();
     const product = JSON.parse(localStorage.getItem('products') ?? '{}')[id] as ProductProps;
-
-    let aa = 10;
-    while (aa-- > 0) {
-        product?.milestones.push({
-            price: 0,
-            quantity: 100
-        });
-    }
 
     const runtimeInfo = calculateRuntimeInfo(product);
 
@@ -102,7 +97,17 @@ const ProductPage: React.FC = () => {
                                 <div id="milestone-list" className="col-6 d-flex align-items-end flex-column">
 
                                     {
-                                        product.milestones.map((milestone, idx) => <MilestoneItem milestone={milestone} product={product} key={`milestone-${idx}`} />)
+                                        product.milestones.map((milestone, idx) => (
+                                            (selectedMilestone === -1 || selectedMilestone === idx) ?
+                                                <MilestoneItem
+                                                    milestone={milestone}
+                                                    product={product}
+                                                    key={`milestone-${idx}`}
+                                                    expanded={selectedMilestone === idx}
+                                                    onClick={() => selectMilestone(selectedMilestone === idx ? -1 : idx)}
+                                                />
+                                                : ''
+                                        ))
                                     }
 
 
@@ -130,7 +135,7 @@ const ProductPage: React.FC = () => {
                         </div>
                     </div>
 
-                    <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo} />
+                    <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo} milestoneState={_milesetoneState} />
 
                     <div className="row g-0 mt-5" id="comments">
                         <div className="col-11 col-md-8 mx-auto">
