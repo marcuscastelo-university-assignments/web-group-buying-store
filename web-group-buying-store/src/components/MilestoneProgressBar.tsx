@@ -56,9 +56,9 @@ export default function MilestoneProgressBar({ product, runtimeInfo,  milestoneS
             <div className="col-12">
                 <div className="col-8 mx-auto">
                     <div className="row progress position-relative">
-                        <div className="progress-bar  text-center bg-warning" role="progressbar" style={{ width: `${100 * (runtimeInfo.currentMilestone?.quantity??0) / runtimeInfo.lastMilestone.quantity}%` }}
+                        <div className="progress-bar  text-center bg-warning" role="progressbar" style={{ width: `${100 * (runtimeInfo.currentQuantity??0) / runtimeInfo.lastMilestone.quantity}%` }}
                             aria-valuenow={10} aria-valuemin={0} aria-valuemax={100}>
-                            <small className="justify-content-center d-flex position-absolute w-100 text-dark fw-bold p-0">{(runtimeInfo.currentMilestone?.quantity??0)}/{runtimeInfo.lastMilestone.quantity}</small>
+                            <small className="justify-content-center d-flex position-absolute w-100 text-dark fw-bold p-0">{(runtimeInfo.currentQuantity??0)}/{runtimeInfo.lastMilestone.quantity}</small>
                         </div>
                     </div>
                 </div>

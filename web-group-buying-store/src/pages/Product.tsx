@@ -17,8 +17,8 @@ const ProductPage: React.FC = () => {
     let [selectedMilestone, selectMilestone] = _milesetoneState;
 
     let history = useHistory();
-    function addToCart({productID}: ProductProps) {
-        const item = getCartItem(productID) ?? {productID, quantity: 0};
+    function addToCart({ productID }: ProductProps) {
+        const item = getCartItem(productID) ?? { productID, quantity: 0 };
         item.quantity++;
         updateCartItem(item);
         history.push('/cart')
@@ -32,7 +32,7 @@ const ProductPage: React.FC = () => {
         return (<React.Fragment>Product not found, redirecting...</React.Fragment>);
     }
 
-    const runtimeInfo  = calculateRuntimeInfo(product);
+    const runtimeInfo = calculateRuntimeInfo(product);
 
     return (
         <React.Fragment>
@@ -74,12 +74,20 @@ const ProductPage: React.FC = () => {
                                         ))
                                     }
 
+                                    {
+                                        runtimeInfo.nextMilestone === null ?
+                                            <span className="w-100 text-center text-success fw-bold mt-5">Todas as metas foram atingidas!</span>
+                                            : ""
+                                    }
 
 
                                     <div className="milestone-item row mt-auto mx-auto m-2 w-100" data-milestone="buy"
                                         style={{ order: 99 }}>
 
-                                        <div className="align-self-end text-end w-100">
+                                        <div className="align-self-end text-end w-100 d-flex justify-content-between">
+                                            <span className="text-start pt-2">
+                                                Preço: R${runtimeInfo.currentMilestone?.price ?? 'Indisponível'}
+                                            </span>
                                             <a className="justify-self-end" href="#0">
                                                 <button className="btn btn-dark add-to-the-cart" onClick={() => addToCart(product)}>
                                                     <span>Adicionar ao carrinho</span>
@@ -112,13 +120,15 @@ const ProductPage: React.FC = () => {
                                 <div className="row mt-1">
                                     <div className="col-12 mx-auto" id="comment-list">
                                         {
-                                            (product.comments?.length ?? 0) > 0?
-                                            product.comments?.map(
-                                                (comment, idx) =>
-                                                    <ProductComment info={comment} key={`comment-${idx}`} />
-                                            )
-                                            : <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
+                                            (product.comments?.length ?? 0) > 0 ?
+                                                product.comments?.map(
+                                                    (comment, idx) =>
+                                                        <ProductComment info={comment} key={`comment-${idx}`} />
+                                                )
+                                                : <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
                                         }
+
+
                                     </div>
                                 </div>
                             </div>
