@@ -4,18 +4,36 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
-type Milestone = {
+export type MilestoneProps = {
     quantity: number,
     price: number,
 };
 
+export type UserProps = {
+    name: string,
+    nick: string,
+    email: string,
+    profileImage: string,
+}
+
+export type ProductCommentProps = {
+    author: UserProps,
+    title: string,
+    content: string,
+    rating: number,
+    likes: number,
+    dislikes: number
+}
+
 export type ProductProps = {
     productID: string,
-    imageURL: string,
     title: string,
+    description?: string,
+    imageURL: string,
     category: string,
-    milestones: Milestone[];
+    milestones: MilestoneProps[];
     currentQuantity: number,
+    comments?: ProductCommentProps[],
 };
 
 const ProductCard: React.FC<ProductProps> = (props: ProductProps) => {
