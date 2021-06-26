@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
-import { ProductProps } from '../components/ProductCard';
+import { MilestoneProps, ProductProps } from '../components/ProductCard';
 
 import './Cart.css'
 
@@ -11,6 +11,37 @@ export type CartProductProps = {
     productID: string,
     quantity: number,
 };
+
+function getProductData(product: ProductProps, qttyInCartItem: number) {
+    let curItems = product.currentQuantity + qttyInCartItem;
+    let maxNearest = { quantity: -1 } as MilestoneProps;
+    let nextMaxNearest = { quantity: 99999999999999 } as MilestoneProps;
+    for (let milestone of product.milestones) {
+        if (milestone.quantity > maxNearest.quantity && milestone.quantity <= curItems) {
+            maxNearest = milestone;
+        }
+    }
+    
+    
+    for (let milestone of product.milestones) {
+        if ((milestone.quantity < nextMaxNearest.quantity || nextMaxNearest === undefined) && milestone.quantity > maxNearest.quantity) {
+            nextMaxNearest = milestone;
+        }
+    }
+
+    if (maxNearest.price === undefined) maxNearest.price = -1;
+    if (nextMaxNearest.price === undefined) nextMaxNearest = {...maxNearest};
+
+    let currPricePerItem = maxNearest.price;
+    let nextPricePerItem = nextMaxNearest.price;
+    let remainingToReducePrice = ( nextMaxNearest.quantity !== maxNearest.quantity ? nextMaxNearest.quantity - curItems : 0);
+    return {
+        currPricePerItem,
+        nextPricePerItem,
+        remainingToReducePrice,
+    };
+}
+
 
 const CartPage: React.FC = _ => {
     let cartProducts: CartProductProps[] = JSON.parse(localStorage.getItem('cart-items')??'[]');
