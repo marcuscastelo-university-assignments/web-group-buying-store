@@ -7,15 +7,13 @@ import { ProductProps } from '../components/ProductCard';
 
 import './Cart.css'
 
-type CartProductProps = {
-    productID: number,
+export type CartProductProps = {
+    productID: string,
     quantity: number,
 };
 
 const CartPage: React.FC = _ => {
-    let cartProducts: CartProductProps[] = JSON.parse(localStorage.getItem('cart-products')??'[]');
-    const productMap = JSON.parse(localStorage.getItem('products')??'{}');
-    const products: ProductProps[] = Object.values(productMap);
+    let cartProducts: CartProductProps[] = JSON.parse(localStorage.getItem('cart-items')??'[]');
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
@@ -24,8 +22,8 @@ const CartPage: React.FC = _ => {
                 <div className="row flex-grow-1">
                     <div className="col-10 col-sm-9 col-md-8 mx-auto pt-3">
                         {
-                            (products?.length > 0)
-                                ? products.map((product, index) => <CartItem product={product} key={`cart-item-${index}`}/>)
+                            (cartProducts?.length > 0)
+                                ? cartProducts.map((product, index) => <CartItem itemInfo={product} key={`cart-item-${index}`}/>)
                                 : <h3 className="cart__empty my-5">O seu carrinho está vazio.</h3>
                         }
 
@@ -33,7 +31,7 @@ const CartPage: React.FC = _ => {
                 </div>
 
                 {
-                    (products?.length > 0) ?
+                    (cartProducts?.length > 0) ?
                         <React.Fragment>
                             <div className="row g-0">
                                 <nav className="d-flex" aria-label="Page navigation">
