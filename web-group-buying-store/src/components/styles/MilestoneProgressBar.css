@@ -1,0 +1,18 @@
+#progress-spots a {
+    /* border: 1px solid red; */
+    margin-top: -5px !important;
+    margin-left: -0.75rem !important;
+    height: 15px;
+    width: 1.5rem !important;
+    text-decoration: none !important;
+    color: black !important;
+}
+
+
+.milestone-progress-spot {
+    margin-top: -15px !important;
+    /* margin-left: -0.75rem !important; */
+    font-size: 2.5em !important;
+    width: 0.75rem !important;
+    /* border: 1px solid black; */
+}
