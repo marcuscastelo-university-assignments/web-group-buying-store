@@ -13,6 +13,7 @@ import RegisterPage from './pages/Register';
 import ProductPage from './pages/Product';
 import CreateProductPage from './pages/CreateProduct';
 import { generateMockCategories } from './util/mock-categories';
+import { updateProducts } from './util/local-storage';
 
 //This is a temporary function used to simulate server-side interacion.
 //TODO: remove on last assignment
@@ -119,8 +120,7 @@ function injectProductsToLocalStorage() {
             title: "Asas de borboleta"
         },
     };
-
-    localStorage.setItem('products', JSON.stringify(products));
+    updateProducts(products);
 }
 
 function injectCategoriesToLocalStorage() {

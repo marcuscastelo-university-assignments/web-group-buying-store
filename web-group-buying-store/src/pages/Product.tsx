@@ -2,50 +2,15 @@ import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useHistory, useParams } from 'react-router';
-import { ProductCommentProps, ProductProps, MilestoneProps } from '../components/ProductCard';
+import { ProductProps } from '../components/ProductCard';
 import ProductComment from '../components/ProductComment';
 
 import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
-import { CartProductProps } from '../pages/Cart'
 
 import './Product.css'
-import { getCartItem, updateCartItem } from '../util/local-storage';
-
-export type ProductCalculatedRuntimeInfo = {
-    curQtty: number;
-    maxQuantity: number;
-    curPrice: number;
-    minPrice: number;
-}
-
-function calculateRuntimeInfo(item: ProductProps): ProductCalculatedRuntimeInfo {
-    let minPriceMile = { price: item.milestones[0].price + 1 };
-    let curPrice;
-    let curQtty = item.currentQuantity;
-    let nearestMile = { quantity: -1 } as MilestoneProps;
-    let biggestMile = { quantity: -1 } as MilestoneProps;
-    for (let milestone of item.milestones) {
-        if (milestone.quantity > biggestMile.quantity)
-            biggestMile.quantity = milestone.quantity;
-
-        if (curQtty > milestone.quantity && milestone.quantity > nearestMile.quantity)
-            nearestMile = milestone;
-
-        if (milestone.price < minPriceMile.price) minPriceMile = milestone;
-    }
-
-    if (biggestMile.quantity === -1) {
-        console.error('Invalid product: no valid milestones. ID = ', item.productID);
-    }
-
-    if (nearestMile.quantity === -1) curPrice = -1;
-    else curPrice = nearestMile.price;
-
-    return { curQtty, maxQuantity: biggestMile.quantity, curPrice, minPrice: minPriceMile.price };
-}
-
-
+import { getCartItem, getProduct, updateCartItem } from '../util/local-storage';
+import { calculateRuntimeInfo } from '../util/product-utlls';
 
 const ProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
@@ -53,16 +18,21 @@ const ProductPage: React.FC = () => {
 
     let history = useHistory();
     function addToCart({productID}: ProductProps) {
-        const item = getCartItem(product.productID) ?? {productID, quantity: 0};
+        const item = getCartItem(productID) ?? {productID, quantity: 0};
         item.quantity++;
         updateCartItem(item);
         history.push('/cart')
     }
 
     const { id: productID } = useParams<{ id: string }>();
-    const product = JSON.parse(localStorage.getItem('products') ?? '{}')[productID] as ProductProps;
+    const product = getProduct(productID);
 
-    const runtimeInfo = calculateRuntimeInfo(product);
+    if (!product) {
+        history.push('/not-found');
+        return (<React.Fragment>Product not found, redirecting...</React.Fragment>);
+    }
+
+    const runtimeInfo  = calculateRuntimeInfo(product);
 
     return (
         <React.Fragment>
