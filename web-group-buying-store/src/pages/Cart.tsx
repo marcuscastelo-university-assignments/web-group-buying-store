@@ -4,6 +4,7 @@ import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 import { MilestoneProps, ProductProps } from '../components/ProductCard';
+import { getCartItems } from '../util/local-storage';
 
 import './Cart.css'
 
@@ -44,7 +45,7 @@ function getProductData(product: ProductProps, qttyInCartItem: number) {
 
 
 const CartPage: React.FC = _ => {
-    let cartProducts: CartProductProps[] = JSON.parse(localStorage.getItem('cart-items')??'[]');
+    let cartProducts = getCartItems()
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">

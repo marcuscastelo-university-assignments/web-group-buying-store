@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { CartProductProps } from '../pages/Cart';
+import { getProduct, updateCartItem, updateCartItems } from '../util/local-storage';
 
 import { ProductProps } from './ProductCard';
 
 const CartItem: React.FC<{ itemInfo: CartProductProps }> = ({ itemInfo }) => {
-    const product = JSON.parse(localStorage.getItem('products') ?? '{}')[itemInfo.productID] as ProductProps | undefined;
+
+    const product = getProduct(itemInfo.productID);
     const [ count, setCount ] = useState<number>(itemInfo.quantity);
 
     useEffect(() => {
         if (count < 1) setCount(1)
-
-        //TODO: save new quantity to localstorage
-
-    }, [count]);
+        
+        itemInfo.quantity = count;
+        updateCartItem(itemInfo);
+    }, [count, itemInfo]);
 
 
     return (
