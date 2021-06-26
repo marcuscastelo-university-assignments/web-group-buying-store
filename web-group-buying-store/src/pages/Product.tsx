@@ -148,10 +148,12 @@ const ProductPage: React.FC = () => {
                                 <div className="row mt-1">
                                     <div className="col-12 mx-auto" id="comment-list">
                                         {
+                                            (product.comments?.length ?? 0) > 0?
                                             product.comments?.map(
                                                 (comment, idx) =>
                                                     <ProductComment info={comment} key={`comment-${idx}`} />
                                             )
+                                            : <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
                                         }
                                     </div>
                                 </div>
