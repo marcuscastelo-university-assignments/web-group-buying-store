@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
@@ -11,13 +11,14 @@ import CategoryLayer from '../components/CategoryLayer';
 
 import $ from 'jquery'
 import { CategoryLayersDescription } from '../util/mock-categories';
+import { getProducts } from '../util/local-storage';
 
 
 
 const MainPage: React.FC = () => {
 
-    const productMap = JSON.parse(localStorage.getItem('products') ?? '{}');
-    const products = Object.values(productMap) as ProductProps[];
+
+    const productList = Object.values(getProducts()) as ProductProps[];
 
     const hideNonRoot = () => {
         let layers = $('#categories').find(".layer[data-layer]:not([data-layer='1']")
@@ -108,7 +109,7 @@ const MainPage: React.FC = () => {
                         </CategoryLayer> */}
 
                         <div className="row layer carousel-container" id="carousel-layer-row" data-layer="1111" onMouseLeave={hideNonRoot}>
-                            <Carousel<ProductProps> carouselID="category-carousel" carouselItemsInfo={products} itemsPerPage={5} component={ProductCard} />
+                            <Carousel<ProductProps> carouselID="category-carousel" carouselItemsInfo={productList} itemsPerPage={5} component={ProductCard} />
                         </div>
                     </nav>
                 </div>
@@ -118,28 +119,28 @@ const MainPage: React.FC = () => {
                         <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
                             <h4 className="mt-5 w-100 text-center">Interesses</h4>
                             <div className="col-9 mx-auto w-100">
-                                <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={products} itemsPerPage={5} component={ProductCard} />
+                                <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={productList} itemsPerPage={5} component={ProductCard} />
                             </div>
                         </div>
 
                         <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
                             <h4 className="mt-5 w-100 text-center">Para você</h4>
                             <div className="col-9 mx-auto w-100">
-                                <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={products} itemsPerPage={5} component={ProductCard} />
+                                <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={productList} itemsPerPage={5} component={ProductCard} />
                             </div>
                         </div>
 
                         <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
                             <h4 className="mt-5 w-100 text-center">Próximos de esgotar</h4>
                             <div className="col-9 mx-auto w-100">
-                                <Carousel<ProductProps> carouselID="test1223" carouselItemsInfo={products} itemsPerPage={1} component={ProductCard} />
+                                <Carousel<ProductProps> carouselID="test1223" carouselItemsInfo={productList} itemsPerPage={1} component={ProductCard} />
                             </div>
                         </div>
 
                         <div className="row layer  carousel-container mt-2" id="carousel-sale-0-row">
                             <h4 className="mt-5 w-100 text-center">Em promoção</h4>
                             <div className="col-9 mx-auto w-100">
-                                <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={products} itemsPerPage={5} component={ProductCard} />
+                                <Carousel<ProductProps> carouselID="test123" carouselItemsInfo={productList} itemsPerPage={5} component={ProductCard} />
                             </div>
                         </div>
                     </div>

@@ -2,65 +2,35 @@ import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useHistory, useParams } from 'react-router';
-import { ProductCommentProps, ProductProps, MilestoneProps } from '../components/ProductCard';
+import { ProductProps } from '../components/ProductCard';
 import ProductComment from '../components/ProductComment';
 
 import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
-import { CartProductProps } from '../pages/Cart'
 
 import './Product.css'
-import { getCartItem, updateCartItem } from '../util/local-storage';
-
-export type ProductCalculatedRuntimeInfo = {
-    curQtty: number;
-    maxQuantity: number;
-    curPrice: number;
-    minPrice: number;
-}
-
-function calculateRuntimeInfo(item: ProductProps): ProductCalculatedRuntimeInfo {
-    let minPriceMile = { price: item.milestones[0].price + 1 };
-    let curPrice;
-    let curQtty = item.currentQuantity;
-    let nearestMile = { quantity: -1 } as MilestoneProps;
-    let biggestMile = { quantity: -1 } as MilestoneProps;
-    for (let milestone of item.milestones) {
-        if (milestone.quantity > biggestMile.quantity)
-            biggestMile.quantity = milestone.quantity;
-
-        if (curQtty > milestone.quantity && milestone.quantity > nearestMile.quantity)
-            nearestMile = milestone;
-
-        if (milestone.price < minPriceMile.price) minPriceMile = milestone;
-    }
-
-    if (biggestMile.quantity === -1) {
-        console.error('Invalid product: no valid milestones. ID = ', item.productID);
-    }
-
-    if (nearestMile.quantity === -1) curPrice = -1;
-    else curPrice = nearestMile.price;
-
-    return { curQtty, maxQuantity: biggestMile.quantity, curPrice, minPrice: minPriceMile.price };
-}
-
-
+import { getCartItem, getProduct, updateCartItem } from '../util/local-storage';
+import { calculateRuntimeInfo } from '../util/product-utlls';
 
 const ProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
     let [selectedMilestone, selectMilestone] = _milesetoneState;
 
     let history = useHistory();
-    function addToCart({productID}: ProductProps) {
-        const item = getCartItem(product.productID) ?? {productID, quantity: 0};
+    function addToCart({ productID }: ProductProps) {
+        const item = getCartItem(productID) ?? { productID, quantity: 0 };
         item.quantity++;
         updateCartItem(item);
         history.push('/cart')
     }
 
     const { id: productID } = useParams<{ id: string }>();
-    const product = JSON.parse(localStorage.getItem('products') ?? '{}')[productID] as ProductProps;
+    const product = getProduct(productID);
+
+    if (!product) {
+        history.push('/not-found');
+        return (<React.Fragment>Product not found, redirecting...</React.Fragment>);
+    }
 
     const runtimeInfo = calculateRuntimeInfo(product);
 
@@ -104,12 +74,20 @@ const ProductPage: React.FC = () => {
                                         ))
                                     }
 
+                                    {
+                                        runtimeInfo.nextMilestone === null ?
+                                            <span className="w-100 text-center text-success fw-bold mt-5">Todas as metas foram atingidas!</span>
+                                            : ""
+                                    }
 
 
                                     <div className="milestone-item row mt-auto mx-auto m-2 w-100" data-milestone="buy"
                                         style={{ order: 99 }}>
 
-                                        <div className="align-self-end text-end w-100">
+                                        <div className="align-self-end text-end w-100 d-flex justify-content-between">
+                                            <span className="text-start pt-2">
+                                                Preço: R${runtimeInfo.currentMilestone?.price ?? 'Indisponível'}
+                                            </span>
                                             <a className="justify-self-end" href="#0">
                                                 <button className="btn btn-dark add-to-the-cart" onClick={() => addToCart(product)}>
                                                     <span>Adicionar ao carrinho</span>
@@ -142,13 +120,15 @@ const ProductPage: React.FC = () => {
                                 <div className="row mt-1">
                                     <div className="col-12 mx-auto" id="comment-list">
                                         {
-                                            (product.comments?.length ?? 0) > 0?
-                                            product.comments?.map(
-                                                (comment, idx) =>
-                                                    <ProductComment info={comment} key={`comment-${idx}`} />
-                                            )
-                                            : <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
+                                            (product.comments?.length ?? 0) > 0 ?
+                                                product.comments?.map(
+                                                    (comment, idx) =>
+                                                        <ProductComment info={comment} key={`comment-${idx}`} />
+                                                )
+                                                : <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
                                         }
+
+
                                     </div>
                                 </div>
                             </div>
