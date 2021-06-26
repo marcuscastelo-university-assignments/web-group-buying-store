@@ -2,12 +2,52 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useParams } from 'react-router';
-import { ProductCommentProps, ProductProps } from '../components/ProductCard';
+import { ProductCommentProps, ProductProps, MilestoneProps } from '../components/ProductCard';
 import ProductComment from '../components/ProductComment';
+
+import $ from 'jquery'
+import MilestoneItem from '../components/MilestoneItem';
+import MilestoneProgressBar from '../components/MilestoneProgressBar';
+
+export type ProductCalculatedRuntimeInfo = {
+    curQtty: number;
+    maxQuantity: number;
+    curPrice: number;
+    minPrice: number;
+}
+
+function calculateRuntimeInfo(item: ProductProps) : ProductCalculatedRuntimeInfo {
+    let minPriceMile = { price: item.milestones[0].price + 1 };
+    let curPrice;
+    let curQtty = item.currentQuantity;
+    let nearestMile = { quantity: -1 } as MilestoneProps;
+    let biggestMile = { quantity: -1 } as MilestoneProps;
+    for (let milestone of item.milestones) {
+        if (milestone.quantity > biggestMile.quantity)
+        biggestMile.quantity = milestone.quantity;
+
+        if (curQtty > milestone.quantity && milestone.quantity > nearestMile.quantity)
+            nearestMile = milestone;
+            
+        if (milestone.price < minPriceMile.price) minPriceMile = milestone;
+    }
+    
+    if (biggestMile.quantity === -1) {
+        console.error('Invalid product: no valid milestones. ID = ', item.productID);
+    }
+
+    if (nearestMile.quantity === -1) curPrice = -1;
+    else curPrice = nearestMile.price;
+    
+    return { curQtty, maxQuantity: biggestMile.quantity, curPrice, minPrice: minPriceMile.price };
+}
 
 const ProductPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const product = JSON.parse(localStorage.getItem('products') ?? '{}')[id] as ProductProps;
+
+    const runtimeInfo = calculateRuntimeInfo(product);
+
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
@@ -30,7 +70,16 @@ const ProductPage: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div id="milestone-list" className="col-6 d-flex align-items-end flex-column">
+
+                                    {
+                                        product.milestones.map((milestone, idx) => <MilestoneItem milestone={milestone} product={product} key={`milestone-${idx}`}/>)
+                                    }
+
+
+
                                     <div className="milestone-item row card mt-auto mx-auto m-2 p-3 w-100" data-milestone="buy"
                                         style={{ order: 99 }}>
                                         <div className="card-header">
@@ -53,26 +102,13 @@ const ProductPage: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row g-0 mt-3">
-                        <div className="col-12">
-                            <div className="col-8 mx-auto">
-                                <div className="row progress position-relative">
-                                    <div className="progress-bar  text-center bg-warning" role="progressbar" style={{ width: 0 }}
-                                        aria-valuenow={10} aria-valuemin={0} aria-valuemax={100}>
-                                        <small className="justify-content-center d-flex position-absolute w-100 text-dark fw-bold">0/0</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <nav id="progress-spots" className="mx-auto p-0 align-self-center d-flex flex-row position-relative">
 
-                                </nav>
+
                             </div>
                         </div>
                     </div>
+
+                    <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo}/>
 
                     <div className="row g-0 mt-5" id="comments">
                         <div className="col-11 col-md-8 mx-auto">
