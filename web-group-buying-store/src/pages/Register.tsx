@@ -20,17 +20,17 @@ const RegisterPage: React.FC = () => {
                                             <div className="top-login input-group bg-light border p-3 registration">
                                                 <div className="row g-0 w-100">
                                                     <label className="form-label" htmlFor="nome-completo">Nome completo</label>
-                                                    <input name="nome-completo" className="form-control" type="text"
+                                                    <input required name="nome-completo" className="form-control" type="text"
                                                         placeholder="Fulano da silva" />
                                                 </div>
                                                 <div className="row g-0 mt-3 w-100">
                                                     <label className="form-label" htmlFor="email">Email</label>
-                                                    <input name="email" className="form-control" type="email"
+                                                    <input required name="email" className="form-control" type="email"
                                                         placeholder="fulano@gmail.com" />
                                                 </div>
                                                 <div className="row g-0 mt-3 w-100">
                                                     <label className="form-label" htmlFor="birthday">Data de nascimento</label>
-                                                    <input name="birthday" className="form-control text-muted" type="date" />
+                                                    <input required name="birthday" className="form-control text-muted" type="date" />
                                                 </div>
                                             </div>
 
@@ -44,7 +44,7 @@ const RegisterPage: React.FC = () => {
                                                         placeholder="Senha" aria-describedby="validationServerUsernameFeedback" />
                                                 </div>
                                                 <div className=" row g-0 mt-3 w-100 registration">
-                                                    <input id="password-confirmation" name="password-confirmation" className="form-control"
+                                                    <input id="password-confirmation" required name="password-confirmation" className="form-control"
                                                         type="password" placeholder="Confirmação de senha" aria-describedby="validationServerUsernameFeedback" />
 
                                                     <div id="validationServerUsernameFeedback" className="invalid-feedback ">Senhas não coincidem.</div>
