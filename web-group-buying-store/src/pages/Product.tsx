@@ -1,8 +1,72 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import { useHistory, useParams } from 'react-router';
+import { ProductCommentProps, ProductProps, MilestoneProps } from '../components/ProductCard';
+import ProductComment from '../components/ProductComment';
+
+import $ from 'jquery'
+import MilestoneItem from '../components/MilestoneItem';
+import MilestoneProgressBar from '../components/MilestoneProgressBar';
+import {CartProductProps} from '../pages/Cart'
+
+export type ProductCalculatedRuntimeInfo = {
+    curQtty: number;
+    maxQuantity: number;
+    curPrice: number;
+    minPrice: number;
+}
+
+function calculateRuntimeInfo(item: ProductProps) : ProductCalculatedRuntimeInfo {
+    let minPriceMile = { price: item.milestones[0].price + 1 };
+    let curPrice;
+    let curQtty = item.currentQuantity;
+    let nearestMile = { quantity: -1 } as MilestoneProps;
+    let biggestMile = { quantity: -1 } as MilestoneProps;
+    for (let milestone of item.milestones) {
+        if (milestone.quantity > biggestMile.quantity)
+        biggestMile.quantity = milestone.quantity;
+
+        if (curQtty > milestone.quantity && milestone.quantity > nearestMile.quantity)
+            nearestMile = milestone;
+            
+        if (milestone.price < minPriceMile.price) minPriceMile = milestone;
+    }
+    
+    if (biggestMile.quantity === -1) {
+        console.error('Invalid product: no valid milestones. ID = ', item.productID);
+    }
+
+    if (nearestMile.quantity === -1) curPrice = -1;
+    else curPrice = nearestMile.price;
+    
+    return { curQtty, maxQuantity: biggestMile.quantity, curPrice, minPrice: minPriceMile.price };
+}
+
+
 
 const ProductPage: React.FC = () => {
+    let history = useHistory();
+    function addToCart(product: ProductProps) {
+        let cartProducts = JSON.parse(localStorage.getItem('cart-items') ?? '[]') as CartProductProps[];
+        let ind = cartProducts.findIndex(p=>p.productID === product.productID)
+        if (ind !== -1) 
+            cartProducts[ind].quantity++;
+        else
+            cartProducts.push({
+                productID: product.productID,
+                quantity: 1,
+            });
+    
+        localStorage.setItem('cart-items', JSON.stringify(cartProducts));
+        history.push('/cart')
+    }
+
+    const { id } = useParams<{ id: string }>();
+    const product = JSON.parse(localStorage.getItem('products') ?? '{}')[id] as ProductProps;
+
+    const runtimeInfo = calculateRuntimeInfo(product);
+
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
@@ -14,28 +78,40 @@ const ProductPage: React.FC = () => {
                             <div className="row bg-light p-3">
                                 <div className="card col-6 text-center mx-auto py-3">
                                     <div className="card col-12">
-                                        <img src="../img/a.jpeg" className="card-img-top" alt="..." />
+                                        <h4 className="mt-3">{product.title}</h4>
+                                        <div className="p-5">
+                                            <img src={product.imageURL} className="card-img-top" alt="..." />
+                                        </div>
                                         <div className="card-body">
-                                            <p className="card-text">
-                                                Patos fresquinhos Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, magni. Eu gosto de patos
+                                            <p className="card-text p-5">
+                                                {product.description ?? "Produto sem descrição..."}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div id="milestone-list" className="col-6 d-flex align-items-end flex-column">
+
+                                    {
+                                        product.milestones.map((milestone, idx) => <MilestoneItem milestone={milestone} product={product} key={`milestone-${idx}`}/>)
+                                    }
+
+
+
                                     <div className="milestone-item row card mt-auto mx-auto m-2 p-3 w-100" data-milestone="buy"
                                         style={{ order: 99 }}>
                                         <div className="card-header">
                                             Comprar
-                        </div>
-                                        <div className="card-body d-none d-flex flex-column">
+                                        </div>
+                                        <div className="card-body  d-flex flex-column">
                                             <h5 className="card-title">Como Comprar</h5>
                                             <p className="card-text">Texto de como comprar.</p>
 
                                             <div className="d-flex h-100 flex-row">
                                                 <div className="align-self-end text-end w-100">
-                                                    <a className="justify-self-end" href="../pages/cart.html">
-                                                        <button className="btn btn-dark add-to-the-cart">
+                                                    <a className="justify-self-end" href="#0">
+                                                        <button className="btn btn-dark add-to-the-cart" onClick={()=>addToCart(product)}>
                                                             <span>Adicionar ao carrinho</span>
                                                             <i className="fa fa-shopping-cart"></i>
                                                         </button>
@@ -45,26 +121,13 @@ const ProductPage: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row g-0 mt-3">
-                        <div className="col-12">
-                            <div className="col-8 mx-auto">
-                                <div className="row progress position-relative">
-                                    <div className="progress-bar  text-center bg-warning" role="progressbar" style={{width:0}}
-                                        aria-valuenow={10} aria-valuemin={0} aria-valuemax={100}>
-                                        <small className="justify-content-center d-flex position-absolute w-100 text-dark fw-bold">0/0</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <nav id="progress-spots" className="mx-auto p-0 align-self-center d-flex flex-row position-relative">
 
-                                </nav>
+
                             </div>
                         </div>
                     </div>
+
+                    <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo}/>
 
                     <div className="row g-0 mt-5" id="comments">
                         <div className="col-11 col-md-8 mx-auto">
@@ -76,52 +139,12 @@ const ProductPage: React.FC = () => {
                                 </div>
                                 <div className="row mt-1">
                                     <div className="col-12 mx-auto" id="comment-list">
-
-
-                                        <div className="row g-0 mt-1 ">
-                                            <div className="col card mx-auto">
-                                                <div className="row g-2 g-md-0">
-                                                    <div className="col-12 col-md-2 border mx-auto bg-light">
-                                                        <div className="row g-0">
-                                                            <div className="col-2 col-md-12 text-center">
-                                                                <img className="img-fluid"
-                                                                    src="https://tiao-a.magazineluiza.com.br/img/lu-header.png" alt="" />
-                                                            </div>
-                                                            <div className="col col-md-12 d-flex">
-                                                                <span className="align-self-end text-center">Fulana da Silva Tavares</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col p-3">
-                                                        <div className="d-flex">
-                                                            <div className="flex-shrink-1 fluid comment-rating">
-                                                                <span className="fa fa-star"></span>
-                                                                <span className="fa fa-star"></span>
-                                                                <span className="fa fa-star"></span>
-                                                                <span className="fa fa-star"></span>
-                                                                <span className="fa fa-star"></span>
-                                                            </div>
-                                                            <div className="px-2">
-                                                                <h5>Odiei</h5>
-                                                            </div>
-                                                        </div>
-                                                        <p>
-                                                            Que site horrível, odeio todo mundo que usa, usou ou vai usar esse site, inclusive eu mesmo. <br /> Vai todo mundo pra um lugar bem longe, seus miseráveis!!
-                                                        </p>
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <span className="fa fa-thumbs-o-up"></span>
-                                                                <span className="fa fa-thumbs-o-down"></span>
-                                                            </div>
-                                                            <div className="col">
-                                                                <span className="fa fa-share-alt"></span>
-                                                                <span className="fa fa-reply"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {
+                                            product.comments?.map(
+                                                (comment, idx) => 
+                                                    <ProductComment info={comment} key={`comment-${idx}`} />
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
