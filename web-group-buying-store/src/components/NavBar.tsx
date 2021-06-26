@@ -22,10 +22,10 @@ const NavBar: React.FC = () => {
                         <div className="col-12 col-md-3">
                             <div className="row h-100 w-100 d-flex align-items-center ">
                                 <div className="col heading-icon">
-                                    <a href="./pages/cart.html"><i className="fa fa-shopping-cart" id="cart-icon"></i></a>
+                                    <Link to="/cart"><i className="fa fa-shopping-cart" id="cart-icon"></i></Link>
                                 </div>
                                 <div className="col heading-icon">
-                                    <a href="./pages/login.html"><i className="fa fa-user" id="cart-icon"></i></a>
+                                    <Link to="/login"><i className="fa fa-user" id="cart-icon"></i></Link>
                                 </div>
                             </div>
                         </div>

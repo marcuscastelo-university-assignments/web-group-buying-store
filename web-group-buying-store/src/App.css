@@ -62,29 +62,7 @@ a.anodec {
 }
 
 
-/* FOOTER */
 
-footer {
-  padding: 1rem;
-  background-color: #221E22;
-  color: white;
-  font-size: 0.7em;
-  position: static;
-}
-
-footer ul {
-  list-style: none;
-  margin: 0;
-  padding: 0
-}
-
-#footersimples
-{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
 
 .payment-method {
   text-align: center;

@@ -10,15 +10,18 @@
 }
 
 .category { 
-    height: 25px;
-    width: 25px;
-    background-color: green;
-    border-radius: 50%;
-    text-align: end;
-    font-size: 0;
-    padding: 4rem;
-    background-position: center !important;
-    background-size: contain !important;
+    padding-top: 10px;
+    height: 84px;
+    width: 84px;
+    box-shadow: 0px 0px 5px -2px black;
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 200px;
+    text-align: center;
+    /* text-align: end; */
+    /* font-size: 0; */
+    /* padding: 4rem; */
+    /* background-position: center !important; */
+    /* background-size: contain !important; */
 }
 
 button.carousel-control-prev, button.carousel-control-next {
