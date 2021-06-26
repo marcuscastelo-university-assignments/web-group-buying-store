@@ -10,6 +10,7 @@ import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import { CartProductProps } from '../pages/Cart'
 
 import './Product.css'
+import { getCartItem, updateCartItem } from '../util/local-storage';
 
 export type ProductCalculatedRuntimeInfo = {
     curQtty: number;
@@ -51,22 +52,15 @@ const ProductPage: React.FC = () => {
     let [selectedMilestone, selectMilestone] = _milesetoneState;
 
     let history = useHistory();
-    function addToCart(product: ProductProps) {
-        let cartProducts = JSON.parse(localStorage.getItem('cart-items') ?? '[]') as CartProductProps[];
-        let ind = cartProducts.findIndex(p => p.productID === product.productID)
-        if (ind !== -1)
-            cartProducts[ind].quantity++;
-        else
-            cartProducts.push({
-                productID: product.productID,
-                quantity: 1,
-            });
-        localStorage.setItem('cart-items', JSON.stringify(cartProducts));
+    function addToCart({productID}: ProductProps) {
+        const item = getCartItem(product.productID) ?? {productID, quantity: 0};
+        item.quantity++;
+        updateCartItem(item);
         history.push('/cart')
     }
 
-    const { id } = useParams<{ id: string }>();
-    const product = JSON.parse(localStorage.getItem('products') ?? '{}')[id] as ProductProps;
+    const { id: productID } = useParams<{ id: string }>();
+    const product = JSON.parse(localStorage.getItem('products') ?? '{}')[productID] as ProductProps;
 
     const runtimeInfo = calculateRuntimeInfo(product);
 

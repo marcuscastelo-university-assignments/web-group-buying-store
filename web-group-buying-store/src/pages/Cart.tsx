@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 import { MilestoneProps, ProductProps } from '../components/ProductCard';
+import { getCartItem, getCartItems } from '../util/local-storage';
 
 import './Cart.css'
 
@@ -42,9 +43,18 @@ function getProductData(product: ProductProps, qttyInCartItem: number) {
     };
 }
 
+function calcTotal() {
+    //TODO: price
+    const price = 1;
+    return getCartItems().reduce((total, item) => total + item.quantity * price, 0);
+}
 
 const CartPage: React.FC = _ => {
-    let cartProducts: CartProductProps[] = JSON.parse(localStorage.getItem('cart-items')??'[]');
+    let cartProducts = getCartItems()
+
+    let [ total, setTotal ] = useState(calcTotal());
+    const onItemChanged = () => setTotal(calcTotal());
+
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
@@ -54,7 +64,7 @@ const CartPage: React.FC = _ => {
                     <div className="col-10 col-sm-9 col-md-8 mx-auto pt-3">
                         {
                             (cartProducts?.length > 0)
-                                ? cartProducts.map((product, index) => <CartItem itemInfo={product} key={`cart-item-${index}`}/>)
+                                ? cartProducts.map((product, index) => <CartItem itemInfo={product} key={`cart-item-${index}`} onChanged={onItemChanged}/>)
                                 : <h3 className="cart__empty my-5">O seu carrinho está vazio.</h3>
                         }
 
@@ -135,7 +145,7 @@ const CartPage: React.FC = _ => {
                                                     <div className="row g-0 mt-3">
                                                         <div className="col p-2">
                                                             <span className="cart-total" style={{ fontSize: 'large' }}>
-                                                                Total: R$<span className="value"></span>
+                                                                Total: R${total}
                                                             </span>
                                                         </div>
                                                         <div className="col text-end">
