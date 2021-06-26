@@ -13,6 +13,7 @@ export type ProductProps = {
     productID: string,
     imageURL: string,
     title: string,
+    category: string,
     milestones: Milestone[];
     currentQuantity: number,
 };
