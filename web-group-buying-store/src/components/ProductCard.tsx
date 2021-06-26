@@ -9,13 +9,31 @@ type Milestone = {
     price: number,
 };
 
+type UserProps = {
+    name: string,
+    nick: string,
+    email: string,
+    profileImage: string,
+}
+
+export type ProductCommentProps = {
+    author: UserProps,
+    title: string,
+    content: string,
+    rating: number,
+    likes: number,
+    dislikes: number
+}
+
 export type ProductProps = {
     productID: string,
-    imageURL: string,
     title: string,
+    description?: string,
+    imageURL: string,
     category: string,
     milestones: Milestone[];
     currentQuantity: number,
+    comments?: ProductCommentProps[],
 };
 
 const ProductCard: React.FC<ProductProps> = (props: ProductProps) => {
