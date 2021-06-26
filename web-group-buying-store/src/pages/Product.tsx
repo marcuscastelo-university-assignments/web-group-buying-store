@@ -5,10 +5,11 @@ import { useHistory, useParams } from 'react-router';
 import { ProductCommentProps, ProductProps, MilestoneProps } from '../components/ProductCard';
 import ProductComment from '../components/ProductComment';
 
-import $ from 'jquery'
 import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
-import {CartProductProps} from '../pages/Cart'
+import { CartProductProps } from '../pages/Cart'
+
+import './Product.css'
 
 export type ProductCalculatedRuntimeInfo = {
     curQtty: number;
@@ -17,7 +18,7 @@ export type ProductCalculatedRuntimeInfo = {
     minPrice: number;
 }
 
-function calculateRuntimeInfo(item: ProductProps) : ProductCalculatedRuntimeInfo {
+function calculateRuntimeInfo(item: ProductProps): ProductCalculatedRuntimeInfo {
     let minPriceMile = { price: item.milestones[0].price + 1 };
     let curPrice;
     let curQtty = item.currentQuantity;
@@ -25,21 +26,21 @@ function calculateRuntimeInfo(item: ProductProps) : ProductCalculatedRuntimeInfo
     let biggestMile = { quantity: -1 } as MilestoneProps;
     for (let milestone of item.milestones) {
         if (milestone.quantity > biggestMile.quantity)
-        biggestMile.quantity = milestone.quantity;
+            biggestMile.quantity = milestone.quantity;
 
         if (curQtty > milestone.quantity && milestone.quantity > nearestMile.quantity)
             nearestMile = milestone;
-            
+
         if (milestone.price < minPriceMile.price) minPriceMile = milestone;
     }
-    
+
     if (biggestMile.quantity === -1) {
         console.error('Invalid product: no valid milestones. ID = ', item.productID);
     }
 
     if (nearestMile.quantity === -1) curPrice = -1;
     else curPrice = nearestMile.price;
-    
+
     return { curQtty, maxQuantity: biggestMile.quantity, curPrice, minPrice: minPriceMile.price };
 }
 
@@ -49,21 +50,28 @@ const ProductPage: React.FC = () => {
     let history = useHistory();
     function addToCart(product: ProductProps) {
         let cartProducts = JSON.parse(localStorage.getItem('cart-items') ?? '[]') as CartProductProps[];
-        let ind = cartProducts.findIndex(p=>p.productID === product.productID)
-        if (ind !== -1) 
+        let ind = cartProducts.findIndex(p => p.productID === product.productID)
+        if (ind !== -1)
             cartProducts[ind].quantity++;
         else
             cartProducts.push({
                 productID: product.productID,
                 quantity: 1,
             });
-    
         localStorage.setItem('cart-items', JSON.stringify(cartProducts));
         history.push('/cart')
     }
 
     const { id } = useParams<{ id: string }>();
     const product = JSON.parse(localStorage.getItem('products') ?? '{}')[id] as ProductProps;
+
+    let aa = 10;
+    while (aa-- > 0) {
+        product?.milestones.push({
+            price: 0,
+            quantity: 100
+        });
+    }
 
     const runtimeInfo = calculateRuntimeInfo(product);
 
@@ -74,7 +82,7 @@ const ProductPage: React.FC = () => {
 
                 <div className="row flex-grow-1 my-4">
                     <div className="row g-0 mt-5">
-                        <div className=" col-10 col-md-8  mx-auto">
+                        <div className=" col-10 col-lg-8 mx-auto">
                             <div className="row bg-light p-3">
                                 <div className="card col-6 text-center mx-auto py-3">
                                     <div className="card col-12">
@@ -94,31 +102,26 @@ const ProductPage: React.FC = () => {
                                 <div id="milestone-list" className="col-6 d-flex align-items-end flex-column">
 
                                     {
-                                        product.milestones.map((milestone, idx) => <MilestoneItem milestone={milestone} product={product} key={`milestone-${idx}`}/>)
+                                        product.milestones.map((milestone, idx) => <MilestoneItem milestone={milestone} product={product} key={`milestone-${idx}`} />)
                                     }
 
 
 
-                                    <div className="milestone-item row card mt-auto mx-auto m-2 p-3 w-100" data-milestone="buy"
+                                    <div className="milestone-item row mt-auto mx-auto m-2 w-100" data-milestone="buy"
                                         style={{ order: 99 }}>
-                                        <div className="card-header">
-                                            Comprar
-                                        </div>
-                                        <div className="card-body  d-flex flex-column">
-                                            <h5 className="card-title">Como Comprar</h5>
-                                            <p className="card-text">Texto de como comprar.</p>
 
-                                            <div className="d-flex h-100 flex-row">
-                                                <div className="align-self-end text-end w-100">
-                                                    <a className="justify-self-end" href="#0">
-                                                        <button className="btn btn-dark add-to-the-cart" onClick={()=>addToCart(product)}>
-                                                            <span>Adicionar ao carrinho</span>
-                                                            <i className="fa fa-shopping-cart"></i>
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                        <div className="align-self-end text-end w-100">
+                                            <a className="justify-self-end" href="#0">
+                                                <button className="btn btn-dark add-to-the-cart" onClick={() => addToCart(product)}>
+                                                    <span>Adicionar ao carrinho</span>
+                                                    <i className="fa fa-shopping-cart"></i>
+                                                </button>
+                                            </a>
                                         </div>
+                                        {/* <div className="card-body d-flex flex-column">
+                                            <div className="d-flex h-100 flex-row">
+                                            </div>
+                                        </div> */}
                                     </div>
                                 </div>
 
@@ -127,7 +130,7 @@ const ProductPage: React.FC = () => {
                         </div>
                     </div>
 
-                    <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo}/>
+                    <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo} />
 
                     <div className="row g-0 mt-5" id="comments">
                         <div className="col-11 col-md-8 mx-auto">
@@ -141,7 +144,7 @@ const ProductPage: React.FC = () => {
                                     <div className="col-12 mx-auto" id="comment-list">
                                         {
                                             product.comments?.map(
-                                                (comment, idx) => 
+                                                (comment, idx) =>
                                                     <ProductComment info={comment} key={`comment-${idx}`} />
                                             )
                                         }

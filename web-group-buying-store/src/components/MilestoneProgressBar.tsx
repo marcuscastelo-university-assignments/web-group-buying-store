@@ -2,6 +2,8 @@ import React from 'react';
 import { ProductCalculatedRuntimeInfo } from '../pages/Product';
 import { MilestoneProps, ProductProps } from './ProductCard';
 
+import './styles/MilestoneProgressBar.css'
+
 function workOnMilestones(milestoneCur: JQuery) {
     let milestoneIsActive = milestoneCur.hasClass('active');
 
