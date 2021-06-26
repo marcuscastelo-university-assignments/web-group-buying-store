@@ -4,7 +4,12 @@ import { getProduct, updateCartItem, updateCartItems } from '../util/local-stora
 
 import { ProductProps } from './ProductCard';
 
-const CartItem: React.FC<{ itemInfo: CartProductProps }> = ({ itemInfo }) => {
+type CartItemProps = {
+    itemInfo: CartProductProps,
+    onChanged: ()=>void
+}
+
+const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
 
     const product = getProduct(itemInfo.productID);
     const [ count, setCount ] = useState<number>(itemInfo.quantity);
@@ -14,7 +19,8 @@ const CartItem: React.FC<{ itemInfo: CartProductProps }> = ({ itemInfo }) => {
         
         itemInfo.quantity = count;
         updateCartItem(itemInfo);
-    }, [count, itemInfo]);
+        onChanged();
+    }, [count, itemInfo, onChanged]);
 
 
     return (
