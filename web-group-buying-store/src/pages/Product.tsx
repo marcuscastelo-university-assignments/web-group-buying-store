@@ -1,13 +1,14 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { ProductCommentProps, ProductProps, MilestoneProps } from '../components/ProductCard';
 import ProductComment from '../components/ProductComment';
 
 import $ from 'jquery'
 import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
+import {CartProductProps} from '../pages/Cart'
 
 export type ProductCalculatedRuntimeInfo = {
     curQtty: number;
@@ -42,7 +43,25 @@ function calculateRuntimeInfo(item: ProductProps) : ProductCalculatedRuntimeInfo
     return { curQtty, maxQuantity: biggestMile.quantity, curPrice, minPrice: minPriceMile.price };
 }
 
+
+
 const ProductPage: React.FC = () => {
+    let history = useHistory();
+    function addToCart(product: ProductProps) {
+        let cartProducts = JSON.parse(localStorage.getItem('cart-items') ?? '[]') as CartProductProps[];
+        let ind = cartProducts.findIndex(p=>p.productID === product.productID)
+        if (ind !== -1) 
+            cartProducts[ind].quantity++;
+        else
+            cartProducts.push({
+                productID: product.productID,
+                quantity: 1,
+            });
+    
+        localStorage.setItem('cart-items', JSON.stringify(cartProducts));
+        history.push('/cart')
+    }
+
     const { id } = useParams<{ id: string }>();
     const product = JSON.parse(localStorage.getItem('products') ?? '{}')[id] as ProductProps;
 
@@ -85,14 +104,14 @@ const ProductPage: React.FC = () => {
                                         <div className="card-header">
                                             Comprar
                                         </div>
-                                        <div className="card-body d-none d-flex flex-column">
+                                        <div className="card-body  d-flex flex-column">
                                             <h5 className="card-title">Como Comprar</h5>
                                             <p className="card-text">Texto de como comprar.</p>
 
                                             <div className="d-flex h-100 flex-row">
                                                 <div className="align-self-end text-end w-100">
-                                                    <a className="justify-self-end" href="../pages/cart.html">
-                                                        <button className="btn btn-dark add-to-the-cart">
+                                                    <a className="justify-self-end" href="#0">
+                                                        <button className="btn btn-dark add-to-the-cart" onClick={()=>addToCart(product)}>
                                                             <span>Adicionar ao carrinho</span>
                                                             <i className="fa fa-shopping-cart"></i>
                                                         </button>
