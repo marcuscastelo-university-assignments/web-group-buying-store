@@ -30,7 +30,7 @@ export type ProductProps = {
     title: string,
     description?: string,
     imageURL: string,
-    category: string,
+    lastCategory: string,
     milestones: MilestoneProps[];
     currentQuantity: number,
     comments?: ProductCommentProps[],

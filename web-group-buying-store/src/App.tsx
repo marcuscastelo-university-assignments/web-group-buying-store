@@ -84,7 +84,7 @@ function injectProductsToLocalStorage() {
             productID: '41e5b333',
             currentQuantity: 14,
             imageURL: '/img/categories/bed.png',
-            category: 'PC',
+            lastCategory: 'PC',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
@@ -95,8 +95,8 @@ function injectProductsToLocalStorage() {
         "790dd7e3": 
         {
             productID: '790dd7e3',
-            currentQuantity: 10,
-            category: 'Cozinha',
+            currentQuantity: 7,
+            lastCategory: 'Cozinha',
             imageURL: '/img/categories/bed.png',
             milestones: [
                 {quantity: 3, price: 10},
@@ -110,7 +110,7 @@ function injectProductsToLocalStorage() {
         {
             productID: '28221d6d',
             currentQuantity: 10,
-            category: 'Cozinha',
+            lastCategory: 'Cozinha',
             imageURL: '/img/categories/bed.png',
             milestones: [
                 {quantity: 3, price: 10},

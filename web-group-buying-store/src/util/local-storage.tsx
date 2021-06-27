@@ -1,9 +1,11 @@
 import { ProductProps } from "../components/ProductCard";
 import { CartProductProps } from "../pages/Cart";
+import { LayerDescription } from "./mock-categories";
 
 const LS_KEYS = {
     CART_ITEMS: 'cart-items',
-    PRODUCTS: 'products'
+    PRODUCTS: 'products',
+    CATEGORIES: 'categories'
 };
 
 export function updateCartItem(cartItem: CartProductProps) {
@@ -37,4 +39,17 @@ export function getProduct(productID: string) {
 
 export function getProducts() {
     return JSON.parse(localStorage.getItem(LS_KEYS.PRODUCTS) ?? '{}') as { [productID: string]: (ProductProps | undefined) }
+}
+
+
+export function getCategories() {
+    return JSON.parse(localStorage.getItem(LS_KEYS.CATEGORIES) ?? '{}') as { [layer: string] : (LayerDescription | undefined) };
+}
+
+export function getCategoriesInLayer(layerID: string) {
+    return getCategories()[layerID];
+}
+
+export function getCategoryInLayer(layerID: string, categoryID: string) {
+    return getCategories()[layerID]?.find(c=> c.id === categoryID);
 }

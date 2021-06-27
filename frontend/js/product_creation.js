@@ -190,64 +190,6 @@ function fixProgressBar(product) {
     $('.progress-bar small').html(`${product.curQtty}/${milestoneAttrs.maxQuantity}`);
 }
 
-function populateMilestones(product) {
-    let newHtml = `
-        <div class="milestone-item row card mx-auto m-2 p-3 w-100" data-milestone="add" style="order: 0;">
-            <div class="card-header">
-                Adicionar
-            </div>
-            <div class="card-body d-none d-flex flex-column">
-                <form id="milestone-registration-form">
-                    <div class="row g-1 mt-3">
-                        <div class="col px-1">
-                            <input name="product-milestone-qtty" class="new-product-milestone-qtty form-control"
-                                type="number" placeholder="milestone quantity">
-                        </div>
-                        <div class="col px-1">
-                            <input name="product-milestone-price" class="new-product-milestone-price form-control"
-                                type="number" step="0.01" placeholder="milestone price">
-                        </div>
-                    </div>
-                    <div class="row g-0 mt-3">
-                        <input name="product-milestone-submit" class="new-product-milestone-submit form-control bg-dark text-white"
-                            type="submit" value="Inserir">
-                    </div>
-                </form>
-            </div>
-        </div>
-    `;
-
-    let milestoneInfo = product.milestones;
-
-    if (product.milestones.length > 0) {
-
-        let i = 1
-
-        fixProgressBar(product);
-        for (let milestone of milestoneInfo) {
-            newHtml += `
-        <div class="milestone-item row card mx-auto m-2 p-1 w-100" style="order:${1 + milestone.quantity};" data-milestone="${product.alt}-${milestone.quantity}" data-milestone-quantity="${milestone.quantity}">
-            <div class="card-header bg-transparent">
-                Meta: ${product.curQtty}/${milestone.quantity} 
-            </div>
-            <div class="card-body d-none">
-                <h5 class="card-title">R$${milestone.price}</h5>
-                <p class="card-text d-
-                none">With supporting text below as a natural lead-in to additional content.</p>
-                <div class="remove-milestone-btn row btn bg-danger border">Remover</div>
-            </div>
-        </div>
-        `
-        }
-    }
-
-
-    $('#milestone-list').html(newHtml);
-
-    setEventListeners();
-}
-let __counter = 0
-
 function populateMilestoneSpots(product) {
     newHtml = '';
     let mileSpotsAttrs;

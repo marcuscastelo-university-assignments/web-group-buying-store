@@ -14,7 +14,7 @@ export default function ProductComment({ info }: { info: ProductCommentProps }) 
                         <div className="row g-0">
                             <div className="col-2 col-md-12 text-center">
                                 <img className="img-fluid"
-                                    src={info.author.profileImage} alt="profile" />
+                                    src={info.author.profileImage} alt="profile" />                                    
                             </div>
                             <div className="col col-md-12 text-center">
                                 <span>{info.author.name}</span>
