@@ -7,6 +7,12 @@ export type CategoryDescription = {
     final?: boolean
 }
 
+export const DEFAULTS = {
+    IMG_DEFAULT: '/img/no-preview.jpeg',
+}
+
+
+
 export type LayerDescription = CategoryDescription[];
 
 export type CategoryLayersDescription =  { [layer: string]: LayerDescription };

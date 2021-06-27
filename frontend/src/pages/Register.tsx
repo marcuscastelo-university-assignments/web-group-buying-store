@@ -1,9 +1,52 @@
-import React from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import { UserProps } from '../components/ProductCard';
+import { registerUser } from '../util/local-storage';
+import { DEFAULTS } from '../util/mock-categories';
+
 
 const RegisterPage: React.FC = () => {
+    let [name, setName] = useState<string>('');
+    let [nick, setNick] = useState<string>('');
+    let [email, setEmail] = useState<string>('');
+    let [password, setPassword] = useState<string>('');
+    let [passwordConfirm, setPasswordConfirm] = useState<string>('');
+    let [birthday, setBirthday] = useState<string>('');
+    let [profileImage, setProfileImage ] = useState<string>(DEFAULTS.IMG_DEFAULT);
+
+    const registerCurrentUser: FormEventHandler = (e) => {
+        e.preventDefault();
+
+        console.log('bom dia')
+
+        if (
+            !/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
+            !(password.length >= 8 && password.match(/[A-Z]/) && password.match(/[a-z]/) && password.match(/[0-9]/))
+        ) {
+            //Avoids form redirection if failed
+            //TODO: notify user
+            console.error('e-mail ou senha inválido')
+            return false;
+        }
+
+        const user: UserProps = {
+            name,
+            email,
+            nick,
+            profileImage,
+            password,
+            birthday
+        }
+
+        if (!registerUser(user)) {
+            alert("Usuário ja existe");
+            return false;
+        }
+    }
+
+
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
@@ -16,36 +59,36 @@ const RegisterPage: React.FC = () => {
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-12 col-md">
-                                        <form id="login-registration-form" action="../pages/product_creation.html">
+                                        <form id="login-registration-form" action="../pages/product_creation.html" onSubmit={registerCurrentUser}>
                                             <div className="top-login input-group bg-light border p-3 registration">
                                                 <div className="row g-0 w-100">
                                                     <label className="form-label" htmlFor="nome-completo">Nome completo</label>
                                                     <input required name="nome-completo" className="form-control" type="text"
-                                                        placeholder="Fulano da silva" />
+                                                        placeholder="Fulano da silva" value={name} onChange={(e) => setName(e.target.value)} />
                                                 </div>
                                                 <div className="row g-0 mt-3 w-100">
                                                     <label className="form-label" htmlFor="email">Email</label>
                                                     <input required name="email" className="form-control" type="email"
-                                                        placeholder="fulano@gmail.com" />
+                                                        placeholder="fulano@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} />
                                                 </div>
                                                 <div className="row g-0 mt-3 w-100">
                                                     <label className="form-label" htmlFor="birthday">Data de nascimento</label>
-                                                    <input required name="birthday" className="form-control text-muted" type="date" />
+                                                    <input required name="birthday" className="form-control text-muted" type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
                                                 </div>
                                             </div>
 
                                             <div className="input-group bg-light border p-3 mt-3">
                                                 <div className="row g-0 w-100">
                                                     <input name="person-name" required className="form-control" type="text"
-                                                        placeholder="Login" id="login" />
+                                                        placeholder="Login" id="login" value={nick} onChange={(e) => setNick(e.target.value)} />
                                                 </div>
                                                 <div className="row g-0 mt-3 w-100">
                                                     <input id="password" name="password" required className="form-control" type="password"
-                                                        placeholder="Senha" aria-describedby="validationServerUsernameFeedback" />
+                                                        placeholder="Senha" aria-describedby="validationServerUsernameFeedback" value={password} onChange={(e) => setPassword(e.target.value)} />
                                                 </div>
                                                 <div className=" row g-0 mt-3 w-100 registration">
                                                     <input id="password-confirmation" required name="password-confirmation" className="form-control"
-                                                        type="password" placeholder="Confirmação de senha" aria-describedby="validationServerUsernameFeedback" />
+                                                        type="password" placeholder="Confirmação de senha" aria-describedby="validationServerUsernameFeedback" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} />
 
                                                     <div id="validationServerUsernameFeedback" className="invalid-feedback ">Senhas não coincidem.</div>
                                                 </div>
@@ -56,7 +99,7 @@ const RegisterPage: React.FC = () => {
                                                     <Link to="/login" id="btn-to-login" className="form-control btn"> Já possuo conta </Link>
                                                 </div>
                                                 <div className="col">
-                                                    <input className="form-control btn btn-dark" type="submit" value="Cadastrar" />
+                                                    <input className="form-control btn btn-dark" type="submit" value="Cadastrar"/>
                                                 </div>
                                             </div>
                                         </form>

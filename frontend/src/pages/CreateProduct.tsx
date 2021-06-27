@@ -5,12 +5,11 @@ import { ProductProps } from '../components/ProductCard';
 import MilestoneItem from '../components/MilestoneItem';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
-import { LayerDescription } from '../util/mock-categories';
+import { DEFAULTS, LayerDescription } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
 import { getCategories, getCategoryInLayer, getProducts, updateProduct, updateProducts } from '../util/local-storage';
 
 
-const PREVIEW_DEFAULT = 'https://www.penworthy.com/Image/Getimage?id=C:\\Repositories\\Common\\About%20Us\\Slide1.jpg';
 
 const CreateProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
@@ -51,7 +50,7 @@ const CreateProductPage: React.FC = () => {
         e.preventDefault();
         if (
             titleName === "" ||
-            productImage === PREVIEW_DEFAULT ||
+            productImage === DEFAULTS.IMG_DEFAULT ||
             descriptionText === "" ||
             product.milestones.length === 0 ||
             categoriesParents[1] === undefined
@@ -85,8 +84,7 @@ const CreateProductPage: React.FC = () => {
         setCategoriesParents(categoriesParentsCopy);
     }
 
-    let [productImage, setProductImage] = useState('https://www.penworthy.com/Image/Getimage?id=C:\Repositories\Common\About%20Us\Slide1.jpg');
-    const inputRef = useRef<any>()
+    let [productImage, setProductImage] = useState(DEFAULTS.IMG_DEFAULT);
     let [titleName, setTitleName] = useState('');
     let [descriptionText, setDescriptionText] = useState('')
     return (

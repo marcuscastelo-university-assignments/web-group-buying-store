@@ -14,6 +14,8 @@ export type UserProps = {
     nick: string,
     email: string,
     profileImage: string,
+    password: string,
+    birthday: string,
 }
 
 export type ProductCommentProps = {
@@ -39,7 +41,7 @@ export type ProductProps = {
 const ProductCard: React.FC<ProductProps> = (props: ProductProps) => {
     return (
         <React.Fragment>
-            <div className="card" style={{maxWidth:200}}>
+            <div className="card" style={{ maxWidth: 200 }}>
                 <Link to={`/product/${props.productID}`}>
                     <img src={props.imageURL} className="d-block img-thumbnail mx-auto" alt={props.title} />
                 </Link>

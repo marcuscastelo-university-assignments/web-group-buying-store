@@ -1,4 +1,5 @@
-import { ProductProps } from "../components/ProductCard";
+
+import { ProductProps, UserProps } from "../components/ProductCard";
 import { CartProductProps } from "../pages/Cart";
 import { LayerDescription } from "./mock-categories";
 
@@ -58,4 +59,30 @@ export function getCategoriesInLayer(layerID: string) {
 
 export function getCategoryInLayer(layerID: string, categoryID: string) {
     return getCategories()[layerID]?.find(c=> c.id === categoryID);
+}
+
+export function getUsers() {
+    return JSON.parse(localStorage.getItem('users') ?? '{}') as {[nick: string] : UserProps};
+}
+
+export function getUser(nick: string) {
+    return getUsers()[nick];
+}
+
+export function updateUsers(users: {[nick: string] : UserProps}) {
+    localStorage.setItem('users', JSON.stringify(users));
+} 
+
+export function registerUser(newUser: UserProps) {
+    if (getUser(newUser.nick)) {
+        //TODO: try catch?
+        console.error('User already exists');
+        return false;
+    }
+
+    const users = getUsers();
+    users[newUser.nick] = newUser;
+    updateUsers(users);
+
+    return true;
 }
