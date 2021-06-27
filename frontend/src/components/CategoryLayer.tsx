@@ -14,9 +14,9 @@ const CategoryLayer = (props: CategoryLayerProps) => {
     return (
         <React.Fragment>
             <div
-                className={`row layer ${props.layer !== '1' ? 'd-none' : ''} ${props.className ?? ''} `}
+                className={`row layer ${props.className ?? ''} `}
                 data-layer={`${props.layer}`}
-                
+                onMouseLeave={props.onMouseLeave}
             >
                 <div className={`mx-auto align-self-center d-flex flex-row `}>
                     {props.children}

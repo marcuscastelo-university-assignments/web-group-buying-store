@@ -18,7 +18,7 @@ const Category = (props: CategoryProps) => {
                     {/* FOR */}
 
                     <div 
-                        className={`category mx-auto ${props.subcategory? 'parent': ''} ${props.layer !== '1' ? 'd-none' : ''}`} 
+                        className={`category mx-auto ${props.subcategory? 'parent': ''}`} 
                         id={`${props.id}`} 
                         data-parent={`${props.parent}`} 
                         onMouseOver={props.onMouseOver}
