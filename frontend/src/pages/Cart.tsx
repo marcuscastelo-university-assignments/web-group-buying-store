@@ -74,16 +74,6 @@ const CartPage: React.FC = _ => {
                 {
                     (cartProducts?.length > 0) ?
                         <React.Fragment>
-                            <div className="row g-0">
-                                <nav className="d-flex" aria-label="Page navigation">
-                                    <ul className="pagination pagination mx-auto">
-                                        <li className="page-item"><Link className="page-link" to="">1</Link></li>
-                                        <li className="page-item"><Link className="page-link" to="">2</Link></li>
-                                        <li className="page-item"><Link className="page-link" to="">3</Link></li>
-                                    </ul>
-                                </nav>
-                            </div>
-
                             <div className="row m-4">
                                 <div className="card col-11 col-md-9 mx-auto">
                                     <div className="card-header bg-transparent fw-bold text-large">Pagamento</div>

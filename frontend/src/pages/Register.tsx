@@ -1,7 +1,7 @@
 import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { UserProps } from '../components/ProductCard';
 import { registerUser } from '../util/local-storage';
 import { DEFAULTS } from '../util/mock-categories';
@@ -15,6 +15,8 @@ const RegisterPage: React.FC = () => {
     let [passwordConfirm, setPasswordConfirm] = useState<string>('');
     let [birthday, setBirthday] = useState<string>('');
     let [profileImage, setProfileImage ] = useState<string>(DEFAULTS.IMG_DEFAULT);
+
+    let history = useHistory();
 
     const registerCurrentUser: FormEventHandler = (e) => {
         e.preventDefault();
@@ -42,6 +44,8 @@ const RegisterPage: React.FC = () => {
             alert("Usuário ja existe");
             return false;
         }
+
+        history.push('/');
     }
 
 

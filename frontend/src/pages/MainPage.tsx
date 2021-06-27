@@ -16,7 +16,7 @@ import { getProducts } from '../util/local-storage';
 
 const MainPage: React.FC = () => {
 
-    let [categoryHistory, categoryHistoryFunc] = useState<{ [layer: string]: string }>({})
+    let [ categoryHistory, categoryHistoryFunc ] = useState<{ [layer: string]: string }>({})
     const [selectedCategory, setSelectedCategory] = useState<CategoryDescription | undefined>(undefined);
     const productList = Object.values(getProducts()) as ProductProps[];
 
