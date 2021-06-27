@@ -13,7 +13,7 @@ import RegisterPage from './pages/Register';
 import ProductPage from './pages/Product';
 import CreateProductPage from './pages/CreateProduct';
 import { generateMockCategories } from './util/mock-categories';
-import { updateProducts } from './util/local-storage';
+import { getProducts, updateProducts } from './util/local-storage';
 
 //This is a temporary function used to simulate server-side interacion.
 //TODO: remove on last assignment
@@ -95,7 +95,7 @@ function injectProductsToLocalStorage() {
         "790dd7e3": 
         {
             productID: '790dd7e3',
-            currentQuantity: 10,
+            currentQuantity: 7,
             category: 'Cozinha',
             imageURL: '/img/categories/bed.png',
             milestones: [
@@ -120,7 +120,7 @@ function injectProductsToLocalStorage() {
             title: "Asas de borboleta"
         },
     };
-    updateProducts(products);
+    updateProducts({...products, ...getProducts() as {[key: string]: ProductProps}});
 }
 
 function injectCategoriesToLocalStorage() {
