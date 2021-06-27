@@ -7,9 +7,10 @@ import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import { LayerDescription } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
-import { getCategories, getCategoryInLayer } from '../util/local-storage';
+import { getCategories, getCategoryInLayer, getProducts, updateProduct, updateProducts } from '../util/local-storage';
 
 
+const PREVIEW_DEFAULT = 'https://www.penworthy.com/Image/Getimage?id=C:\\Repositories\\Common\\About%20Us\\Slide1.jpg';
 
 const CreateProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
@@ -25,40 +26,52 @@ const CreateProductPage: React.FC = () => {
             { quantity: 8, price: 8 },
             { quantity: 15, price: 5 },
         ],
-        lastCategory: "",
+        category: "",
         imageURL: "",
-        currentQuantity: 1,
-        productID: '',
+        currentQuantity: 0,
+        productID: '-1',
         comments: [],
         description: ""
-
     });
-
-
 
     const runtimeInfo = calculateRuntimeInfo(product);
 
     const addNewMilestone: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
-        for (let milestone of product.milestones) {
-            if (milestone.quantity === newQuantity) return;
+        if (!product.milestones.find(m => m.quantity === newQuantity)) {
+            product.milestones.push({ quantity: newQuantity, price: newPrice })
+            setProduct(product);
         }
-
-        product.milestones.push({ quantity: newQuantity, price: newPrice })
-        setProduct(product);
         selectMilestone(-1);
         setNewPrice(0);
         setNewQuantity(0);
     };
 
-    const publishProduct = () => {
-        
+    const publishProduct : FormEventHandler = (e) => {
+        e.preventDefault();
+        if (
+            titleName === "" ||
+            productImage === PREVIEW_DEFAULT ||
+            descriptionText === "" ||
+            product.milestones.length === 0 ||
+            categoriesParents[1] === undefined
+        ) return console.error('Required values ' + JSON.stringify(product));
+        product.title = titleName;
+        product.productID = (parseInt(localStorage.getItem('last-id') ?? '0') + 1).toString();
+        localStorage.setItem('last-id', product.productID);
+        product.imageURL = productImage;
+        product.description = descriptionText;
+        for(let i=categoriesParents.length - 1;i>=0;i--){
+            if(categoriesParents[i] !== undefined) product.category = categoriesParents[i] ?? ""; 
+        }
+        setProduct(product);
+        updateProduct(product);
+        return product
     }
 
     let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(Object.keys(getCategories()).map(a => undefined));
 
     const updateSelectorsBelow = (index: number, chosenCategory: string) => {
-        console.log('to sendo chamcado ' + chosenCategory)
 
         let categoriesParentsCopy = [...categoriesParents];
 
@@ -72,10 +85,10 @@ const CreateProductPage: React.FC = () => {
         setCategoriesParents(categoriesParentsCopy);
     }
 
-    let [productImage, setProductImage] = useState('https://www.mepal.com/en/604/0/0/1/ffffff00/c7f95583/804ad0799752a78eb4aa8a7e32ab0714eb1020bd1940397a16d6903d353aca89/water-bottle-ellipse-500ml-white.jpg');
+    let [productImage, setProductImage] = useState('https://www.penworthy.com/Image/Getimage?id=C:\Repositories\Common\About%20Us\Slide1.jpg');
     const inputRef = useRef<any>()
     let [titleName, setTitleName] = useState('');
-
+    let [descriptionText, setDescriptionText] = useState('')
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
@@ -88,13 +101,13 @@ const CreateProductPage: React.FC = () => {
                                 <div className="row bg-light p-3">
                                     <div className="card col-6 text-center mx-auto py-3">
                                         <div className="card col-12 p-3">
-                                            <input value={titleName} onChange={(e)=>setTitleName(e.target.value)} className="form-control text-center" required style={{ fontSize: '2em' }} type="text" placeholder="Título do produto" />
+                                            <input value={titleName} onChange={(e) => setTitleName(e.target.value)} className="form-control text-center" required style={{ fontSize: '2em' }} type="text" placeholder="Título do produto" />
 
-                                            <input className="form-control mt-3" name="product-img-inp" id="product-img-inp" type="file" accept="image/*" onChange={(e)=>setProductImage(URL.createObjectURL(e.target.files ? e.target.files[0] : '/img/categories/bed'))}/>
+                                            <input className="form-control mt-3" name="product-img-inp" id="product-img-inp" type="file" accept="image/*" onChange={(e) => setProductImage(URL.createObjectURL(e.target.files ? e.target.files[0] : '/img/categories/bed'))} />
                                             <img id="product-img-preview" src={productImage} className="card-img-top" alt="..." />
-                                            <div className="card-body">
+                                            <form className="card-body" onSubmit={publishProduct}>
                                                 <p className="card-text p-0">
-                                                    <textarea className="form-control text-center" required style={{ fontSize: '1.2em' }} placeholder="Descrição do produto"></textarea>
+                                                    <textarea value={descriptionText} onChange={(e) => setDescriptionText(e.target.value)} className="form-control text-center" required style={{ fontSize: '1.2em' }} placeholder="Descrição do produto"></textarea>
                                                 </p>
 
                                                 {categoriesParents.map((parent, idx) => (
@@ -103,7 +116,7 @@ const CreateProductPage: React.FC = () => {
                                                 ))}
 
                                                 <input type="submit" className="form-control bg-dark text-white mt-5" value="Publicar" />
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                     <div id="milestone-list" className="col-6 d-flex flex-column">

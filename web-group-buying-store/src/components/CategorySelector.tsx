@@ -16,7 +16,7 @@ export default function CategorySelector(props: CategorySelectorProps) {
 
     return (
         <React.Fragment>
-            <select onChange={(e) =>props.onChange(e.target.value)} defaultValue="0" className="form-select mt-2eeee"> 
+            <select onChange={(e) =>props.onChange(e.target.value)} defaultValue="0" className="form-select mt-2"> 
                 <option disabled value="0"> 
                         { selfCategory ?  `Subcategoria de ${selfCategory.name}`  : 'Categoria principal' } 
                 </option>

@@ -86,7 +86,7 @@ const ProductPage: React.FC = () => {
 
                                         <div className="align-self-end text-end w-100 d-flex justify-content-between">
                                             <span className="text-start pt-2">
-                                                Preço: R${runtimeInfo.currentMilestone?.price ?? 'Indisponível'}
+                                                Preço: {runtimeInfo.currentMilestone?.price ? `R$${runtimeInfo.currentMilestone.price}` : 'Indisponível'}
                                             </span>
                                             <a className="justify-self-end" href="#0">
                                                 <button className="btn btn-dark add-to-the-cart" onClick={() => addToCart(product)}>

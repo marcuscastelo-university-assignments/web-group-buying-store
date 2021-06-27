@@ -13,7 +13,7 @@ import RegisterPage from './pages/Register';
 import ProductPage from './pages/Product';
 import CreateProductPage from './pages/CreateProduct';
 import { generateMockCategories } from './util/mock-categories';
-import { updateProducts } from './util/local-storage';
+import { getProducts, updateProducts } from './util/local-storage';
 
 //This is a temporary function used to simulate server-side interacion.
 //TODO: remove on last assignment
@@ -84,7 +84,7 @@ function injectProductsToLocalStorage() {
             productID: '41e5b333',
             currentQuantity: 14,
             imageURL: '/img/categories/bed.png',
-            lastCategory: 'PC',
+            category: 'PC',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
@@ -96,7 +96,7 @@ function injectProductsToLocalStorage() {
         {
             productID: '790dd7e3',
             currentQuantity: 7,
-            lastCategory: 'Cozinha',
+            category: 'Cozinha',
             imageURL: '/img/categories/bed.png',
             milestones: [
                 {quantity: 3, price: 10},
@@ -110,7 +110,7 @@ function injectProductsToLocalStorage() {
         {
             productID: '28221d6d',
             currentQuantity: 10,
-            lastCategory: 'Cozinha',
+            category: 'Cozinha',
             imageURL: '/img/categories/bed.png',
             milestones: [
                 {quantity: 3, price: 10},
@@ -120,7 +120,7 @@ function injectProductsToLocalStorage() {
             title: "Asas de borboleta"
         },
     };
-    updateProducts(products);
+    updateProducts({...products, ...getProducts() as {[key: string]: ProductProps}});
 }
 
 function injectCategoriesToLocalStorage() {
