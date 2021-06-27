@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useState } from 'react';
+import React, { FormEventHandler, useRef, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { ProductProps } from '../components/ProductCard';
@@ -52,10 +52,10 @@ const CreateProductPage: React.FC = () => {
     };
 
     const publishProduct = () => {
-
+        
     }
- 
-    let [ categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(Object.keys(getCategories()).map(a => undefined));
+
+    let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(Object.keys(getCategories()).map(a => undefined));
 
     const updateSelectorsBelow = (index: number, chosenCategory: string) => {
         console.log('to sendo chamcado ' + chosenCategory)
@@ -65,12 +65,16 @@ const CreateProductPage: React.FC = () => {
         for (let i = index + 2; i < categoriesParents.length; i++) {
             categoriesParentsCopy[i] = undefined;
         }
-        if (index+ 1 < categoriesParents.length){
+        if (index + 1 < categoriesParents.length) {
             categoriesParentsCopy[index + 1] = chosenCategory;
         }
 
         setCategoriesParents(categoriesParentsCopy);
     }
+
+    let [productImage, setProductImage] = useState('https://www.mepal.com/en/604/0/0/1/ffffff00/c7f95583/804ad0799752a78eb4aa8a7e32ab0714eb1020bd1940397a16d6903d353aca89/water-bottle-ellipse-500ml-white.jpg');
+    const inputRef = useRef<any>()
+    let [titleName, setTitleName] = useState('');
 
     return (
         <React.Fragment>
@@ -84,18 +88,18 @@ const CreateProductPage: React.FC = () => {
                                 <div className="row bg-light p-3">
                                     <div className="card col-6 text-center mx-auto py-3">
                                         <div className="card col-12 p-3">
-                                            <input className="form-control text-center" required style={{ fontSize: '2em' }} type="text" placeholder="Título do produto" />
+                                            <input value={titleName} onChange={(e)=>setTitleName(e.target.value)} className="form-control text-center" required style={{ fontSize: '2em' }} type="text" placeholder="Título do produto" />
 
-                                            <input className="form-control mt-3" name="product-img-inp" id="product-img-inp" type="file" accept="image/*" />
-                                            <img id="product-img-preview" src="https://www.mepal.com/en/604/0/0/1/ffffff00/c7f95583/804ad0799752a78eb4aa8a7e32ab0714eb1020bd1940397a16d6903d353aca89/water-bottle-ellipse-500ml-white.jpg" className="card-img-top" alt="..." />
+                                            <input className="form-control mt-3" name="product-img-inp" id="product-img-inp" type="file" accept="image/*" onChange={(e)=>setProductImage(URL.createObjectURL(e.target.files ? e.target.files[0] : '/img/categories/bed'))}/>
+                                            <img id="product-img-preview" src={productImage} className="card-img-top" alt="..." />
                                             <div className="card-body">
                                                 <p className="card-text p-0">
                                                     <textarea className="form-control text-center" required style={{ fontSize: '1.2em' }} placeholder="Descrição do produto"></textarea>
                                                 </p>
 
                                                 {categoriesParents.map((parent, idx) => (
-                                                    (parent || idx===0 ) ? <CategorySelector layer={'1'.repeat(idx)} categoryID={parent} onChange={(chosenCategory) => updateSelectorsBelow(idx, chosenCategory)} />
-                                                    : ''
+                                                    (parent || idx === 0) ? <CategorySelector layer={'1'.repeat(idx)} categoryID={parent} onChange={(chosenCategory) => updateSelectorsBelow(idx, chosenCategory)} />
+                                                        : ''
                                                 ))}
 
                                                 <input type="submit" className="form-control bg-dark text-white mt-5" value="Publicar" />
