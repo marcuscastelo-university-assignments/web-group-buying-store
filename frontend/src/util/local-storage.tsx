@@ -62,14 +62,14 @@ export function getCategoryInLayer(layerID: string, categoryID: string) {
 }
 
 export function getUsers() {
-    return JSON.parse(localStorage.getItem('users') ?? '{}') as {[nick: string] : UserProps};
+    return JSON.parse(localStorage.getItem('users') ?? '{}') as {[nick: string] : (UserProps | undefined)};
 }
 
 export function getUser(nick: string) {
     return getUsers()[nick];
 }
 
-export function updateUsers(users: {[nick: string] : UserProps}) {
+export function updateUsers(users: {[nick: string] : (UserProps|undefined)}) {
     localStorage.setItem('users', JSON.stringify(users));
 } 
 

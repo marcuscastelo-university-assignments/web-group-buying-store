@@ -19,15 +19,13 @@ const RegisterPage: React.FC = () => {
     const registerCurrentUser: FormEventHandler = (e) => {
         e.preventDefault();
 
-        console.log('bom dia')
-
         if (
             !/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
             !(password.length >= 8 && password.match(/[A-Z]/) && password.match(/[a-z]/) && password.match(/[0-9]/))
         ) {
             //Avoids form redirection if failed
             //TODO: notify user
-            console.error('e-mail ou senha inválido')
+            console.error('e-mail ou senha inválido.')
             return false;
         }
 
@@ -59,7 +57,7 @@ const RegisterPage: React.FC = () => {
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-12 col-md">
-                                        <form id="login-registration-form" action="../pages/product_creation.html" onSubmit={registerCurrentUser}>
+                                        <form id="login-registration-form" action="#0" onSubmit={registerCurrentUser}>
                                             <div className="top-login input-group bg-light border p-3 registration">
                                                 <div className="row g-0 w-100">
                                                     <label className="form-label" htmlFor="nome-completo">Nome completo</label>
