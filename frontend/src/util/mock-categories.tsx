@@ -61,6 +61,4 @@ export function generateMockCategories() {
     };
 
     return layers;
-
-
 }

@@ -18,7 +18,7 @@ export function genMockProducts() {
             productID: '41e5b333',
             currentQuantity: 14,
             imageURL: '/img/products/notebookacer.jpg',
-            categoryID: '11com',
+            categoryID: '111com',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
@@ -70,21 +70,6 @@ export function genMockProducts() {
                 {quantity: 15, price: 5},
             ],
             title: "Ar condicionado Free Home",
-            comments: {},
-            creator: 'magalu'
-        },
-        "28221d6d": 
-        {
-            productID: '28221d6d',
-            currentQuantity: 10,
-            categoryID: '11bath',
-            imageURL: '/img/products/asadeborboleta.jpg',
-            milestones: [
-                {quantity: 3, price: 10},
-                {quantity: 8, price: 8},
-                {quantity: 15, price: 5},
-            ],
-            title: "Asas de borboleta",
             comments: {},
             creator: 'magalu'
         },
@@ -452,7 +437,7 @@ export function genMockProducts() {
         {
             productID: '33004lkg',
             currentQuantity: 10,
-            categoryID: '11com',
+            categoryID: '111com',
             imageURL: '/img/products/computador2.jpg',
             milestones: [
                 {quantity: 3, price: 10},
