@@ -3,10 +3,15 @@ import { MilestoneProps, ProductProps } from "../types";
 export type RuntimeProductInfo = ProductProps & {
     currentMilestone: MilestoneProps | null,
     nextMilestone: MilestoneProps | null,
-    lastMilestone: MilestoneProps | null
+    firstMilestone: MilestoneProps | null,
+    lastMilestone: MilestoneProps | null,
 }
 
 export function calculateRuntimeInfo(product: ProductProps): RuntimeProductInfo {
+    if (product === undefined) {
+        console.error('this should not happen')
+        return {} as RuntimeProductInfo;
+    }
 
     product.milestones.sort((m1, m2) => m1.quantity - m2.quantity);
     const nextMilestoneIdx = product.milestones.findIndex(m => m.quantity > product.currentQuantity);
@@ -17,11 +22,13 @@ export function calculateRuntimeInfo(product: ProductProps): RuntimeProductInfo 
     const currentMilestone = currentMilestoneIdx < 0 ? null : product.milestones[currentMilestoneIdx] 
     const nextMilestone = nextMilestoneIdx < 0 ? null : product.milestones[nextMilestoneIdx] 
     const lastMilestone = product.milestones.length === 0 ? null : product.milestones[product.milestones.length-1]
+    const firstMilestone = product.milestones.length === 0 ? null : product.milestones[0]
 
     return {
         ...product,
         currentMilestone,
         nextMilestone,
+        firstMilestone,
         lastMilestone,
     }
 }

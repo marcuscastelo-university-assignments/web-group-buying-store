@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductCommentInfo, UserProps } from '../types';
+import { getUser } from '../util/local-storage';
 
 
 function clamp(min: number, max: number, val: number) {
@@ -10,7 +11,7 @@ function clamp(min: number, max: number, val: number) {
 }
 
 type ProductCommentEditorProps = {
-    info: Partial<ProductCommentInfo> & { author: UserProps, id: string },
+    info: Partial<ProductCommentInfo> & { author: string, id: string },
     onRemove: (commentID: string) => void,
     onSave: (comment: ProductCommentInfo) => void,
     onClose: (commentID: string) => void,
@@ -47,10 +48,10 @@ export default function ProductCommentEditor({ info, onRemove, onSave, onClose }
                         <div className="row g-0">
                             <div className="col-2 col-md-12 text-center">
                                 <img className="img-fluid"
-                                    src={comment.author.profileImage} alt="profile" />
+                                    src={getUser(comment.author)?.profileImage} alt="profile" />
                             </div>
                             <div className="col col-md-12 text-center">
-                                <span>{comment.author.name}</span>
+                                <span>{getUser(comment.author)?.name}</span>
                             </div>
                         </div>
                     </div>

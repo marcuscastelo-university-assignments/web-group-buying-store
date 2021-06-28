@@ -11,7 +11,7 @@ const NavBar: React.FC = () => {
                     <div className="row">
                         <div className="col-4 col-sm-2">
                             <Link to="/">
-                                <img className="img" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png" alt="Logo" />
+                                <img className="img" src="/img/logo.png" width={96} alt="Logo" />
                             </Link>
 
                             

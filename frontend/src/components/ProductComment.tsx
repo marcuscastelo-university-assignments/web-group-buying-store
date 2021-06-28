@@ -3,7 +3,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductCommentInfo } from '../types';
-import { getCurrentUser, isAuth, isAdmin } from '../util/auth-util';
+import { getCurrentUserNick, isAuth, isAdmin } from '../util/auth-util';
+import { getUser } from '../util/local-storage';
 
 type ProductCommentProps = {
     info: ProductCommentInfo,
@@ -12,6 +13,13 @@ type ProductCommentProps = {
 };
 
 export default function ProductComment({ info, onEdit, onRemove }: ProductCommentProps) {
+
+    const authorProps = getUser(info.author);
+    if (!authorProps) {
+        console.error("Weirs comment author: \n", JSON.stringify(authorProps));
+        return <></>;
+    } 
+
     return (
         <div className="row g-0 mt-1 ">
             <div className="col card mx-auto">
@@ -20,10 +28,10 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                         <div className="row g-0">
                             <div className="col-2 col-md-12 text-center">
                                 <img className="img-fluid"
-                                    src={info.author.profileImage} alt="profile" />
+                                    src={authorProps.profileImage} alt="profile" />
                             </div>
                             <div className="col col-md-12 text-center">
-                                <span>{info.author.name}</span>
+                                <span>{authorProps.name}</span>
                             </div>
                         </div>
                     </div>
@@ -43,7 +51,7 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                         <div className="row">
                             <div className="col">
                                 {
-                                    (isAuth() && isAdmin()) ?
+                                    (isAuth() && isAdmin() && (getUser(info.author)?.nick !== getCurrentUserNick())) ?
                                         <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(info.id); }}>
                                             <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                                 <i className="fa fa-trash"></i>
@@ -54,7 +62,7 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                             </div>
                             <div className="col">
                                 {
-                                    (isAuth() && (info.author.nick === getCurrentUser())) ?
+                                    (isAuth() && (getUser(info.author)?.nick === getCurrentUserNick())) ?
                                         <a href="#0" onClick={(e) => { e.preventDefault(); onEdit(info.id);}}>
                                             <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                                 <i className="fa fa-edit"></i>

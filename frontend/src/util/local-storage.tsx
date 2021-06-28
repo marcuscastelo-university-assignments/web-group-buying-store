@@ -39,6 +39,12 @@ export function updateProduct(product: ProductProps) {
     updateProducts(currProds);
 }
 
+export function removeProduct(productID: string) {
+    const products = getProducts();
+    delete products[productID];
+    updateProducts(products);
+}
+
 export function getCartItems() {
     return JSON.parse(localStorage.getItem(LS_KEYS.CART_ITEMS) ?? '[]') as CartProductProps[];
 }
@@ -80,8 +86,8 @@ export function updateUsers(users: {[nick: string] : (UserProps|undefined)}) {
     localStorage.setItem('users', JSON.stringify(users));
 } 
 
-export function registerUser(newUser: UserProps) {
-    if (getUser(newUser.nick)) {
+export function registerUser(newUser: UserProps, overwrite?: boolean) {
+    if (!overwrite && getUser(newUser.nick)) {
         //TODO: try catch?
         console.error('User already exists');
         return false;
