@@ -1,6 +1,6 @@
 
-import { ProductProps, UserProps } from "../components/ProductCard";
 import { CartProductProps } from "../pages/Cart";
+import { ProductProps, UserProps } from "../types";
 import { LayerDescription } from "./mock-categories";
 
 const LS_KEYS = {

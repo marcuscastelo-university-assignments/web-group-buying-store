@@ -1,7 +1,7 @@
 import React from 'react';
+import { MilestoneProps, ProductProps } from '../types';
 import { getProduct, getProducts } from '../util/local-storage';
 import { calculateRuntimeInfo } from '../util/product-utlls';
-import { MilestoneProps, ProductProps } from './ProductCard';
 
 
 //TODO: import bootstrap on all files?

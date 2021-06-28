@@ -2,9 +2,9 @@ import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link, useHistory } from 'react-router-dom';
-import { UserProps } from '../components/ProductCard';
 import { registerUser } from '../util/local-storage';
 import { DEFAULTS } from '../util/mock-categories';
+import { UserProps } from '../types';
 
 
 const RegisterPage: React.FC = () => {

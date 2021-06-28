@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { CartProductProps } from '../pages/Cart';
-import { getProduct, removeCartItem, updateCartItem, updateCartItems } from '../util/local-storage';
+import { MilestoneProps, ProductProps } from '../types';
+import { getProduct, removeCartItem, updateCartItem } from '../util/local-storage';
 import { calculateRuntimeInfo } from '../util/product-utlls';
-
-import { MilestoneProps, ProductProps } from './ProductCard';
 
 function getProductData(product: ProductProps, qttyInCartItem: number) {
     let curItems = product.currentQuantity + qttyInCartItem;

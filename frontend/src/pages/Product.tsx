@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useHistory, useParams } from 'react-router';
-import { ProductProps } from '../components/ProductCard';
 import ProductComment from '../components/ProductComment';
 
 import MilestoneItem from '../components/MilestoneItem';
@@ -11,6 +10,7 @@ import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import './Product.css'
 import { getCartItem, getProduct, updateCartItem } from '../util/local-storage';
 import { calculateRuntimeInfo } from '../util/product-utlls';
+import { ProductProps, MilestoneProps } from '../types';
 
 const ProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);

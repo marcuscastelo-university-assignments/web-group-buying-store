@@ -1,48 +1,8 @@
 import React from 'react';
+import { ProductProps } from '../types';
 import { RuntimeProductInfo } from '../util/product-utlls';
-import { MilestoneProps, ProductProps } from './ProductCard';
 
 import './styles/MilestoneProgressBar.css'
-
-function workOnMilestones(milestoneCur: JQuery) {
-    let milestoneIsActive = milestoneCur.hasClass('active');
-
-    let milestoneTargets = $('#milestone-list .milestone-item')
-
-    if (!milestoneIsActive) {
-        milestoneTargets.addClass('d-none');
-        milestoneCur.removeClass('d-none');
-
-        milestoneTargets.find('.card-body').addClass('d-none');
-        milestoneCur.find('.card-body').removeClass('d-none');
-
-        milestoneCur.addClass('active');
-        milestoneCur.addClass('h-100');
-    } else {
-        milestoneTargets.removeClass('d-none');
-        milestoneTargets.find('.card-body').addClass('d-none');
-
-        milestoneCur.removeClass('active');
-        milestoneCur.removeClass('h-100');
-    }
-}
-
-
-function workOnMilestoneSpots(milestoneSpotCur: JQuery) {
-    let milestoneSpotIsActive = milestoneSpotCur.hasClass('active');
-
-    let milestoneSpotTargets = $('.milestone-progress-spot')
-
-    if (!milestoneSpotIsActive) {
-        milestoneSpotTargets.parent().parent().addClass('d-none');
-        milestoneSpotCur.removeClass('d-none');
-
-        milestoneSpotCur.addClass('active');
-    } else {
-        milestoneSpotTargets.parent().parent().removeClass('d-none');
-        milestoneSpotCur.removeClass('active');
-    }
-}
 
 type MilestoneProgressBarProps = { 
     product: ProductProps, 

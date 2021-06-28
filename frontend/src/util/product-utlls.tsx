@@ -1,4 +1,4 @@
-import { MilestoneProps, ProductProps } from "../components/ProductCard";
+import { MilestoneProps, ProductProps } from "../types";
 
 export type RuntimeProductInfo = ProductProps & {
     currentMilestone: MilestoneProps | null,

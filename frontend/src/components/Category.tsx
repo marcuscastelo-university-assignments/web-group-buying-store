@@ -3,7 +3,8 @@ import React, { MouseEventHandler } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
-export type CategoryProps = {
+
+type CategoryProps = {
     layer: string,
     id: string,
     parent: string,

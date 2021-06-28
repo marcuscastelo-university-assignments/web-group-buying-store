@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import { ProductCommentProps } from './ProductCard';
+import { ProductCommentProps } from '../types';
 
 export default function ProductComment({ info }: { info: ProductCommentProps }) {
     return (

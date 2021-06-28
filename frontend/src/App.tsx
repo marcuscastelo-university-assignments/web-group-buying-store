@@ -7,13 +7,13 @@ import MainPage from './pages/MainPage';
 
 import 'bootstrap'
 import CartPage from './pages/Cart';
-import { ProductCommentProps, ProductProps } from './components/ProductCard';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import ProductPage from './pages/Product';
 import CreateProductPage from './pages/CreateProduct';
 import { generateMockCategories } from './util/mock-categories';
 import { getProducts, updateProducts } from './util/local-storage';
+import { ProductCommentProps, ProductProps } from './types';
 
 //This is a temporary function used to simulate server-side interacion.
 //TODO: remove on last assignment

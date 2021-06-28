@@ -5,13 +5,13 @@ import NavBar from '../components/NavBar';
 import Carousel from '../components/Carousel';
 
 import './MainPage.css'
-import ProductCard, { ProductProps } from '../components/ProductCard';
-import Category, { CategoryProps } from '../components/Category';
+import ProductCard from '../components/ProductCard';
+import Category from '../components/Category';
 import CategoryLayer from '../components/CategoryLayer';
 
-import $ from 'jquery'
 import { CategoryDescription, CategoryLayersDescription } from '../util/mock-categories';
 import { getProducts } from '../util/local-storage';
+import { ProductProps } from '../types';
 
 
 const MainPage: React.FC = () => {

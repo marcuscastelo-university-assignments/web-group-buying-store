@@ -1,13 +1,13 @@
-import React, { FormEventHandler, useRef, useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import { ProductProps } from '../components/ProductCard';
 import MilestoneItem from '../components/MilestoneItem';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
-import { DEFAULTS, LayerDescription } from '../util/mock-categories';
+import { DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
-import { getCategories, getCategoryInLayer, getProducts, updateProduct, updateProducts } from '../util/local-storage';
+import { getCategories, updateProduct } from '../util/local-storage';
+import { ProductProps } from '../types';
 
 
 
