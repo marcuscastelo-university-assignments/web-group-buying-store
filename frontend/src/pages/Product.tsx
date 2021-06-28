@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useHistory, useParams } from 'react-router';
@@ -8,9 +8,9 @@ import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 
 import './Product.css'
-import { generateCommentID, getCartItem, getProduct, getUser, getUsers, updateCartItem } from '../util/local-storage';
+import { generateCommentID, getCartItem, getProduct, getUser, updateCartItem } from '../util/local-storage';
 import { calculateRuntimeInfo } from '../util/product-utlls';
-import { ProductProps, MilestoneProps } from '../types';
+import { ProductProps } from '../types';
 
 import ProductCommentEditor from '../components/ProductCommentEditor'
 import { getCurrentUser } from '../util/auth-util';

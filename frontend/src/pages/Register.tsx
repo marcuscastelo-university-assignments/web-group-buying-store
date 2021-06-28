@@ -18,7 +18,7 @@ const RegisterPage: React.FC = () => {
     let [telephone, setTelephone] = useState<string>('');
     let [passwordConfirm, setPasswordConfirm] = useState<string>('');
     let [birthday, setBirthday] = useState<string>('');
-    let [profileImage, setProfileImage ] = useState<string>(DEFAULTS.IMG_DEFAULT);
+    let [profileImage, /*setProfileImage*/ ] = useState<string>(DEFAULTS.IMG_DEFAULT);
 
     let history = useHistory();
 

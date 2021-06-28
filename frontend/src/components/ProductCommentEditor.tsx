@@ -1,10 +1,8 @@
-import React, { isValidElement, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductCommentInfo, UserProps } from '../types';
-import { getCurrentUser, isAuth } from '../util/auth-util';
-import { DEFAULTS } from '../util/mock-categories';
 
 
 function clamp(min: number, max: number, val: number) {

@@ -2,9 +2,7 @@ import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link, useHistory } from 'react-router-dom';
-import { getUser } from '../util/local-storage';
 import { login } from '../util/auth-util';
-import userEvent from '@testing-library/user-event';
 
 const LoginPage: React.FC = () => {
 

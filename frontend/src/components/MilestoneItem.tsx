@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { MilestoneProps, ProductProps } from '../types';
-import { getProduct, getProducts } from '../util/local-storage';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 
 

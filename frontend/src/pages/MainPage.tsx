@@ -16,7 +16,7 @@ import { ProductProps } from '../types';
 
 const MainPage: React.FC = () => {
 
-    let [ categoryHistory, categoryHistoryFunc ] = useState<{ [layer: string]: string }>({})
+    let [ categoryHistory ] = useState<{ [layer: string]: string }>({})
     const [selectedCategory, setSelectedCategory] = useState<CategoryDescription | undefined>(undefined);
     const productList = Object.values(getProducts()) as ProductProps[];
 
