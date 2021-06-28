@@ -9,8 +9,6 @@ import CategorySelector from '../components/CategorySelector';
 import { getCategories, updateProduct } from '../util/local-storage';
 import { ProductProps } from '../types';
 
-
-
 const CreateProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
     let [selectedMilestone, selectMilestone] = _milesetoneState;

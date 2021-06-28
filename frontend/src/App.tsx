@@ -71,12 +71,7 @@ function injectProductsToLocalStorage() {
         //     likes: 1,
         //     dislikes: 10,
         // }
-
-
-
-
     ]
-
 
     const products: {[key: string]: ProductProps}= {
         "41e5b333": 
@@ -210,7 +205,7 @@ function injectProductsToLocalStorage() {
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Amário Rosa 2 portas"
+            title: "Armário Rosa 2 portas"
         },
         "28211dqw": 
         {

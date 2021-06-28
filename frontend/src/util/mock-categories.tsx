@@ -23,6 +23,7 @@ export function generateMockCategories() {
     let layers: CategoryLayersDescription = {
 
         "1" : [
+            { layer: "1", name: "Eletrônicos", id: '1qes', imageSrc:'/img/categories/bed.png' },
             { layer: "1", name: "Quarto e Sala", id: '1qes', imageSrc:'/img/categories/bed.png' },
             { layer: "1", name: "Banheiro e Lavanderia", id: '1bel', imageSrc:'/img/categories/bath.png' }
         ],

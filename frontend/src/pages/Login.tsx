@@ -3,33 +3,24 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link, useHistory } from 'react-router-dom';
 import { getUser } from '../util/local-storage';
+import { login } from '../util/auth-util';
+import userEvent from '@testing-library/user-event';
 
 const LoginPage: React.FC = () => {
 
     const history = useHistory();
 
-    let [ nick, setNick ] = useState('');
-    let [ password, setPassword ] = useState('');
-    
-    const loginCurrentUser: FormEventHandler= (e) => {
+    let [nick, setNick] = useState('');
+    let [password, setPassword] = useState('');
+
+    const loginCurrentUser: FormEventHandler = (e) => {
         e.preventDefault();
 
-        const user = getUser(nick);
-        if (!user) {
-            alert('User does not exist')
-            return false;
+        if (login(nick, password)) {
+            history.push('/');
+            return true;
         }
-
-        if (user.password !== password) {
-            alert('Wrong passord')
-            return false;
-        }
-
-        document.cookie = 'user='+user.nick;
-        document.cookie = 'password='+user.password;
-        
-        history.push('/');
-        return true;
+        return false;
     }
 
     return (
@@ -46,14 +37,14 @@ const LoginPage: React.FC = () => {
                                 <div className="row">
                                     <div className="col-12 col-md">
                                         <form id="login-registration-form" action="#0" onSubmit={loginCurrentUser}>
-                                         <div className="input-group bg-light border p-3 mt-3">
+                                            <div className="input-group bg-light border p-3 mt-3">
                                                 <div className="row g-0 w-100">
                                                     <input name="person-name" required className="form-control" type="text"
                                                         placeholder="Login" id="login" value={nick} onChange={(e) => setNick(e.target.value)} />
                                                 </div>
                                                 <div className="row g-0 mt-3 w-100">
                                                     <input id="password" name="password" required className="form-control" type="password"
-                                                        placeholder="Senha" aria-describedby="validationServerUsernameFeedback" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                                        placeholder="Senha" aria-describedby="validationServerUsernameFeedback" value={password} onChange={(e) => setPassword(e.target.value)} />
                                                 </div>
                                             </div>
 

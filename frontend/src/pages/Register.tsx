@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { registerUser } from '../util/local-storage';
 import { DEFAULTS } from '../util/mock-categories';
 import { UserProps } from '../types';
+import { login } from '../util/auth-util';
 
 
 const RegisterPage: React.FC = () => {
@@ -12,6 +13,9 @@ const RegisterPage: React.FC = () => {
     let [nick, setNick] = useState<string>('');
     let [email, setEmail] = useState<string>('');
     let [password, setPassword] = useState<string>('');
+    let [address, setAddress] = useState<string>('');
+    let [number, setNumber] = useState<string>('');
+    let [telephone, setTelephone] = useState<string>('');
     let [passwordConfirm, setPasswordConfirm] = useState<string>('');
     let [birthday, setBirthday] = useState<string>('');
     let [profileImage, setProfileImage ] = useState<string>(DEFAULTS.IMG_DEFAULT);
@@ -23,6 +27,8 @@ const RegisterPage: React.FC = () => {
 
         if (
             !/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
+            !/^[0-9]{11,12}$/.test(telephone) ||
+            !/^[0-9]+$/.test(number) ||
             !(password.length >= 8 && password.match(/[A-Z]/) && password.match(/[a-z]/) && password.match(/[0-9]/))
         ) {
             //Avoids form redirection if failed
@@ -46,6 +52,7 @@ const RegisterPage: React.FC = () => {
         }
 
         history.push('/');
+        login(nick, password);
     }
 
 
@@ -76,6 +83,18 @@ const RegisterPage: React.FC = () => {
                                                 <div className="row g-0 mt-3 w-100">
                                                     <label className="form-label" htmlFor="birthday">Data de nascimento</label>
                                                     <input required name="birthday" className="form-control text-muted" type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
+                                                </div>
+                                                <div className="row g-0 mt-3 w-100">
+                                                    <label className="form-label" htmlFor="telephone">Telefone</label>
+                                                    <input required name="telephone" className="form-control text-muted" type="text" value={telephone} onChange={(e) => setTelephone(e.target.value)} />
+                                                </div>
+                                                <div className="row g-0 mt-3 w-100">
+                                                    <label className="form-label" htmlFor="address">Endereço</label>
+                                                    <input required name="address" className="form-control text-muted" type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
+                                                </div>
+                                                <div className="row g-0 mt-3 w-100">
+                                                    <label className="form-label" htmlFor="number">Número</label>
+                                                    <input required name="number" className="form-control text-muted" type="text" value={number} onChange={(e) => setNumber(e.target.value)} />
                                                 </div>
                                             </div>
 
