@@ -13,25 +13,28 @@ import ProductPage from './pages/Product';
 import CreateProductPage from './pages/CreateProduct';
 import { generateMockCategories } from './util/mock-categories';
 import { getProducts, updateProducts } from './util/local-storage';
-import { ProductCommentProps, ProductProps } from './types';
+import { ProductCommentInfo, ProductProps } from './types';
 
 //This is a temporary function used to simulate server-side interacion.
 //TODO: remove on last assignment
 function injectProductsToLocalStorage() {
-    const mockComments: ProductCommentProps[] = [
-        // {
-        //     author: {
-        //         name: 'Magalu',
-        //         email: 'mock@magal.com',
-        //         nick: 'magalu',
-        //         profileImage: 'https://tiao-a.magazineluiza.com.br/img/lu-header.jpg'
-        //     },
-        //     rating: 1,
-        //     title: 'Odiei',
-        //     content: 'Pior produto que já comprei na vida!!!',
-        //     likes: 1,
-        //     dislikes: 10,
-        // },
+    const mockComments: ProductCommentInfo[] = [
+        {
+            author: {
+                name: 'Magalu',
+                email: 'mock@magal.com',
+                nick: 'magalu',
+                profileImage: 'https://tiao-a.magazineluiza.com.br/img/lu-header.png',
+                birthday: '2',
+                password: '1212s'
+            },
+            rating: 1,
+            title: 'Odiei',
+            content: 'Pior produto que já comprei na vida!!!',
+            likes: 1,
+            dislikes: 10,
+            id: "1"
+        },
         // {
         //     author: {
         //         name: 'Bowser',
@@ -79,13 +82,16 @@ function injectProductsToLocalStorage() {
             productID: '41e5b333',
             currentQuantity: 14,
             imageURL: '/img/products/notebookacer.jpg',
-            category: '11ac',
+            category: '11arc',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Notebook"
+            title: "Notebook",
+            comments: {
+                "1": mockComments[0]
+            }
         },
         "790dd7e3": 
         {
@@ -99,13 +105,13 @@ function injectProductsToLocalStorage() {
                 {quantity: 15, price: 5},
             ],
             title: "Liquidificador",
-            comments: mockComments
+            comments: {}
         },
         "790dd7e5": 
         {
             productID: '790dd7e5',
             currentQuantity: 7,
-            category: '11ac',
+            category: '11arc',
             imageURL: '/img/products/arcondicionadolg.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -113,13 +119,13 @@ function injectProductsToLocalStorage() {
                 {quantity: 15, price: 5},
             ],
             title: "Ar condicionado LG",
-            comments: mockComments
+            comments: {}
         },
         "790ddde5": 
         {
             productID: '790ddde5',
             currentQuantity: 7,
-            category: '11ac',
+            category: '11arc',
             imageURL: '/img/products/arcondicionadofreehome.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -127,7 +133,7 @@ function injectProductsToLocalStorage() {
                 {quantity: 15, price: 5},
             ],
             title: "Ar condicionado Free Home",
-            comments: mockComments
+            comments: {}
         },
         "28221d6d": 
         {
@@ -140,7 +146,8 @@ function injectProductsToLocalStorage() {
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Asas de borboleta"
+            title: "Asas de borboleta",
+            comments: {}
         },
         "2821346d": 
         {
@@ -153,7 +160,8 @@ function injectProductsToLocalStorage() {
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Sofa Oasis"
+            title: "Sofa Oasis",
+            comments: {}
         },
         "28223d6d": 
         {
@@ -166,33 +174,36 @@ function injectProductsToLocalStorage() {
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Sofa Sao Paulo"
+            title: "Sofa Sao Paulo",
+            comments: {}
         },
         "28223dss": 
         {
             productID: '28223dss',
             currentQuantity: 10,
-            category: '11bath',
+            category: '11ven',
             imageURL: '/img/products/ventiladorbasicplus.jpg',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Ventilador Basic+"
+            title: "Ventilador Basic+",
+            comments: {}
         },
         "28223dqw": 
         {
             productID: '28223dqw',
             currentQuantity: 10,
-            category: '11bath',
+            category: '11ven',
             imageURL: '/img/products/ventiladormallory.jpg',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Ventilador Mallory"
+            title: "Ventilador Mallory",
+            comments: {}
         },
         "282232qw": 
         {
@@ -205,7 +216,8 @@ function injectProductsToLocalStorage() {
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Armário Rosa 2 portas"
+            title: "Armário Rosa 2 portas",
+            comments: {}
         },
         "28211dqw": 
         {
@@ -218,36 +230,207 @@ function injectProductsToLocalStorage() {
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Armário marrom 2 portas"
+            title: "Armário marrom 2 portas",
+            comments: {}
         },
         "282ttdqw": 
         {
             productID: '282ttdqw',
             currentQuantity: 10,
-            category: '11bath',
+            category: '11cel',
             imageURL: '/img/products/celulargalaxy.jpg',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Celular Galaxy A72"
+            title: "Celular Galaxy A72",
+            comments: {}
         },
         "28215dqw": 
         {
             productID: '28215dqw',
             currentQuantity: 10,
-            category: '11bath',
+            category: '11cel',
             imageURL: '/img/products/celulariphone.jpg',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
-            title: "Iphone 7 Plus"
+            title: "Iphone 7 Plus",
+            comments: {}
+        },
+        "28216dqw": 
+        {
+            productID: '28216dqw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/cadeiraescritorio1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Cadeira de Escritório Presidente Giratória Preta",
+            comments: {}
+        },
+        "28217dqw": 
+        {
+            productID: '28217dqw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/cadeiraescritorio2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Cadeira de Escritório Executiva Branca",
+            comments: {}
+        },
+        "28218dqw": 
+        {
+            productID: '28218dqw',
+            currentQuantity: 10,
+            category: '11lav',
+            imageURL: '/img/products/lavadora1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Lavadora Newman 12kg 110V",
+            comments: {}
+        },
+        "28219dqw": 
+        {
+            productID: '28219dqw',
+            currentQuantity: 10,
+            category: '11lav',
+            imageURL: '/img/products/lavadora2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Lavadora Brastemp Inox 15kg 110V",
+            comments: {}
+        },
+        "32240dzw": 
+        {
+            productID: '32240dzw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/escrivaninha1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Escrivaninha Branca 1 Porta e 1 Gaveta",
+            comments: {}
+        },
+        "32241dzw": 
+        {
+            productID: '32241dzw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/escrivaninha2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Escrivaninha de Madeira Natural",
+            comments: {}
+        },
+        "32242dzw": 
+        {
+            productID: '32242dzw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/gaveteiro1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Gaveteiro 4 Gavetas Branco Acetinado",
+            comments: {}
+        },
+        "32243dzw": 
+        {
+            productID: '32243dzw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/gaveteiro2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Gaveteiro Pietra 3 Gavetas Preto",
+            comments: {}
+        },
+        "32244dzw": 
+        {
+            productID: '32244dzw',
+            currentQuantity: 10,
+            category: '11tel',
+            imageURL: '/img/products/tv1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "TV LED 43 Panasonic TC-FS500B Full HD",
+            comments: {}
+        },
+        "32245dzw": 
+        {
+            productID: '32245dzw',
+            currentQuantity: 10,
+            category: '11tel',
+            imageURL: '/img/products/tv2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Smart TV Crystal LED 50 Samsung 50TU8000 4K",
+            comments: {}
+        },
+        "32246dzw": 
+        {
+            productID: '32246dzw',
+            currentQuantity: 10,
+            category: '11tab',
+            imageURL: '/img/products/tablet1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Tablet Samsung A7 10,4 64Gb Preto",
+            comments: {}
+        },
+        "32247dzw": 
+        {
+            productID: '32247dzw',
+            currentQuantity: 10,
+            category: '11tab',
+            imageURL: '/img/products/tablet2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Tablet Apple 8a Geração 10,2 128Gb Gold",
+            comments: {}
         },
     };
-    updateProducts({...products, ...getProducts() as {[key: string]: ProductProps}});
+    updateProducts({...getProducts() as {[key: string]: ProductProps}, ...products});
 }
 
 function injectCategoriesToLocalStorage() {
