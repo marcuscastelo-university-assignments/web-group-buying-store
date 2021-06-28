@@ -12,7 +12,7 @@ const CarouselItem = <T ,>(props: CarouselItemProps<T>) => {
     const Comp = props.component;
     return (
         <React.Fragment>
-            <div className="col mx-1" style={{maxWidth:200}}>
+            <div className="col mx-1 " style={{maxWidth:200}}>
                 <Comp {...props.carouselItemInfo}/>
             </div>
         </React.Fragment>

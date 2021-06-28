@@ -41,11 +41,12 @@ export type ProductProps = {
 const ProductCard: React.FC<ProductProps> = (props: ProductProps) => {
     return (
         <React.Fragment>
-            <div className="card" style={{ maxWidth: 200 }}>
+            <div className="card h-100" style={{ maxWidth: 200 }}>
                 <Link to={`/product/${props.productID}`}>
                     <img src={props.imageURL} className="d-block img-thumbnail mx-auto" alt={props.title} />
                 </Link>
-                <div className="card-body px-1 pt-2">
+                <div className="flex-grow-1"/>
+                <div className="card-body px-1 pt-2 flex-grow-0">
                     <div className="row g-0 p-0">
                         <div className="col-10" style={{ textTransform: 'capitalize' }}> {props.title} </div>
                     </div>
