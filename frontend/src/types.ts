@@ -13,7 +13,7 @@ export type UserProps = {
 }
 
 export type ProductCommentInfo = {
-    author: UserProps,
+    author: string,
     title: string,
     content: string,
     rating: number,
@@ -27,8 +27,9 @@ export type ProductProps = {
     title: string,
     description?: string,
     imageURL: string,
-    category: string,
+    categoryID: string,
     milestones: MilestoneProps[];
     currentQuantity: number,
     comments: { [id: string] : ProductCommentInfo },
+    creator: string, 
 };

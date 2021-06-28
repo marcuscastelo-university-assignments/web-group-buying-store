@@ -6,34 +6,56 @@ import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import { DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
-import { generateProductID, getCategories, updateProduct } from '../util/local-storage';
+import { generateProductID, getCategories, getUser, updateProduct } from '../util/local-storage';
+import  * as LS from '../util/local-storage';
 import { MilestoneProps, ProductProps } from '../types';
-import { getCurrentUser, isAuth } from '../util/auth-util';
+import { getCurrentUserNick, isAuth } from '../util/auth-util';
+import { useHistory } from 'react-router';
+
+type ProductEditorProps = {
+    product: Readonly<Partial<ProductProps>>,
+    onRemove: (productID: string) => void,
+    onSave: (product: ProductProps) => void,
+};
 
 
+const ProductEditor: React.FC<ProductEditorProps> = (props) => {
+    const history = useHistory();
 
-const ProductEditor: React.FC = () => {
     let _milesetoneState = useState(-1);
     let [selectedMilestone, selectMilestone] = _milesetoneState;
 
     let [newQuantity, setNewQuantity] = useState(0);
     let [newPrice, setNewPrice] = useState(0);
+    let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(Object.keys(getCategories()).map(a => undefined));
+   
+    const nick = getCurrentUserNick();
+    const user = getUser(nick);
 
     const [product, setProduct] = useState<ProductProps>({
-        title: "",
-        milestones: [
+        title: props.product.title ?? "",
+        milestones: props.product.milestones ??  [
             { quantity: 3, price: 10 },
             { quantity: 8, price: 8 },
             { quantity: 15, price: 5 },
         ],
-        category: "",
-        imageURL: "",
-        currentQuantity: 0,
-        productID: '-1',
-        comments: {},
-        description: ""
+        categoryID: props.product.categoryID ?? "",
+        imageURL: props.product.imageURL ?? "",
+        currentQuantity: props.product.currentQuantity ?? 0,
+        productID: props.product.productID ?? generateProductID(),
+        comments: props.product.comments ?? {},
+        description: props.product.description ?? "",
+        creator: nick ?? '',
     });
 
+    let [productImage, setProductImage] = useState(DEFAULTS.IMG_DEFAULT);
+    let [titleName, setTitleName] = useState('');
+    let [descriptionText, setDescriptionText] = useState('')
+
+    if (!nick || !user) {
+        //Important: do not remove this line (product.creator is undefined even though it should not!)
+        return <h1>401 NOT AUTHORIZED</h1>
+    }
     
     const runtimeInfo = calculateRuntimeInfo(product);
 
@@ -58,8 +80,12 @@ const ProductEditor: React.FC = () => {
         setNewQuantity(0);
     };
 
-    const publishProduct : FormEventHandler = (e) => {
-        e.preventDefault();
+    const removeProduct = () => {
+        LS.removeProduct(product.productID);
+        history.push('/');
+    }
+
+    const publishProduct = () => {
         if (
             titleName === "" ||
             productImage === DEFAULTS.IMG_DEFAULT ||
@@ -72,15 +98,15 @@ const ProductEditor: React.FC = () => {
         product.imageURL = productImage;
         product.description = descriptionText;
         for(let i=categoriesParents.length - 1;i>=0;i--){
-            if(categoriesParents[i] !== undefined) product.category = categoriesParents[i] ?? ""; 
+            if(categoriesParents[i] !== undefined) product.categoryID = categoriesParents[i] ?? ""; 
         }
         setProduct(product);
         updateProduct(product);
+
+        history.push('/');
         return product
     }
-
-    let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(Object.keys(getCategories()).map(a => undefined));
-
+    
     const updateSelectorsBelow = (index: number, chosenCategory: string) => {
 
         let categoriesParentsCopy = [...categoriesParents];
@@ -95,14 +121,10 @@ const ProductEditor: React.FC = () => {
         setCategoriesParents(categoriesParentsCopy);
     }
 
-    let [productImage, setProductImage] = useState(DEFAULTS.IMG_DEFAULT);
-    let [titleName, setTitleName] = useState('');
-    let [descriptionText, setDescriptionText] = useState('')
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
                 <NavBar />
-
                 <div className="row flex-grow-1 my-4">
                     <div className="col-12">
                         <div className="row g-0  ">
@@ -114,7 +136,7 @@ const ProductEditor: React.FC = () => {
 
                                             <input className="form-control mt-3" name="product-img-inp" id="product-img-inp" type="file" accept="image/*" onChange={(e) => setProductImage(URL.createObjectURL(e.target.files ? e.target.files[0] : '/img/categories/bed'))} />
                                             <img id="product-img-preview" src={productImage} className="card-img-top" alt="..." />
-                                            <form className="card-body" onSubmit={publishProduct}>
+                                            <form className="card-body" onSubmit={(e)=>{e.preventDefault(); publishProduct()}}>
                                                 <p className="card-text p-0">
                                                     <textarea value={descriptionText} onChange={(e) => setDescriptionText(e.target.value)} className="form-control text-center" required style={{ fontSize: '1.2em' }} placeholder="Descrição do produto"></textarea>
                                                 </p>
@@ -182,16 +204,25 @@ const ProductEditor: React.FC = () => {
                                 </div>
                             </div>
                             <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo} milestoneState={_milesetoneState} />
-
-                        </div>
-                        <div className='row g-0'>
                             {
-                                (isAuth() && (info.author.nick !== getCurrentUser())) ?
-                                <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(info.id); }}>
-                                        <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
-                                            <i className="fa fa-trash"></i>
+                                (isAuth() && (product.creator !== getCurrentUserNick())) ?
+                                
+                                    <div className='row g-0'>
+                                        <div className='col'>
+                                            <a href="#0" onClick={(e) => { e.preventDefault();removeProduct();}}>
+                                                    <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
+                                                        <i className="fa fa-trash"></i>
+                                                    </div>
+                                                </a>
                                         </div>
-                                    </a>
+                                        <div className='col'>
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); publishProduct();}}>
+                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
+                                                    <i className="fa fa-save"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
                                     : ''
                             }
                         </div>

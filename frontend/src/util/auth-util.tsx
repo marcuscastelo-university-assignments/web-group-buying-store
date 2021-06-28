@@ -1,14 +1,14 @@
 import { getUser } from "./local-storage";
 
 export function isAuth() {
-    return getCurrentUser() !== '';
+    return getCurrentUserNick() !== '';
 }
 
 export function getCookie(cookieName: string) {
     return document.cookie.split(';').find(a=>a.trim().startsWith(`${cookieName}=`))?.split('=')[1];
 }
 
-export function getCurrentUser() {
+export function getCurrentUserNick() {
     return getCookie('user') ?? ''
 }
 export function isAdmin() {

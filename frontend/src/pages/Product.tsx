@@ -13,7 +13,7 @@ import { calculateRuntimeInfo } from '../util/product-utlls';
 import { ProductProps } from '../types';
 
 import ProductCommentEditor from '../components/ProductCommentEditor'
-import { getCurrentUser } from '../util/auth-util';
+import { getCurrentUserNick } from '../util/auth-util';
 
 const ProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
@@ -48,7 +48,7 @@ const ProductPage: React.FC = () => {
 
     const runtimeInfo = calculateRuntimeInfo(product);
 
-    const currentUserProps = getUser(getCurrentUser());
+    const currentUserProps = getUser(getCurrentUserNick());
 
     return (
         <React.Fragment>
@@ -154,7 +154,7 @@ const ProductPage: React.FC = () => {
                                                 {
                                                     creatingComment ?
                                                         <ProductCommentEditor
-                                                            info={{ author: currentUserProps, id: generateCommentID() }}
+                                                            info={{ author: currentUserProps.nick, id: generateCommentID() }}
                                                             onRemove={(commentID) => { setCreatingComment(false); }}
                                                             onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setCreatingComment(false); }}
                                                             onClose={(commentID) => { setCreatingComment(false); }}

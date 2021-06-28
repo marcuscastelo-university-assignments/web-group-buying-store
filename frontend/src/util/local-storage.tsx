@@ -39,6 +39,12 @@ export function updateProduct(product: ProductProps) {
     updateProducts(currProds);
 }
 
+export function removeProduct(productID: string) {
+    const products = getProducts();
+    delete products[productID];
+    updateProducts(products);
+}
+
 export function getCartItems() {
     return JSON.parse(localStorage.getItem(LS_KEYS.CART_ITEMS) ?? '[]') as CartProductProps[];
 }
