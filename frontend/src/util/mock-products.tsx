@@ -32,7 +32,7 @@ export function genMockProducts() {
         {
             productID: '790dd7e3',
             currentQuantity: 7,
-            categoryID: '11ac',
+            categoryID: '1ele',
             imageURL: '/img/products/liquidificardophilips.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -77,7 +77,7 @@ export function genMockProducts() {
         {
             productID: '2821346d',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/sofaoasis.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -92,7 +92,7 @@ export function genMockProducts() {
         {
             productID: '28223d6d',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/sofasaopaulo.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -137,7 +137,7 @@ export function genMockProducts() {
         {
             productID: '282232qw',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/armariorosa.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -152,7 +152,7 @@ export function genMockProducts() {
         {
             productID: '28211dqw',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/armariomarrom.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -197,7 +197,7 @@ export function genMockProducts() {
         {
             productID: '28216dqw',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/cadeiraescritorio1.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -212,7 +212,7 @@ export function genMockProducts() {
         {
             productID: '28217dqw',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/cadeiraescritorio2.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -257,7 +257,7 @@ export function genMockProducts() {
         {
             productID: '32240dzw',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/escrivaninha1.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -272,7 +272,7 @@ export function genMockProducts() {
         {
             productID: '32241dzw',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/escrivaninha2.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -287,7 +287,7 @@ export function genMockProducts() {
         {
             productID: '32242dzw',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/gaveteiro1.jpg',
             milestones: [
                 {quantity: 3, price: 10},
@@ -302,7 +302,7 @@ export function genMockProducts() {
         {
             productID: '32243dzw',
             currentQuantity: 10,
-            categoryID: '11bath',
+            categoryID: '1ele',
             imageURL: '/img/products/gaveteiro2.jpg',
             milestones: [
                 {quantity: 3, price: 10},

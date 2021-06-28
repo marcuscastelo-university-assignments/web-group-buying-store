@@ -22,9 +22,9 @@ export type CategoryLayersDescription =  { [layer: string]: LayerDescription };
 export function generateMockCategories() {
     let layers: CategoryLayersDescription = {
         "1" : [
-            { layer: "1", name: "Eletrodomésticos", id: '1ele', imageSrc:'/img/categories/bolt.png' },
-            { layer: "1", name: "Roupas", id: '1rou', imageSrc:'/img/categories/tshirt.png' },
-            { layer: "1", name: "Alimentos", id: '1ali', imageSrc:'/img/categories/food.png' },
+            { layer: "1", final: false, name: "Eletrodomésticos", id: '1ele', imageSrc:'/img/categories/bolt.png' },
+            { layer: "1", final: false, name: "Roupas", id: '1rou', imageSrc:'/img/categories/tshirt.png' },
+            { layer: "1", final: false, name: "Alimentos", id: '1ali', imageSrc:'/img/categories/food.png' },
         ],
         "11": [
             { layer: "11", parent:'1ele', final: true, name: "Celular", id: '11cel', imageSrc: '/img/categories/cellphone.png' },

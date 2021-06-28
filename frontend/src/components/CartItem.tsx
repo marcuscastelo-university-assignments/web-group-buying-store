@@ -54,7 +54,7 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
         if (count < 1) setCount(1);
         if (count > remainingProductQuantity) setCount(remainingProductQuantity);
 
-        itemInfo.quantity = count;
+        itemInfo.quantity += count;
         updateCartItem(itemInfo);
         onChanged();
     }, [count, itemInfo, onChanged, remainingProductQuantity]);
@@ -96,7 +96,7 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
                                 <h5 className="card-title">{product.title}</h5>
                                 <p className="card-text product-desc">{product.description ?? "Sem descrição"}
                                 </p>
-                                <p className="card-text"><small className="text-muted">Faltam x pessoas para o preço abaixar para y</small></p>
+                                <p className="card-text"><small className="text-muted"></small></p>
                             </div>
                         </div>
                         <div className="col-12 col-md-3 p-2 bg-light">

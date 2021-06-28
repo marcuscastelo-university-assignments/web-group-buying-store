@@ -83,30 +83,30 @@ const ProductPage: React.FC = () => {
                                         </div>
                                         <div className="row">
                                             {
-                                                isAuth() ? (
-                                                    (product.creator !== getCurrentUserNick()) ?
+                                                isAuth() ?
+                                                    (product.creator === getCurrentUserNick()) ?
                                                         <div className="col">
                                                             <a href="#0" onClick={(e) => { e.preventDefault(); editProduct() }}>
-                                                                <div className="text-center bg-danger" style={{ fontSize: '1.5em', color: 'blue' }} >
+                                                                <div className="text-center" style={{ fontSize: '1.5em', color: 'blue' }} >
                                                                     <i className="fa fa-edit"></i>
                                                                 </div>
                                                             </a>
                                                         </div>
 
-                                                        : (
+                                                        :
                                                             isAdmin() ?
                                                                 <div className="col">
                                                                     <a href="#0" onClick={(e) => { e.preventDefault(); deleteProduct() }}>
-                                                                        <div className="text-center bd-" style={{ fontSize: '1.5em', color: 'darkred' }} >
+                                                                        <div className="text-center" style={{ fontSize: '1.5em', color: 'darkred' }} >
                                                                             <i className="fa fa-trash"></i>
                                                                         </div>
                                                                     </a>
                                                                 </div>
 
                                                                 : ''
-                                                        )
-                                                ) : ''
-                                            }
+                                                        
+                                                 : ''
+                                                }
                                         </div>
                                         <div className="p-5">
                                             <img src={product.imageURL} className="card-img-top" alt="..." />

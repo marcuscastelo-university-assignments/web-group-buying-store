@@ -1,16 +1,19 @@
-import React, { FormEventHandler, useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import MilestoneItem from '../components/MilestoneItem';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
-import { DEFAULTS } from '../util/mock-categories';
+import { CategoryDescription, DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
-import { generateProductID, getCategories, getUser, updateProduct } from '../util/local-storage';
+import { generateProductID, getCategories, getUser, updateProduct} from '../util/local-storage';
 import * as LS from '../util/local-storage';
 import { MilestoneProps, ProductProps } from '../types';
 import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
 import { useHistory, useParams } from 'react-router';
+
+
+
 
 const ProductEditor: React.FC = () => {
     const history = useHistory();
@@ -23,10 +26,10 @@ const ProductEditor: React.FC = () => {
 
     let [newQuantity, setNewQuantity] = useState(0);
     let [newPrice, setNewPrice] = useState(0);
-    let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(Object.keys(getCategories()).map(a => undefined));
 
     const nick = getCurrentUserNick();
     const user = getUser(nick);
+
 
 
     const [product, setProduct] = useState<ProductProps>(
@@ -43,10 +46,74 @@ const ProductEditor: React.FC = () => {
             creator: nick,
         }
     );
+    
+    function generateDefaultParents() {
+        let categoriesParentsCopy: (string | undefined)[] = new Array(Object.keys(getCategories()).length).fill(undefined);
+        if (existingProduct) {
+    
+            const categoryLayers = getCategories();
+            const findCategory = (id?: string) => {
+                if (!id) return undefined;
+                let res;
+                for (let layerID of Object.keys(categoryLayers)) {
+                    res = categoryLayers[layerID].find(c => c.id === id)
+                    if (res) return res;
+                }
+                return undefined;
+            }
+    
+    
+    
+            let currentCategory = findCategory(product.categoryID);
+            if (!currentCategory) {
+                console.error(`Categoria ${product.categoryID} not found!`);
+            }
+            else while (currentCategory) {
+                categoriesParentsCopy.push(currentCategory.id);
+                currentCategory = findCategory(currentCategory.parent);
+                if (currentCategory?.parent === currentCategory?.id) {
+                    console.error('Category is parent of itself??!??!');
+                    break;
+                }
+            }
+    
+            categoriesParentsCopy.push(undefined);
+            categoriesParentsCopy.reverse();
+            console.log(categoriesParentsCopy)
+    
+            return categoriesParentsCopy;
+        }
+        return categoriesParentsCopy;
+    }
+    
+    let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(generateDefaultParents());
 
-    let [productImage, setProductImage] = useState(DEFAULTS.IMG_DEFAULT);
-    let [titleName, setTitleName] = useState('');
-    let [descriptionText, setDescriptionText] = useState('')
+
+    const updateSelectorsBelow = (index: number, chosenCategory: string) => {
+        let categoriesParentsCopy = [...categoriesParents];
+
+        if (categoriesParentsCopy.length === 0) return;
+        if (categoriesParentsCopy[categoriesParentsCopy.length-1] !== undefined)
+            categoriesParentsCopy.push(undefined);
+
+        for (let i = index + 2; i < categoriesParents.length; i++) {
+            categoriesParentsCopy[i] = undefined;
+        }
+        if (index + 1 < categoriesParents.length) {
+            categoriesParentsCopy[index + 1] = chosenCategory;
+        }
+
+        setCategoriesParents(categoriesParentsCopy);
+    }
+
+
+    // useEffect(() => {
+
+
+
+    let [productImage, setProductImage] = useState(product.imageURL || DEFAULTS.IMG_DEFAULT);
+    let [titleName, setTitleName] = useState(product.title);
+    let [descriptionText, setDescriptionText] = useState(product.description)
 
     if (nick === '' || !user || nick !== product.creator) {
         //Important: do not remove this line (product.creator is undefined even though it should not!)
@@ -90,7 +157,6 @@ const ProductEditor: React.FC = () => {
             categoriesParents[1] === undefined
         ) return console.error('Required values ' + JSON.stringify(product));
         product.title = titleName;
-        product.productID = generateProductID();
         product.imageURL = productImage;
         product.description = descriptionText;
         for (let i = categoriesParents.length - 1; i >= 0; i--) {
@@ -106,26 +172,47 @@ const ProductEditor: React.FC = () => {
         return product;
     }
 
-    const updateSelectorsBelow = (index: number, chosenCategory: string) => {
 
-        let categoriesParentsCopy = [...categoriesParents];
-
-        for (let i = index + 2; i < categoriesParents.length; i++) {
-            categoriesParentsCopy[i] = undefined;
-        }
-        if (index + 1 < categoriesParents.length) {
-            categoriesParentsCopy[index + 1] = chosenCategory;
-        }
-
-        setCategoriesParents(categoriesParentsCopy);
-    }
 
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
                 <NavBar />
+                {/* {JSON.stringify(categoriesParents)} */}
                 <div className="row flex-grow-1 my-4">
                     <div className="col-12">
+
+                    {
+                                (isAuth() && (product.creator === getCurrentUserNick())) ?
+
+                                    <div className='row g-0'>
+                                        <div className='col'>
+                                            <a href="#0" onClick={(e) => { e.preventDefault(); removeProduct(); }}>
+                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
+                                                    <i className="fa fa-trash"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div className='col'>
+                                            <a href="#0" onClick={(e) => { e.preventDefault(); publishProduct(); }}>
+                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
+                                                    <i className="fa fa-save"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div className='col'>
+                                            <a href="#0" onClick={(e) => { e.preventDefault(); history.goBack() }}>
+                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
+                                                    <i className="fa fa-times"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    : ''
+                            }
+
+
+
                         <div className="row g-0  ">
                             <div className=" col-10 col-md-8  mx-auto">
                                 <div className="row bg-light p-3">
@@ -134,14 +221,14 @@ const ProductEditor: React.FC = () => {
                                             <input value={titleName} onChange={(e) => setTitleName(e.target.value)} className="form-control text-center" required style={{ fontSize: '2em' }} type="text" placeholder="Título do produto" />
 
                                             <input className="form-control mt-3" name="product-img-inp" id="product-img-inp" type="file" accept="image/*" onChange={(e) => setProductImage(URL.createObjectURL(e.target.files ? e.target.files[0] : '/img/categories/bed'))} />
-                                            <img id="product-img-preview" src={productImage} className="card-img-top" alt="..." />
+                                            <img id="product-img-preview" src={productImage} className="card-img-top p-3" alt="..." />
                                             <form className="card-body" onSubmit={(e) => { e.preventDefault(); publishProduct() }}>
                                                 <p className="card-text p-0">
                                                     <textarea value={descriptionText} onChange={(e) => setDescriptionText(e.target.value)} className="form-control text-center" required style={{ fontSize: '1.2em' }} placeholder="Descrição do produto"></textarea>
                                                 </p>
 
                                                 {categoriesParents.map((parent, idx) => (
-                                                    (parent || idx === 0) ? <CategorySelector layer={'1'.repeat(idx)} categoryID={parent} onChange={(chosenCategory) => updateSelectorsBelow(idx, chosenCategory)} />
+                                                    (parent || idx === 0) ? <CategorySelector key={'1'.repeat(idx)} layer={'1'.repeat(idx)} categoryID={parent} defaultValue={categoriesParents[idx + 1]} onChange={(chosenCategory) => updateSelectorsBelow(idx, chosenCategory)} />
                                                         : ''
                                                 ))}
 
@@ -183,6 +270,7 @@ const ProductEditor: React.FC = () => {
                                                     (selectedMilestone === -1 || selectedMilestone === idx) ?
                                                         <MilestoneItem
                                                             milestone={milestone}
+                                                            editing={true}
                                                             product={product}
                                                             key={`${idx}`}
                                                             expanded={selectedMilestone === idx}
@@ -195,7 +283,7 @@ const ProductEditor: React.FC = () => {
                                         </React.Fragment>
 
                                         {
-                                            runtimeInfo.nextMilestone === null ?
+                                            product.milestones.length === 0 ?
                                                 <span className="w-100 text-center text-danger fw-bold mt-5">Nenhuma milestone foi adicionada ainda</span>
                                                 : ""
                                         }
@@ -203,34 +291,6 @@ const ProductEditor: React.FC = () => {
                                 </div>
                             </div>
                             <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo} milestoneState={_milesetoneState} />
-                            {
-                                (isAuth() && (product.creator !== getCurrentUserNick())) ?
-
-                                    <div className='row g-0'>
-                                        <div className='col'>
-                                            <a href="#0" onClick={(e) => { e.preventDefault(); removeProduct(); }}>
-                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
-                                                    <i className="fa fa-trash"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div className='col'>
-                                            <a href="#0" onClick={(e) => { e.preventDefault(); publishProduct(); }}>
-                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
-                                                    <i className="fa fa-save"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div className='col'>
-                                            <a href="#0" onClick={(e) => { e.preventDefault(); history.goBack() }}>
-                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
-                                                    <i className="fa fa-times"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    : ''
-                            }
                         </div>
 
                     </div>
