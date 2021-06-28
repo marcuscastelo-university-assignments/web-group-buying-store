@@ -1,19 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductProps } from '../types';
 import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
 import { calculateRuntimeInfo } from '../util/product-utlls';
+import { removeProduct } from '../util/local-storage';
+import ProductCommentEditor from './ProductCommentEditor';
+import ProductEditor from '../pages/ProductEditor';
 
-type ProductCardProps = {
-    product: ProductProps
-};
-
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-
+const ProductCard: React.FC<ProductProps> = (product) => {
+    const history = useHistory();
     const runtimeinfo = calculateRuntimeInfo(product);
+
+    const deleteProduct = () => {
+        removeProduct(product.productID);
+        history.push('/');
+    }
+
+    const editProduct = () => history.push(`/edit_product/${product.productID}`);
 
     return (
         <React.Fragment>
@@ -26,52 +32,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <div className="row g-0 p-0">
                         <div className="col-10" style={{ textTransform: 'capitalize' }}> {product.title} </div>
                     </div>
-                    {
-                        isAuth() && ((product.creator !== getCurrentUserNick()) || isAdmin()) ?
-                        <div className="row flex-direction-row mt-2 px-1">
-                            <div className="col-4">
-                                <span>{`R$ ${runtimeinfo.firstMilestone?.price}`}</span>
-                            </div>
-                            <div className="col-4">
-                            {
-                                (product.creator !== getCurrentUserNick()) ?
-                                <a href="#0" onClick={(e) => { e.preventDefault()}}>
-                                    <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
-                                        <i className="fa fa-edit"></i>
-                                    </div>
-                                </a>
-
-                                :
-                                <a href="#0" onClick={(e) => { e.preventDefault() }}>
-                                    <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
-                                        <i className="fa fa-trash"></i>
-                                    </div>
-                                </a>
-
-                            }
-                            </div>
-                            <div className="col-4 text-end">
-                        
-                                <span>{`R$ ${runtimeinfo.lastMilestone?.price}`}</span>
-                            </div>
+                    <div className="row flex-direction-row mt-2 px-1">
+                        <div className="col-6">
+                            <span>{`R$ ${product.milestones.sort((a, b) => -(a.price - b.price))[0].price}`}</span>
                         </div>
-                        :
-                        <div className="row flex-direction-row mt-2 px-1">
-                            <div className="col-6">
-                                <span>{`R$ ${product.milestones.sort((a, b) => -(a.price - b.price))[0].price}`}</span>
-                            </div>
-                            <div className="col-6 text-end">
-                        
-                                <span>{`R$ ${product.milestones.sort((a, b) => a.price - b.price)[0].price}`}</span>
-                            </div>
+                        <div className="col-6 text-end">
+                    
+                            <span>{`R$ ${product.milestones.sort((a, b) => a.price - b.price)[0].price}`}</span>
                         </div>
-                    }
-
-
-
-
-
-
+                    </div>
 
                     <div className="progress">
                         <div className="progress-bar text-center bg-warning" role="progressbar"
@@ -81,6 +50,30 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                                 className="justify-content-center d-flex position-absolute w-100 text-dark fw-bold">{product.currentQuantity}/{runtimeinfo.lastMilestone?.quantity}</small>
                         </div>
                     </div>
+                    {
+                        isAuth() && ((product.creator === getCurrentUserNick()) || isAdmin()) ?
+                        <div className="row flex-direction-row mt-2 px-1">
+                            {
+                                (product.creator === getCurrentUserNick()) ?
+                                <a href="#0" onClick={(e) => { e.preventDefault();editProduct()}}>
+                                    <div className="text-center" style={{ fontSize: '1.5em', color: 'blue' }} >
+                                        <i className="fa fa-edit"></i>
+                                    </div>
+                                </a>
+
+                                :
+                                <a href="#0" onClick={(e) => { e.preventDefault();deleteProduct()}}>
+                                    <div className="text-center" style={{ fontSize: '1.5em', color: 'darkred' }} >
+                                        <i className="fa fa-trash"></i>
+                                    </div>
+                                </a>
+
+                            }
+                        </div>
+                        :
+                        ""
+                    }
+
                 </div>
             </div>
         </React.Fragment>

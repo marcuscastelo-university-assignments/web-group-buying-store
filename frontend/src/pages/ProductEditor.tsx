@@ -7,20 +7,16 @@ import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import { DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
 import { generateProductID, getCategories, getUser, updateProduct } from '../util/local-storage';
-import  * as LS from '../util/local-storage';
+import * as LS from '../util/local-storage';
 import { MilestoneProps, ProductProps } from '../types';
-import { getCurrentUserNick, isAuth } from '../util/auth-util';
-import { useHistory } from 'react-router';
+import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
+import { useHistory, useParams } from 'react-router';
 
-type ProductEditorProps = {
-    product: Readonly<Partial<ProductProps>>,
-    onRemove: (productID: string) => void,
-    onSave: (product: ProductProps) => void,
-};
-
-
-const ProductEditor: React.FC<ProductEditorProps> = (props) => {
+const ProductEditor: React.FC = () => {
     const history = useHistory();
+    const { id: productID } = useParams<{ id?: string }>();
+
+    const existingProduct = productID ? LS.getProduct(productID) : undefined;
 
     let _milesetoneState = useState(-1);
     let [selectedMilestone, selectMilestone] = _milesetoneState;
@@ -28,42 +24,42 @@ const ProductEditor: React.FC<ProductEditorProps> = (props) => {
     let [newQuantity, setNewQuantity] = useState(0);
     let [newPrice, setNewPrice] = useState(0);
     let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(Object.keys(getCategories()).map(a => undefined));
-   
+
     const nick = getCurrentUserNick();
     const user = getUser(nick);
 
-    const [product, setProduct] = useState<ProductProps>({
-        title: props.product.title ?? "",
-        milestones: props.product.milestones ??  [
-            { quantity: 3, price: 10 },
-            { quantity: 8, price: 8 },
-            { quantity: 15, price: 5 },
-        ],
-        categoryID: props.product.categoryID ?? "",
-        imageURL: props.product.imageURL ?? "",
-        currentQuantity: props.product.currentQuantity ?? 0,
-        productID: props.product.productID ?? generateProductID(),
-        comments: props.product.comments ?? {},
-        description: props.product.description ?? "",
-        creator: nick ?? '',
-    });
+
+    const [product, setProduct] = useState<ProductProps>(
+        existingProduct ??
+        {
+            title: "",
+            milestones: [],
+            categoryID: "",
+            imageURL: "",
+            currentQuantity: 0,
+            productID: generateProductID(),
+            comments: {},
+            description: "",
+            creator: nick,
+        }
+    );
 
     let [productImage, setProductImage] = useState(DEFAULTS.IMG_DEFAULT);
     let [titleName, setTitleName] = useState('');
     let [descriptionText, setDescriptionText] = useState('')
 
-    if (!nick || !user) {
+    if (nick === '' || !user || nick !== product.creator) {
         //Important: do not remove this line (product.creator is undefined even though it should not!)
         return <h1>401 NOT AUTHORIZED</h1>
     }
-    
+
     const runtimeInfo = calculateRuntimeInfo(product);
 
     const removeMilestone = (product: ProductProps, milestone: MilestoneProps) => {
         const idx = product.milestones.findIndex(m => m.quantity === milestone.quantity);
         if (idx < 0) return false;
 
-        product.milestones.splice(idx,1);
+        product.milestones.splice(idx, 1);
         setProduct(product);
 
         return true;
@@ -97,16 +93,19 @@ const ProductEditor: React.FC<ProductEditorProps> = (props) => {
         product.productID = generateProductID();
         product.imageURL = productImage;
         product.description = descriptionText;
-        for(let i=categoriesParents.length - 1;i>=0;i--){
-            if(categoriesParents[i] !== undefined) product.categoryID = categoriesParents[i] ?? ""; 
+        for (let i = categoriesParents.length - 1; i >= 0; i--) {
+            if (categoriesParents[i] !== undefined) {
+                product.categoryID = categoriesParents[i] ?? "";
+                break;
+            }
         }
         setProduct(product);
         updateProduct(product);
 
         history.push('/');
-        return product
+        return product;
     }
-    
+
     const updateSelectorsBelow = (index: number, chosenCategory: string) => {
 
         let categoriesParentsCopy = [...categoriesParents];
@@ -136,7 +135,7 @@ const ProductEditor: React.FC<ProductEditorProps> = (props) => {
 
                                             <input className="form-control mt-3" name="product-img-inp" id="product-img-inp" type="file" accept="image/*" onChange={(e) => setProductImage(URL.createObjectURL(e.target.files ? e.target.files[0] : '/img/categories/bed'))} />
                                             <img id="product-img-preview" src={productImage} className="card-img-top" alt="..." />
-                                            <form className="card-body" onSubmit={(e)=>{e.preventDefault(); publishProduct()}}>
+                                            <form className="card-body" onSubmit={(e) => { e.preventDefault(); publishProduct() }}>
                                                 <p className="card-text p-0">
                                                     <textarea value={descriptionText} onChange={(e) => setDescriptionText(e.target.value)} className="form-control text-center" required style={{ fontSize: '1.2em' }} placeholder="Descrição do produto"></textarea>
                                                 </p>
@@ -206,19 +205,26 @@ const ProductEditor: React.FC<ProductEditorProps> = (props) => {
                             <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo} milestoneState={_milesetoneState} />
                             {
                                 (isAuth() && (product.creator !== getCurrentUserNick())) ?
-                                
+
                                     <div className='row g-0'>
                                         <div className='col'>
-                                            <a href="#0" onClick={(e) => { e.preventDefault();removeProduct();}}>
-                                                    <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
-                                                        <i className="fa fa-trash"></i>
-                                                    </div>
-                                                </a>
+                                            <a href="#0" onClick={(e) => { e.preventDefault(); removeProduct(); }}>
+                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
+                                                    <i className="fa fa-trash"></i>
+                                                </div>
+                                            </a>
                                         </div>
                                         <div className='col'>
-                                        <a href="#0" onClick={(e) => { e.preventDefault(); publishProduct();}}>
+                                            <a href="#0" onClick={(e) => { e.preventDefault(); publishProduct(); }}>
                                                 <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
                                                     <i className="fa fa-save"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div className='col'>
+                                            <a href="#0" onClick={(e) => { e.preventDefault(); history.goBack() }}>
+                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
+                                                    <i className="fa fa-times"></i>
                                                 </div>
                                             </a>
                                         </div>

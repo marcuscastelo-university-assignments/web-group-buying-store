@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import { useHistory, useParams } from 'react-router';
+import { PromptProps, useHistory, useParams } from 'react-router';
 import ProductComment from '../components/ProductComment';
 
 import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 
 import './Product.css'
-import { generateCommentID, getCartItem, getProduct, getUser, updateCartItem } from '../util/local-storage';
+import { generateCommentID, getCartItem, getProduct, getUser, updateCartItem, removeProduct, updateProduct } from '../util/local-storage';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import { ProductProps } from '../types';
 
 import ProductCommentEditor from '../components/ProductCommentEditor'
-import { getCurrentUserNick } from '../util/auth-util';
+import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
 
 const ProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
@@ -39,7 +39,12 @@ const ProductPage: React.FC = () => {
     }
 
     const { id: productID } = useParams<{ id: string }>();
-    const [product, setProduct] = useState(getProduct(productID));
+    const [product, _setProduct] = useState(getProduct(productID));
+
+    const setProduct = (product: ProductProps) => {
+        _setProduct(product);
+        updateProduct(product);
+    }
 
     if (!product) {
         history.push('/not-found');
@@ -50,18 +55,59 @@ const ProductPage: React.FC = () => {
 
     const currentUserProps = getUser(getCurrentUserNick());
 
+    const editProduct = () => history.push(`/edit_product/${product.productID}`);
+
+    const deleteProduct = () => {
+        removeProduct(product.productID);
+        history.push('/');
+    }
+
+
+
     return (
         <React.Fragment>
             <div className="container-fluid d-flex flex-column vh-100">
                 <NavBar />
 
                 <div className="row flex-grow-1 my-4">
+
                     <div className="row g-0 mt-5">
                         <div className=" col-10 col-lg-8 mx-auto">
                             <div className="row bg-light p-3">
                                 <div className="card col-6 text-center mx-auto py-3">
                                     <div className="card col-12">
-                                        <h4 className="mt-3">{product.title}</h4>
+                                        <div className='row'>
+                                            <div className='col'>
+                                                <h4 className="mt-3">{product.title}</h4>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            {
+                                                isAuth() ? (
+                                                    (product.creator !== getCurrentUserNick()) ?
+                                                        <div className="col">
+                                                            <a href="#0" onClick={(e) => { e.preventDefault(); editProduct() }}>
+                                                                <div className="text-center bg-danger" style={{ fontSize: '1.5em', color: 'blue' }} >
+                                                                    <i className="fa fa-edit"></i>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+
+                                                        : (
+                                                            isAdmin() ?
+                                                                <div className="col">
+                                                                    <a href="#0" onClick={(e) => { e.preventDefault(); deleteProduct() }}>
+                                                                        <div className="text-center bd-" style={{ fontSize: '1.5em', color: 'darkred' }} >
+                                                                            <i className="fa fa-trash"></i>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+
+                                                                : ''
+                                                        )
+                                                ) : ''
+                                            }
+                                        </div>
                                         <div className="p-5">
                                             <img src={product.imageURL} className="card-img-top" alt="..." />
                                         </div>
@@ -110,6 +156,7 @@ const ProductPage: React.FC = () => {
                                                     <i className="fa fa-shopping-cart"></i>
                                                 </button>
                                             </a>
+
                                         </div>
                                         {/* <div className="card-body d-flex flex-column">
                                             <div className="d-flex h-100 flex-row">
@@ -177,17 +224,17 @@ const ProductPage: React.FC = () => {
                                                         editingID === commentID ?
                                                             <ProductCommentEditor
                                                                 info={product.comments[commentID]}
-                                                                key={`comment-${idx}`}
-                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setCreatingComment(false); }}
-                                                                onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setCreatingComment(false); }}
+                                                                key={`comment-${editingID}-${commentID}`}
+                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setEditingID(''); setCreatingComment(false); }}
                                                                 onClose={(commentID) => { setEditingID(''); }}
                                                             />
                                                             :
                                                             <ProductComment
                                                                 info={product.comments[commentID]}
-                                                                key={`comment-${idx}`}
-                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setCreatingComment(false); }}
-                                                                onEdit={(commentID) => { setEditingID(commentID); setCreatingComment(false); }}
+                                                                key={`comment-${editingID}-${commentID}`}
+                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                onEdit={(commentID) => { setEditingID(commentID); setCreatingComment(false); updateProduct(product); }}
                                                             />
                                                 )
                                                 :
@@ -197,6 +244,7 @@ const ProductPage: React.FC = () => {
 
                                     </div>
                                 </div>
+
                             </div>
                             <div className="row mt-5"></div>
                         </div>

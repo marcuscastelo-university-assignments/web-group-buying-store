@@ -2,10 +2,10 @@ import React from 'react';
 
 import CarouselPage from './CarouselPage';
 
-type CarouselProps<T, U> = {
+type CarouselProps<T> = {
     carouselID: string,
     itemsPerPage: number,
-    carouselItemsInfo: U[],
+    carouselItemsInfo: T[],
     component: React.FC<T>;
 };
 
@@ -38,7 +38,7 @@ function subDivideItemsInPages(items: any[], itemsPerPage: number): any[][] {
     return itemsPerPageVec;
 }
 
-export default function Carousel<T, U>(props: CarouselProps<T, U>) {
+export default function Carousel<T>(props: CarouselProps<T>) {
 
     const itemsPerPageVec = subDivideItemsInPages(props.carouselItemsInfo, props.itemsPerPage);
     return (

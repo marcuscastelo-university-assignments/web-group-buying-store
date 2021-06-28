@@ -8,6 +8,10 @@ export type RuntimeProductInfo = ProductProps & {
 }
 
 export function calculateRuntimeInfo(product: ProductProps): RuntimeProductInfo {
+    if (product === undefined) {
+        console.error('this should not happen')
+        return {} as RuntimeProductInfo;
+    }
 
     product.milestones.sort((m1, m2) => m1.quantity - m2.quantity);
     const nextMilestoneIdx = product.milestones.findIndex(m => m.quantity > product.currentQuantity);
