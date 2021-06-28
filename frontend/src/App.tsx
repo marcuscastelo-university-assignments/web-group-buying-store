@@ -98,7 +98,7 @@ function injectProductsToLocalStorage() {
             productID: '790dd7e3',
             currentQuantity: 7,
             category: '11ac',
-            imageURL: '/img/products/liquidificador.jpg',
+            imageURL: '/img/products/liquidificardophilips.jpg',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
