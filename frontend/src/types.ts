@@ -1,4 +1,3 @@
-
 export type MilestoneProps = {
     quantity: number,
     price: number,
@@ -13,13 +12,14 @@ export type UserProps = {
     birthday: string,
 }
 
-export type ProductCommentProps = {
+export type ProductCommentInfo = {
     author: UserProps,
     title: string,
     content: string,
     rating: number,
     likes: number,
-    dislikes: number
+    dislikes: number,
+    id: string,
 }
 
 export type ProductProps = {
@@ -30,5 +30,5 @@ export type ProductProps = {
     category: string,
     milestones: MilestoneProps[];
     currentQuantity: number,
-    comments?: ProductCommentProps[],
+    comments: { [id: string] : ProductCommentInfo },
 };

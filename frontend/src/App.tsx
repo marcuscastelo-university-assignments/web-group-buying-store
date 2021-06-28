@@ -82,7 +82,7 @@ function injectProductsToLocalStorage() {
             productID: '41e5b333',
             currentQuantity: 14,
             imageURL: '/img/products/notebookacer.jpg',
-            category: '11arc',
+            category: '11com',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
@@ -427,6 +427,524 @@ function injectProductsToLocalStorage() {
                 {quantity: 15, price: 5},
             ],
             title: "Tablet Apple 8a Geração 10,2 128Gb Gold",
+            comments: {}
+        },
+        "32248dzw": 
+        {
+            productID: '32248dzw',
+            currentQuantity: 10,
+            category: '11mic',
+            imageURL: '/img/products/micro1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Micro-ondas Midea 20L Espelhado 110V",
+            comments: {}
+        },
+        "32249dzw": 
+        {
+            productID: '32249dzw',
+            currentQuantity: 10,
+            category: '11mic',
+            imageURL: '/img/products/micro2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Micro-ondas LG EasyClean 30L 220V",
+            comments: {}
+        },
+        "33002lkg": 
+        {
+            productID: '33002lkg',
+            currentQuantity: 10,
+            category: '11sec',
+            imageURL: '/img/products/secador1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Secador MQ Profissional Íon 2100W 220V",
+            comments: {}
+        },
+        "33003lkg": 
+        {
+            productID: '33003lkg',
+            currentQuantity: 10,
+            category: '11sec',
+            imageURL: '/img/products/secador2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Secador Taiff Black Íon 2000W 110V",
+            comments: {}
+        },
+        "33004lkg": 
+        {
+            productID: '33004lkg',
+            currentQuantity: 10,
+            category: '11com',
+            imageURL: '/img/products/computador2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Computador 3green All-in-One 24,5 Full HD Intel Dual Core 8Gb HD 500Gb",
+            comments: {}
+        },
+        "33005lkg": 
+        {
+            productID: '33005lkg',
+            currentQuantity: 10,
+            category: '11bon',
+            imageURL: '/img/products/bone1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Boné Adidas Aba Curva Strapback Preto e Branco Unissex",
+            comments: {}
+        },
+        "33006lkg": 
+        {
+            productID: '33006lkg',
+            currentQuantity: 10,
+            category: '11bon',
+            imageURL: '/img/products/bone2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Boné Viko Básico Preto Masculino",
+            comments: {}
+        },
+        "33007lkg": 
+        {
+            productID: '33007lkg',
+            currentQuantity: 10,
+            category: '11cas',
+            imageURL: '/img/products/camisa1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Camiseta Lisa Preta 100% Algodão Masculina",
+            comments: {}
+        },
+        "33019lkg": 
+        {
+            productID: '33019lkg',
+            currentQuantity: 10,
+            category: '11cas',
+            imageURL: '/img/products/camisa2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Camisa Manda Longa Listrada Rosa Feminina",
+            comments: {}
+        },
+        "33020lkg": 
+        {
+            productID: '33020lkg',
+            currentQuantity: 10,
+            category: '11blu',
+            imageURL: '/img/products/blusa1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Blusa Cropped Gola Manga Curta Preta Feminina",
+            comments: {}
+        },
+        "33021lkg": 
+        {
+            productID: '33021lkg',
+            currentQuantity: 10,
+            category: '11blu',
+            imageURL: '/img/products/blusa2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Blusa Modal Plus Manga Longa Vinho Feminina",
+            comments: {}
+        },
+        "33022lkg": 
+        {
+            productID: '33022lkg',
+            currentQuantity: 10,
+            category: '11cal',
+            imageURL: '/img/products/calca1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Calça de Moletom Preta Masculina",
+            comments: {}
+        },
+        "33023lkg": 
+        {
+            productID: '33023lkg',
+            currentQuantity: 10,
+            category: '11cal',
+            imageURL: '/img/products/calca2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Calça Jeans Ballon Azul Feminina",
+            comments: {}
+        },
+        "33024lkg": 
+        {
+            productID: '33024lkg',
+            currentQuantity: 10,
+            category: '11ten',
+            imageURL: '/img/products/tenis1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Tênis Nike SB Charge Preto Masculino",
+            comments: {}
+        },
+        "33025lkg": 
+        {
+            productID: '33025lkg',
+            currentQuantity: 10,
+            category: '11ten',
+            imageURL: '/img/products/tenis2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Tênis Adidas Breaknet Branco Feminino",
+            comments: {}
+        },
+        "33026lkg": 
+        {
+            productID: '33026lkg',
+            currentQuantity: 10,
+            category: '11chi',
+            imageURL: '/img/products/chinelo1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Chinelo Olympikus 921 Preto e Laranja Masculino",
+            comments: {}
+        },
+        "33027lkg": 
+        {
+            productID: '33027lkg',
+            currentQuantity: 10,
+            category: '11chi',
+            imageURL: '/img/products/chinelo2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Chinelo Fila Drifter Basic Rosa Feminino",
+            comments: {}
+        },
+        "35221pcg": 
+        {
+            productID: '35221pcg',
+            currentQuantity: 10,
+            category: '11cer',
+            imageURL: '/img/products/cereal1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Cereal Matinal Kellogg's Original 250g",
+            comments: {}
+        },
+        "35222pcg": 
+        {
+            productID: '35222pcg',
+            currentQuantity: 10,
+            category: '11cer',
+            imageURL: '/img/products/cereal2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Cereal Matinal Superbom Super Balls 200g",
+            comments: {}
+        },
+        "35223pcg": 
+        {
+            productID: '35223pcg',
+            currentQuantity: 10,
+            category: '11car',
+            imageURL: '/img/products/carne1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Bife de Coxão Mole 500g",
+            comments: {}
+        },
+        "35224pcg": 
+        {
+            productID: '35224pcg',
+            currentQuantity: 10,
+            category: '11car',
+            imageURL: '/img/products/carne2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Picanha Bovina Maturatta Embalada a Vácuo 1Kg",
+            comments: {}
+        },
+        "35225pcg": 
+        {
+            productID: '35225pcg',
+            currentQuantity: 10,
+            category: '11pei',
+            imageURL: '/img/products/peixe1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Truta Defumada e Curada 350g",
+            comments: {}
+        },
+        "35226pcg": 
+        {
+            productID: '35226pcg',
+            currentQuantity: 10,
+            category: '11pei',
+            imageURL: '/img/products/peixe2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Filé de Salmão Congelado 300g",
+            comments: {}
+        },
+        "35227pcg": 
+        {
+            productID: '35227pcg',
+            currentQuantity: 10,
+            category: '11bol',
+            imageURL: '/img/products/bolacha1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Bolacha Maria Isabela 400g",
+            comments: {}
+        },
+        "35228pcg": 
+        {
+            productID: '35228pcg',
+            currentQuantity: 10,
+            category: '11bol',
+            imageURL: '/img/products/bolacha2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Bolacha Bono Nestlé Chocolate 126g",
+            comments: {}
+        },
+        "35229pcg": 
+        {
+            productID: '35229pcg',
+            currentQuantity: 10,
+            category: '11cho',
+            imageURL: '/img/products/chocolate1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Chocolate Nestlé Suflair 130g",
+            comments: {}
+        },
+        "35230pcg": 
+        {
+            productID: '35230pcg',
+            currentQuantity: 10,
+            category: '11cho',
+            imageURL: '/img/products/chocolate2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Chocolate Garoto Talento Castanha-do-Pará 25g",
+            comments: {}
+        },
+        "35231pcg": 
+        {
+            productID: '35231pcg',
+            currentQuantity: 10,
+            category: '11sov',
+            imageURL: '/img/products/sorvete1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Sorvete Kibon Cremosíssimo 4 em 1 Tropical 1.5L",
+            comments: {}
+        },
+        "35232pcg": 
+        {
+            productID: '35232pcg',
+            currentQuantity: 10,
+            category: '11sov',
+            imageURL: '/img/products/sorvete2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Sorvete Garoto Chocolate 1.5L",
+            comments: {}
+        },
+        "56s21jzw": 
+        {
+            productID: '56s21jzw',
+            currentQuantity: 10,
+            category: '111pla',
+            imageURL: '/img/products/placa1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Placa-Mãe AMD Gigabyte Aorus B550M DDR4 AM4 mATX",
+            comments: {}
+        },
+        "56s22jzw": 
+        {
+            productID: '56s22jzw',
+            currentQuantity: 10,
+            category: '111pla',
+            imageURL: '/img/products/placa2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Placa-Mãe ASUS TUF B460M Intel LGA1200 10a Geração DDR4 mATX",
+            comments: {}
+        },
+        "56s23jzw": 
+        {
+            productID: '56s23jzw',
+            currentQuantity: 10,
+            category: '111pro',
+            imageURL: '/img/products/processador1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Processador Inter-Core i9-10850K Cache 20Mb 3.6GHz (5.2 GHz Turbo) LGA1200",
+            comments: {}
+        },
+        "56s24jzw": 
+        {
+            productID: '56s24jzw',
+            currentQuantity: 10,
+            category: '111pro',
+            imageURL: '/img/products/processador2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Processador AMD Ryzen 9 5900X Cache 70Mb 3.7GHz (4.8 GHz Turbo) AM4",
+            comments: {}
+        },
+        "56s25jzw": 
+        {
+            productID: '56s25jzw',
+            currentQuantity: 10,
+            category: '111fon',
+            imageURL: '/img/products/fonte1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Fonte EVGA 600W 80 Plus Bronze Semi-Modular com PFC Ativo",
+            comments: {}
+        },
+        "56s26jzw": 
+        {
+            productID: '56s26jzw',
+            currentQuantity: 10,
+            category: '111fon',
+            imageURL: '/img/products/fonte2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Fonte Corsair CV Series 650W 80 Plus Bronze",
+            comments: {}
+        },
+        "56s27jzw": 
+        {
+            productID: '56s27jzw',
+            currentQuantity: 10,
+            category: '111mem',
+            imageURL: '/img/products/memoria1.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Memória RAM HyperX Fury 8Gb DDR4 2666MHz CL16",
+            comments: {}
+        },
+        "56s28jzw": 
+        {
+            productID: '56s28jzw',
+            currentQuantity: 10,
+            category: '111mem',
+            imageURL: '/img/products/memoria2.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Memória RAM para Notebook Team Group T-Force Vulcan 8Gb DDR4 2666MHz CL18",
             comments: {}
         },
     };

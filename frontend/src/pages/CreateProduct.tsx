@@ -6,7 +6,7 @@ import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import { DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
-import { getCategories, updateProduct } from '../util/local-storage';
+import { generateProductID, getCategories, updateProduct } from '../util/local-storage';
 import { MilestoneProps, ProductProps } from '../types';
 
 const CreateProductPage: React.FC = () => {
@@ -65,8 +65,7 @@ const CreateProductPage: React.FC = () => {
             categoriesParents[1] === undefined
         ) return console.error('Required values ' + JSON.stringify(product));
         product.title = titleName;
-        product.productID = (parseInt(localStorage.getItem('last-id') ?? '0') + 1).toString();
-        localStorage.setItem('last-id', product.productID);
+        product.productID = generateProductID();
         product.imageURL = productImage;
         product.description = descriptionText;
         for(let i=categoriesParents.length - 1;i>=0;i--){

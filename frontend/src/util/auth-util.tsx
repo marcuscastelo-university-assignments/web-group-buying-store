@@ -1,14 +1,18 @@
 import { getUser } from "./local-storage";
 
 export function isAuth() {
-    return document.cookie.includes('user');
+    return getCurrentUser() !== '';
+}
+
+export function getCookie(cookieName: string) {
+    return document.cookie.split(';').find(a=>a.trim().startsWith(`${cookieName}=`))?.split('=')[1];
 }
 
 export function getCurrentUser() {
-    return document.cookie.split(';').find(a=>a.trim().startsWith('user='))?.split('=')[1]??'as';
+    return getCookie('user') ?? ''
 }
 export function isAdmin() {
-    return document.cookie.split(';').find(a=>a.startsWith('admin='))?.split('=')[1] === 'true';
+    return (getCookie('admin') ?? 'false') === 'true'
 }
 
 export const login = (userNick: string, password: string) => {

@@ -46,7 +46,7 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
     const [count, setCount] = useState<number>(itemInfo.quantity);
 
     const runtimeInfo = calculateRuntimeInfo(product);
-    const remainingProductQuantity = runtimeInfo.lastMilestone.quantity - product.currentQuantity;
+    const remainingProductQuantity = Math.max(0, (runtimeInfo.lastMilestone?.quantity ?? 0) - product.currentQuantity);
 
     const history = useHistory();
 
@@ -57,7 +57,7 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
         itemInfo.quantity = count;
         updateCartItem(itemInfo);
         onChanged();
-    }, [count, itemInfo, onChanged]);
+    }, [count, itemInfo, onChanged, remainingProductQuantity]);
 
     const { currPricePerItem, nextPricePerItem, remainingToReducePrice } = getProductData(product, itemInfo.quantity);
 
@@ -134,22 +134,27 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
                                             </span>
                                         </div>
                                         <div className="col-12 text-justify">
-                                            <small className="text-muted">Falta(m) {remainingToReducePrice} unidade(s) para o produto abaixar para R${nextPricePerItem} por produto <br />
-                                            Nesse caso, você deve pagar, no mínimo, R${runtimeInfo.lastMilestone.price * (runtimeInfo.lastMilestone.quantity - product.currentQuantity)} para atingir a última meta.
-                                        </small>
-                                        </div>
+                                            {
+                                                remainingToReducePrice > 0 ?
+                                                    <small className="text-muted">Falta(m) {remainingToReducePrice} unidade(s) para o produto abaixar para R${nextPricePerItem} por produto 
+                                                        <br /> Nesse caso, você deve pagar, no mínimo, R${runtimeInfo.lastMilestone ? (runtimeInfo.lastMilestone.price * (runtimeInfo.lastMilestone.quantity - product.currentQuantity)) : 'Erro'} para atingir a última meta.
+                                                    </small>
+                                                    :
+                                                    <small className="text-success"> Todas as milestones foram atingidas! o preço atual é {runtimeInfo.currentMilestone?.price ?? NaN} </small>
+                                            }
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
+                </div>
                 </div>
 
 
 
 
-            </React.Fragment>
+            </React.Fragment >
     );
 }
 

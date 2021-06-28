@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useHistory, useParams } from 'react-router';
@@ -8,13 +8,27 @@ import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 
 import './Product.css'
-import { getCartItem, getProduct, updateCartItem } from '../util/local-storage';
+import { generateCommentID, getCartItem, getProduct, getUser, getUsers, updateCartItem } from '../util/local-storage';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import { ProductProps, MilestoneProps } from '../types';
+
+import ProductCommentEditor from '../components/ProductCommentEditor'
+import { getCurrentUser } from '../util/auth-util';
 
 const ProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
     let [selectedMilestone, selectMilestone] = _milesetoneState;
+
+    //TODO: edit comment should setCreatingComment to false
+    let [creatingComment, setCreatingComment] = useState(false);
+    let [editingID, setEditingID] = useState('');
+
+    const showCommentEditor = () => {
+        if (creatingComment) return;
+
+        setCreatingComment(true);
+        setEditingID('');
+    };
 
     let history = useHistory();
     function addToCart({ productID }: ProductProps) {
@@ -25,7 +39,7 @@ const ProductPage: React.FC = () => {
     }
 
     const { id: productID } = useParams<{ id: string }>();
-    const product = getProduct(productID);
+    const [product, setProduct] = useState(getProduct(productID));
 
     if (!product) {
         history.push('/not-found');
@@ -33,6 +47,8 @@ const ProductPage: React.FC = () => {
     }
 
     const runtimeInfo = calculateRuntimeInfo(product);
+
+    const currentUserProps = getUser(getCurrentUser());
 
     return (
         <React.Fragment>
@@ -109,6 +125,8 @@ const ProductPage: React.FC = () => {
 
                     <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo} milestoneState={_milesetoneState} />
 
+
+
                     <div className="row g-0 mt-5" id="comments">
                         <div className="col-11 col-md-8 mx-auto">
                             <div className="col">
@@ -119,13 +137,61 @@ const ProductPage: React.FC = () => {
                                 </div>
                                 <div className="row mt-1">
                                     <div className="col-12 mx-auto" id="comment-list">
+
                                         {
-                                            (product.comments?.length ?? 0) > 0 ?
-                                                product.comments?.map(
-                                                    (comment, idx) =>
-                                                        <ProductComment info={comment} key={`comment-${idx}`} />
+                                            currentUserProps ? <>
+                                                {
+                                                    !creatingComment ?
+                                                        <div className="row">
+                                                            <a href="#0" onClick={(e) => { e.preventDefault(); showCommentEditor(); }}>
+                                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'black' }} >
+                                                                    <i className="fa fa-plus" />
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        : ''
+                                                }
+                                                {
+                                                    creatingComment ?
+                                                        <ProductCommentEditor
+                                                            info={{ author: currentUserProps, id: generateCommentID() }}
+                                                            onRemove={(commentID) => { setCreatingComment(false); }}
+                                                            onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setCreatingComment(false); }}
+                                                            onClose={(commentID) => { setCreatingComment(false); }}
+                                                        />
+                                                        : ''
+
+                                                }
+                                            </> : ''
+                                        }
+
+
+                                        <div>
+                                            {/* <ProductCommentEditor info={product.comments[commentID]} key={`comment-${idx}`} onRemove={() => { alert('TODO'); return true }} /> */}
+                                        </div>
+
+                                        {
+                                            (Object.keys(product.comments ?? {}).length ?? 0) > 0 ?
+                                                Object.keys(product.comments ?? {}).map(
+                                                    (commentID, idx) =>
+                                                        editingID === commentID ?
+                                                            <ProductCommentEditor
+                                                                info={product.comments[commentID]}
+                                                                key={`comment-${idx}`}
+                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setCreatingComment(false); }}
+                                                                onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setCreatingComment(false); }}
+                                                                onClose={(commentID) => { setEditingID(''); }}
+                                                            />
+                                                            :
+                                                            <ProductComment
+                                                                info={product.comments[commentID]}
+                                                                key={`comment-${idx}`}
+                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setCreatingComment(false); }}
+                                                                onEdit={(commentID) => { setEditingID(commentID); setCreatingComment(false); }}
+                                                            />
                                                 )
-                                                : <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
+                                                :
+                                                <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
                                         }
 
 

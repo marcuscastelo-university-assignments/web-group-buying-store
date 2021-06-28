@@ -93,3 +93,15 @@ export function registerUser(newUser: UserProps) {
 
     return true;
 }
+
+export function generateProductID() {
+    const id = (parseInt(localStorage.getItem('last-product-id') ?? '0') + 1).toString();
+    localStorage.setItem('last-product-id', id);
+    return id;
+}
+
+export function generateCommentID() {
+    const id = (parseInt(localStorage.getItem('last-comment-id') ?? '0') + 1).toString();
+    localStorage.setItem('last-comment-id', id);
+    return id;
+}

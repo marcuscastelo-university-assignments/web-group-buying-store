@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import { ProductCommentProps } from '../types';
+import { ProductCommentInfo } from '../types';
+import { getCurrentUser, isAuth, isAdmin } from '../util/auth-util';
 
-export default function ProductComment({ info }: { info: ProductCommentProps }) {
+type ProductCommentProps = {
+    info: ProductCommentInfo,
+    onRemove: (commentID: string) => void,
+    onEdit: (commentID: string) => void,
+};
+
+export default function ProductComment({ info, onEdit, onRemove }: ProductCommentProps) {
     return (
         <div className="row g-0 mt-1 ">
             <div className="col card mx-auto">
@@ -14,7 +20,7 @@ export default function ProductComment({ info }: { info: ProductCommentProps }) 
                         <div className="row g-0">
                             <div className="col-2 col-md-12 text-center">
                                 <img className="img-fluid"
-                                    src={info.author.profileImage} alt="profile" />                                    
+                                    src={info.author.profileImage} alt="profile" />
                             </div>
                             <div className="col col-md-12 text-center">
                                 <span>{info.author.name}</span>
@@ -25,7 +31,7 @@ export default function ProductComment({ info }: { info: ProductCommentProps }) 
                         <div className="d-flex">
                             <div className="flex-shrink-1 fluid comment-rating">
                                 {[...new Array(Math.round(Math.max(0, Math.min(5, info.rating ?? 0))))].map(() => <span className="fa fa-star"></span>)}
-                                {[...new Array(5-Math.round(Math.max(0, Math.min(5, info.rating ?? 0))))].map(() => <span className="fa fa-star-o"></span>)}
+                                {[...new Array(5 - Math.round(Math.max(0, Math.min(5, info.rating ?? 0))))].map(() => <span className="fa fa-star-o"></span>)}
                             </div>
                             <div className="px-2">
                                 <h5>{info.title ?? "Sem título"}</h5>
@@ -35,6 +41,28 @@ export default function ProductComment({ info }: { info: ProductCommentProps }) 
                             {info.content}
                         </p>
                         <div className="row">
+                            <div className="col">
+                                {
+                                    (isAuth() && isAdmin()) ?
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(info.id); }}>
+                                            <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
+                                                <i className="fa fa-trash"></i>
+                                            </div>
+                                        </a>
+                                        : ''
+                                }
+                            </div>
+                            <div className="col">
+                                {
+                                    (isAuth() && (info.author.nick === getCurrentUser())) ?
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); onEdit(info.id);}}>
+                                            <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
+                                                <i className="fa fa-edit"></i>
+                                            </div>
+                                        </a>
+                                        : ''
+                                }
+                            </div>
                             <div className="col">
                                 <span className="fa fa-thumbs-o-up"></span>
                                 <span className="fa fa-thumbs-o-down"></span>
@@ -47,7 +75,7 @@ export default function ProductComment({ info }: { info: ProductCommentProps }) 
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
 
     );
