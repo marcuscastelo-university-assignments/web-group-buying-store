@@ -13,6 +13,9 @@ const NavBar: React.FC = () => {
                             <Link to="/">
                                 <img className="img" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png" alt="Logo" />
                             </Link>
+
+                            
+
                         </div>
                         <div className="col d-flex align-items-center">
                             <input className="form-control" type="search" size={1} />

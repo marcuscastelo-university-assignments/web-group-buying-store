@@ -9,6 +9,13 @@ const LS_KEYS = {
     CATEGORIES: 'categories'
 };
 
+export function removeCartItem(productID: string) {
+    const currItems = getCartItems();
+    const idx = currItems.findIndex(it => it.productID === productID);
+    if (idx >= 0) currItems.splice(idx, 1);
+    updateCartItems(currItems);
+}
+
 export function updateCartItem(cartItem: CartProductProps) {
     const currItems = getCartItems();
     const currIdx = currItems.findIndex(c => c.productID === cartItem.productID);
