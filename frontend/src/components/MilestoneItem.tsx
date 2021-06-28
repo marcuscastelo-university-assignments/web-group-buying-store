@@ -10,12 +10,13 @@ type MilestoneItemProps = {
     product: ProductProps,
     milestone: MilestoneProps,
     expanded?: boolean,
+    editing?: boolean,
     onClick?: () => void,
     onRemove?: (product: ProductProps, milestone: MilestoneProps) => boolean,
 }
 
 
-export default function MilestoneItem({ product, milestone, expanded = false, onClick = () => { }, onRemove = () => { return false; } }: MilestoneItemProps) {
+export default function MilestoneItem({ product, milestone, expanded = false, editing = false, onClick = () => { }, onRemove = () => { return false; } }: MilestoneItemProps) {
     const reached = milestone.quantity <= product.currentQuantity;
     const next = !reached && calculateRuntimeInfo(product).nextMilestone === milestone;
 
@@ -29,11 +30,16 @@ export default function MilestoneItem({ product, milestone, expanded = false, on
             <div className={`card-body ${expanded ? '' : 'd-none'}`}>
                 <h5 className="card-title">R${milestone.price}</h5>
                 <p className={`card-text ${expanded ? 'd-none' : ''}`}>With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(product, milestone); history.push('/create_product') }}>
-                    <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
-                        <i className="fa fa-trash"></i>
-                    </div>
-                </a>
+
+                {
+                    editing ?
+                        <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(product, milestone); history.push('/create_product') }}>
+                            <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
+                                <i className="fa fa-trash"></i>
+                            </div>
+                        </a>
+                        : ''
+                }
             </div>
         </div>
     );
