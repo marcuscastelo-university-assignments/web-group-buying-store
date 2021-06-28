@@ -3,47 +3,18 @@ import { Link } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import { ProductProps } from '../types';
 
-export type MilestoneProps = {
-    quantity: number,
-    price: number,
-};
-
-export type UserProps = {
-    name: string,
-    nick: string,
-    email: string,
-    profileImage: string,
-}
-
-export type ProductCommentProps = {
-    author: UserProps,
-    title: string,
-    content: string,
-    rating: number,
-    likes: number,
-    dislikes: number
-}
-
-export type ProductProps = {
-    productID: string,
-    title: string,
-    description?: string,
-    imageURL: string,
-    category: string,
-    milestones: MilestoneProps[];
-    currentQuantity: number,
-    comments?: ProductCommentProps[],
-};
 
 const ProductCard: React.FC<ProductProps> = (props: ProductProps) => {
     return (
         <React.Fragment>
-            <div className="card" style={{maxWidth:200}}>
+            <div className="card h-100" style={{ maxWidth: 200 }}>
                 <Link to={`/product/${props.productID}`}>
                     <img src={props.imageURL} className="d-block img-thumbnail mx-auto" alt={props.title} />
                 </Link>
-                <div className="card-body px-1 pt-2">
+                <div className="flex-grow-1"/>
+                <div className="card-body px-1 pt-2 flex-grow-0">
                     <div className="row g-0 p-0">
                         <div className="col-10" style={{ textTransform: 'capitalize' }}> {props.title} </div>
                     </div>

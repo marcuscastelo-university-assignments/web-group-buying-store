@@ -42,8 +42,9 @@ export default function Carousel<T>(props: CarouselProps<T>) {
 
     const itemsPerPageVec = subDivideItemsInPages(props.carouselItemsInfo, props.itemsPerPage);
     return (
+        props.carouselItemsInfo.length > 0 ?
         <React.Fragment>
-            <div id={props.carouselID} className="carousel slide" data-bs-ride="carousel">
+            <div id={props.carouselID} className="carousel slide"　 data-bs-ride="carousel">
                 <div className="carousel-inner mx-auto w-75">
                     {
                         itemsPerPageVec.map((pageItemsInfo, index) => <CarouselPage first={index === 0} component={props.component} carouselPageItemsInfo={pageItemsInfo} key={`${props.carouselID}-${index}`}/>)
@@ -67,5 +68,6 @@ export default function Carousel<T>(props: CarouselProps<T>) {
                 </div>
             </div> */}
         </React.Fragment>
+        : <></>
     )
 };

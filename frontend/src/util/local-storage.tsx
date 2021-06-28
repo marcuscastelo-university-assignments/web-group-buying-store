@@ -1,5 +1,6 @@
-import { ProductProps } from "../components/ProductCard";
+
 import { CartProductProps } from "../pages/Cart";
+import { ProductProps, UserProps } from "../types";
 import { LayerDescription } from "./mock-categories";
 
 const LS_KEYS = {
@@ -7,6 +8,13 @@ const LS_KEYS = {
     PRODUCTS: 'products',
     CATEGORIES: 'categories'
 };
+
+export function removeCartItem(productID: string) {
+    const currItems = getCartItems();
+    const idx = currItems.findIndex(it => it.productID === productID);
+    if (idx >= 0) currItems.splice(idx, 1);
+    updateCartItems(currItems);
+}
 
 export function updateCartItem(cartItem: CartProductProps) {
     const currItems = getCartItems();
@@ -58,4 +66,42 @@ export function getCategoriesInLayer(layerID: string) {
 
 export function getCategoryInLayer(layerID: string, categoryID: string) {
     return getCategories()[layerID]?.find(c=> c.id === categoryID);
+}
+
+export function getUsers() {
+    return JSON.parse(localStorage.getItem('users') ?? '{}') as {[nick: string] : (UserProps | undefined)};
+}
+
+export function getUser(nick: string) {
+    return getUsers()[nick];
+}
+
+export function updateUsers(users: {[nick: string] : (UserProps|undefined)}) {
+    localStorage.setItem('users', JSON.stringify(users));
+} 
+
+export function registerUser(newUser: UserProps) {
+    if (getUser(newUser.nick)) {
+        //TODO: try catch?
+        console.error('User already exists');
+        return false;
+    }
+
+    const users = getUsers();
+    users[newUser.nick] = newUser;
+    updateUsers(users);
+
+    return true;
+}
+
+export function generateProductID() {
+    const id = (parseInt(localStorage.getItem('last-product-id') ?? '0') + 1).toString();
+    localStorage.setItem('last-product-id', id);
+    return id;
+}
+
+export function generateCommentID() {
+    const id = (parseInt(localStorage.getItem('last-comment-id') ?? '0') + 1).toString();
+    localStorage.setItem('last-comment-id', id);
+    return id;
 }

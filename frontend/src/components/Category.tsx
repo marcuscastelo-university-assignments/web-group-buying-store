@@ -3,7 +3,8 @@ import React, { MouseEventHandler } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
-export type CategoryProps = {
+
+type CategoryProps = {
     layer: string,
     id: string,
     parent: string,
@@ -18,7 +19,7 @@ const Category = (props: CategoryProps) => {
                     {/* FOR */}
 
                     <div 
-                        className={`category mx-auto ${props.subcategory? 'parent': ''} ${props.layer !== '1' ? 'd-none' : ''}`} 
+                        className={`category mx-auto ${props.subcategory? 'parent': ''}`} 
                         id={`${props.id}`} 
                         data-parent={`${props.parent}`} 
                         onMouseOver={props.onMouseOver}

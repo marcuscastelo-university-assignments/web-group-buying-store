@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { isAuth } from '../util/auth-util';
 
 const NavBar: React.FC = () => {
     return (
@@ -12,6 +13,9 @@ const NavBar: React.FC = () => {
                             <Link to="/">
                                 <img className="img" src="https://tiao-a.magazineluiza.com.br/img/lu-header.png" alt="Logo" />
                             </Link>
+
+                            
+
                         </div>
                         <div className="col d-flex align-items-center">
                             <input className="form-control" type="search" size={1} />
@@ -21,12 +25,23 @@ const NavBar: React.FC = () => {
                         </div>
                         <div className="col-12 col-md-3">
                             <div className="row h-100 w-100 d-flex align-items-center ">
-                                <div className="col heading-icon">
-                                    <Link to="/cart"><i className="fa fa-shopping-cart" id="cart-icon"></i></Link>
-                                </div>
+                                {
+                                    isAuth() ?
+                                        <div className="col heading-icon">
+                                            <Link to="/cart"><i className="fa fa-shopping-cart" id="cart-icon"></i></Link>
+                                        </div>
+                                        : ''
+                                }
                                 <div className="col heading-icon">
                                     <Link to="/login"><i className="fa fa-user" id="cart-icon"></i></Link>
                                 </div>
+                                {
+                                    isAuth() ?
+                                        <div className="col heading-icon">
+                                            <Link to="/create_product"><i className="fa fa-plus" id="cart-icon"></i></Link>
+                                        </div>
+                                        : ''
+                                }
                             </div>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
-import { MilestoneProps, ProductProps } from "../components/ProductCard";
+import { MilestoneProps, ProductProps } from "../types";
 
 export type RuntimeProductInfo = ProductProps & {
     currentMilestone: MilestoneProps | null,
     nextMilestone: MilestoneProps | null,
-    lastMilestone: MilestoneProps
+    lastMilestone: MilestoneProps | null
 }
 
 export function calculateRuntimeInfo(product: ProductProps): RuntimeProductInfo {
@@ -16,7 +16,7 @@ export function calculateRuntimeInfo(product: ProductProps): RuntimeProductInfo 
 
     const currentMilestone = currentMilestoneIdx < 0 ? null : product.milestones[currentMilestoneIdx] 
     const nextMilestone = nextMilestoneIdx < 0 ? null : product.milestones[nextMilestoneIdx] 
-    const lastMilestone = product.milestones[product.milestones.length-1]
+    const lastMilestone = product.milestones.length === 0 ? null : product.milestones[product.milestones.length-1]
 
     return {
         ...product,
