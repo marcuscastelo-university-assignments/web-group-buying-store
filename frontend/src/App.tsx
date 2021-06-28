@@ -24,7 +24,7 @@ function injectProductsToLocalStorage() {
         //         name: 'Magalu',
         //         email: 'mock@magal.com',
         //         nick: 'magalu',
-        //         profileImage: 'https://tiao-a.magazineluiza.com.br/img/lu-header.png'
+        //         profileImage: 'https://tiao-a.magazineluiza.com.br/img/lu-header.jpg'
         //     },
         //     rating: 1,
         //     title: 'Odiei',
@@ -50,7 +50,7 @@ function injectProductsToLocalStorage() {
         //         name: 'Teste',
         //         email: 'mock@magal.com',
         //         nick: 'magalu',
-        //         profileImage: 'https://preview.redd.it/3z7xhbeewco21.png?auto=webp&s=ea37b9974dd174d31dcd4b9cf675e2e3a18e75d2'
+        //         profileImage: 'https://preview.redd.it/3z7xhbeewco21.jpg?auto=webp&s=ea37b9974dd174d31dcd4b9cf675e2e3a18e75d2'
         //     },
         //     rating: 5,
         //     title: 'Amei',
@@ -83,7 +83,7 @@ function injectProductsToLocalStorage() {
         {
             productID: '41e5b333',
             currentQuantity: 14,
-            imageURL: '/img/categories/bed.png',
+            imageURL: '/img/products/notebookacer.jpg',
             category: '11ac',
             milestones: [
                 {quantity: 3, price: 10},
@@ -97,7 +97,7 @@ function injectProductsToLocalStorage() {
             productID: '790dd7e3',
             currentQuantity: 7,
             category: '11ac',
-            imageURL: '/img/categories/bed.png',
+            imageURL: '/img/products/liquidificador.jpg',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
@@ -106,18 +106,150 @@ function injectProductsToLocalStorage() {
             title: "Liquidificador",
             comments: mockComments
         },
+        "790dd7e5": 
+        {
+            productID: '790dd7e5',
+            currentQuantity: 7,
+            category: '11ac',
+            imageURL: '/img/products/arcondicionadolg.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Ar condicionado LG",
+            comments: mockComments
+        },
+        "790ddde5": 
+        {
+            productID: '790ddde5',
+            currentQuantity: 7,
+            category: '11ac',
+            imageURL: '/img/products/arcondicionadofreehome.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Ar condicionado Free Home",
+            comments: mockComments
+        },
         "28221d6d": 
         {
             productID: '28221d6d',
             currentQuantity: 10,
             category: '11bath',
-            imageURL: '/img/categories/bed.png',
+            imageURL: '/img/products/asadeborboleta.jpg',
             milestones: [
                 {quantity: 3, price: 10},
                 {quantity: 8, price: 8},
                 {quantity: 15, price: 5},
             ],
             title: "Asas de borboleta"
+        },
+        "2821346d": 
+        {
+            productID: '2821346d',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/sofaoasis.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Sofa Oasis"
+        },
+        "28223d6d": 
+        {
+            productID: '28223d6d',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/sofasaopaulo.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Sofa Sao Paulo"
+        },
+        "28223dss": 
+        {
+            productID: '28223dss',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/ventiladorbasicplus.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Ventilador Basic+"
+        },
+        "28223dqw": 
+        {
+            productID: '28223dqw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/ventiladormallory.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Ventilador Mallory"
+        },
+        "282232qw": 
+        {
+            productID: '282232qw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/armariorosa.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Amário Rosa 2 portas"
+        },
+        "28211dqw": 
+        {
+            productID: '28211dqw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/armariomarrom.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Armário marrom 2 portas"
+        },
+        "282ttdqw": 
+        {
+            productID: '282ttdqw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/celulargalaxy.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Celular Galaxy A72"
+        },
+        "28215dqw": 
+        {
+            productID: '28215dqw',
+            currentQuantity: 10,
+            category: '11bath',
+            imageURL: '/img/products/celulariphone.jpg',
+            milestones: [
+                {quantity: 3, price: 10},
+                {quantity: 8, price: 8},
+                {quantity: 15, price: 5},
+            ],
+            title: "Iphone 7 Plus"
         },
     };
     updateProducts({...products, ...getProducts() as {[key: string]: ProductProps}});
