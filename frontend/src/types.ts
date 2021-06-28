@@ -10,6 +10,7 @@ export type UserProps = {
     profileImage: string,
     password: string,
     birthday: string,
+    admin?: boolean
 }
 
 export type ProductCommentInfo = {

@@ -86,8 +86,8 @@ export function updateUsers(users: {[nick: string] : (UserProps|undefined)}) {
     localStorage.setItem('users', JSON.stringify(users));
 } 
 
-export function registerUser(newUser: UserProps) {
-    if (getUser(newUser.nick)) {
+export function registerUser(newUser: UserProps, overwrite?: boolean) {
+    if (!overwrite && getUser(newUser.nick)) {
         //TODO: try catch?
         console.error('User already exists');
         return false;

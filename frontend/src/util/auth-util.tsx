@@ -11,11 +11,18 @@ export function getCookie(cookieName: string) {
 export function getCurrentUserNick() {
     return getCookie('user') ?? ''
 }
+
+export function deleteCookie(cookieName: string) {
+    document.cookie = `${cookieName}= ;  expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+}
+
 export function isAdmin() {
     return (getCookie('admin') ?? 'false') === 'true'
 }
 
 export const login = (userNick: string, password: string) => {
+    logout();
+
     const user = getUser(userNick);
     if (!user) {
         alert('User does not exist')
@@ -29,6 +36,13 @@ export const login = (userNick: string, password: string) => {
 
     document.cookie = 'user='+user.nick;
     document.cookie = 'password='+user.password;
+    if (user.admin) document.cookie = 'admin=true';
     
     return true;
+}
+
+export function logout() {
+    deleteCookie('user');
+    deleteCookie('password');
+    deleteCookie('admin');
 }
