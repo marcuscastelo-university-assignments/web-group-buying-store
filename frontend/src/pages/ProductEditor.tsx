@@ -8,8 +8,11 @@ import { DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
 import { generateProductID, getCategories, updateProduct } from '../util/local-storage';
 import { MilestoneProps, ProductProps } from '../types';
+import { getCurrentUser, isAuth } from '../util/auth-util';
 
-const CreateProductPage: React.FC = () => {
+
+
+const ProductEditor: React.FC = () => {
     let _milesetoneState = useState(-1);
     let [selectedMilestone, selectMilestone] = _milesetoneState;
 
@@ -181,6 +184,18 @@ const CreateProductPage: React.FC = () => {
                             <MilestoneProgressBar product={product} runtimeInfo={runtimeInfo} milestoneState={_milesetoneState} />
 
                         </div>
+                        <div className='row g-0'>
+                            {
+                                (isAuth() && (info.author.nick !== getCurrentUser())) ?
+                                <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(info.id); }}>
+                                        <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
+                                            <i className="fa fa-trash"></i>
+                                        </div>
+                                    </a>
+                                    : ''
+                            }
+                        </div>
+
                     </div>
 
                     <div className="row mt-5"></div>
@@ -191,4 +206,4 @@ const CreateProductPage: React.FC = () => {
     );
 };
 
-export default CreateProductPage;
+export default ProductEditor;
