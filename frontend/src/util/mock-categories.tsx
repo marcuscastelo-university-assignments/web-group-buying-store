@@ -56,6 +56,7 @@ export function generateMockCategories() {
             { layer: "111", parent:'11com', final: true, name: "Processador", id: '111pro', imageSrc: '/img/categories/processor.png' },
             { layer: "111", parent:'11com', final: true, name: "Fonte", id: '111fon', imageSrc: '/img/categories/electrical.png' },
             { layer: "111", parent:'11com', final: true, name: "Memória Ram", id: '111mem', imageSrc: '/img/categories/ram.png' },
+            { layer: "111", parent:'11com', final: true, name: "Computador", id: '111com', imageSrc: '/img/categories/computer.png' },
         ]
     };
 

@@ -7,7 +7,7 @@ import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import { DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
 import { getCategories, updateProduct } from '../util/local-storage';
-import { ProductProps } from '../types';
+import { MilestoneProps, ProductProps } from '../types';
 
 const CreateProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
@@ -27,11 +27,22 @@ const CreateProductPage: React.FC = () => {
         imageURL: "",
         currentQuantity: 0,
         productID: '-1',
-        comments: [],
+        comments: {},
         description: ""
     });
 
+    
     const runtimeInfo = calculateRuntimeInfo(product);
+
+    const removeMilestone = (product: ProductProps, milestone: MilestoneProps) => {
+        const idx = product.milestones.findIndex(m => m.quantity === milestone.quantity);
+        if (idx < 0) return false;
+
+        product.milestones.splice(idx,1);
+        setProduct(product);
+
+        return true;
+    }
 
     const addNewMilestone: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
@@ -153,6 +164,7 @@ const CreateProductPage: React.FC = () => {
                                                             key={`${idx}`}
                                                             expanded={selectedMilestone === idx}
                                                             onClick={() => selectMilestone(selectedMilestone === idx ? -1 : idx)}
+                                                            onRemove={removeMilestone}
                                                         />
                                                         : ''
                                                 ))
