@@ -1,0 +1,12 @@
+{
+  "name": "web-group-buying-store-backend",
+  "version": "0.1.0",
+  "main": "server.js",
+  "repository": "https://github.com/marcuscastelo/web-group-buying-store",
+  "author": "marcuscastelo",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
