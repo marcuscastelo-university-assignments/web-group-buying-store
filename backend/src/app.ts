@@ -1,11 +1,24 @@
 import express from 'express';
+import mongoose from 'mongoose';
 
-const app = express();
+import { getDB } from './db';
 
-app.use(express.static('html'));
+async function main() {
+    const [ connection, error ] = await getDB();
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
+    if (error) {
+        console.error('Error connecting to database:', error);
+        return;
+    }
 
-export default app;
+    //Create the app in express
+    const app = express();
+
+    app.use(express.static('html'));
+
+    app.listen(3000, () => {
+        console.log('Listening on port 3000');
+    });
+}
+
+main();
