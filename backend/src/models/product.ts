@@ -1,34 +1,32 @@
 import { model, Schema, Document } from 'mongoose';
 
-interface Product {
-    productID: string,
+export interface Product {
+    productId: string,
     title: string,
     description?: string,
     imageURL: string,
-    categoryID: string,
+    categoryId: string,
     milestones: {
         quantity: number,
         price: number,
     }[];
     currentQuantity: number,
     comments: {
-        [id: string]: {
-            author: string,
-            title: string,
-            content: string,
-            rating: number,
-            likes: number,
-            dislikes: number,
-            id: string,
-        }
-    },
+        author: string,
+        title: string,
+        content: string,
+        rating: number,
+        likes: number,
+        dislikes: number,
+        id: string,
+    }[],
     creator: string,
 };
 
-interface ProductModel extends Product, Document { } 
+export interface ProductModel extends Product, Document {};
 
 const ProductSchema = new Schema({
-    productID: { //TODO: pensar se usa o ID do mongo ou deixa assim
+    productId: { //TODO: pensar se usa o ID do mongo ou deixa assim
         type: String,
         required: true,
     },
@@ -44,7 +42,7 @@ const ProductSchema = new Schema({
         type: String,
         required: false,
     },
-    categoryID: {
+    categoryId: {
         type: String,
         required: true,
     },
@@ -92,8 +90,6 @@ const ProductSchema = new Schema({
         type: String,
         required: true,
     },
-}, {
-    timestamps: true,
 });
 
 

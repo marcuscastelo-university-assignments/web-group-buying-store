@@ -10,21 +10,10 @@ const router = Router();
  */
 
 //GET, POST, PUT, DELETE for /:id
-router.get('/:id', (req, res) => {
-    res.json({ message: `GET /product/${req.params.id}`});
-});
-
-router.post('/:id', (req, res) => {
-    res.json({ message: `POST /product/${req.params.id}`});
-});
-
-router.put('/:id', (req, res) => {
-    res.json({ message: `PUT /product/${req.params.id}`});
-});
-
-router.delete('/:id', (req, res) => {
-    res.json({ message: `DELETE /product/${req.params.id}`});
-});
+router.get('/:id', controller.getProduct);
+router.post('/:id', controller.createProduct);
+router.put('/:id', controller.updateProduct);
+router.delete('/:id', controller.deleteProduct);
 
 //GET, POST, PUT, DELETE for /:id/comments/:cid
 router.get('/:id/comment/:cid', (req, res) => {

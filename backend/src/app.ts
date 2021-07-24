@@ -16,6 +16,9 @@ async function main() {
     //Create the app in express
     const app = express();
 
+    // app.use(cors());
+    app.use(express.json());
+
     app.use('/product', productRouter);
 
     app.use(express.static('html'));
