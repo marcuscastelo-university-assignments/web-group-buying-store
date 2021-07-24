@@ -18,8 +18,8 @@ import { genMockProducts } from './util/mock-products';
 //This is a temporary function used to simulate server-side interacion.
 //TODO: remove on last assignment
 function injectProductsToLocalStorage() {
-    const products = genMockProducts();    
-    updateProducts({...products, ...getProducts()});
+    const products = genMockProducts();
+    // updateProducts({...products});
 }
 
 function injectCategoriesToLocalStorage() {

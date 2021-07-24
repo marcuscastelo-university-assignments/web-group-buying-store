@@ -3,101 +3,125 @@ import { CartProductProps } from "../pages/Cart";
 import { ProductProps, UserProps } from "../types";
 import { LayerDescription } from "./mock-categories";
 
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: 'http://localhost:3333/api/',
+})
+
 const LS_KEYS = {
     CART_ITEMS: 'cart-items',
     PRODUCTS: 'products',
     CATEGORIES: 'categories'
 };
 
-export function removeCartItem(productID: string) {
-    const currItems = getCartItems();
-    const idx = currItems.findIndex(it => it.productID === productID);
-    if (idx >= 0) currItems.splice(idx, 1);
-    updateCartItems(currItems);
+export async function removeCartItem(productId: string) {
+    // axios.delete(`/product/${productId}`);
 }
 
-export function updateCartItem(cartItem: CartProductProps) {
-    const currItems = getCartItems();
-    const currIdx = currItems.findIndex(c => c.productID === cartItem.productID);
+export async function updateCartItem(cartItem: CartProductProps) {
+    // const currItems = getCartItems();
+    // const currIdx = currItems.findIndex(c => c.productId === cartItem.productId);
 
-    if (currIdx === -1) currItems.push(cartItem);
-    else currItems[currIdx] = cartItem;
-    updateCartItems(currItems);
+    // if (currIdx === -1) currItems.push(cartItem);
+    // else currItems[currIdx] = cartItem;
+    // updateCartItems(currItems);
+
+    // axios.put(`//product/${productId}`, )
 }
 
-export function updateCartItems(cartItems: CartProductProps[]) {
-    localStorage.setItem(LS_KEYS.CART_ITEMS, JSON.stringify(cartItems));
+export async function updateCartItems(cartItems: CartProductProps[]) {
+    // localStorage.setItem(LS_KEYS.CART_ITEMS, JSON.stringify(cartItems));
 }
 
-export function updateProducts(products: { [productID: string]: ProductProps }) {
-    localStorage.setItem(LS_KEYS.PRODUCTS, JSON.stringify(products));
+
+export async function getProduct(productId: string) {
+    try {
+        return (await api.get<ProductProps>(`/product/${productId}`)).data;
+    }
+    catch (e) {
+        //TODO: check if is 404
+        //If 404, return null
+        console.error(e);
+        return undefined;
+    }
+}
+//
+export async function getProducts() {
+    try {
+        return (await api.get<ProductProps[]>(`/product`)).data;
+    }
+    catch (error) {
+        console.error(error);
+        return undefined;
+    }
 }
 
-export function updateProduct(product: ProductProps) {
-    const currProds = getProducts();
-    currProds[product.productID] = product;
-    updateProducts(currProds);
+export async function createProduct(product: ProductProps) {
+    await api.post(`/product/${product.productId}`, product);
 }
 
-export function removeProduct(productID: string) {
-    const products = getProducts();
-    delete products[productID];
-    updateProducts(products);
+export async function updateProducts(products: { [productId: string]: ProductProps }) {
+    const promises = []
+    for (let productId in products) promises.push(updateProduct(products[productId]));
+    await Promise.all(promises);
 }
 
+export async function updateProduct(product: ProductProps) {
+    await api.put(`/product/${product.productId}`, product);
+}
+
+export async function removeProduct(productId: string) {
+    await api.delete(`/product/${productId}`);
+}
+
+//
 export function getCartItems() {
     return JSON.parse(localStorage.getItem(LS_KEYS.CART_ITEMS) ?? '[]') as CartProductProps[];
 }
 
-export function getCartItem(productID: string) {
-    return getCartItems().find(p => p.productID === productID);
+export function getCartItem(productId: string) {
+    return getCartItems().find(p => p.productId === productId);
 }
 
-export function getProduct(productID: string) {
-    return getProducts()[productID];
-}
-
-export function getProducts() {
-    return JSON.parse(localStorage.getItem(LS_KEYS.PRODUCTS) ?? '{}') as { [productID: string]: (ProductProps) }
-}
 
 
 export function getCategories() {
-    return JSON.parse(localStorage.getItem(LS_KEYS.CATEGORIES) ?? '{}') as { [layer: string] : (LayerDescription) };
+    return JSON.parse(localStorage.getItem(LS_KEYS.CATEGORIES) ?? '{}') as { [layer: string]: (LayerDescription) };
 }
 
 export function getCategoriesInLayer(layerID: string) {
     return getCategories()[layerID];
 }
 
-export function getCategoryInLayer(layerID: string, categoryID: string) {
-    return getCategories()[layerID]?.find(c=> c.id === categoryID);
+export function getCategoryInLayer(layerID: string, categoryId: string) {
+    return getCategories()[layerID]?.find(c => c.id === categoryId);
 }
 
 export function getUsers() {
-    return JSON.parse(localStorage.getItem('users') ?? '{}') as {[nick: string] : (UserProps | undefined)};
+    return JSON.parse(localStorage.getItem('users') ?? '{}') as { [nick: string]: (UserProps | undefined) };
 }
 
 export function getUser(nick: string) {
     return getUsers()[nick];
 }
 
-export function updateUsers(users: {[nick: string] : (UserProps|undefined)}) {
+export async function updateUsers(users: { [nick: string]: (UserProps | undefined) }) {
     localStorage.setItem('users', JSON.stringify(users));
-} 
+}
 
-export function registerUser(newUser: UserProps, overwrite?: boolean) {
-    if (!overwrite && getUser(newUser.nick)) {
-        //TODO: try catch?
-        console.error('User already exists');
-        return false;
-    }
+export async function registerUser(newUser: UserProps, overwrite?: boolean) {
+    // if (!overwrite && getUser(newUser.nick)) {
+    //     //TODO: try catch?
+    //     console.error('User already exists');
+    //     return false;
+    // }
 
-    const users = getUsers();
-    users[newUser.nick] = newUser;
-    updateUsers(users);
+    // const users = getUsers();
+    // users[newUser.nick] = newUser;
+    // updateUsers(users);
 
-    return true;
+    // return true;
 }
 
 export function generateProductID() {

@@ -42,7 +42,29 @@ type CartItemProps = {
 
 const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
 
-    const product = getProduct(itemInfo.productID);
+    // const product = getProduct(itemInfo.productId);
+    //TODO: async (remove this dummy)
+    const product: ProductProps = {
+            productId: ' ',
+            title: ' ',
+            description: ' ',
+            imageURL: ' ',
+            categoryId: ' ',
+            milestones: [
+                {
+                    price: 12,
+                    quantity: 12,
+                }
+            ],
+            currentQuantity: 12,
+            comments: [
+
+            ],
+            creator: ' '
+    };
+    ////
+
+
     const [count, setCount] = useState<number>(itemInfo.quantity);
 
     const runtimeInfo = calculateRuntimeInfo(product);
@@ -75,7 +97,7 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
                     <div className="row g-0">
                         <div className="col-12 col-sm-2 d-flex flex-column">
                             <div className="row text-center">
-                                <a href={`/product/${product.productID}`}>
+                                <a href={`/product/${product.productId}`}>
                                     <img style={{ width: 96 }}
                                         src={product.imageURL}
                                         alt={product.title}
@@ -85,7 +107,7 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
                             <div className="flex-grow-1">
 
                             </div>
-                            <a href="#0" onClick={(e) => { e.preventDefault(); removeCartItem(product.productID); history.push('/cart') }}>
+                            <a href="#0" onClick={(e) => { e.preventDefault(); removeCartItem(product.productId); history.push('/cart') }}>
                                 <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                     <i className="fa fa-trash"></i>
                                 </div>

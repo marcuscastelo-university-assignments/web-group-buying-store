@@ -6,7 +6,9 @@ import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import { CategoryDescription, DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
-import { generateProductID, getCategories, getUser, updateProduct} from '../util/local-storage';
+import { generateProductID, getCategories, getUser, updateProduct } from '../util/local-storage';
+
+//TODO: change LS name
 import * as LS from '../util/local-storage';
 import { MilestoneProps, ProductProps } from '../types';
 import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
@@ -17,9 +19,8 @@ import { useHistory, useParams } from 'react-router';
 
 const ProductEditor: React.FC = () => {
     const history = useHistory();
-    const { id: productID } = useParams<{ id?: string }>();
+    const { id: productId } = useParams<{ id?: string }>();
 
-    const existingProduct = productID ? LS.getProduct(productID) : undefined;
 
     let _milesetoneState = useState(-1);
     let [selectedMilestone, selectMilestone] = _milesetoneState;
@@ -33,24 +34,23 @@ const ProductEditor: React.FC = () => {
 
 
     const [product, setProduct] = useState<ProductProps>(
-        existingProduct ??
         {
             title: "",
             milestones: [],
-            categoryID: "",
+            categoryId: "",
             imageURL: "",
             currentQuantity: 0,
-            productID: generateProductID(),
-            comments: {},
+            productId: generateProductID(),
+            comments: [],
             description: "",
             creator: nick,
         }
     );
-    
-    function generateDefaultParents() {
+
+    function generateDefaultParents(existingProduct?: ProductProps) {
         let categoriesParentsCopy: (string | undefined)[] = new Array(Object.keys(getCategories()).length).fill(undefined);
         if (existingProduct) {
-    
+
             const categoryLayers = getCategories();
             const findCategory = (id?: string) => {
                 if (!id) return undefined;
@@ -61,12 +61,12 @@ const ProductEditor: React.FC = () => {
                 }
                 return undefined;
             }
-    
-    
-    
-            let currentCategory = findCategory(product.categoryID);
+
+
+
+            let currentCategory = findCategory(product.categoryId);
             if (!currentCategory) {
-                console.error(`Categoria ${product.categoryID} not found!`);
+                console.error(`Categoria ${product.categoryId} not found!`);
             }
             else while (currentCategory) {
                 categoriesParentsCopy.push(currentCategory.id);
@@ -76,24 +76,24 @@ const ProductEditor: React.FC = () => {
                     break;
                 }
             }
-    
+
             categoriesParentsCopy.push(undefined);
             categoriesParentsCopy.reverse();
             console.log(categoriesParentsCopy)
-    
+
             return categoriesParentsCopy;
         }
         return categoriesParentsCopy;
     }
-    
-    let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>(generateDefaultParents());
+
+    let [categoriesParents, setCategoriesParents] = useState<(string | undefined)[]>([]);
 
 
     const updateSelectorsBelow = (index: number, chosenCategory: string) => {
         let categoriesParentsCopy = [...categoriesParents];
 
         if (categoriesParentsCopy.length === 0) return;
-        if (categoriesParentsCopy[categoriesParentsCopy.length-1] !== undefined)
+        if (categoriesParentsCopy[categoriesParentsCopy.length - 1] !== undefined)
             categoriesParentsCopy.push(undefined);
 
         for (let i = index + 2; i < categoriesParents.length; i++) {
@@ -114,6 +114,14 @@ const ProductEditor: React.FC = () => {
     let [productImage, setProductImage] = useState(product.imageURL || DEFAULTS.IMG_DEFAULT);
     let [titleName, setTitleName] = useState(product.title);
     let [descriptionText, setDescriptionText] = useState(product.description)
+
+    useEffect(() => {
+        if (productId)
+            LS.getProduct(productId).then((product) => {
+                if (product) setProduct(product);
+                generateDefaultParents(product);
+            })
+    }, [productId]);
 
     if (nick === '' || !user || nick !== product.creator) {
         //Important: do not remove this line (product.creator is undefined even though it should not!)
@@ -144,7 +152,7 @@ const ProductEditor: React.FC = () => {
     };
 
     const removeProduct = () => {
-        LS.removeProduct(product.productID);
+        LS.removeProduct(product.productId);
         history.push('/');
     }
 
@@ -161,7 +169,7 @@ const ProductEditor: React.FC = () => {
         product.description = descriptionText;
         for (let i = categoriesParents.length - 1; i >= 0; i--) {
             if (categoriesParents[i] !== undefined) {
-                product.categoryID = categoriesParents[i] ?? "";
+                product.categoryId = categoriesParents[i] ?? "";
                 break;
             }
         }
@@ -182,34 +190,34 @@ const ProductEditor: React.FC = () => {
                 <div className="row flex-grow-1 my-4">
                     <div className="col-12">
 
-                    {
-                                (isAuth() && (product.creator === getCurrentUserNick())) ?
+                        {
+                            (isAuth() && (product.creator === getCurrentUserNick())) ?
 
-                                    <div className='row g-0'>
-                                        <div className='col'>
-                                            <a href="#0" onClick={(e) => { e.preventDefault(); removeProduct(); }}>
-                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
-                                                    <i className="fa fa-trash"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div className='col'>
-                                            <a href="#0" onClick={(e) => { e.preventDefault(); publishProduct(); }}>
-                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
-                                                    <i className="fa fa-save"></i>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div className='col'>
-                                            <a href="#0" onClick={(e) => { e.preventDefault(); history.goBack() }}>
-                                                <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
-                                                    <i className="fa fa-times"></i>
-                                                </div>
-                                            </a>
-                                        </div>
+                                <div className='row g-0'>
+                                    <div className='col'>
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); removeProduct(); }}>
+                                            <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
+                                                <i className="fa fa-trash"></i>
+                                            </div>
+                                        </a>
                                     </div>
-                                    : ''
-                            }
+                                    <div className='col'>
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); publishProduct(); }}>
+                                            <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
+                                                <i className="fa fa-save"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div className='col'>
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); history.goBack() }}>
+                                            <div className="text-center" style={{ fontSize: '2.5em', color: 'blue' }} >
+                                                <i className="fa fa-times"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                : ''
+                        }
 
 
 
@@ -228,7 +236,7 @@ const ProductEditor: React.FC = () => {
                                                 </p>
 
                                                 {categoriesParents.map((parent, idx) => (
-                                                    (parent || idx === 0) ? <CategorySelector key={'1'.repeat(idx)} layer={'1'.repeat(idx)} categoryID={parent} defaultValue={categoriesParents[idx + 1]} onChange={(chosenCategory) => updateSelectorsBelow(idx, chosenCategory)} />
+                                                    (parent || idx === 0) ? <CategorySelector key={'1'.repeat(idx)} layer={'1'.repeat(idx)} categoryId={parent} defaultValue={categoriesParents[idx + 1]} onChange={(chosenCategory) => updateSelectorsBelow(idx, chosenCategory)} />
                                                         : ''
                                                 ))}
 

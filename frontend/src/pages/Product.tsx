@@ -31,20 +31,60 @@ const ProductPage: React.FC = () => {
     };
 
     let history = useHistory();
-    function addToCart({ productID }: ProductProps) {
-        const item = getCartItem(productID) ?? { productID, quantity: 0 };
+    function addToCart({ productId }: ProductProps) {
+        const item = getCartItem(productId) ?? { productId, quantity: 0 };
         item.quantity++;
         updateCartItem(item);
         history.push('/cart')
     }
 
-    const { id: productID } = useParams<{ id: string }>();
-    const [product, _setProduct] = useState(getProduct(productID));
+
+
+    const { id: productId } = useParams<{ id: string }>();
+
+    //An ProductProps that has all its fields as loading...
+    const LoadingProduct: ProductProps = {
+        title: 'Loading...',
+        categoryId: 'loading',
+        comments: [
+            {
+                title: 'Loading...',
+                author: 'loading',
+                content: 'Loading...',
+                dislikes: 0,
+                likes: 0,
+                rating: 0,
+                id: 'loading' + productId,
+            }
+        ],
+        creator: 'loading',
+        currentQuantity: 0,
+        imageURL: 'loading',
+        milestones: [
+        ],
+        productId: 'loading' + productId,
+        description: 'Loading...',
+    }
+
+    const [product, _setProduct] = useState(LoadingProduct);
 
     const setProduct = (product: ProductProps) => {
         _setProduct(product);
-        updateProduct(product);
+
+        //TODO: post/put/delete comments instead of whole product
+        // updateProduct(product);
     }
+
+    useEffect(() => {
+        getProduct(productId).then(p => {
+            if (p) 
+                _setProduct(p);
+
+            else {
+                console.error('Eu existo', p);
+            }
+        })
+    }, [productId]);
 
     if (!product) {
         history.push('/not-found');
@@ -55,10 +95,10 @@ const ProductPage: React.FC = () => {
 
     const currentUserProps = getUser(getCurrentUserNick());
 
-    const editProduct = () => history.push(`/edit_product/${product.productID}`);
+    const editProduct = () => history.push(`/edit_product/${product.productId}`);
 
     const deleteProduct = () => {
-        removeProduct(product.productID);
+        removeProduct(product.productId);
         history.push('/');
     }
 
@@ -94,19 +134,19 @@ const ProductPage: React.FC = () => {
                                                         </div>
 
                                                         :
-                                                            isAdmin() ?
-                                                                <div className="col">
-                                                                    <a href="#0" onClick={(e) => { e.preventDefault(); deleteProduct() }}>
-                                                                        <div className="text-center" style={{ fontSize: '1.5em', color: 'darkred' }} >
-                                                                            <i className="fa fa-trash"></i>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
+                                                        isAdmin() ?
+                                                            <div className="col">
+                                                                <a href="#0" onClick={(e) => { e.preventDefault(); deleteProduct() }}>
+                                                                    <div className="text-center" style={{ fontSize: '1.5em', color: 'darkred' }} >
+                                                                        <i className="fa fa-trash"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
 
-                                                                : ''
-                                                        
-                                                 : ''
-                                                }
+                                                            : ''
+
+                                                    : ''
+                                            }
                                         </div>
                                         <div className="p-5">
                                             <img src={product.imageURL} className="card-img-top" alt="..." />
@@ -186,6 +226,8 @@ const ProductPage: React.FC = () => {
                                     <div className="col-12 mx-auto" id="comment-list">
 
                                         {
+                                            //FIXME: broken comments
+                                        /* {
                                             currentUserProps ? <>
                                                 {
                                                     !creatingComment ?
@@ -210,14 +252,16 @@ const ProductPage: React.FC = () => {
 
                                                 }
                                             </> : ''
-                                        }
+                                        } */}
 
 
                                         <div>
                                             {/* <ProductCommentEditor info={product.comments[commentID]} key={`comment-${idx}`} onRemove={() => { alert('TODO'); return true }} /> */}
                                         </div>
 
-                                        {
+
+                                        {//FIXME: broken comments (map changed to array)
+                                        /* {
                                             (Object.keys(product.comments ?? {}).length ?? 0) > 0 ?
                                                 Object.keys(product.comments ?? {}).map(
                                                     (commentID, idx) =>
@@ -239,7 +283,7 @@ const ProductPage: React.FC = () => {
                                                 )
                                                 :
                                                 <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
-                                        }
+                                        } */}
 
 
                                     </div>

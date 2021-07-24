@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
@@ -17,9 +17,19 @@ import { PromptProps } from 'react-router';
 
 const MainPage: React.FC = () => {
 
-    let [ categoryHistory ] = useState<{ [layer: string]: string }>({})
+    let [categoryHistory] = useState<{ [layer: string]: string }>({})
+    let [productList, setProductList] = useState<ProductProps[]>([]);
+
     const [selectedCategory, setSelectedCategory] = useState<CategoryDescription | undefined>(undefined);
-    const productList = Object.values(getProducts()) as ProductProps[];
+
+    useEffect(() => {
+        getProducts().then(p => {
+            if (p) {
+                console.log(p);
+                setProductList(p)
+            }
+        });
+    }, []);
 
     const categoryLayers = JSON.parse(localStorage.getItem('categories') ?? '{}') as CategoryLayersDescription;
 
@@ -29,10 +39,10 @@ const MainPage: React.FC = () => {
     function generateCategoriesInLayer(layerID: string) {
         const categoriesInLayer = categoryLayers[layerID];
         return (<>
-            { categoriesInLayer.map((category, idx) => (
+            {categoriesInLayer.map((category, idx) => (
                 (
                     layerID === '1' ||
-                    ( layerID.length <= (selectedCategory?.layer.length ?? 0) && (category.parent === categoryHistory[layerID]) )
+                    (layerID.length <= (selectedCategory?.layer.length ?? 0) && (category.parent === categoryHistory[layerID]))
                     || category.parent === selectedCategory?.id
                 )
                     ?
@@ -107,7 +117,7 @@ const MainPage: React.FC = () => {
                                 (selectedCategory?.final) ?
                                     <Carousel
                                         carouselID="category-carousel"
-                                        carouselItemsInfo={productList.filter(p=>p.categoryID === selectedCategory.id)}
+                                        carouselItemsInfo={productList.filter(p => p.categoryId === selectedCategory.id)}
                                         itemsPerPage={5} component={ProductCard} />
                                     : ''
                             }

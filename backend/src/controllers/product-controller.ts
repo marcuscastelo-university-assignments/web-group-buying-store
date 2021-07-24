@@ -1,6 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 import Product, { ProductModel } from '../models/product';
 
+export async function getProducts(req: Request, res: Response) {
+    try {
+        const products = await Product.find({}).exec();
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 //Gets the product
 export async function getProduct(req: Request, res: Response) {
     try {
@@ -20,8 +29,7 @@ export async function getProduct(req: Request, res: Response) {
 //Creates a new product
 export async function createProduct(req: Request, res: Response) {
     try {
-        console.log(req.body)
-        //TODO: impedir inserção de ids repetidos
+        //TODO: impedir inserção de ids repetidos (gerar no back)
         const productDocument: Partial<ProductModel> = req.body;
 
         let product = await Product.create(productDocument);
@@ -58,8 +66,8 @@ export async function updateProduct(req: Request, res: Response) {
 //Deletes a product with the same ID
 export async function deleteProduct(req: Request, res: Response) {
     try {
-        const result_ = await Product.deleteOne({ productId: req.params.id }).exec(); 
-        const result = (result_ as unknown as {ok:number, n:number, deletedCount:number}) ?? {ok: 0, n: 0, deletedCount: 0};
+        const result_ = await Product.deleteOne({ productId: req.params.id }).exec();
+        const result = (result_ as unknown as { ok: number, n: number, deletedCount: number }) ?? { ok: 0, n: 0, deletedCount: 0 };
 
 
         if (result?.n > 0) {

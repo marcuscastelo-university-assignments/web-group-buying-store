@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
@@ -9,21 +9,28 @@ import { calculateRuntimeInfo } from '../util/product-utlls';
 import './Cart.css'
 
 export type CartProductProps = {
-    productID: string,
+    productId: string,
     quantity: number,
 };
 
 
-function calcTotal() {
-    //TODO: price
-    return getCartItems().reduce((total, item) => total + item.quantity * (calculateRuntimeInfo(getProduct(item.productID)).currentMilestone?.price??NaN), 0);
+async function calcTotal() {
+    let total = 0;
+    for (let cartItem of getCartItems()) {
+        const product = await getProduct(cartItem.productId);
+        if (!product) continue;
+        let price = calculateRuntimeInfo(product).currentMilestone?.price??NaN;
+        total += price * cartItem.quantity;
+    }
+
+    return total;
 }
 
 const CartPage: React.FC = _ => {
     let cartProducts = getCartItems()
 
-    let [ total, setTotal ] = useState(calcTotal());
-    const onItemChanged = () => setTotal(calcTotal());
+    let [ total, setTotal ] = useState(0);
+    const onItemChanged = async () => setTotal(await calcTotal());
 
     let [ name, setName ] = useState<string>("");
     let [ credit, setCredit ] = useState<string>("");
@@ -36,9 +43,12 @@ const CartPage: React.FC = _ => {
     let [ number, setNumber ] = useState<string>("");
     let [ complement, setComplement ] = useState<string>("");
 
+    
+    useEffect(()=>{ onItemChanged() }, []);
+    
     const history = useHistory();
 
-    const endBuying: FormEventHandler = (e) => {
+    const endBuying: FormEventHandler = async (e) => {
         e.preventDefault();
         if( !/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
             !/^[0-9]{16}$/.test(credit) ||
@@ -52,7 +62,8 @@ const CartPage: React.FC = _ => {
         }
 
         for (let item of cartProducts) {
-            const product = getProduct(item.productID);
+            const product = await getProduct(item.productId);
+            if (!product) continue;
             product.currentQuantity = item.quantity;
             updateProduct(product);
         }

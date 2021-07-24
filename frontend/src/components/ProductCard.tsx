@@ -15,22 +15,22 @@ const ProductCard: React.FC<ProductProps> = (product) => {
     const runtimeinfo = calculateRuntimeInfo(product);
 
     const deleteProduct = () => {
-        removeProduct(product.productID);
+        removeProduct(product.productId);
         history.push('/');
     }
 
-    const editProduct = () => history.push(`/edit_product/${product.productID}`);
+    const editProduct = () => history.push(`/edit_product/${product.productId}`);
 
     return (
         <React.Fragment>
             <div className="card h-100" style={{ maxWidth: 200 }}>
-                <Link to={`/product/${product.productID}`}>
+                <Link to={`/product/${product.productId}`}>
                     <img src={product.imageURL} className="d-block img-thumbnail mx-auto" alt={product.title} />
                 </Link>
                 <div className="flex-grow-1"/>
                 <div className="card-body px-1 pt-2 flex-grow-0">
                     <div className="row g-0 p-0">
-                        <div className="col-10" style={{ textTransform: 'capitalize' }}> {product.title} </div>
+                        <div className="col-10" style={{ textTransform: 'capitalize' }}> {product.title} - {product.productId} </div>
                     </div>
                     <div className="row flex-direction-row mt-2 px-1">
                         <div className="col-6">
