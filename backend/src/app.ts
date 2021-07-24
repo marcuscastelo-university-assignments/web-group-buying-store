@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 
 import { getDB } from './db';
 
+import productRouter from './routes/product-routes';
+
 async function main() {
     const [ connection, error ] = await getDB();
 
@@ -14,7 +16,11 @@ async function main() {
     //Create the app in express
     const app = express();
 
+    app.use('/product', productRouter);
+
     app.use(express.static('html'));
+
+
 
     app.listen(3000, () => {
         console.log('Listening on port 3000');
