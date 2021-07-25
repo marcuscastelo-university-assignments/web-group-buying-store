@@ -5,6 +5,7 @@ import cors from 'cors';
 import { getDB } from './db';
 
 import productRouter from './routes/product-routes';
+import userRouter from './routes/user-routes';
 
 async function main() {
     const [ connection, error ] = await getDB();
@@ -21,6 +22,7 @@ async function main() {
     app.use(express.json());
 
     app.use('/api/product', productRouter);
+    app.use('/api/user', userRouter);
 
     app.use(express.static('html'));
 

@@ -1,5 +1,6 @@
 import * as productController from '../controllers/product-controller';
 import * as commentController from '../controllers/comment-controller';
+import * as milestoneController from '../controllers/milestone-controller';
 
 import { Router } from 'express';
 
@@ -25,21 +26,14 @@ router.post('/:id/comment', commentController.createComment);
 router.put('/:id/comment/:cid', commentController.updateComment);
 router.delete('/:id/comment/:cid', commentController.deleteComment);
 
-//GET, POST, PUT, DELETE for /:id/milestone/:mid
-router.get('/:id/milestone/:mid', (req, res) => {
-    res.json({ message: `GET /product/${req.params.id}/milestone/${req.params.mid}`});
-});
+//GET, POST, PUT, DELETE for /:id/milestone/:mqty
+router.get('/:id/milestone', milestoneController.getMilestones);
+router.get('/:id/milestone/:mqty', milestoneController.getMilestone);
+router.post('/:id/milestone', milestoneController.createMilestone);
+router.put('/:id/milestone/:mqty', milestoneController.updateMilestone);
+router.delete('/:id/milestone/:mqty', milestoneController.deleteMilestone);
 
-router.post('/:id/milestone/:mid', (req, res) => {
-    res.json({ message: `POST /product/${req.params.id}/milestone/${req.params.mid}`});
-});
 
-router.put('/:id/milestone/:mid', (req, res) => {
-    res.json({ message: `PUT /product/${req.params.id}/milestone/${req.params.mid}`});
-});
 
-router.delete('/:id/milestone/:mid', (req, res) => {
-    res.json({ message: `DELETE /product/${req.params.id}/milestone/${req.params.mid}`});
-});
 
 export default router;

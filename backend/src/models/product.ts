@@ -1,5 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
 
+//Typescript definition:
 export interface ProductMilestone {
     quantity: number,
     price: number,
@@ -28,10 +29,13 @@ export interface Product {
     creator: string,
 };
 
+//Adapter to use typescript
 export interface ProductModel extends Product, Document {};
 
+//Mongoose schema based on the typescript definitions above 
 const ProductSchema = new Schema({
-    productId: { //TODO: pensar se usa o ID do mongo ou deixa assim
+    productId: { 
+        //TODO: pensar se usa o ID do mongo ou deixa assim
         type: String,
         required: true,
     },
