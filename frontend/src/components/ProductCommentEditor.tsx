@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductCommentInfo, UserProps } from '../types';
-import { getUser } from '../util/local-storage';
+import { generateCommentID, getUser } from '../util/local-storage';
 
 
 function clamp(min: number, max: number, val: number) {
@@ -25,7 +25,7 @@ export default function ProductCommentEditor({ info, onRemove, onSave, onClose }
         rating: clamp(0, 5, info.rating ?? 0),
         likes: info.likes ?? 0,
         dislikes: info.dislikes ?? 0,
-        id: info.id,
+        commentId: info.commentId ?? generateCommentID(),
     });
 
 
@@ -80,14 +80,14 @@ export default function ProductCommentEditor({ info, onRemove, onSave, onClose }
                                 </a>
                             </div>
                             <div className="col">
-                                <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(comment.id) }}>
+                                <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(comment.commentId) }}>
                                     <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                         <i className="fa fa-trash"></i>
                                     </div>
                                 </a>
                             </div>
                             <div className="col">
-                                <a href="#0" onClick={(e) => { e.preventDefault(); onClose(comment.id) }}>
+                                <a href="#0" onClick={(e) => { e.preventDefault(); onClose(comment.commentId) }}>
                                     <div className="text-center" style={{ fontSize: '2.5em', color: 'black' }} >
                                         <i className="fa fa-times"></i>
                                     </div>

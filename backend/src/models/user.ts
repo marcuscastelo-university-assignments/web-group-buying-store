@@ -23,10 +23,12 @@ const UserSchema = new Schema({
     nick: {
         type: String,
         required: true,
+        unique: true,
     },
     email: {
         type: String,
         required: true,
+        unique: true,
     },
     profileImage: {
         type: String,

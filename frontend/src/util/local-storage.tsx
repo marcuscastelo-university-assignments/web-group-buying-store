@@ -58,7 +58,13 @@ export async function getProducts() {
 }
 
 export async function createProduct(product: ProductProps) {
-    await api.post(`/product/${product.productId}`, product);
+    try {
+        return await api.post(`/product`, product);
+    } catch (error) {
+        console.error(error);
+        console.error(error.response);
+        return undefined;
+    }
 }
 
 export async function updateProducts(products: { [productId: string]: ProductProps }) {

@@ -6,7 +6,7 @@ export async function getComments(req: Request, res: Response) {
     const productId = req.params.id;
     const product = await Product.findOne({ productId }).exec();
     if (!product)
-        return res.json({message: 'Product not found'});
+        return res.json({ message: 'Product not found' });
     return res.json(product.comments);
 }
 
@@ -14,14 +14,14 @@ export async function getComment(req: Request, res: Response) {
     //Get specific comment from product
     const productId = req.params.id;
     const commentId = req.params.cid;
-    const product = await Product.findOne({productId}).exec();
+    const product = await Product.findOne({ productId }).exec();
     if (product === null)
         return res.json({ message: 'Product not found' });
-        
+
     const comment = product.comments.find(c => c.commentId == commentId);
     if (!comment)
         return res.json({ message: 'Comment not found' });
-    
+
     return res.status(200).json(comment);
 }
 
@@ -30,16 +30,22 @@ export async function createComment(req: Request, res: Response) {
     const productId = req.params.id;
     const comment = req.body as ProductComment;
 
-    const result = await Product.updateOne({ productId }, {
-        $push: {
-            comments: comment
-        }
-    }).exec();
+    const result = await Product.updateOne(
+        {
+            productId,
+            "comments.commentId": { $ne: comment.commentId }
+        },
+        {
+            $push: {
+                comments: comment
+            }
+        }).exec();
 
-    if (result && result.n > 0)
-        res.status(200).json(comment);
-    else
-        res.status(404).json({ message: 'Product not found' });
+    if (result.n == 0)
+        return res.status(404).json({ message: 'Product not found / Comment already exists' });
+    if (result.nModified == 0)
+        return res.status(500).json({ message: 'Internal server error' });
+    return res.status(200).json(comment);
 }
 
 export async function updateComment(req: Request, res: Response) {
@@ -48,7 +54,7 @@ export async function updateComment(req: Request, res: Response) {
     const commentId = req.params.cid;
     const comment = req.body as ProductComment;
 
-    const result = await Product.updateOne({ productId, "comments.commentId":  commentId }, {
+    const result = await Product.updateOne({ productId, "comments.commentId": commentId }, {
         $set: {
             'comments.$': comment
         }
@@ -62,7 +68,7 @@ export async function updateComment(req: Request, res: Response) {
 
 
 export async function deleteComment(req: Request, res: Response) {
-        //Deletes a comment
+    //Deletes a comment
     const productId = req.params.id;
     const commentId = req.params.cid;
 

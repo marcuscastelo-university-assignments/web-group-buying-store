@@ -54,7 +54,7 @@ const ProductPage: React.FC = () => {
                 dislikes: 0,
                 likes: 0,
                 rating: 0,
-                id: 'loading' + productId,
+                commentId: 'loading' + productId,
             }
         ],
         creator: 'loading',

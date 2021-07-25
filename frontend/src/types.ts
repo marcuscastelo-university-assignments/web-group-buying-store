@@ -20,7 +20,7 @@ export type ProductCommentInfo = {
     rating: number,
     likes: number,
     dislikes: number,
-    id: string,
+    commentId: string,
 }
 
 export type ProductProps = {

@@ -38,6 +38,7 @@ const ProductSchema = new Schema({
         //TODO: pensar se usa o ID do mongo ou deixa assim
         type: String,
         required: true,
+        unique: true,
     },
     title: {
         type: String,
@@ -58,7 +59,7 @@ const ProductSchema = new Schema({
     milestones: [{
         quantity: {
             type: Number,
-            required: true
+            required: true,
         },
         price: {
             type: Number,

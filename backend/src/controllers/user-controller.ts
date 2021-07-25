@@ -6,9 +6,10 @@ export async function getUsers(req: Request, res: Response) {
         const users = await User.find({}).exec();
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }
+
 
 export async function getUser(req: Request, res: Response) {
     try {
@@ -21,7 +22,7 @@ export async function getUser(req: Request, res: Response) {
     }
     catch (error) {
         console.trace(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }
 
@@ -37,7 +38,7 @@ export async function createUser(req: Request, res: Response) {
     }
     catch (error) {
         console.trace(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }
 
@@ -55,7 +56,7 @@ export async function updateUser(req: Request, res: Response) {
     }
     catch (error) {
         console.trace(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }
 
@@ -68,7 +69,7 @@ export async function deleteUser(req: Request, res: Response) {
                 res.status(200).json({ message: 'User deleted' });
             else {
                 console.trace('STATUS 500 ON DELETE: ', result);
-                res.status(500).json({ message: 'Internal server error' });
+                res.status(404).json({ message: 'User not found' });
             }
         } else {
             res.status(404).json({ message: 'User not found' });
@@ -76,6 +77,6 @@ export async function deleteUser(req: Request, res: Response) {
     }
     catch (error) {
         console.trace(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }

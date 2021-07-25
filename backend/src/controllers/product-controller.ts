@@ -6,7 +6,7 @@ export async function getProducts(req: Request, res: Response) {
         const products = await Product.find({}).exec();
         res.status(200).json(products);
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }
 
@@ -22,7 +22,7 @@ export async function getProduct(req: Request, res: Response) {
     }
     catch (error) {
         console.trace(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }
 
@@ -40,7 +40,7 @@ export async function createProduct(req: Request, res: Response) {
     }
     catch (error) {
         console.trace(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }
 
@@ -59,7 +59,7 @@ export async function updateProduct(req: Request, res: Response) {
     }
     catch (error) {
         console.trace(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }
 
@@ -75,7 +75,7 @@ export async function deleteProduct(req: Request, res: Response) {
                 res.status(200).json({ message: 'Product deleted' });
             else {
                 console.trace('STATUS 500 ON DELETE: ', result);
-                res.status(500).json({ message: 'Internal server error' });
+                res.status(404).json({ message: 'Product not found' });
             }
         } else {
             res.status(404).json({ message: 'Product not found' });
@@ -83,6 +83,6 @@ export async function deleteProduct(req: Request, res: Response) {
     }
     catch (error) {
         console.trace(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({error, message: 'Internal server error' });
     }
 }

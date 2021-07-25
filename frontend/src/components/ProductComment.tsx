@@ -52,7 +52,7 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                             <div className="col">
                                 {
                                     (isAuth() && isAdmin() && (getUser(info.author)?.nick !== getCurrentUserNick())) ?
-                                        <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(info.id); }}>
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(info.commentId); }}>
                                             <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                                 <i className="fa fa-trash"></i>
                                             </div>
@@ -63,7 +63,7 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                             <div className="col">
                                 {
                                     (isAuth() && (getUser(info.author)?.nick === getCurrentUserNick())) ?
-                                        <a href="#0" onClick={(e) => { e.preventDefault(); onEdit(info.id);}}>
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); onEdit(info.commentId);}}>
                                             <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                                 <i className="fa fa-edit"></i>
                                             </div>
