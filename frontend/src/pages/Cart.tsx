@@ -15,11 +15,11 @@ async function calcTotal(cartProducts: CartProductProps[]) {
     for (let cartItem of cartProducts) {
         let product = await getProduct(cartItem.productId);
         if (!product) continue;
-        product.currentQuantity = cartItem.quantity;
+        product.currentQuantity += cartItem.quantity;
         const RTI = calculateRuntimeInfo(product)
         console.table(RTI)
         let price = (RTI.currentMilestone?.price ?? RTI.lastMilestone?.price) ?? -10;
-        if ((product.currentQuantity  + cartItem.quantity) < (RTI.firstMilestone?.quantity ?? 10000000)) return -1
+        if ((cartItem.quantity) < (RTI.firstMilestone?.quantity ?? 10000000)) return -1;
         total += price * cartItem.quantity;
     }
 
@@ -183,7 +183,7 @@ const CartPage: React.FC = _ => {
                                                             </span>
                                                         </div>
                                                         <div className="col text-end">
-                                                            <button className="btn btn-dark" onClick={endBuying}> Finalizar compra </button>
+                                                            <button className="btn btn-dark" onClick={endBuying} disabled={total < 0}> Finalizar compra </button>
                                                         </div>
                                                     </div>
                                                 </form>
