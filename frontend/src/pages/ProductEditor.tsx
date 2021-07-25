@@ -57,6 +57,10 @@ const ProductEditor: React.FC = () => {
                 if (!id) return undefined;
                 let res;
                 for (let layerID of Object.keys(categoryLayers)) {
+                    console.log('自殺')
+                    console.log(categoryLayers)
+                    console.log(layerID)
+                    console.log(categoryLayers[layerID])
                     res = categoryLayers[layerID].find(c => c.id === id)
                     if (res) return res;
                 }

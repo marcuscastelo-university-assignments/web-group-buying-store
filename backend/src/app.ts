@@ -8,6 +8,7 @@ import { getDB } from './db';
 import productRouter from './routes/product-routes';
 import userRouter from './routes/user-routes';
 import categoryRouter from './routes/category-routes';
+import cartRouter from './routes/cart-routes';
 
 async function main() {
     const [ connection, error ] = await getDB();
@@ -27,10 +28,9 @@ async function main() {
     app.use('/api/product', productRouter);
     app.use('/api/user', userRouter);
     app.use('/api/category', categoryRouter);
+    app.use('/api/cart', cartRouter);
 
     app.use(express.static('html'));
-
-
 
     app.listen(3333, () => {
         console.log('Listening on port 3333');

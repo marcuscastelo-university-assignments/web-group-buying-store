@@ -111,7 +111,7 @@ export function getCartItem(productId: string) {
 }
 
 export async function fetchCategories() {
-    const layers = await api.get('/category');
+    const layers = (await api.get('/category')).data;
     localStorage.setItem('categories', JSON.stringify(layers));
 }
 
