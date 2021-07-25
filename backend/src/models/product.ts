@@ -1,25 +1,30 @@
 import { model, Schema, Document } from 'mongoose';
 
+export interface ProductMilestone {
+    quantity: number,
+    price: number,
+};
+
+export interface ProductComment {
+    commentId: string,
+    author: string,
+    title: string,
+    content: string,
+    rating: number,
+    likes: number,
+    dislikes: number,
+    id: string,
+};
+
 export interface Product {
     productId: string,
     title: string,
     description?: string,
     imageURL: string,
     categoryId: string,
-    milestones: {
-        quantity: number,
-        price: number,
-    }[];
+    milestones: ProductMilestone[],
     currentQuantity: number,
-    comments: {
-        author: string,
-        title: string,
-        content: string,
-        rating: number,
-        likes: number,
-        dislikes: number,
-        id: string,
-    }[],
+    comments: ProductComment[],
     creator: string,
 };
 
@@ -61,6 +66,10 @@ const ProductSchema = new Schema({
         required: true,
     },
     comments: [{
+        commentId: {
+            type: String,
+            required: true,
+        },
         author: {
             type: String,
             required: true,
