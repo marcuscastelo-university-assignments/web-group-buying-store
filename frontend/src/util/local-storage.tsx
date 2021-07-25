@@ -74,7 +74,12 @@ export async function updateProducts(products: { [productId: string]: ProductPro
 }
 
 export async function updateProduct(product: ProductProps) {
-    await api.put(`/product/${product.productId}`, product);
+    try {
+        await api.put(`/product/${product.productId}`, product);
+    } catch (error) {
+        console.error(error);
+        console.error(error.response);
+    }
 }
 
 export async function removeProduct(productId: string) {
@@ -89,8 +94,6 @@ export function getCartItems() {
 export function getCartItem(productId: string) {
     return getCartItems().find(p => p.productId === productId);
 }
-
-
 
 export function getCategories() {
     return JSON.parse(localStorage.getItem(LS_KEYS.CATEGORIES) ?? '{}') as { [layer: string]: (LayerDescription) };

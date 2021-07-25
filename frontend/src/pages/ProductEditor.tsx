@@ -16,7 +16,6 @@ import { useHistory, useParams } from 'react-router';
 
 
 
-
 const ProductEditor: React.FC = () => {
     const history = useHistory();
     const { id: productId } = useParams<{ id?: string }>();
@@ -167,7 +166,7 @@ const ProductEditor: React.FC = () => {
         history.push('/');
     }
 
-    const publishProduct = () => {
+    const publishProduct = async () => {
         if (
             titleName === "" ||
             productImage === DEFAULTS.IMG_DEFAULT ||
@@ -185,8 +184,11 @@ const ProductEditor: React.FC = () => {
             }
         }
         setProduct(product);
-        updateProduct(product);
 
+        if (editing)
+            await LS.updateProduct(product);
+        else 
+            await LS.createProduct(product);
         history.push('/');
         return product;
     }
