@@ -3,74 +3,88 @@ import { useHistory } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
-import { getCartItems, getProduct, updateCartItems, updateProduct } from '../util/api';
+import { CartProductProps } from '../types';
+import { clearCartItems, getCartProducts, getProduct, updateProduct } from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 
 import './Cart.css'
 
-export type CartProductProps = {
-    productId: string,
-    quantity: number,
-};
-
-
-async function calcTotal() {
+async function calcTotal(cartProducts: CartProductProps[]) {
     let total = 0;
-    for (let cartItem of getCartItems()) {
-        const product = await getProduct(cartItem.productId);
+    console.table(cartProducts);
+    for (let cartItem of cartProducts) {
+        let product = await getProduct(cartItem.productId);
         if (!product) continue;
-        let price = calculateRuntimeInfo(product).currentMilestone?.price??NaN;
+        product.currentQuantity = cartItem.quantity;
+        const RTI = calculateRuntimeInfo(product)
+        console.table(RTI)
+        let price = (RTI.currentMilestone?.price ?? RTI.lastMilestone?.price) ?? -10;
         total += price * cartItem.quantity;
     }
+
 
     return total;
 }
 
 const CartPage: React.FC = _ => {
-    let cartProducts = getCartItems()
+    let [cartProducts, setCartProducts] = useState<CartProductProps[]>([]);
 
-    let [ total, setTotal ] = useState(0);
-    const onItemChanged = async () => setTotal(await calcTotal());
+    let [total, setTotal] = useState(0);
+    const updateTotal = async (cartProducts: CartProductProps[]) => setTotal(await calcTotal(cartProducts));
 
-    let [ name, setName ] = useState<string>("");
-    let [ credit, setCredit ] = useState<string>("");
-    let [ expiration, setExpiration ] = useState<string>("");
-    let [ cvv, setCvv ] = useState<string>("");
-    let [ email, setEmail ] = useState<string>("");
-    let [ cep, setCep ] = useState<string>("");
-    let [ address, setAddress ] = useState<string>("");
-    let [ telephone, setTelephone ] = useState<string>("");
-    let [ number, setNumber ] = useState<string>("");
-    let [ complement, setComplement ] = useState<string>("");
+    let [name, setName] = useState<string>("");
+    let [credit, setCredit] = useState<string>("");
+    let [expiration, setExpiration] = useState<string>("");
+    let [cvv, setCvv] = useState<string>("");
+    let [email, setEmail] = useState<string>("");
+    let [cep, setCep] = useState<string>("");
+    let [address, setAddress] = useState<string>("");
+    let [telephone, setTelephone] = useState<string>("");
+    let [number, setNumber] = useState<string>("");
+    let [complement, setComplement] = useState<string>("");
 
-    
-    useEffect(()=>{ onItemChanged() }, []);
-    
+    const updateCartProducts = () => {
+        getCartProducts().then(products => {
+            console.trace(products);
+            setCartProducts(products);
+        });
+    };
+
+    useEffect(() => {
+        if (cartProducts.length === 0)
+            updateCartProducts()
+    }, [cartProducts]);
+
+    useEffect(() => {
+        updateTotal(cartProducts) 
+    }, [cartProducts]);
+
     const history = useHistory();
 
     const endBuying: FormEventHandler = async (e) => {
         e.preventDefault();
-        if( !/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
+        if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
             !/^[0-9]{16}$/.test(credit) ||
             !/^[0-9]+$/.test(number) ||
             !/^[0-9]{8}$/.test(cep) ||
             !/^[0-9]{3}$/.test(cvv)
             //Conditions of data to invalidate it
-        ){
+        ) {
             console.log('alsd')
-            return<></>;
+            return <></>;
         }
 
         for (let item of cartProducts) {
             const product = await getProduct(item.productId);
             if (!product) continue;
-            product.currentQuantity = item.quantity;
+            product.currentQuantity += item.quantity;
             updateProduct(product);
         }
 
-        updateCartItems([]);
+        await clearCartItems();
         history.push('/cart');
     };
+
 
     return (
         <React.Fragment>
@@ -81,8 +95,10 @@ const CartPage: React.FC = _ => {
                     <div className="col-10 col-sm-9 col-md-8 mx-auto pt-3">
                         {
                             (cartProducts?.length > 0)
-                                ? cartProducts.map((product, index) => <CartItem itemInfo={product} key={`cart-item-${index}`} onChanged={onItemChanged}/>)
+                                ? cartProducts.map((product, index) => <CartItem itemInfo={product} key={`cart-item-${cartProducts.length}-${index}`} onCountChanged={async () => { await updateTotal(cartProducts); }} onDeleted={updateCartProducts} />)
+                                // ? < CartItem itemInfo={cartProducts[0]} onCountChanged={() => { updateTotal(cartProducts); }} onDeleted={updateCartProducts} />
                                 : <h3 className="cart__empty my-5">O seu carrinho está vazio.</h3>
+
                         }
 
                     </div>
@@ -100,7 +116,7 @@ const CartPage: React.FC = _ => {
                                                 <form name="credit-card-info">
                                                     <div className="row g-0">
                                                         <label className="text-muted" htmlFor="person-name">Nome completo</label>
-                                                        <input value={name} onChange={(e) => setName(e.target.value)} name="person-name" className="form-control" type="text"
+                                                        <input value={name} onChange={(e) => { setName(e.target.value); setTotal(e.target.value.length) }} name="person-name" className="form-control" type="text"
                                                             placeholder="Fulana da silva" />
                                                     </div>
                                                     <div className="row g-0">
@@ -116,7 +132,7 @@ const CartPage: React.FC = _ => {
                                                         <div className="col ps-1">
                                                             <label className="text-muted w-100 d-flex" htmlFor="credit-card">
                                                                 CVV
-                                        <span className="text-end w-100 me-2">
+                                                                <span className="text-end w-100 me-2">
                                                                     <i className="fa fa-exclamation-circle"></i></span></label>
 
                                                             <input value={cvv} onChange={(e) => setCvv(e.target.value)} name="cvv" className="form-control" type="text" placeholder="000" />

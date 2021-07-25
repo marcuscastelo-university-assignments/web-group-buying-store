@@ -16,7 +16,7 @@ export function genMockProducts() {
     const products: ProductProps[] = [ 
         {
             productId: '90837',
-            currentQuantity: 14,
+            currentQuantity: 0,
             imageURL: '/img/products/notebookacer.jpg',
             categoryId: '111com',
             milestones: [
@@ -25,12 +25,12 @@ export function genMockProducts() {
                 {quantity: 15, price: 5},
             ],
             title: "Notebook",
-            comments: [mockComments[0]],
+            comments: [],
             creator: 'magalu'
         }, 
         {
             productId: '78175',
-            currentQuantity: 7,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/liquidificardophilips.jpg',
             milestones: [
@@ -44,7 +44,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '76792',
-            currentQuantity: 7,
+            currentQuantity: 0,
             categoryId: '11arc',
             imageURL: '/img/products/arcondicionadolg.jpg',
             milestones: [
@@ -58,7 +58,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '64380',
-            currentQuantity: 7,
+            currentQuantity: 0,
             categoryId: '11arc',
             imageURL: '/img/products/arcondicionadofreehome.jpg',
             milestones: [
@@ -72,7 +72,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '29279',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/sofaoasis.jpg',
             milestones: [
@@ -86,7 +86,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '40725',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/sofasaopaulo.jpg',
             milestones: [
@@ -100,7 +100,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '33654',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11ven',
             imageURL: '/img/products/ventiladorbasicplus.jpg',
             milestones: [
@@ -114,7 +114,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '74930',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11ven',
             imageURL: '/img/products/ventiladormallory.jpg',
             milestones: [
@@ -128,7 +128,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '93825',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/armariorosa.jpg',
             milestones: [
@@ -142,7 +142,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '54272',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/armariomarrom.jpg',
             milestones: [
@@ -156,7 +156,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '51674',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cel',
             imageURL: '/img/products/celulargalaxy.jpg',
             milestones: [
@@ -170,7 +170,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '40369',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cel',
             imageURL: '/img/products/celulariphone.jpg',
             milestones: [
@@ -184,7 +184,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '45306',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/cadeiraescritorio1.jpg',
             milestones: [
@@ -198,7 +198,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '63836',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/cadeiraescritorio2.jpg',
             milestones: [
@@ -212,7 +212,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '42647',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11lav',
             imageURL: '/img/products/lavadora1.jpg',
             milestones: [
@@ -226,7 +226,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '90381',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11lav',
             imageURL: '/img/products/lavadora2.jpg',
             milestones: [
@@ -240,7 +240,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '68797',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/escrivaninha1.jpg',
             milestones: [
@@ -254,7 +254,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '76567',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/escrivaninha2.jpg',
             milestones: [
@@ -268,7 +268,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '93910',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/gaveteiro1.jpg',
             milestones: [
@@ -282,7 +282,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '75649',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/gaveteiro2.jpg',
             milestones: [
@@ -296,7 +296,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '60639',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11tel',
             imageURL: '/img/products/tv1.jpg',
             milestones: [
@@ -310,7 +310,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '41290',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11tel',
             imageURL: '/img/products/tv2.jpg',
             milestones: [
@@ -324,7 +324,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '83597',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11tab',
             imageURL: '/img/products/tablet1.jpg',
             milestones: [
@@ -338,7 +338,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '71992',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11tab',
             imageURL: '/img/products/tablet2.jpg',
             milestones: [
@@ -352,7 +352,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '87011',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11mic',
             imageURL: '/img/products/micro1.jpg',
             milestones: [
@@ -366,7 +366,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '99845',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11mic',
             imageURL: '/img/products/micro2.jpg',
             milestones: [
@@ -380,7 +380,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '47107',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11sec',
             imageURL: '/img/products/secador1.jpg',
             milestones: [
@@ -394,7 +394,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '73927',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11sec',
             imageURL: '/img/products/secador2.jpg',
             milestones: [
@@ -408,7 +408,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '54035',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111com',
             imageURL: '/img/products/computador2.jpg',
             milestones: [
@@ -422,7 +422,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '48467',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11bon',
             imageURL: '/img/products/bone1.jpg',
             milestones: [
@@ -436,7 +436,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '85740',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11bon',
             imageURL: '/img/products/bone2.jpg',
             milestones: [
@@ -450,7 +450,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '28825',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cas',
             imageURL: '/img/products/camisa1.jpg',
             milestones: [
@@ -464,7 +464,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '91989',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cas',
             imageURL: '/img/products/camisa2.jpg',
             milestones: [
@@ -478,7 +478,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '34927',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11blu',
             imageURL: '/img/products/blusa1.jpg',
             milestones: [
@@ -492,7 +492,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '80260',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11blu',
             imageURL: '/img/products/blusa2.jpg',
             milestones: [
@@ -506,7 +506,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '72484',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cal',
             imageURL: '/img/products/calca1.jpg',
             milestones: [
@@ -520,7 +520,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '83451',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cal',
             imageURL: '/img/products/calca2.jpg',
             milestones: [
@@ -534,7 +534,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '91117',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11ten',
             imageURL: '/img/products/tenis1.jpg',
             milestones: [
@@ -548,7 +548,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '22634',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11ten',
             imageURL: '/img/products/tenis2.jpg',
             milestones: [
@@ -562,7 +562,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '54784',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11chi',
             imageURL: '/img/products/chinelo1.jpg',
             milestones: [
@@ -576,7 +576,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '22768',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11chi',
             imageURL: '/img/products/chinelo2.jpg',
             milestones: [
@@ -590,7 +590,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '67460',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cer',
             imageURL: '/img/products/cereal1.jpg',
             milestones: [
@@ -604,7 +604,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '92597',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cer',
             imageURL: '/img/products/cereal2.jpg',
             milestones: [
@@ -618,7 +618,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '67066',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11car',
             imageURL: '/img/products/carne1.jpg',
             milestones: [
@@ -632,7 +632,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '97489',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11car',
             imageURL: '/img/products/carne2.jpg',
             milestones: [
@@ -646,7 +646,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '36524',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11pei',
             imageURL: '/img/products/peixe1.jpg',
             milestones: [
@@ -660,7 +660,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '18675',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11pei',
             imageURL: '/img/products/peixe2.jpg',
             milestones: [
@@ -674,7 +674,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '31234',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11bol',
             imageURL: '/img/products/bolacha1.jpg',
             milestones: [
@@ -688,7 +688,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '12684',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11bol',
             imageURL: '/img/products/bolacha2.jpg',
             milestones: [
@@ -702,7 +702,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '75031',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cho',
             imageURL: '/img/products/chocolate1.jpg',
             milestones: [
@@ -716,7 +716,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '41189',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11cho',
             imageURL: '/img/products/chocolate2.jpg',
             milestones: [
@@ -730,7 +730,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '79396',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11sov',
             imageURL: '/img/products/sorvete1.jpg',
             milestones: [
@@ -744,7 +744,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '81082',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '11sov',
             imageURL: '/img/products/sorvete2.jpg',
             milestones: [
@@ -758,7 +758,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '23096',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111pla',
             imageURL: '/img/products/placa1.jpg',
             milestones: [
@@ -772,7 +772,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '14663',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111pla',
             imageURL: '/img/products/placa2.jpg',
             milestones: [
@@ -786,7 +786,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '31683',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111pro',
             imageURL: '/img/products/processador1.jpg',
             milestones: [
@@ -800,7 +800,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '58184',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111pro',
             imageURL: '/img/products/processador2.jpg',
             milestones: [
@@ -814,7 +814,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '65366',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111fon',
             imageURL: '/img/products/fonte1.jpg',
             milestones: [
@@ -828,7 +828,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '17595',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111fon',
             imageURL: '/img/products/fonte2.jpg',
             milestones: [
@@ -842,7 +842,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '56038',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111mem',
             imageURL: '/img/products/memoria1.jpg',
             milestones: [
@@ -856,7 +856,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '38782',
-            currentQuantity: 10,
+            currentQuantity: 0,
             categoryId: '111mem',
             imageURL: '/img/products/memoria2.jpg',
             milestones: [

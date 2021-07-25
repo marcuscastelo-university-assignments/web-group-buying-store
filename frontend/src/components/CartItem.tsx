@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { CartProductProps } from '../pages/Cart';
-import { MilestoneProps, ProductProps } from '../types';
+import { CartProductProps, getLoadingProduct, MilestoneProps, ProductProps } from '../types';
 import { getProduct, removeCartItem, updateCartItem } from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 
@@ -37,49 +36,43 @@ function getProductData(product: ProductProps, qttyInCartItem: number) {
 
 type CartItemProps = {
     itemInfo: CartProductProps,
-    onChanged: () => void,
+    onCountChanged: () => void,
+    onDeleted: () => void,
 }
 
-const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
+const CartItem: React.FC<CartItemProps> = ({ itemInfo, onCountChanged, onDeleted }) => {
 
-    // const product = getProduct(itemInfo.productId);
-    //TODO: async (remove this dummy)
-    const product: ProductProps = {
-            productId: ' ',
-            title: ' ',
-            description: ' ',
-            imageURL: ' ',
-            categoryId: ' ',
-            milestones: [
-                {
-                    price: 12,
-                    quantity: 12,
-                }
-            ],
-            currentQuantity: 12,
-            comments: [
+    const [product, setProduct] = useState(getLoadingProduct());
 
-            ],
-            creator: ' '
-    };
-    ////
+    const [count, _setCount] = useState<number>(itemInfo.quantity);
 
+    const [ runtimeInfo, setRuntimeInfo ] = useState(calculateRuntimeInfo(product));
+    const [ remainingProductQuantity, setRemainingProductQuantity ]  = useState(0); 
 
-    const [count, setCount] = useState<number>(itemInfo.quantity);
-
-    const runtimeInfo = calculateRuntimeInfo(product);
-    const remainingProductQuantity = Math.max(0, (runtimeInfo.lastMilestone?.quantity ?? 0) - product.currentQuantity);
+    const [ ready, setReady ] = useState(false);
 
     const history = useHistory();
 
-    useEffect(() => {
-        if (count < 1) setCount(1);
-        if (count > remainingProductQuantity) setCount(remainingProductQuantity);
+    const setCount = (newCount: number) => {
+        const oldCount = count;
+        newCount = Math.max(0, Math.min(newCount, remainingProductQuantity));
+        _setCount(newCount);
+        itemInfo.quantity = newCount;
+        if (newCount !== oldCount) { onCountChanged(); }
+        // updateCartItem(itemInfo);
+    }
 
-        itemInfo.quantity += count;
-        updateCartItem(itemInfo);
-        onChanged();
-    }, [count, itemInfo, onChanged, remainingProductQuantity]);
+    useEffect(() => {
+        getProduct(itemInfo.productId).then(p => {
+            if (p) {
+                setProduct(p)
+                const newRTI = calculateRuntimeInfo(p);
+                setRuntimeInfo(newRTI);
+                setRemainingProductQuantity(Math.max(0, (newRTI.lastMilestone?.quantity ?? 0) - p.currentQuantity));
+                setReady(true);
+            }
+        });
+    }, [itemInfo.productId]);
 
     const { currPricePerItem, nextPricePerItem, remainingToReducePrice } = getProductData(product, itemInfo.quantity);
 
@@ -88,7 +81,7 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
         product === undefined ?
             <h1>
                 Error: inconsistent localStorage
-        </h1>
+            </h1>
 
             :
             <React.Fragment>
@@ -107,7 +100,7 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
                             <div className="flex-grow-1">
 
                             </div>
-                            <a href="#0" onClick={(e) => { e.preventDefault(); removeCartItem(product.productId); history.push('/cart') }}>
+                            <a href="#0" onClick={async (e) => { e.preventDefault(); await removeCartItem(product.productId); onDeleted(); }}>
                                 <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                     <i className="fa fa-trash"></i>
                                 </div>
@@ -158,19 +151,19 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onChanged }) => {
                                         <div className="col-12 text-justify">
                                             {
                                                 remainingToReducePrice > 0 ?
-                                                    <small className="text-muted">Falta(m) {remainingToReducePrice} unidade(s) para o produto abaixar para R${nextPricePerItem} por produto 
+                                                    <small className="text-muted">Falta(m) {remainingToReducePrice} unidade(s) para o produto abaixar para R${nextPricePerItem} por produto
                                                         <br /> Nesse caso, você deve pagar, no mínimo, R${runtimeInfo.lastMilestone ? (runtimeInfo.lastMilestone.price * (runtimeInfo.lastMilestone.quantity - product.currentQuantity)) : 'Erro'} para atingir a última meta.
                                                     </small>
                                                     :
                                                     <small className="text-success"> Todas as milestones foram atingidas! o preço atual é {runtimeInfo.currentMilestone?.price ?? NaN} </small>
                                             }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
 
 

@@ -15,7 +15,8 @@ export function calculateRuntimeInfo(product: ProductProps): RuntimeProductInfo 
 
     product.milestones.sort((m1, m2) => m1.quantity - m2.quantity);
     const nextMilestoneIdx = product.milestones.findIndex(m => m.quantity > product.currentQuantity);
-    const currentMilestoneIdx = (nextMilestoneIdx < 0) ? product.milestones.length-1 : nextMilestoneIdx - 1;
+    let currentMilestoneIdx = Math.max(0, (nextMilestoneIdx < 0) ? product.milestones.length-1 : nextMilestoneIdx - 1);
+
 
     // TODO if -1 current or next
 

@@ -8,7 +8,7 @@ import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 
 import './Product.css'
-import { generateCommentID, getCartItem, getProduct, getUser, updateCartItem, removeProduct, updateProduct } from '../util/api';
+import { generateCommentID, getCartProduct, getProduct, getUser, updateCartItem, removeProduct, updateProduct } from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import { ProductProps, getLoadingProduct } from '../types';
 
@@ -31,8 +31,8 @@ const ProductPage: React.FC = () => {
     };
 
     let history = useHistory();
-    function addToCart({ productId }: ProductProps) {
-        const item = getCartItem(productId) ?? { productId, quantity: 0 };
+    async function addToCart({ productId }: ProductProps) {
+        const item = (await getCartProduct(productId)) ?? { productId, quantity: 0 };
         item.quantity++;
         updateCartItem(item);
         history.push('/cart')

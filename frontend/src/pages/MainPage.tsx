@@ -9,10 +9,8 @@ import ProductCard from '../components/ProductCard';
 import Category from '../components/Category';
 import CategoryLayer from '../components/CategoryLayer';
 
-import { CategoryDescription, CategoryLayersDescription } from '../util/api';
 import { getProducts } from '../util/api';
-import { ProductProps } from '../types';
-import { PromptProps } from 'react-router';
+import { ProductProps, CategoryDescription, CategoryLayersDescription } from '../types';
 
 
 const MainPage: React.FC = () => {

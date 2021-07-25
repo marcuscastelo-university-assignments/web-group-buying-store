@@ -60,3 +60,26 @@ export const getLoadingProduct = () => {
         description: 'Loading...',
     } as ProductProps
 };
+
+export type CartProductProps = {
+    productId: string,
+    quantity: number,
+};
+
+
+export type CategoryDescription = {
+    id: string,
+    name: string,
+    layer: string,
+    imageSrc: string,
+    parent?: string,
+    final?: boolean
+}
+
+export const DEFAULTS = Object.freeze({
+    IMG_DEFAULT: '/img/no-preview.jpeg',
+})
+
+export type LayerDescription = CategoryDescription[];
+
+export type CategoryLayersDescription =  { [layer: string]: LayerDescription };

@@ -1,8 +1,8 @@
 
-import { CartProductProps } from "../pages/Cart";
-import { ProductProps, UserProps } from "../types";
+import { CartProductProps, LayerDescription, ProductProps, UserProps } from "../types";
 
 import axios from 'axios';
+import { getCurrentUserNick } from "./auth-util";
 
 const api = axios.create({
     baseURL: 'http://localhost:3333/api/',
@@ -14,25 +14,14 @@ const LS_KEYS = {
     CATEGORIES: 'categories'
 };
 
-export type CategoryDescription = {
-    id: string,
-    name: string,
-    layer: string,
-    imageSrc: string,
-    parent?: string,
-    final?: boolean
-}
-
-export const DEFAULTS = Object.freeze({
-    IMG_DEFAULT: '/img/no-preview.jpeg',
-})
-
-export type LayerDescription = CategoryDescription[];
-
-export type CategoryLayersDescription =  { [layer: string]: LayerDescription };
 
 export async function removeCartItem(productId: string) {
-    // axios.delete(`/product/${productId}`);
+    try {
+        await api.delete(`/cart/${getCurrentUserNick()}/${productId}`);
+    } catch (error) {
+        console.error(error);
+        console.error(error.response);
+    }
 }
 
 export async function updateCartItem(cartItem: CartProductProps) {
@@ -50,6 +39,9 @@ export async function updateCartItems(cartItems: CartProductProps[]) {
     // localStorage.setItem(LS_KEYS.CART_ITEMS, JSON.stringify(cartItems));
 }
 
+export async function clearCartItems() {
+    await api.delete(`/cart/${getCurrentUserNick()}/clear`);
+}
 
 export async function getProduct(productId: string) {
     try {
@@ -102,12 +94,12 @@ export async function removeProduct(productId: string) {
     await api.delete(`/product/${productId}`);
 }
 
-export function getCartItems() {
-    return JSON.parse(localStorage.getItem(LS_KEYS.CART_ITEMS) ?? '[]') as CartProductProps[];
+export async function getCartProducts() {
+    return (await api.get(`/cart/${getCurrentUserNick()}`)).data as CartProductProps[];
 }
 
-export function getCartItem(productId: string) {
-    return getCartItems().find(p => p.productId === productId);
+export async function getCartProduct(productId: string) {
+    return (await getCartProducts()).find(p => p.productId === productId);
 }
 
 export async function fetchCategories() {
