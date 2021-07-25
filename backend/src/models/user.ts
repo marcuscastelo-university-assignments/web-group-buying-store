@@ -1,7 +1,7 @@
 import { model, Schema, Document } from 'mongoose';
 
 //Typescript definition
-export type User = {
+type User = {
     name: string,
     nick: string,
     email: string,

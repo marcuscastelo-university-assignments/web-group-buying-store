@@ -13,7 +13,7 @@ export async function getUsers(req: Request, res: Response) {
 
 export async function getUser(req: Request, res: Response) {
     try {
-        const user = await User.findOne({ userId: req.params.id }).exec();
+        const user = await User.findOne({ nick: req.params.nick }).exec();
         if (user) {
             res.status(200).json(user);
         } else {
@@ -28,7 +28,10 @@ export async function getUser(req: Request, res: Response) {
 
 export async function createUser(req: Request, res: Response) {
     try {
-        const userDocument: Partial<UserModel> = req.body;
+        const userDocument: Partial<UserModel> = {
+            ...req.body,
+            admin: false,
+        };
 
         let user = await User.create(userDocument);
 
@@ -44,7 +47,7 @@ export async function createUser(req: Request, res: Response) {
 
 export async function updateUser(req: Request, res: Response) {
     try {
-        const result = await User.updateOne({ userId: req.params.id }, req.body);
+        const result = await User.updateOne({ nick: req.params.nick }, req.body);
         if (result.n > 0) {
             if (result.nModified > 0)
                 res.status(200).json(req.body);
@@ -62,7 +65,7 @@ export async function updateUser(req: Request, res: Response) {
 
 export async function deleteUser(req: Request, res: Response) {
     try {
-        const result_ = await User.deleteOne({ userId: req.params.id }).exec();
+        const result_ = await User.deleteOne({ nick: req.params.nick }).exec();
         const result = (result_ as unknown as { ok: number, n: number, deletedCount: number }) ?? { ok: 0, n: 0, deletedCount: 0 };
         if (result?.n > 0) {
             if (result?.deletedCount > 0)
@@ -79,4 +82,18 @@ export async function deleteUser(req: Request, res: Response) {
         console.trace(error);
         res.status(500).json({error, message: 'Internal server error' });
     }
+}
+
+export async function isAuth(req: Request, res: Response, next: NextFunction) {
+    const user = await User.findOne({ nick: req.params.nick }).exec();
+    if ((user?.nick === req.cookies.nick && user?.password === req.cookies.password)) return next();
+    else return res.status(401).json({message: "Not authorized"});
+}
+
+export async function isAdmin(req: Request, res: Response, next: NextFunction) {
+    isAuth(req, res, async _ => {
+        const user = await User.findOne({ nick: req.params.nick }).exec();
+        if (user?.admin) return next(user);
+        else return res.status(401).json({message: "Not authorized"});
+    })
 }
