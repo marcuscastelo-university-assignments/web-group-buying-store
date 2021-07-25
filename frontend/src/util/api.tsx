@@ -1,7 +1,6 @@
 
 import { CartProductProps } from "../pages/Cart";
 import { ProductProps, UserProps } from "../types";
-import { LayerDescription } from "./mock-categories";
 
 import axios from 'axios';
 
@@ -14,6 +13,23 @@ const LS_KEYS = {
     PRODUCTS: 'products',
     CATEGORIES: 'categories'
 };
+
+export type CategoryDescription = {
+    id: string,
+    name: string,
+    layer: string,
+    imageSrc: string,
+    parent?: string,
+    final?: boolean
+}
+
+export const DEFAULTS = Object.freeze({
+    IMG_DEFAULT: '/img/no-preview.jpeg',
+})
+
+export type LayerDescription = CategoryDescription[];
+
+export type CategoryLayersDescription =  { [layer: string]: LayerDescription };
 
 export async function removeCartItem(productId: string) {
     // axios.delete(`/product/${productId}`);
@@ -86,13 +102,17 @@ export async function removeProduct(productId: string) {
     await api.delete(`/product/${productId}`);
 }
 
-//
 export function getCartItems() {
     return JSON.parse(localStorage.getItem(LS_KEYS.CART_ITEMS) ?? '[]') as CartProductProps[];
 }
 
 export function getCartItem(productId: string) {
     return getCartItems().find(p => p.productId === productId);
+}
+
+export async function fetchCategories() {
+    const layers = await api.get('/category');
+    localStorage.setItem('categories', JSON.stringify(layers));
 }
 
 export function getCategories() {

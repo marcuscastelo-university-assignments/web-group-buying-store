@@ -6,6 +6,7 @@ import { getDB } from './db';
 
 import productRouter from './routes/product-routes';
 import userRouter from './routes/user-routes';
+import categoryRouter from './routes/category-routes';
 
 async function main() {
     const [ connection, error ] = await getDB();
@@ -23,6 +24,7 @@ async function main() {
 
     app.use('/api/product', productRouter);
     app.use('/api/user', userRouter);
+    app.use('/api/category', categoryRouter);
 
     app.use(express.static('html'));
 

@@ -1,26 +1,7 @@
-export type CategoryDescription = {
-    id: string,
-    name: string,
-    layer: string,
-    imageSrc: string,
-    parent?: string,
-    final?: boolean
-}
+import express, { Request, Response } from 'express';
 
-export const DEFAULTS = {
-    IMG_DEFAULT: '/img/no-preview.jpeg',
-}
-
-
-
-export type LayerDescription = CategoryDescription[];
-
-export type CategoryLayersDescription =  { [layer: string]: LayerDescription };
-
-//TODO: mention icons8 in some place (credits)
-//Got icons from 'https://icons8.com/icon/set/household/wired--black'
-export function generateMockCategories() {
-    let layers: CategoryLayersDescription = {
+export async function getCategories(req: Request, res: Response) {
+    let layers = {
         "1" : [
             { layer: "1", final: false, name: "Eletrodomésticos", id: '1ele', imageSrc:'/img/categories/bolt.png' },
             { layer: "1", final: false, name: "Roupas", id: '1rou', imageSrc:'/img/categories/tshirt.png' },
@@ -60,5 +41,5 @@ export function generateMockCategories() {
         ]
     };
 
-    return layers;
+    return res.json(layers);
 }

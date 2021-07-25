@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import MilestoneItem from '../components/MilestoneItem';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
-import { CategoryDescription, DEFAULTS } from '../util/mock-categories';
+import { CategoryDescription, DEFAULTS } from '../util/api';
 import CategorySelector from '../components/CategorySelector';
 
 import * as API from '../util/api';

@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import './App.css';
 
@@ -11,25 +11,12 @@ import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import ProductPage from './pages/Product';
 import ProductEditor from './pages/ProductEditor';
-import { generateMockCategories } from './util/mock-categories';
-import { createProduct, getProducts, registerUser, updateProducts } from './util/api';
-import { genMockProducts } from './util/mock-products';
-
-//This is a temporary function used to simulate server-side interacion.
-//TODO: remove on last assignment
-function injectProductsToLocalStorage() {
-    const products = genMockProducts();
-    // products.forEach(createProduct);
-}
-
-function injectCategoriesToLocalStorage() {
-    const layers = generateMockCategories();
-    localStorage.setItem('categories', JSON.stringify(layers));
-}
+import { fetchCategories, registerUser } from './util/api';
 
 function App() {
-    injectProductsToLocalStorage();
-    injectCategoriesToLocalStorage();
+    const [ready, setReady] = useState(false);
+
+    fetchCategories().then(_ => setReady(true));
 
     registerUser({
         name: 'Magalu',
@@ -51,17 +38,26 @@ function App() {
         admin: true,
     }, true);
 
+
+    if (!ready) {
+        return (
+            <div className="App">
+                Loading...
+            </div>
+        )
+    }
+
     return (
         <div className="App">
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" exact component={MainPage}/>
-                    <Route path="/login" exact component={LoginPage}/>
-                    <Route path="/register" exact component={RegisterPage}/>
-                    <Route path="/product/:id" component={ProductPage}/>
-                    <Route path="/create_product" exact component={ProductEditor}/>
-                    <Route path="/edit_product/:id" exact component={ProductEditor}/>
-                    <Route path="/cart" exact component={CartPage}/>
+                    <Route path="/" exact component={MainPage} />
+                    <Route path="/login" exact component={LoginPage} />
+                    <Route path="/register" exact component={RegisterPage} />
+                    <Route path="/product/:id" component={ProductPage} />
+                    <Route path="/create_product" exact component={ProductEditor} />
+                    <Route path="/edit_product/:id" exact component={ProductEditor} />
+                    <Route path="/cart" exact component={CartPage} />
 
                     {/* <Route path="/" component={NotFoundPage}/> */}
                 </Switch>
