@@ -19,6 +19,7 @@ async function calcTotal(cartProducts: CartProductProps[]) {
         const RTI = calculateRuntimeInfo(product)
         console.table(RTI)
         let price = (RTI.currentMilestone?.price ?? RTI.lastMilestone?.price) ?? -10;
+        if ((product.currentQuantity  + cartItem.quantity) < (RTI.firstMilestone?.quantity ?? 10000000)) return -1
         total += price * cartItem.quantity;
     }
 
@@ -29,7 +30,7 @@ async function calcTotal(cartProducts: CartProductProps[]) {
 const CartPage: React.FC = _ => {
     let [cartProducts, setCartProducts] = useState<CartProductProps[]>([]);
 
-    let [total, setTotal] = useState(0);
+    let [ total, setTotal] = useState(0);
     const updateTotal = async (cartProducts: CartProductProps[]) => setTotal(await calcTotal(cartProducts));
 
     let [name, setName] = useState<string>("");
@@ -172,7 +173,13 @@ const CartPage: React.FC = _ => {
                                                     <div className="row g-0 mt-3">
                                                         <div className="col p-2">
                                                             <span className="cart-total" style={{ fontSize: 'large' }}>
-                                                                Total: R${total}
+                                                                {
+                                                                    
+                                                                    (total < 0)
+                                                                    ? 'Impossível comprar (algum produto está indisponível)'
+                                                                    : `Total: R$${total}`
+                                                                }
+                                                                
                                                             </span>
                                                         </div>
                                                         <div className="col text-end">

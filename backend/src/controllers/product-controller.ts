@@ -29,12 +29,7 @@ export async function getProduct(req: Request, res: Response) {
 //Creates a new product
 export async function createProduct(req: Request, res: Response) {
     try {
-        //TODO: impedir inserção de ids repetidos (gerar no back)
-        const productDocument: Partial<ProductModel> = req.body;
-
-        let product = await Product.create(productDocument);
-
-        await product.save();
+        let product = await Product.create(req.body);
 
         res.status(201).json(product);
     }

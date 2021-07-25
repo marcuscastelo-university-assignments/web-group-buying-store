@@ -29,6 +29,7 @@ const isSelfOrAdmin = async (req: Request, res: Response, next: NextFunction) =>
 router.get('/', productController.getProducts);
 router.get('/:id', productController.getProduct);
 router.post('/', isAuth, productController.createProduct);
+// router.post('/all', isAuth, productController.createProducts);
 router.put('/:id', isAuth, isSelf, productController.updateProduct);
 router.delete('/:id', isAuth, isSelfOrAdmin, productController.deleteProduct);
 

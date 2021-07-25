@@ -46,10 +46,10 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onCountChanged, onDeleted
 
     const [count, _setCount] = useState<number>(itemInfo.quantity);
 
-    const [ runtimeInfo, setRuntimeInfo ] = useState(calculateRuntimeInfo(product));
-    const [ remainingProductQuantity, setRemainingProductQuantity ]  = useState(0); 
+    const [runtimeInfo, setRuntimeInfo] = useState(calculateRuntimeInfo(product));
+    const [remainingProductQuantity, setRemainingProductQuantity] = useState(0);
 
-    const [ ready, setReady ] = useState(false);
+    const [ready, setReady] = useState(false);
 
     const history = useHistory();
 
@@ -137,25 +137,26 @@ const CartItem: React.FC<CartItemProps> = ({ itemInfo, onCountChanged, onDeleted
                                         </span>
                                     </div>
                                 </div>
-
                                 <div className="col-12 col-sm-6 col-md-12">
                                     <div className="row g-0">
                                         <div className="col-12 text-center mt-2">
-                                            {count}x R${currPricePerItem}
+                                            {count}x {currPricePerItem >= 0 ? `R$${currPricePerItem}` : "--"}
                                         </div>
                                         <div className="col-12 text-center">
                                             <span className="cart-item-total">
-                                                R${count * currPricePerItem}
+                                                {(currPricePerItem >= 0) ? `R$${count * currPricePerItem}` : "--"}
                                             </span>
                                         </div>
                                         <div className="col-12 text-justify">
                                             {
-                                                remainingToReducePrice > 0 ?
-                                                    <small className="text-muted">Falta(m) {remainingToReducePrice} unidade(s) para o produto abaixar para R${nextPricePerItem} por produto
-                                                        <br /> Nesse caso, você deve pagar, no mínimo, R${runtimeInfo.lastMilestone ? (runtimeInfo.lastMilestone.price * (runtimeInfo.lastMilestone.quantity - product.currentQuantity)) : 'Erro'} para atingir a última meta.
-                                                    </small>
-                                                    :
-                                                    <small className="text-success"> Todas as milestones foram atingidas! o preço atual é {runtimeInfo.currentMilestone?.price ?? NaN} </small>
+                                                currPricePerItem < 0 ?
+                                                    <small className="text-muted"> O produto deve atingir a primeira meta para ser vendido, é necessário comprar mais {remainingToReducePrice} unidade(s) para atingir essa meta, na qual o preço é de R${nextPricePerItem}.</small>
+                                                    : remainingToReducePrice > 0 ?
+                                                        <small className="text-muted">Falta(m) {remainingToReducePrice} unidade(s) para o produto abaixar para R${nextPricePerItem} por produto
+                                                            <br /> Nesse caso, você deve pagar, no mínimo, R${runtimeInfo.lastMilestone ? (runtimeInfo.lastMilestone.price * (runtimeInfo.lastMilestone.quantity - product.currentQuantity)) : 'Erro'} para atingir a última meta.
+                                                        </small>
+                                                        :
+                                                        <small className="text-success"> Todas as milestones foram atingidas! o preço atual é {runtimeInfo.currentMilestone?.price ?? NaN} </small>
                                             }
                                         </div>
                                     </div>
