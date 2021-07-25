@@ -32,5 +32,31 @@ export type ProductProps = {
     milestones: MilestoneProps[],
     currentQuantity: number,
     comments: ProductCommentInfo[],
-    creator: string, 
+    creator: string,
+};
+
+//An ProductProps that has all its fields as loading...
+export const getLoadingProduct = () => {
+    return {
+        title: 'Loading...',
+        categoryId: 'loading',
+        comments: [
+            {
+                title: 'Loading...',
+                author: 'loading',
+                content: 'Loading...',
+                dislikes: 0,
+                likes: 0,
+                rating: 0,
+                commentId: 'loading',
+            }
+        ],
+        creator: 'loading',
+        currentQuantity: 0,
+        imageURL: 'loading',
+        milestones: [
+        ],
+        productId: 'loading',
+        description: 'Loading...',
+    } as ProductProps
 };

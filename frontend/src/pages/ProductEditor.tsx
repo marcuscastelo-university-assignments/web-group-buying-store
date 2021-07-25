@@ -10,7 +10,7 @@ import { generateProductID, getCategories, getUser, updateProduct } from '../uti
 
 //TODO: change LS name
 import * as LS from '../util/local-storage';
-import { MilestoneProps, ProductProps } from '../types';
+import { MilestoneProps, ProductProps, getLoadingProduct } from '../types';
 import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
 import { useHistory, useParams } from 'react-router';
 
@@ -21,7 +21,6 @@ const ProductEditor: React.FC = () => {
     const history = useHistory();
     const { id: productId } = useParams<{ id?: string }>();
 
-
     let _milesetoneState = useState(-1);
     let [selectedMilestone, selectMilestone] = _milesetoneState;
 
@@ -31,18 +30,22 @@ const ProductEditor: React.FC = () => {
     const nick = getCurrentUserNick();
     const user = getUser(nick);
 
-
+    const editing = history.location.pathname.includes('edit');
+    const baseProduct = editing ? getLoadingProduct() : 
+    {
+        title: "",
+        milestones: [],
+        categoryId: "",
+        imageURL: "",
+        currentQuantity: 0,
+        comments: [],
+        description: "",
+    };
 
     const [product, setProduct] = useState<ProductProps>(
         {
-            title: "",
-            milestones: [],
-            categoryId: "",
-            imageURL: "",
-            currentQuantity: 0,
+            ...baseProduct,
             productId: generateProductID(),
-            comments: [],
-            description: "",
             creator: nick,
         }
     );
@@ -107,10 +110,6 @@ const ProductEditor: React.FC = () => {
     }
 
 
-    // useEffect(() => {
-
-
-
     let [productImage, setProductImage] = useState(product.imageURL || DEFAULTS.IMG_DEFAULT);
     let [titleName, setTitleName] = useState(product.title);
     let [descriptionText, setDescriptionText] = useState(product.description)
@@ -118,10 +117,22 @@ const ProductEditor: React.FC = () => {
     useEffect(() => {
         if (productId)
             LS.getProduct(productId).then((product) => {
-                if (product) setProduct(product);
-                generateDefaultParents(product);
+                if (product)
+                    setProduct(product);
+                else {
+                    //Show 404 page
+                    history.push('/404');
+                }
             })
-    }, [productId]);
+    }, [productId, history]);
+
+
+    useEffect(() => {
+        setTitleName(product.title);
+        setProductImage(product.imageURL);
+        setDescriptionText(product.description ?? '');
+        setCategoriesParents(generateDefaultParents(product));
+    }, [product]);
 
     if (nick === '' || !user || nick !== product.creator) {
         //Important: do not remove this line (product.creator is undefined even though it should not!)
@@ -236,7 +247,7 @@ const ProductEditor: React.FC = () => {
                                                 </p>
 
                                                 {categoriesParents.map((parent, idx) => (
-                                                    (parent || idx === 0) ? <CategorySelector key={'1'.repeat(idx)} layer={'1'.repeat(idx)} categoryId={parent} defaultValue={categoriesParents[idx + 1]} onChange={(chosenCategory) => updateSelectorsBelow(idx, chosenCategory)} />
+                                                    (parent || idx === 0) ? <CategorySelector key={categoriesParents[idx + 1]} layer={'1'.repeat(idx)} categoryId={parent} defaultValue={categoriesParents[idx + 1]} onChange={(chosenCategory) => updateSelectorsBelow(idx, chosenCategory)} />
                                                         : ''
                                                 ))}
 

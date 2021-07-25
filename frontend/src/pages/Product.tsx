@@ -10,7 +10,7 @@ import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import './Product.css'
 import { generateCommentID, getCartItem, getProduct, getUser, updateCartItem, removeProduct, updateProduct } from '../util/local-storage';
 import { calculateRuntimeInfo } from '../util/product-utlls';
-import { ProductProps } from '../types';
+import { ProductProps, getLoadingProduct } from '../types';
 
 import ProductCommentEditor from '../components/ProductCommentEditor'
 import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
@@ -42,31 +42,7 @@ const ProductPage: React.FC = () => {
 
     const { id: productId } = useParams<{ id: string }>();
 
-    //An ProductProps that has all its fields as loading...
-    const LoadingProduct: ProductProps = {
-        title: 'Loading...',
-        categoryId: 'loading',
-        comments: [
-            {
-                title: 'Loading...',
-                author: 'loading',
-                content: 'Loading...',
-                dislikes: 0,
-                likes: 0,
-                rating: 0,
-                commentId: 'loading' + productId,
-            }
-        ],
-        creator: 'loading',
-        currentQuantity: 0,
-        imageURL: 'loading',
-        milestones: [
-        ],
-        productId: 'loading' + productId,
-        description: 'Loading...',
-    }
-
-    const [product, _setProduct] = useState(LoadingProduct);
+    const [product, _setProduct] = useState(getLoadingProduct());
 
     const setProduct = (product: ProductProps) => {
         _setProduct(product);

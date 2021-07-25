@@ -19,7 +19,7 @@ import { genMockProducts } from './util/mock-products';
 //TODO: remove on last assignment
 function injectProductsToLocalStorage() {
     const products = genMockProducts();
-    products.forEach(createProduct);
+    // products.forEach(createProduct);
 }
 
 function injectCategoriesToLocalStorage() {
