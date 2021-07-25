@@ -10,7 +10,7 @@ import Category from '../components/Category';
 import CategoryLayer from '../components/CategoryLayer';
 
 import { CategoryDescription, CategoryLayersDescription } from '../util/mock-categories';
-import { getProducts } from '../util/local-storage';
+import { getProducts } from '../util/api';
 import { ProductProps } from '../types';
 import { PromptProps } from 'react-router';
 

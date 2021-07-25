@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { CartProductProps } from '../pages/Cart';
 import { MilestoneProps, ProductProps } from '../types';
-import { getProduct, removeCartItem, updateCartItem } from '../util/local-storage';
+import { getProduct, removeCartItem, updateCartItem } from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 
 function getProductData(product: ProductProps, qttyInCartItem: number) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { getCategoriesInLayer, getCategoryInLayer } from '../util/local-storage'
+import { getCategoriesInLayer, getCategoryInLayer } from '../util/api'
 
 type CategorySelectorProps = {
     layer: string,

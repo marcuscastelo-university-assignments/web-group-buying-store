@@ -6,7 +6,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductProps } from '../types';
 import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
 import { calculateRuntimeInfo } from '../util/product-utlls';
-import { removeProduct } from '../util/local-storage';
+import { removeProduct } from '../util/api';
 import ProductCommentEditor from './ProductCommentEditor';
 import ProductEditor from '../pages/ProductEditor';
 

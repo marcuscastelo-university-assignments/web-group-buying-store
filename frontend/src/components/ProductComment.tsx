@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductCommentInfo } from '../types';
 import { getCurrentUserNick, isAuth, isAdmin } from '../util/auth-util';
-import { getUser } from '../util/local-storage';
+import { getUser } from '../util/api';
 
 type ProductCommentProps = {
     info: ProductCommentInfo,

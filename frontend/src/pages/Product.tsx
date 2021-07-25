@@ -8,7 +8,7 @@ import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 
 import './Product.css'
-import { generateCommentID, getCartItem, getProduct, getUser, updateCartItem, removeProduct, updateProduct } from '../util/local-storage';
+import { generateCommentID, getCartItem, getProduct, getUser, updateCartItem, removeProduct, updateProduct } from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import { ProductProps, getLoadingProduct } from '../types';
 

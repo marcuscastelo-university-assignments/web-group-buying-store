@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductCommentInfo, UserProps } from '../types';
-import { generateCommentID, getUser } from '../util/local-storage';
+import { generateCommentID, getUser } from '../util/api';
 
 
 function clamp(min: number, max: number, val: number) {

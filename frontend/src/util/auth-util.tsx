@@ -1,4 +1,4 @@
-import { getUser } from "./local-storage";
+import { getUser } from "./api";
 
 export function isAuth() {
     return getCurrentUserNick() !== '';

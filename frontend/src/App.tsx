@@ -12,7 +12,7 @@ import RegisterPage from './pages/Register';
 import ProductPage from './pages/Product';
 import ProductEditor from './pages/ProductEditor';
 import { generateMockCategories } from './util/mock-categories';
-import { createProduct, getProducts, registerUser, updateProducts } from './util/local-storage';
+import { createProduct, getProducts, registerUser, updateProducts } from './util/api';
 import { genMockProducts } from './util/mock-products';
 
 //This is a temporary function used to simulate server-side interacion.

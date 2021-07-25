@@ -6,10 +6,9 @@ import { calculateRuntimeInfo } from '../util/product-utlls';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import { CategoryDescription, DEFAULTS } from '../util/mock-categories';
 import CategorySelector from '../components/CategorySelector';
-import { generateProductID, getCategories, getUser, updateProduct } from '../util/local-storage';
 
-//TODO: change LS name
-import * as LS from '../util/local-storage';
+import * as API from '../util/api';
+
 import { MilestoneProps, ProductProps, getLoadingProduct } from '../types';
 import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
 import { useHistory, useParams } from 'react-router';
@@ -27,7 +26,7 @@ const ProductEditor: React.FC = () => {
     let [newPrice, setNewPrice] = useState(0);
 
     const nick = getCurrentUserNick();
-    const user = getUser(nick);
+    const user = API.getUser(nick);
 
     const editing = history.location.pathname.includes('edit');
     const baseProduct = editing ? getLoadingProduct() : 
@@ -44,16 +43,16 @@ const ProductEditor: React.FC = () => {
     const [product, setProduct] = useState<ProductProps>(
         {
             ...baseProduct,
-            productId: generateProductID(),
+            productId: API.generateProductID(),
             creator: nick,
         }
     );
 
     function generateDefaultParents(existingProduct?: ProductProps) {
-        let categoriesParentsCopy: (string | undefined)[] = new Array(Object.keys(getCategories()).length).fill(undefined);
+        let categoriesParentsCopy: (string | undefined)[] = new Array(Object.keys(API.getCategories()).length).fill(undefined);
         if (existingProduct) {
 
-            const categoryLayers = getCategories();
+            const categoryLayers = API.getCategories();
             const findCategory = (id?: string) => {
                 if (!id) return undefined;
                 let res;
@@ -115,7 +114,7 @@ const ProductEditor: React.FC = () => {
 
     useEffect(() => {
         if (productId)
-            LS.getProduct(productId).then((product) => {
+            API.getProduct(productId).then((product) => {
                 if (product)
                     setProduct(product);
                 else {
@@ -162,7 +161,7 @@ const ProductEditor: React.FC = () => {
     };
 
     const removeProduct = () => {
-        LS.removeProduct(product.productId);
+        API.removeProduct(product.productId);
         history.push('/');
     }
 
@@ -186,9 +185,9 @@ const ProductEditor: React.FC = () => {
         setProduct(product);
 
         if (editing)
-            await LS.updateProduct(product);
+            await API.updateProduct(product);
         else 
-            await LS.createProduct(product);
+            await API.createProduct(product);
         history.push('/');
         return product;
     }

@@ -2,7 +2,7 @@ import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link, useHistory } from 'react-router-dom';
-import { registerUser } from '../util/local-storage';
+import { registerUser } from '../util/api';
 import { DEFAULTS } from '../util/mock-categories';
 import { UserProps } from '../types';
 import { login } from '../util/auth-util';

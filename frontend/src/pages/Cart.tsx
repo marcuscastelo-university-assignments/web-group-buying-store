@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
-import { getCartItems, getProduct, updateCartItems, updateProduct } from '../util/local-storage';
+import { getCartItems, getProduct, updateCartItems, updateProduct } from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 
 import './Cart.css'
