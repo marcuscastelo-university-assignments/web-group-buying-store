@@ -55,6 +55,7 @@ export const getLoadingProduct = () => {
         currentQuantity: 0,
         imageURL: 'loading',
         milestones: [
+            {quantity: 0, price: 0}
         ],
         productId: 'loading',
         description: 'Loading...',

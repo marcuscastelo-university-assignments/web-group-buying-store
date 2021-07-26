@@ -19,7 +19,8 @@ async function calcTotal(cartProducts: CartProductProps[]) {
         const RTI = calculateRuntimeInfo(product)
         console.table(RTI)
         let price = (RTI.currentMilestone?.price ?? RTI.lastMilestone?.price) ?? -10;
-        if ((cartItem.quantity) < (RTI.firstMilestone?.quantity ?? 10000000)) return -1;
+        if (product.currentQuantity < RTI.firstMilestone.quantity) return -1;
+        if (product.currentQuantity > RTI.lastMilestone.quantity) return -1;
         total += price * cartItem.quantity;
     }
 
