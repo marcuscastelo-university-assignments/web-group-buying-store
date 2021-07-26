@@ -163,8 +163,8 @@ const ProductEditor: React.FC = () => {
         setNewQuantity(0);
     };
 
-    const removeProduct = () => {
-        API.removeProduct(product.productId);
+    const removeProduct = async () => {
+        await API.removeProduct(product.productId);
         history.push('/');
     }
 
