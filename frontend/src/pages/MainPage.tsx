@@ -12,7 +12,6 @@ import CategoryLayer from '../components/CategoryLayer';
 import { getProducts } from '../util/api';
 import { ProductProps, CategoryDescription, CategoryLayersDescription } from '../types';
 
-
 const MainPage: React.FC = () => {
 
     let [categoryHistory] = useState<{ [layer: string]: string }>({})

@@ -13,6 +13,7 @@ export function genMockProducts() {
     const products = [ 
         {
             productId: '90837',
+            description: '111com\'s description:',
             currentQuantity: 0,
             imageURL: '/img/products/notebookacer.jpg',
             categoryId: '111com',
@@ -27,6 +28,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '78175',
+            description: 'liquidificardophilips\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/liquidificardophilips.jpg',
@@ -41,6 +43,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '76792',
+            description: 'arcondicionadolg\'s description',
             currentQuantity: 0,
             categoryId: '11arc',
             imageURL: '/img/products/arcondicionadolg.jpg',
@@ -55,6 +58,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '64380',
+            description: 'arcondicionadofreehome\'s description',
             currentQuantity: 0,
             categoryId: '11arc',
             imageURL: '/img/products/arcondicionadofreehome.jpg',
@@ -69,6 +73,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '29279',
+            description: 'sofaoasis\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/sofaoasis.jpg',
@@ -83,6 +88,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '40725',
+            description: 'sofasaopaulo\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/sofasaopaulo.jpg',
@@ -97,6 +103,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '33654',
+            description: 'ventiladorbasicplus\'s description',
             currentQuantity: 0,
             categoryId: '11ven',
             imageURL: '/img/products/ventiladorbasicplus.jpg',
@@ -111,6 +118,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '74930',
+            description: 'ventiladormallory\'s description',
             currentQuantity: 0,
             categoryId: '11ven',
             imageURL: '/img/products/ventiladormallory.jpg',
@@ -125,6 +133,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '93825',
+            description: 'armariorosa\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/armariorosa.jpg',
@@ -139,6 +148,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '54272',
+            description: 'armariomarrom\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/armariomarrom.jpg',
@@ -153,6 +163,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '51674',
+            description: 'celulargalaxy\'s description',
             currentQuantity: 0,
             categoryId: '11cel',
             imageURL: '/img/products/celulargalaxy.jpg',
@@ -167,6 +178,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '40369',
+            description: 'celulariphone\'s description',
             currentQuantity: 0,
             categoryId: '11cel',
             imageURL: '/img/products/celulariphone.jpg',
@@ -181,6 +193,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '45306',
+            description: 'cadeiraescritorio1\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/cadeiraescritorio1.jpg',
@@ -195,6 +208,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '63836',
+            description: 'cadeiraescritorio2\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/cadeiraescritorio2.jpg',
@@ -209,6 +223,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '42647',
+            description: 'lavadora1\'s description',
             currentQuantity: 0,
             categoryId: '11lav',
             imageURL: '/img/products/lavadora1.jpg',
@@ -223,6 +238,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '90381',
+            description: 'lavadora2\'s description',
             currentQuantity: 0,
             categoryId: '11lav',
             imageURL: '/img/products/lavadora2.jpg',
@@ -237,6 +253,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '68797',
+            description: 'escrivaninha1\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/escrivaninha1.jpg',
@@ -251,6 +268,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '76567',
+            description: 'escrivaninha2\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/escrivaninha2.jpg',
@@ -265,6 +283,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '93910',
+            description: 'gaveteiro1\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/gaveteiro1.jpg',
@@ -279,6 +298,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '75649',
+            description: 'gaveteiro2\'s description',
             currentQuantity: 0,
             categoryId: '1ele',
             imageURL: '/img/products/gaveteiro2.jpg',
@@ -293,6 +313,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '60639',
+            description: 'tv1\'s description',
             currentQuantity: 0,
             categoryId: '11tel',
             imageURL: '/img/products/tv1.jpg',
@@ -307,6 +328,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '41290',
+            description: 'tv2\'s description',
             currentQuantity: 0,
             categoryId: '11tel',
             imageURL: '/img/products/tv2.jpg',
@@ -321,6 +343,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '83597',
+            description: 'tablet1\'s description',
             currentQuantity: 0,
             categoryId: '11tab',
             imageURL: '/img/products/tablet1.jpg',
@@ -335,6 +358,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '71992',
+            description: 'tablet2\'s description',
             currentQuantity: 0,
             categoryId: '11tab',
             imageURL: '/img/products/tablet2.jpg',
@@ -349,6 +373,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '87011',
+            description: 'micro1\'s description',
             currentQuantity: 0,
             categoryId: '11mic',
             imageURL: '/img/products/micro1.jpg',
@@ -363,6 +388,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '99845',
+            description: 'micro2\'s description',
             currentQuantity: 0,
             categoryId: '11mic',
             imageURL: '/img/products/micro2.jpg',
@@ -377,6 +403,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '47107',
+            description: 'secador1\'s description',
             currentQuantity: 0,
             categoryId: '11sec',
             imageURL: '/img/products/secador1.jpg',
@@ -391,6 +418,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '73927',
+            description: 'secador2\'s description',
             currentQuantity: 0,
             categoryId: '11sec',
             imageURL: '/img/products/secador2.jpg',
@@ -405,6 +433,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '54035',
+            description: 'computador2\'s description',
             currentQuantity: 0,
             categoryId: '111com',
             imageURL: '/img/products/computador2.jpg',
@@ -419,6 +448,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '48467',
+            description: 'bone1\'s description',
             currentQuantity: 0,
             categoryId: '11bon',
             imageURL: '/img/products/bone1.jpg',
@@ -433,6 +463,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '85740',
+            description: 'bone2\'s description',
             currentQuantity: 0,
             categoryId: '11bon',
             imageURL: '/img/products/bone2.jpg',
@@ -447,6 +478,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '28825',
+            description: 'camisa1\'s description',
             currentQuantity: 0,
             categoryId: '11cas',
             imageURL: '/img/products/camisa1.jpg',
@@ -461,6 +493,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '91989',
+            description: 'camisa2\'s description',
             currentQuantity: 0,
             categoryId: '11cas',
             imageURL: '/img/products/camisa2.jpg',
@@ -475,6 +508,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '34927',
+            description: 'blusa1\'s description',
             currentQuantity: 0,
             categoryId: '11blu',
             imageURL: '/img/products/blusa1.jpg',
@@ -489,6 +523,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '80260',
+            description: 'blusa2\'s description',
             currentQuantity: 0,
             categoryId: '11blu',
             imageURL: '/img/products/blusa2.jpg',
@@ -503,6 +538,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '72484',
+            description: 'calca1\'s description',
             currentQuantity: 0,
             categoryId: '11cal',
             imageURL: '/img/products/calca1.jpg',
@@ -517,6 +553,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '83451',
+            description: 'calca2\'s description',
             currentQuantity: 0,
             categoryId: '11cal',
             imageURL: '/img/products/calca2.jpg',
@@ -531,6 +568,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '91117',
+            description: 'tenis1\'s description',
             currentQuantity: 0,
             categoryId: '11ten',
             imageURL: '/img/products/tenis1.jpg',
@@ -545,6 +583,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '22634',
+            description: 'tenis2\'s description',
             currentQuantity: 0,
             categoryId: '11ten',
             imageURL: '/img/products/tenis2.jpg',
@@ -559,6 +598,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '54784',
+            description: 'chinelo1\'s description',
             currentQuantity: 0,
             categoryId: '11chi',
             imageURL: '/img/products/chinelo1.jpg',
@@ -573,6 +613,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '22768',
+            description: 'chinelo2\'s description',
             currentQuantity: 0,
             categoryId: '11chi',
             imageURL: '/img/products/chinelo2.jpg',
@@ -587,6 +628,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '67460',
+            description: 'cereal1\'s description',
             currentQuantity: 0,
             categoryId: '11cer',
             imageURL: '/img/products/cereal1.jpg',
@@ -601,6 +643,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '92597',
+            description: 'cereal2\'s description',
             currentQuantity: 0,
             categoryId: '11cer',
             imageURL: '/img/products/cereal2.jpg',
@@ -615,6 +658,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '67066',
+            description: 'carne1\'s description',
             currentQuantity: 0,
             categoryId: '11car',
             imageURL: '/img/products/carne1.jpg',
@@ -629,6 +673,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '97489',
+            description: 'carne2\'s description',
             currentQuantity: 0,
             categoryId: '11car',
             imageURL: '/img/products/carne2.jpg',
@@ -643,6 +688,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '36524',
+            description: 'peixe1\'s description',
             currentQuantity: 0,
             categoryId: '11pei',
             imageURL: '/img/products/peixe1.jpg',
@@ -657,6 +703,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '18675',
+            description: 'peixe2\'s description',
             currentQuantity: 0,
             categoryId: '11pei',
             imageURL: '/img/products/peixe2.jpg',
@@ -671,6 +718,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '31234',
+            description: 'bolacha1\'s description',
             currentQuantity: 0,
             categoryId: '11bol',
             imageURL: '/img/products/bolacha1.jpg',
@@ -685,6 +733,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '12684',
+            description: 'bolacha2\'s description',
             currentQuantity: 0,
             categoryId: '11bol',
             imageURL: '/img/products/bolacha2.jpg',
@@ -699,6 +748,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '75031',
+            description: 'chocolate1\'s description',
             currentQuantity: 0,
             categoryId: '11cho',
             imageURL: '/img/products/chocolate1.jpg',
@@ -713,6 +763,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '41189',
+            description: 'chocolate2\'s description',
             currentQuantity: 0,
             categoryId: '11cho',
             imageURL: '/img/products/chocolate2.jpg',
@@ -727,6 +778,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '79396',
+            description: 'sorvete1\'s description',
             currentQuantity: 0,
             categoryId: '11sov',
             imageURL: '/img/products/sorvete1.jpg',
@@ -741,6 +793,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '81082',
+            description: 'sorvete2\'s description',
             currentQuantity: 0,
             categoryId: '11sov',
             imageURL: '/img/products/sorvete2.jpg',
@@ -755,6 +808,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '23096',
+            description: 'placa1\'s description',
             currentQuantity: 0,
             categoryId: '111pla',
             imageURL: '/img/products/placa1.jpg',
@@ -769,6 +823,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '14663',
+            description: 'placa2\'s description',
             currentQuantity: 0,
             categoryId: '111pla',
             imageURL: '/img/products/placa2.jpg',
@@ -783,6 +838,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '31683',
+            description: 'processador1\'s description',
             currentQuantity: 0,
             categoryId: '111pro',
             imageURL: '/img/products/processador1.jpg',
@@ -797,6 +853,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '58184',
+            description: 'processador2\'s description',
             currentQuantity: 0,
             categoryId: '111pro',
             imageURL: '/img/products/processador2.jpg',
@@ -811,6 +868,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '65366',
+            description: 'fonte1\'s description',
             currentQuantity: 0,
             categoryId: '111fon',
             imageURL: '/img/products/fonte1.jpg',
@@ -825,6 +883,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '17595',
+            description: 'fonte2\'s description',
             currentQuantity: 0,
             categoryId: '111fon',
             imageURL: '/img/products/fonte2.jpg',
@@ -839,6 +898,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '56038',
+            description: 'memoria1\'s description',
             currentQuantity: 0,
             categoryId: '111mem',
             imageURL: '/img/products/memoria1.jpg',
@@ -853,6 +913,7 @@ export function genMockProducts() {
         }, 
         {
             productId: '38782',
+            description: 'memoria2\'s description',
             currentQuantity: 0,
             categoryId: '111mem',
             imageURL: '/img/products/memoria2.jpg',

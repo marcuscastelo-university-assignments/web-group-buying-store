@@ -31,10 +31,16 @@ const ProductPage: React.FC = () => {
     };
 
     let history = useHistory();
+
     async function addToCart({ productId }: ProductProps) {
         await API.addToCart(productId);
         history.push('/cart');
     }
+    /*
+    async function addToCart({ productId }: ProductProps) {
+        await API.addToCart(productId);
+        history.push('/cart');
+    }*/
 
 
 
@@ -234,8 +240,9 @@ const ProductPage: React.FC = () => {
                                                                 (commentID) => { setCreatingComment(false); }
                                                             }
                                                             onSave={
-                                                                (comment) => {
-                                                                    API.createComment(productId, comment);
+                                                                async (comment) => {
+                                                                    await API.createComment(productId, comment);
+                                                                    product.comments.push(comment);
                                                                     setProduct(product);
                                                                     setCreatingComment(false);
                                                                 }
@@ -264,8 +271,8 @@ const ProductPage: React.FC = () => {
                                                             <ProductCommentEditor
                                                                 info={comment}
                                                                 key={`comment-${editingID}-${comment.commentId}`}
-                                                                onRemove={(commentID) => { delete product.comments[idx]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
-                                                                onSave={(comment_save) => { product.comments[idx] = comment_save; setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                onRemove={async (commentID) => { delete product.comments[idx]; await API.deleteComment(productId, commentID); setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                onSave={async (comment_save) => { product.comments[idx] = comment_save; await API.updateComment(productId, comment_save); setProduct(product); setEditingID(''); setCreatingComment(false);  }}
                                                                 onClose={(commentID) => { setEditingID(''); }}
                                                             />
                                                             :

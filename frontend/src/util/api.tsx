@@ -91,6 +91,9 @@ export async function addToCart(productId: string) {
     await api.put(`/cart/${getCurrentUserNick()}/${productId}`);
 }
 
+
+
+
 export async function getCartProducts() {
     return (await api.get(`/cart/${getCurrentUserNick()}`)).data as CartProductProps[];
 }
@@ -181,7 +184,7 @@ export async function getUser(nick: string) {
 
 export async function createComment(productId: string, comment: ProductCommentInfo) {
     try {
-        (await api.post(`/product/${productId}/comment`, comment)).data as UserProps;
+        (await api.post(`/product/${productId}/comment`, comment)).data as ProductCommentInfo;
         return true;
     } catch (error) {
         console.error(error);
@@ -189,3 +192,29 @@ export async function createComment(productId: string, comment: ProductCommentIn
         return false;
     }
 }
+
+export async function updateComment(productId: string, comment: ProductCommentInfo) {
+    try {
+        await api.put(`/product/${productId}/comment/${comment.commentId}`, comment);
+        return true;
+    } catch (error) {
+        console.error(error);
+        console.error(error.response);
+        return false;
+    }
+}
+
+export async function deleteComment(productId: string, commentId: string) {
+    try {
+        await api.delete(`/product/${productId}/comment/${commentId}`);
+        return true;
+    } catch (error) {
+        console.error(error);
+        console.error(error.response);
+        return false;
+    }
+}
+
+
+
+
