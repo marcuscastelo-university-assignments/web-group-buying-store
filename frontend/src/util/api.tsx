@@ -25,11 +25,11 @@ export async function removeCartItem(productId: string) {
 }
 
 export async function updateCartItem(cartItem: CartProductProps) {
-    
+
 }
 
 export async function updateCartItems(cartItems: CartProductProps[]) {
-    
+
 }
 
 export async function clearCartItems() {
@@ -138,10 +138,10 @@ export function generateCommentID() {
 export async function login({ nick, password }: { nick: string, password: string }) {
     try {
         const user = (await api.post(`/auth/login`, { nick, password })).data as UserProps;
-        
+
         logout();
-        document.cookie = 'user='+user.nick;
-        document.cookie = 'password='+user.password;
+        document.cookie = 'user=' + user.nick;
+        document.cookie = 'password=' + user.password;
         document.cookie = `admin=${user.admin ?? false}`;
 
         return user;
@@ -155,13 +155,24 @@ export async function login({ nick, password }: { nick: string, password: string
             alert('Login failed');
             logout();
         }
- 
+
         return null;
     }
 }
 
 export async function register(userData: UserProps) {
-    return (await api.post(`/auth/register`, userData)).data as UserProps;
+    try {
+        return (await api.post(`/auth/register`, userData)).data as UserProps;
+    }
+    catch (error_) {
+        const error = error_ as AxiosError;
+        console.error(error);
+        console.error(error.response);
+        if (error.response?.status === 409) {
+            alert('User already exists');
+        }
+        return null;
+    }
 }
 
 export function logout() {
@@ -209,6 +220,7 @@ export async function deleteComment(productId: string, commentId: string) {
         await api.delete(`/product/${productId}/comment/${commentId}`);
         return true;
     } catch (error) {
+
         console.error(error);
         console.error(error.response);
         return false;

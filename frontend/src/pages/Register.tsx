@@ -2,7 +2,7 @@ import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link, useHistory } from 'react-router-dom';
-import { login, register } from '../util/api';
+import * as API from '../util/api';
 import { UserProps, DEFAULTS } from '../types';
 
 
@@ -16,22 +16,31 @@ const RegisterPage: React.FC = () => {
     let [telephone, setTelephone] = useState<string>('pau');
     let [passwordConfirm, setPasswordConfirm] = useState<string>('pau');
     let [birthday, setBirthday] = useState<string>('pau');
-    let [profileImage, /*setProfileImage*/ ] = useState<string>(DEFAULTS.IMG_DEFAULT);
+    let [profileImage, /*setProfileImage*/] = useState<string>(DEFAULTS.IMG_DEFAULT);
 
     let history = useHistory();
 
     const registerCurrentUser: FormEventHandler = async (e) => {
         e.preventDefault();
 
-        if (
-            !/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
-            !/^[0-9]{11,12}$/.test(telephone) ||
-            !/^[0-9]+$/.test(number) ||
-            !(password.length >= 8 && password.match(/[A-Z]/) && password.match(/[a-z]/) && password.match(/[0-9]/))
-        ) {
-            //Avoids form redirection if failed
-            //TODO: notify user
-            console.error('e-mail ou senha inválido.')
+
+        if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email)) {
+            alert("email inválido");
+            return false;
+        }
+
+        if (!/^[0-9]{11,12}$/.test(telephone)) {
+            alert("telefone inválido");
+            return false;
+        }
+
+        if (!/^[0-9]+$/.test(number)) {
+            alert("número inválido");
+            return false;
+        }
+
+        if (!(password.length >= 8 && password.match(/[A-Z]/) && password.match(/[a-z]/) && password.match(/[0-9]/))) {
+            alert("senha inválida");
             return false;
         }
 
@@ -44,12 +53,11 @@ const RegisterPage: React.FC = () => {
             birthday
         }
 
-        if (!await register(user)) {
-            alert("Usuário ja existe");
+        if (!await API.register(user)) {
             return false;
         }
 
-        await login({nick, password});
+        await API.login({ nick, password });
         history.push('/');
     }
 
@@ -118,7 +126,7 @@ const RegisterPage: React.FC = () => {
                                                     <Link to="/login" id="btn-to-login" className="form-control btn"> Já possuo conta </Link>
                                                 </div>
                                                 <div className="col">
-                                                    <input className="form-control btn btn-dark" type="submit" value="Cadastrar"/>
+                                                    <input className="form-control btn btn-dark" type="submit" value="Cadastrar" />
                                                 </div>
                                             </div>
                                         </form>
@@ -138,4 +146,4 @@ const RegisterPage: React.FC = () => {
     )
 };
 
-export default RegisterPage
+export default RegisterPage;

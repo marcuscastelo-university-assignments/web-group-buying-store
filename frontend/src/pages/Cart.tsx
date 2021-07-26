@@ -71,7 +71,6 @@ const CartPage: React.FC = _ => {
             !/^[0-9]{3}$/.test(cvv)
             //Conditions of data to invalidate it
         ) {
-            console.log('alsd')
             return <></>;
         }
 

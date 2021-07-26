@@ -78,7 +78,6 @@ const ProductEditor: React.FC = () => {
 
             categoriesParentsCopy.push(undefined);
             categoriesParentsCopy.reverse();
-            console.log(categoriesParentsCopy)
 
             return categoriesParentsCopy;
         }

@@ -22,7 +22,6 @@ const MainPage: React.FC = () => {
     useEffect(() => {
         getProducts().then(p => {
             if (p) {
-                console.log(p);
                 setProductList(p)
             }
         });

@@ -26,6 +26,10 @@ router.post('/register', async (req, res) => {
         const user = await User.create(req.body);
         return res.status(201).json(user);
     } catch (error) {
+        if (error.code === 11000) {
+            return res.status(409).json({error, message: 'User already exists'});
+        }
+
         return res.status(500).json({error, message: 'Internal server error'});
     }
 });
