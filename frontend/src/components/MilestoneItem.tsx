@@ -33,7 +33,7 @@ export default function MilestoneItem({ product, milestone, expanded = false, ed
 
                 {
                     editing ?
-                        <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(product, milestone); history.push('/create_product') }}>
+                        <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(product, milestone); }}>
                             <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                 <i className="fa fa-trash"></i>
                             </div>

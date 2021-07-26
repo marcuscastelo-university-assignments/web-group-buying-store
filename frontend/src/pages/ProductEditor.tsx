@@ -26,8 +26,8 @@ const ProductEditor: React.FC = () => {
 
     const nick = getCurrentUserNick();
 
-    const editing = history.location.pathname.includes('edit');
-    const baseProduct = editing ? getLoadingProduct() : 
+    const urlEditing = history.location.pathname.includes('edit');
+    const baseProduct = urlEditing ? getLoadingProduct() : 
     {
         title: "",
         milestones: [],
@@ -55,10 +55,6 @@ const ProductEditor: React.FC = () => {
                 if (!id) return undefined;
                 let res;
                 for (let layerID of Object.keys(categoryLayers)) {
-                    console.log('自殺')
-                    console.log(categoryLayers)
-                    console.log(layerID)
-                    console.log(categoryLayers[layerID])
                     res = categoryLayers[layerID].find(c => c.id === id)
                     if (res) return res;
                 }
@@ -187,7 +183,7 @@ const ProductEditor: React.FC = () => {
         }
         setProduct(product);
 
-        if (editing)
+        if (urlEditing)
             await API.updateProduct(product);
         else 
             await API.createProduct(product);
