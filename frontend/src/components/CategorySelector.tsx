@@ -1,17 +1,17 @@
 import React from 'react'
-import { getCategoriesInLayer, getCategoryInLayer } from '../util/local-storage'
+import { getCategoriesInLayer, getCategoryInLayer } from '../util/api'
 
 type CategorySelectorProps = {
     layer: string,
-    categoryID?: string,
+    categoryId?: string,
     defaultValue?: string,
     onChange: (chosenCategory: string) => void,
 }
 
 export default function CategorySelector(props: CategorySelectorProps) {
-    const selfCategory = props.categoryID ? getCategoryInLayer(props.layer, props.categoryID) : undefined;
+    const selfCategory = props.categoryId ? getCategoryInLayer(props.layer, props.categoryId) : undefined;
 
-    const childCategories = getCategoriesInLayer(props.layer + '1')?.filter(category => !props.categoryID || category.parent === props.categoryID);
+    const childCategories = getCategoriesInLayer(props.layer + '1')?.filter(category => !props.categoryId || category.parent === props.categoryId);
 
     if ((childCategories?.length ?? 0) === 0) return <></>
 

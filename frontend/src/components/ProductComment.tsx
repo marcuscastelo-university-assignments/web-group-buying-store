@@ -2,9 +2,10 @@ import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import { ProductCommentInfo } from '../types';
+import { ProductCommentInfo, UserProps, DEFAULTS } from '../types';
 import { getCurrentUserNick, isAuth, isAdmin } from '../util/auth-util';
-import { getUser } from '../util/local-storage';
+import { getUser } from '../util/api';
+import { useState, useEffect } from 'react';
 
 type ProductCommentProps = {
     info: ProductCommentInfo,
@@ -14,11 +15,11 @@ type ProductCommentProps = {
 
 export default function ProductComment({ info, onEdit, onRemove }: ProductCommentProps) {
 
-    const authorProps = getUser(info.author);
-    if (!authorProps) {
-        console.error("Weirs comment author: \n", JSON.stringify(authorProps));
-        return <></>;
-    } 
+    const [authorProps, setAuthorProps] = useState<UserProps | undefined>(undefined);
+
+    useEffect(() => {
+        getUser(info.author).then(a => { if (a) setAuthorProps(a) });
+    }, [info]);
 
     return (
         <div className="row g-0 mt-1 ">
@@ -28,10 +29,10 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                         <div className="row g-0">
                             <div className="col-2 col-md-12 text-center">
                                 <img className="img-fluid"
-                                    src={authorProps.profileImage} alt="profile" />
+                                    src={authorProps?.profileImage || DEFAULTS.PROFILE_DEFAULT} alt="profile" />
                             </div>
                             <div className="col col-md-12 text-center">
-                                <span>{authorProps.name}</span>
+                                <span>{authorProps?.name ?? "Loading..."}</span>
                             </div>
                         </div>
                     </div>
@@ -51,8 +52,8 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                         <div className="row">
                             <div className="col">
                                 {
-                                    (isAuth() && isAdmin() && (getUser(info.author)?.nick !== getCurrentUserNick())) ?
-                                        <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(info.id); }}>
+                                    (isAuth() && isAdmin() && (authorProps?.nick !== getCurrentUserNick())) ?
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); onRemove(info.commentId); }}>
                                             <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                                 <i className="fa fa-trash"></i>
                                             </div>
@@ -62,8 +63,8 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                             </div>
                             <div className="col">
                                 {
-                                    (isAuth() && (getUser(info.author)?.nick === getCurrentUserNick())) ?
-                                        <a href="#0" onClick={(e) => { e.preventDefault(); onEdit(info.id);}}>
+                                    (isAuth() && (authorProps?.nick === getCurrentUserNick())) ?
+                                        <a href="#0" onClick={(e) => { e.preventDefault(); onEdit(info.commentId); }}>
                                             <div className="text-center" style={{ fontSize: '2.5em', color: 'darkred' }} >
                                                 <i className="fa fa-edit"></i>
                                             </div>

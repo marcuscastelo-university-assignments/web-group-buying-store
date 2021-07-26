@@ -2,7 +2,7 @@ import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link, useHistory } from 'react-router-dom';
-import { login } from '../util/auth-util';
+import * as API from '../util/api';
 
 const LoginPage: React.FC = () => {
 
@@ -11,13 +11,15 @@ const LoginPage: React.FC = () => {
     let [nick, setNick] = useState('');
     let [password, setPassword] = useState('');
 
-    const loginCurrentUser: FormEventHandler = (e) => {
+    const loginCurrentUser: FormEventHandler = async (e) => {
         e.preventDefault();
 
-        if (login(nick, password)) {
+        const user = await API.login({nick, password});
+        if (user) {
             history.push('/');
             return true;
         }
+        console.error('Login failed');
         return false;
     }
 

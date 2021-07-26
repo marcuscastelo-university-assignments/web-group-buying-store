@@ -1,19 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import { PromptProps, useHistory, useParams } from 'react-router';
-import ProductComment from '../components/ProductComment';
+import { useHistory, useParams } from 'react-router';
 
 import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 
 import './Product.css'
-import { generateCommentID, getCartItem, getProduct, getUser, updateCartItem, removeProduct, updateProduct } from '../util/local-storage';
+import * as API from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
-import { ProductProps } from '../types';
+import { ProductProps, getLoadingProduct, UserProps } from '../types';
 
-import ProductCommentEditor from '../components/ProductCommentEditor'
-import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
+import { getCurrentUserNick, getCurrentUserPassword, isAdmin, isAuth } from '../util/auth-util';
+import ProductCommentEditor from '../components/ProductCommentEditor';
+import ProductComment from '../components/ProductComment';
 
 const ProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
@@ -31,38 +31,72 @@ const ProductPage: React.FC = () => {
     };
 
     let history = useHistory();
-    function addToCart({ productID }: ProductProps) {
-        const item = getCartItem(productID) ?? { productID, quantity: 0 };
-        item.quantity++;
-        updateCartItem(item);
-        history.push('/cart')
-    }
 
-    const { id: productID } = useParams<{ id: string }>();
-    const [product, _setProduct] = useState(getProduct(productID));
+    async function addToCart({ productId }: ProductProps) {
+        await API.addToCart(productId);
+        history.push('/cart');
+    }
+    /*
+    async function addToCart({ productId }: ProductProps) {
+        await API.addToCart(productId);
+        history.push('/cart');
+    }*/
+
+
+
+    const { id: productId } = useParams<{ id: string }>();
+
+    const [product, _setProduct] = useState(getLoadingProduct());
 
     const setProduct = (product: ProductProps) => {
         _setProduct(product);
-        updateProduct(product);
+
+        //TODO: post/put/delete comments instead of whole product
+        // updateProduct(product);
     }
 
+    useEffect(() => {
+        API.getProduct(productId).then(p => {
+            if (p)
+                _setProduct(p);
+
+            else {
+                console.error('Eu existo', p);
+            }
+        })
+    }, [productId]);
+
+    const [currentUserProps, setCurrentUserProps] = useState<UserProps | undefined | null>(undefined);
+
+    useEffect(() => {
+        if (isAuth())
+            API.login({ nick: getCurrentUserNick(), password: getCurrentUserPassword() })
+                .then(user => { if (user) setCurrentUserProps(user); else history.push('/'); });
+        else setCurrentUserProps(null);
+    }, []);
+
     if (!product) {
-        history.push('/not-found');
+        setTimeout(() => history.push('/not-found'), 1000);
         return (<React.Fragment>Product not found, redirecting...</React.Fragment>);
+    }
+
+    if (currentUserProps === undefined) {
+        return (
+            <React.Fragment>
+                Loading user info...
+            </React.Fragment>
+        );
     }
 
     const runtimeInfo = calculateRuntimeInfo(product);
 
-    const currentUserProps = getUser(getCurrentUserNick());
 
-    const editProduct = () => history.push(`/edit_product/${product.productID}`);
+    const editProduct = () => history.push(`/edit_product/${product.productId}`);
 
     const deleteProduct = () => {
-        removeProduct(product.productID);
+        API.removeProduct(product.productId);
         history.push('/');
     }
-
-
 
     return (
         <React.Fragment>
@@ -94,19 +128,19 @@ const ProductPage: React.FC = () => {
                                                         </div>
 
                                                         :
-                                                            isAdmin() ?
-                                                                <div className="col">
-                                                                    <a href="#0" onClick={(e) => { e.preventDefault(); deleteProduct() }}>
-                                                                        <div className="text-center" style={{ fontSize: '1.5em', color: 'darkred' }} >
-                                                                            <i className="fa fa-trash"></i>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
+                                                        isAdmin() ?
+                                                            <div className="col">
+                                                                <a href="#0" onClick={(e) => { e.preventDefault(); deleteProduct() }}>
+                                                                    <div className="text-center" style={{ fontSize: '1.5em', color: 'darkred' }} >
+                                                                        <i className="fa fa-trash"></i>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
 
-                                                                : ''
-                                                        
-                                                 : ''
-                                                }
+                                                            : ''
+
+                                                    : ''
+                                            }
                                         </div>
                                         <div className="p-5">
                                             <img src={product.imageURL} className="card-img-top" alt="..." />
@@ -151,7 +185,7 @@ const ProductPage: React.FC = () => {
                                                 Preço: {runtimeInfo.currentMilestone?.price ? `R$${runtimeInfo.currentMilestone.price}` : 'Indisponível'}
                                             </span>
                                             <a className="justify-self-end" href="#0">
-                                                <button className="btn btn-dark add-to-the-cart" onClick={() => addToCart(product)}>
+                                                <button className="btn btn-dark add-to-the-cart" disabled={!isAuth()} onClick={() => addToCart(product)}>
                                                     <span>Adicionar ao carrinho</span>
                                                     <i className="fa fa-shopping-cart"></i>
                                                 </button>
@@ -201,10 +235,21 @@ const ProductPage: React.FC = () => {
                                                 {
                                                     creatingComment ?
                                                         <ProductCommentEditor
-                                                            info={{ author: currentUserProps.nick, id: generateCommentID() }}
-                                                            onRemove={(commentID) => { setCreatingComment(false); }}
-                                                            onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setCreatingComment(false); }}
-                                                            onClose={(commentID) => { setCreatingComment(false); }}
+                                                            info={{ author: currentUserProps.nick, commentId: API.generateCommentID() }}
+                                                            onRemove={
+                                                                (commentID) => { setCreatingComment(false); }
+                                                            }
+                                                            onSave={
+                                                                async (comment) => {
+                                                                    await API.createComment(productId, comment);
+                                                                    product.comments.push(comment);
+                                                                    setProduct(product);
+                                                                    setCreatingComment(false);
+                                                                }
+                                                            }
+                                                            onClose={
+                                                                (commentID) => { setCreatingComment(false); }
+                                                            }
                                                         />
                                                         : ''
 
@@ -217,29 +262,32 @@ const ProductPage: React.FC = () => {
                                             {/* <ProductCommentEditor info={product.comments[commentID]} key={`comment-${idx}`} onRemove={() => { alert('TODO'); return true }} /> */}
                                         </div>
 
+
                                         {
-                                            (Object.keys(product.comments ?? {}).length ?? 0) > 0 ?
-                                                Object.keys(product.comments ?? {}).map(
-                                                    (commentID, idx) =>
-                                                        editingID === commentID ?
+                                            (product.comments.length > 0) ?
+                                                product.comments.map(
+                                                    (comment, idx) =>
+                                                        editingID === comment.commentId ?
                                                             <ProductCommentEditor
-                                                                info={product.comments[commentID]}
-                                                                key={`comment-${editingID}-${commentID}`}
-                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
-                                                                onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                info={comment}
+                                                                key={`comment-${editingID}-${comment.commentId}`}
+                                                                onRemove={async (commentID) => { delete product.comments[idx]; await API.deleteComment(productId, commentID); setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                onSave={async (comment_save) => { product.comments[idx] = comment_save; await API.updateComment(productId, comment_save); setProduct(product); setEditingID(''); setCreatingComment(false);  }}
                                                                 onClose={(commentID) => { setEditingID(''); }}
                                                             />
                                                             :
                                                             <ProductComment
-                                                                info={product.comments[commentID]}
-                                                                key={`comment-${editingID}-${commentID}`}
-                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
-                                                                onEdit={(commentID) => { setEditingID(commentID); setCreatingComment(false); updateProduct(product); }}
+                                                                info={comment}
+                                                                key={`comment-${editingID}-${comment.commentId}`}
+                                                                onRemove={(commentID: string) => { delete product.comments[idx]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                onEdit={(commentID: string) => { setEditingID(commentID); setCreatingComment(false); API.updateProduct(product); }}
                                                             />
                                                 )
                                                 :
                                                 <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
                                         }
+
+
 
 
                                     </div>
