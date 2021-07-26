@@ -269,11 +269,11 @@ const ProductEditor: React.FC = () => {
                                                     <div className="row g-1 mt-3">
                                                         <div className="col px-1">
                                                             <input name="product-milestone-qtty" className="new-product-milestone-qtty form-control"
-                                                                type="number" placeholder="milestone quantity" value={newQuantity} onChange={(e) => setNewQuantity(parseInt(e.target.value) ?? 0)} />
+                                                                type="number" step="1" id="product-milestone-qtty" min="0" placeholder="milestone quantity" value={newQuantity} onChange={(e) => setNewQuantity(parseInt(e.target.value) ?? 0)} />
                                                         </div>
                                                         <div className="col px-1">
                                                             <input name="product-milestone-price" className="new-product-milestone-price form-control"
-                                                                type="number" step="0.01" placeholder="milestone price" value={newPrice} onChange={(e) => setNewPrice(parseInt(e.target.value) ?? 0)} />
+                                                                type="number" step="0.01" id="product-milestone-price" min="0" placeholder="milestone price" value={newPrice} onChange={(e) => setNewPrice(parseFloat(e.target.value) ?? 0)} />
                                                         </div>
                                                     </div>
                                                     <div className="row g-0 mt-3">
