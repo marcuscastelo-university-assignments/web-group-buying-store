@@ -8,7 +8,7 @@ import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
 
 import './Product.css'
-import { generateCommentID, getCartProduct, getProduct, getUser, updateCartItem, removeProduct, updateProduct } from '../util/api';
+import * as API from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 import { ProductProps, getLoadingProduct } from '../types';
 
@@ -32,10 +32,8 @@ const ProductPage: React.FC = () => {
 
     let history = useHistory();
     async function addToCart({ productId }: ProductProps) {
-        const item = (await getCartProduct(productId)) ?? { productId, quantity: 0 };
-        item.quantity++;
-        updateCartItem(item);
-        history.push('/cart')
+        await API.addToCart(productId);
+        history.push('/cart');
     }
 
 
@@ -52,7 +50,7 @@ const ProductPage: React.FC = () => {
     }
 
     useEffect(() => {
-        getProduct(productId).then(p => {
+        API.getProduct(productId).then(p => {
             if (p) 
                 _setProduct(p);
 
@@ -69,16 +67,14 @@ const ProductPage: React.FC = () => {
 
     const runtimeInfo = calculateRuntimeInfo(product);
 
-    const currentUserProps = getUser(getCurrentUserNick());
+    const currentUserProps = API.getUser(getCurrentUserNick());
 
     const editProduct = () => history.push(`/edit_product/${product.productId}`);
 
     const deleteProduct = () => {
-        removeProduct(product.productId);
+        API.removeProduct(product.productId);
         history.push('/');
     }
-
-
 
     return (
         <React.Fragment>

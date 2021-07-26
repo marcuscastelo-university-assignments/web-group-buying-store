@@ -2,7 +2,7 @@
 import { CartProductProps, LayerDescription, ProductProps, UserProps } from "../types";
 
 import axios from 'axios';
-import { getCurrentUserNick } from "./auth-util";
+import { deleteCookie, getCurrentUserNick } from "./auth-util";
 
 const api = axios.create({
     baseURL: 'http://localhost:3333/api/',
@@ -94,6 +94,10 @@ export async function removeProduct(productId: string) {
     await api.delete(`/product/${productId}`);
 }
 
+export async function addToCart(productId: string) {
+    await api.put(`/cart/${getCurrentUserNick()}/${productId}`);
+}
+
 export async function getCartProducts() {
     return (await api.get(`/cart/${getCurrentUserNick()}`)).data as CartProductProps[];
 }
@@ -155,4 +159,33 @@ export function generateCommentID() {
     const id = (parseInt(localStorage.getItem('last-comment-id') ?? '0') + 1).toString();
     localStorage.setItem('last-comment-id', id);
     return id;
+}
+
+
+export async function login({ nick, password }: { nick: string, password: string }) {
+    try {
+        const user = (await api.post(`/auth/login`, { nick, password })).data as UserProps;
+
+        document.cookie = 'user='+user.nick;
+        document.cookie = 'password='+user.password;
+        if (user.admin) document.cookie = 'admin=true';
+
+        return user;
+
+    } catch (error) {
+        console.error(error);
+        console.error(error.response);
+
+        return null;
+    }
+}
+
+export async function register(userData: UserProps) {
+    return (await api.post(`/auth/register`, userData)).data as UserProps;
+}
+
+export function logout() {
+    deleteCookie('user');
+    deleteCookie('password');
+    deleteCookie('admin');
 }

@@ -2,9 +2,8 @@ import React, { FormEventHandler, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Link, useHistory } from 'react-router-dom';
-import { registerUser } from '../util/api';
+import { registerUser, login } from '../util/api';
 import { UserProps, DEFAULTS } from '../types';
-import { login } from '../util/auth-util';
 
 
 const RegisterPage: React.FC = () => {
@@ -21,7 +20,7 @@ const RegisterPage: React.FC = () => {
 
     let history = useHistory();
 
-    const registerCurrentUser: FormEventHandler = (e) => {
+    const registerCurrentUser: FormEventHandler = async (e) => {
         e.preventDefault();
 
         if (
@@ -50,8 +49,8 @@ const RegisterPage: React.FC = () => {
             return false;
         }
 
+        await login({nick, password});
         history.push('/');
-        login(nick, password);
     }
 
 

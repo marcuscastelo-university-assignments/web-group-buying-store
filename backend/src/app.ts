@@ -9,6 +9,7 @@ import productRouter from './routes/product-routes';
 import userRouter from './routes/user-routes';
 import categoryRouter from './routes/category-routes';
 import cartRouter from './routes/cart-routes';
+import authRouter from './routes/auth-routes';
 
 async function main() {
     const [ connection, error ] = await getDB();
@@ -29,6 +30,7 @@ async function main() {
     app.use('/api/user', userRouter);
     app.use('/api/category', categoryRouter);
     app.use('/api/cart', cartRouter);
+    app.use('/api/auth', authRouter);
 
     app.use(express.static('html'));
 
