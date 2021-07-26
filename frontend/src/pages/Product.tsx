@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import { PromptProps, useHistory, useParams } from 'react-router';
-import ProductComment from '../components/ProductComment';
+import { useHistory, useParams } from 'react-router';
 
 import MilestoneItem from '../components/MilestoneItem';
 import MilestoneProgressBar from '../components/MilestoneProgressBar';
@@ -10,10 +9,11 @@ import MilestoneProgressBar from '../components/MilestoneProgressBar';
 import './Product.css'
 import * as API from '../util/api';
 import { calculateRuntimeInfo } from '../util/product-utlls';
-import { ProductProps, getLoadingProduct } from '../types';
+import { ProductProps, getLoadingProduct, UserProps } from '../types';
 
-import ProductCommentEditor from '../components/ProductCommentEditor'
-import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
+import { getCurrentUserNick, getCurrentUserPassword, isAdmin, isAuth } from '../util/auth-util';
+import ProductCommentEditor from '../components/ProductCommentEditor';
+import ProductComment from '../components/ProductComment';
 
 const ProductPage: React.FC = () => {
     let _milesetoneState = useState(-1);
@@ -51,7 +51,7 @@ const ProductPage: React.FC = () => {
 
     useEffect(() => {
         API.getProduct(productId).then(p => {
-            if (p) 
+            if (p)
                 _setProduct(p);
 
             else {
@@ -60,14 +60,30 @@ const ProductPage: React.FC = () => {
         })
     }, [productId]);
 
+    const [currentUserProps, setCurrentUserProps] = useState<UserProps | undefined | null>(undefined);
+
+    useEffect(() => {
+        if (isAuth())
+            API.login({ nick: getCurrentUserNick(), password: getCurrentUserPassword() })
+                .then(user => { if (user) setCurrentUserProps(user) });
+        else setCurrentUserProps(null);
+    }, []);
+
     if (!product) {
-        history.push('/not-found');
+        setTimeout(() => history.push('/not-found'), 1000);
         return (<React.Fragment>Product not found, redirecting...</React.Fragment>);
+    }
+
+    if (currentUserProps === undefined) {
+        return (
+            <React.Fragment>
+                Loading user info...
+            </React.Fragment>
+        );
     }
 
     const runtimeInfo = calculateRuntimeInfo(product);
 
-    const currentUserProps = API.getUser(getCurrentUserNick());
 
     const editProduct = () => history.push(`/edit_product/${product.productId}`);
 
@@ -198,8 +214,6 @@ const ProductPage: React.FC = () => {
                                     <div className="col-12 mx-auto" id="comment-list">
 
                                         {
-                                            //FIXME: broken comments
-                                        /* {
                                             currentUserProps ? <>
                                                 {
                                                     !creatingComment ?
@@ -215,16 +229,26 @@ const ProductPage: React.FC = () => {
                                                 {
                                                     creatingComment ?
                                                         <ProductCommentEditor
-                                                            info={{ author: currentUserProps.nick, id: generateCommentID() }}
-                                                            onRemove={(commentID) => { setCreatingComment(false); }}
-                                                            onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setCreatingComment(false); }}
-                                                            onClose={(commentID) => { setCreatingComment(false); }}
+                                                            info={{ author: currentUserProps.nick, commentId: API.generateCommentID() }}
+                                                            onRemove={
+                                                                (commentID) => { setCreatingComment(false); }
+                                                            }
+                                                            onSave={
+                                                                (comment) => {
+                                                                    API.createComment(productId, comment);
+                                                                    setProduct(product);
+                                                                    setCreatingComment(false);
+                                                                }
+                                                            }
+                                                            onClose={
+                                                                (commentID) => { setCreatingComment(false); }
+                                                            }
                                                         />
                                                         : ''
 
                                                 }
                                             </> : ''
-                                        } */}
+                                        }
 
 
                                         <div>
@@ -232,30 +256,31 @@ const ProductPage: React.FC = () => {
                                         </div>
 
 
-                                        {//FIXME: broken comments (map changed to array)
-                                        /* {
-                                            (Object.keys(product.comments ?? {}).length ?? 0) > 0 ?
-                                                Object.keys(product.comments ?? {}).map(
-                                                    (commentID, idx) =>
-                                                        editingID === commentID ?
+                                        {
+                                            (product.comments.length > 0) ?
+                                                product.comments.map(
+                                                    (comment, idx) =>
+                                                        editingID === comment.commentId ?
                                                             <ProductCommentEditor
-                                                                info={product.comments[commentID]}
-                                                                key={`comment-${editingID}-${commentID}`}
-                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
-                                                                onSave={(comment) => { product.comments[comment.id] = comment; setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                info={comment}
+                                                                key={`comment-${editingID}-${comment.commentId}`}
+                                                                onRemove={(commentID) => { delete product.comments[idx]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                onSave={(comment_save) => { product.comments[idx] = comment_save; setProduct(product); setEditingID(''); setCreatingComment(false); }}
                                                                 onClose={(commentID) => { setEditingID(''); }}
                                                             />
                                                             :
                                                             <ProductComment
-                                                                info={product.comments[commentID]}
-                                                                key={`comment-${editingID}-${commentID}`}
-                                                                onRemove={(commentID) => { delete product.comments[commentID]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
-                                                                onEdit={(commentID) => { setEditingID(commentID); setCreatingComment(false); updateProduct(product); }}
+                                                                info={comment}
+                                                                key={`comment-${editingID}-${comment.commentId}`}
+                                                                onRemove={(commentID: string) => { delete product.comments[idx]; setProduct(product); setEditingID(''); setCreatingComment(false); }}
+                                                                onEdit={(commentID: string) => { setEditingID(commentID); setCreatingComment(false); API.updateProduct(product); }}
                                                             />
                                                 )
                                                 :
                                                 <span className="d-block text-center text-muted mt-5">Sem comentários ainda...</span>
-                                        } */}
+                                        }
+
+
 
 
                                     </div>

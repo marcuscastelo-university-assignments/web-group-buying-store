@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import { ProductCommentInfo, UserProps } from '../types';
+import { DEFAULTS, ProductCommentInfo, UserProps } from '../types';
 import { generateCommentID, getUser } from '../util/api';
 
 
@@ -11,13 +11,19 @@ function clamp(min: number, max: number, val: number) {
 }
 
 type ProductCommentEditorProps = {
-    info: Partial<ProductCommentInfo> & { author: string, id: string },
+    info: Partial<ProductCommentInfo> & { author: string, commentId: string },
     onRemove: (commentID: string) => void,
     onSave: (comment: ProductCommentInfo) => void,
     onClose: (commentID: string) => void,
 };
 
 export default function ProductCommentEditor({ info, onRemove, onSave, onClose }: ProductCommentEditorProps) {
+    const [authorProps, setAuthorProps] = useState<UserProps | undefined>(undefined);
+
+    useEffect(() => {
+        getUser(info.author).then(a => { if (a) setAuthorProps(a) });
+    }, [info]);
+
     const [ comment, setComment ] = useState<ProductCommentInfo>({
         author: info.author,
         title: info.title ?? '',
@@ -48,10 +54,10 @@ export default function ProductCommentEditor({ info, onRemove, onSave, onClose }
                         <div className="row g-0">
                             <div className="col-2 col-md-12 text-center">
                                 <img className="img-fluid"
-                                    src={getUser(comment.author)?.profileImage} alt="profile" />
+                                    src={authorProps?.profileImage ?? DEFAULTS.IMG_DEFAULT} alt="profile" />
                             </div>
                             <div className="col col-md-12 text-center">
-                                <span>{getUser(comment.author)?.name}</span>
+                                <span>{authorProps?.name ?? 'Loading...'}</span>
                             </div>
                         </div>
                     </div>

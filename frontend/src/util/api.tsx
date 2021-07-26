@@ -1,5 +1,5 @@
 
-import { CartProductProps, LayerDescription, ProductProps, UserProps } from "../types";
+import { CartProductProps, LayerDescription, ProductCommentInfo, ProductProps, UserProps } from "../types";
 
 import axios from 'axios';
 import { deleteCookie, getCurrentUserNick } from "./auth-util";
@@ -25,18 +25,11 @@ export async function removeCartItem(productId: string) {
 }
 
 export async function updateCartItem(cartItem: CartProductProps) {
-    // const currItems = getCartItems();
-    // const currIdx = currItems.findIndex(c => c.productId === cartItem.productId);
-
-    // if (currIdx === -1) currItems.push(cartItem);
-    // else currItems[currIdx] = cartItem;
-    // updateCartItems(currItems);
-
-    // axios.put(`//product/${productId}`, )
+    
 }
 
 export async function updateCartItems(cartItems: CartProductProps[]) {
-    // localStorage.setItem(LS_KEYS.CART_ITEMS, JSON.stringify(cartItems));
+    
 }
 
 export async function clearCartItems() {
@@ -123,30 +116,8 @@ export function getCategoryInLayer(layerID: string, categoryId: string) {
     return getCategories()[layerID]?.find(c => c.id === categoryId);
 }
 
-export function getUsers() {
-    return JSON.parse(localStorage.getItem('users') ?? '{}') as { [nick: string]: (UserProps | undefined) };
-}
-
-export function getUser(nick: string) {
-    return getUsers()[nick];
-}
-
 export async function updateUsers(users: { [nick: string]: (UserProps | undefined) }) {
     localStorage.setItem('users', JSON.stringify(users));
-}
-
-export async function registerUser(newUser: UserProps, overwrite?: boolean) {
-    // if (!overwrite && getUser(newUser.nick)) {
-    //     //TODO: try catch?
-    //     console.error('User already exists');
-    //     return false;
-    // }
-
-    // const users = getUsers();
-    // users[newUser.nick] = newUser;
-    // updateUsers(users);
-
-    // return true;
 }
 
 export function generateProductID() {
@@ -161,14 +132,14 @@ export function generateCommentID() {
     return id;
 }
 
-
 export async function login({ nick, password }: { nick: string, password: string }) {
     try {
         const user = (await api.post(`/auth/login`, { nick, password })).data as UserProps;
-
+        
+        logout();
         document.cookie = 'user='+user.nick;
         document.cookie = 'password='+user.password;
-        if (user.admin) document.cookie = 'admin=true';
+        document.cookie = `admin=${user.admin ?? false}`;
 
         return user;
 
@@ -188,4 +159,27 @@ export function logout() {
     deleteCookie('user');
     deleteCookie('password');
     deleteCookie('admin');
+}
+
+export async function getUser(nick: string) {
+    try {
+        const user = (await api.get(`/user/${nick}`)).data as UserProps;
+        return user;
+    } catch (error) {
+        console.error(error);
+        console.error(error.response);
+
+        return null;
+    }
+}
+
+export async function createComment(productId: string, comment: ProductCommentInfo) {
+    try {
+        (await api.post(`/product/${productId}/comment`, comment)).data as UserProps;
+        return true;
+    } catch (error) {
+        console.error(error);
+        console.error(error.response);
+        return false;
+    }
 }

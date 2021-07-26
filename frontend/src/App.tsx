@@ -11,7 +11,7 @@ import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import ProductPage from './pages/Product';
 import ProductEditor from './pages/ProductEditor';
-import { fetchCategories, registerUser } from './util/api';
+import { fetchCategories } from './util/api';
 
 function App() {
     const [ready, setReady] = useState(false);

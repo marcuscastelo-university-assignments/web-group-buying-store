@@ -1,5 +1,3 @@
-import { getUser } from "./api";
-
 export function isAuth() {
     return getCurrentUserNick() !== '';
 }
@@ -10,6 +8,10 @@ export function getCookie(cookieName: string) {
 
 export function getCurrentUserNick() {
     return getCookie('user') ?? '';
+}
+
+export function getCurrentUserPassword() {
+    return getCookie('password') ?? '';
 }
 
 export function deleteCookie(cookieName: string) {

@@ -14,9 +14,9 @@ const ProductCard: React.FC<ProductProps> = (product) => {
     const history = useHistory();
     const runtimeinfo = calculateRuntimeInfo(product);
 
-    const deleteProduct = () => {
-        removeProduct(product.productId);
-        history.push('/');
+    const deleteProduct = async () => {
+        await removeProduct(product.productId);
+        window.location.reload();
     }
 
     const editProduct = () => history.push(`/edit_product/${product.productId}`);

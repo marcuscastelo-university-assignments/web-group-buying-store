@@ -8,8 +8,8 @@ import CategorySelector from '../components/CategorySelector';
 
 import * as API from '../util/api';
 
-import { MilestoneProps, ProductProps, getLoadingProduct, CategoryDescription, DEFAULTS } from '../types';
-import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
+import { MilestoneProps, ProductProps, getLoadingProduct, DEFAULTS } from '../types';
+import { getCurrentUserNick, isAuth } from '../util/auth-util';
 import { useHistory, useParams } from 'react-router';
 
 
@@ -25,7 +25,6 @@ const ProductEditor: React.FC = () => {
     let [newPrice, setNewPrice] = useState(0);
 
     const nick = getCurrentUserNick();
-    const user = API.getUser(nick);
 
     const editing = history.location.pathname.includes('edit');
     const baseProduct = editing ? getLoadingProduct() : 
@@ -135,7 +134,8 @@ const ProductEditor: React.FC = () => {
         setCategoriesParents(generateDefaultParents(product));
     }, [product]);
 
-    if (nick === '' || !user || nick !== product.creator) {
+    if (nick === '' || nick !== product.creator) {
+        alert('You are ' + nick + '. You should be ' + (product.creator ?? 'undefined') + ' to edit this');
         //Important: do not remove this line (product.creator is undefined even though it should not!)
         return <h1>401 NOT AUTHORIZED</h1>
     }

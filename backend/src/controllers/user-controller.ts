@@ -10,11 +10,11 @@ export async function getUsers(req: Request, res: Response) {
     }
 }
 
-
 export async function getUser(req: Request, res: Response) {
     try {
         const user = await User.findOne({ nick: req.params.nick }).exec();
         if (user) {
+            user.password = '-?-secret-?-'
             res.status(200).json(user);
         } else {
             res.status(404).json({ message: 'User not found' });
