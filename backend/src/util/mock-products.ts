@@ -1,7 +1,4 @@
-import { ProductProps } from "../types";
-
 export function genMockProducts() {
-
     const mockComments = [{
         commentId: '1345465',
         author: 'magalu',
@@ -13,7 +10,7 @@ export function genMockProducts() {
         id: "1",
     }];
 
-    const products: ProductProps[] = [ 
+    const products = [ 
         {
             productId: '90837',
             currentQuantity: 0,

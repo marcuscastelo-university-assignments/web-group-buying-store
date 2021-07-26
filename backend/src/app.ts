@@ -10,6 +10,7 @@ import userRouter from './routes/user-routes';
 import categoryRouter from './routes/category-routes';
 import cartRouter from './routes/cart-routes';
 import authRouter from './routes/auth-routes';
+import devRouter from './routes/devtest-routes';
 
 async function main() {
     const [ connection, error ] = await getDB();
@@ -31,6 +32,8 @@ async function main() {
     app.use('/api/category', categoryRouter);
     app.use('/api/cart', cartRouter);
     app.use('/api/auth', authRouter);
+    //This route is used in development to reset database to a known state, this route should be disable on production
+    app.use('/api/dev', devRouter);
 
     app.use(express.static('html'));
 

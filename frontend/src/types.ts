@@ -76,8 +76,10 @@ export type CategoryDescription = {
     final?: boolean
 }
 
+//TODO: download img?
 export const DEFAULTS = Object.freeze({
     IMG_DEFAULT: '/img/no-preview.jpeg',
+    PROFILE_DEFAULT: 'https://teamstake.com/admin/default/assets/img/no_image.png'
 })
 
 export type LayerDescription = CategoryDescription[];

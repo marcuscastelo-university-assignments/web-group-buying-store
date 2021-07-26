@@ -32,7 +32,7 @@ const UserSchema = new Schema({
     },
     profileImage: {
         type: String,
-        required: true,
+        required: false,
     },
     password: {
         type: String,

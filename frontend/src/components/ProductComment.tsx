@@ -29,7 +29,7 @@ export default function ProductComment({ info, onEdit, onRemove }: ProductCommen
                         <div className="row g-0">
                             <div className="col-2 col-md-12 text-center">
                                 <img className="img-fluid"
-                                    src={authorProps?.profileImage || DEFAULTS.IMG_DEFAULT} alt="profile" />
+                                    src={authorProps?.profileImage || DEFAULTS.PROFILE_DEFAULT} alt="profile" />
                             </div>
                             <div className="col col-md-12 text-center">
                                 <span>{authorProps?.name ?? "Loading..."}</span>
