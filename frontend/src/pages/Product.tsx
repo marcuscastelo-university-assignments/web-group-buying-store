@@ -185,7 +185,7 @@ const ProductPage: React.FC = () => {
                                                 Preço: {runtimeInfo.currentMilestone?.price ? `R$${runtimeInfo.currentMilestone.price}` : 'Indisponível'}
                                             </span>
                                             <a className="justify-self-end" href="#0">
-                                                <button className="btn btn-dark add-to-the-cart" onClick={() => addToCart(product)}>
+                                                <button className="btn btn-dark add-to-the-cart" disabled={!isAuth()} onClick={() => addToCart(product)}>
                                                     <span>Adicionar ao carrinho</span>
                                                     <i className="fa fa-shopping-cart"></i>
                                                 </button>

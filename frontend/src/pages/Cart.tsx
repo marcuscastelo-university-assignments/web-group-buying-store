@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 import { CartProductProps } from '../types';
 import { clearCartItems, getCartProducts, getProduct, updateProduct } from '../util/api';
+import { isAuth } from '../util/auth-util';
 import { calculateRuntimeInfo } from '../util/product-utlls';
 
 import './Cart.css'
@@ -64,28 +65,32 @@ const CartPage: React.FC = _ => {
     const history = useHistory();
 
     const endBuying: FormEventHandler = async (e) => {
-        e.preventDefault();
-        if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
-            !/^[0-9]{16}$/.test(credit) ||
-            !/^[0-9]+$/.test(number) ||
-            !/^[0-9]{8}$/.test(cep) ||
-            !/^[0-9]{3}$/.test(cvv)
-            //Conditions of data to invalidate it
-        ) {
-            return <></>;
-        }
+        if (e) e.preventDefault();
+        // if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) ||
+        //     !/^[0-9]{16}$/.test(credit) ||
+        //     !/^[0-9]+$/.test(number) ||
+        //     !/^[0-9]{8}$/.test(cep) ||
+        //     !/^[0-9]{3}$/.test(cvv)
+        //     //Conditions of data to invalidate it
+        // ) {
+        //     return <></>;
+        // }
 
         for (let item of cartProducts) {
             const product = await getProduct(item.productId);
             if (!product) continue;
             product.currentQuantity += item.quantity;
-            updateProduct(product);
+            await updateProduct(product);
         }
 
         await clearCartItems();
-        history.push('/cart');
+        setCartProducts([]);
     };
 
+    if (!isAuth()) {
+        history.push('/login');
+        return <></>
+    }
 
     return (
         <React.Fragment>
