@@ -33,3 +33,20 @@ export function calculateRuntimeInfo(product: ProductProps): RuntimeProductInfo 
         lastMilestone,
     }
 }
+
+
+export function calculatePercentage(quantity: number, runtimeInfo: RuntimeProductInfo, carret: boolean) {
+    let ratio = quantity / ((runtimeInfo.lastMilestone?.quantity ?? 0) || 1);
+    if (quantity === runtimeInfo.lastMilestone?.quantity) {
+        ratio = 1;
+    }
+
+
+    let percentage;
+    if (carret)
+        percentage = (1 / 6) + ((2 / 3) * ratio);
+    else
+        percentage = ratio;
+
+    return `${percentage * 100}%`;
+}

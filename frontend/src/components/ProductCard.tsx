@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { ProductProps } from '../types';
 import { getCurrentUserNick, isAdmin, isAuth } from '../util/auth-util';
-import { calculateRuntimeInfo } from '../util/product-utlls';
+import { calculatePercentage, calculateRuntimeInfo } from '../util/product-utlls';
 import { removeProduct } from '../util/api';
 import ProductCommentEditor from './ProductCommentEditor';
 import ProductEditor from '../pages/ProductEditor';
@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductProps> = (product) => {
 
                     <div className="progress">
                         <div className="progress-bar text-center bg-warning" role="progressbar"
-                            style={{ width: "80%" }} aria-valuenow={10} aria-valuemin={0}
+                            style={{ width: calculatePercentage(product.currentQuantity, runtimeinfo, false) }} aria-valuenow={10} aria-valuemin={0}
                             aria-valuemax={100}>
                             <small
                                 className="justify-content-center d-flex position-absolute w-100 text-dark fw-bold">{product.currentQuantity}/{runtimeinfo.lastMilestone?.quantity}</small>

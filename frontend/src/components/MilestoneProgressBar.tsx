@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProductProps } from '../types';
-import { RuntimeProductInfo } from '../util/product-utlls';
+import { RuntimeProductInfo, calculatePercentage } from '../util/product-utlls';
 
 import './styles/MilestoneProgressBar.css'
 
@@ -10,21 +10,6 @@ type MilestoneProgressBarProps = {
     milestoneState: [number, React.Dispatch<React.SetStateAction<number>>]
 }
 
-function calculatePercentage(quantity: number, runtimeInfo: RuntimeProductInfo, carret: boolean) {
-    let ratio = quantity / ((runtimeInfo.lastMilestone?.quantity ?? 0) || 1);
-    if (quantity === runtimeInfo.lastMilestone?.quantity) {
-        ratio = 1;
-    }
-
-
-    let percentage;
-    if (carret)
-        percentage = (1 / 6) + ((2 / 3) * ratio);
-    else
-        percentage = ratio;
-
-    return `${percentage * 100}%`;
-}
 
 export default function MilestoneProgressBar({ product, runtimeInfo, milestoneState: [selectedMilestone, selectMilestone] }: MilestoneProgressBarProps) {
     return (
