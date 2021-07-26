@@ -1,7 +1,7 @@
 
 import { CartProductProps, LayerDescription, ProductCommentInfo, ProductProps, UserProps } from "../types";
 
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { deleteCookie, getCurrentUserNick } from "./auth-util";
 
 const api = axios.create({
@@ -143,10 +143,16 @@ export async function login({ nick, password }: { nick: string, password: string
 
         return user;
 
-    } catch (error) {
+    } catch (_error) {
+        const error = _error as AxiosError;
         console.error(error);
         console.error(error.response);
 
+        if (error?.response?.status === 401) {
+            alert('Login failed');
+            logout();
+        }
+ 
         return null;
     }
 }

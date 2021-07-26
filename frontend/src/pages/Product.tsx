@@ -65,7 +65,7 @@ const ProductPage: React.FC = () => {
     useEffect(() => {
         if (isAuth())
             API.login({ nick: getCurrentUserNick(), password: getCurrentUserPassword() })
-                .then(user => { if (user) setCurrentUserProps(user) });
+                .then(user => { if (user) setCurrentUserProps(user); else history.push('/'); });
         else setCurrentUserProps(null);
     }, []);
 
