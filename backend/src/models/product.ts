@@ -6,6 +6,7 @@ export interface ProductMilestone {
     price: number,
 };
 
+//the comments are about a specific product, structure:
 export interface ProductComment {
     commentId: string,
     author: string,
@@ -17,6 +18,7 @@ export interface ProductComment {
     id: string,
 };
 
+//product structure
 export interface Product {
     productId: string,
     title: string,

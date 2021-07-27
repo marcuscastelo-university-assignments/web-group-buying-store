@@ -92,7 +92,7 @@ export async function clearCart(req: Request, res: Response) {
         }
     ).exec();
 
-    if (result.n <= 0)
+    if (result.n <= 0)  //if there's no cart, it can't be cleared.
         return res.status(404).json({ message: 'Not found' });
     else if (result.nModified >= 0)
         res.json([]);

@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 
+// the getCategories is used to create the categories about the products, they are subdivided into layers, we used 3 and the parent cell is indicated by parent.
+// So now if we want to add a "Placa Mae" in the layer 3 we indicate the parent by it id and it must be in the second layer, in this case is "11com"
 export async function getCategories(req: Request, res: Response) {
     let layers = {
         "1" : [
