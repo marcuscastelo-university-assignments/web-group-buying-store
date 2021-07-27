@@ -1,6 +1,7 @@
 import { model, Schema, Document } from 'mongoose';
 
-interface CartProduct {
+//the cart save the string about the products and the quantity
+interface CartProduct { 
     productId: string,
     quantity: number,
 }
@@ -20,7 +21,7 @@ export const CartSchema = new Schema(
     {
         nick: {
             type: String,
-            unique: true,
+            unique: true,   //one cart by user
         },
         products: [
             {

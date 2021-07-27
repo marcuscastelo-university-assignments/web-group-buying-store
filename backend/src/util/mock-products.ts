@@ -10,6 +10,7 @@ export function genMockProducts() {
         id: "1",
     }];
 
+    //all the products created are here
     const products = [ 
         {
             productId: '90837',

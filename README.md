@@ -11,8 +11,8 @@ Theme: An Online Store
 - Leonardo Paulo Dallagnol - 11795850
 
 # como executar
-- tenha o node e o npm instalados em sua máquina
-- acesse a pasta front end e digite o comando "npm install"
-- digite "npm run start" e a página será aberta
+- install node and npm in your computer
+- open the folder front end and type "npm install"
+- type "npm run start" and the page will be open
 # link para o PDF do relatório
 https://pt.overleaf.com/read/kzgvnrmvntfj

@@ -3,6 +3,7 @@ import * as cartController from '../controllers/cart-controller'
 
 const router = Router();
 
+//routers for cart
 router.get('/:nick', cartController.getCartProducts);
 router.put('/:nick', cartController.updateCartProducts);
 router.put('/:nick/:productId', cartController.addCartProduct);

@@ -1,3 +1,4 @@
+//one admin user and one client user
 export function genMockUsers() {
     return [
         {

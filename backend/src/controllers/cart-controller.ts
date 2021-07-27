@@ -6,22 +6,21 @@ export async function getCartProducts(req: Request, res: Response) {
     const cart = await Cart.findOne({ nick: req.params.nick }).exec();
     if (cart) {
         res.json(cart.products);
-    } else {
+    } else {//error code when not find the user
         res.status(404).json({ message: 'Not found' });
     }
 }
 
 export async function addCartProduct(req: Request, res: Response) {
     //Update all cart products from req.body into the cart that matches req.params.nick
-
     let result = await Cart.updateOne(
         {
-            nick: req.params.nick,
-            "products.productId": req.params.productId
+            nick: req.params.nick,  //search by the user
+            "products.productId": req.params.productId  //add the productId to the user cart
         },
         {
             $inc: {
-                "products.$.quantity": 1
+                "products.$.quantity": 1    //inc by 1 when added a product
             }
         }
     ).exec();
@@ -41,11 +40,11 @@ export async function addCartProduct(req: Request, res: Response) {
             }
         ).exec();
 
-    if (result.n === 0) {
+    if (result.n === 0) {   //if there isn't a cart, it will create one and add the product
         const cart = await Cart.create({
-            nick: req.params.nick,
+            nick: req.params.nick,  
             products: [
-                { productId: req.params.productId, quantity: 1 }
+                { productId: req.params.productId, quantity: 1 }    //adding the product
             ]
         });
         res.status(201).json(cart.products);
@@ -60,7 +59,7 @@ export async function addCartProduct(req: Request, res: Response) {
 
 export async function updateCartProducts(req: Request, res: Response) {
     //Update all cart products from req.body into the cart that matches req.params.nick
-    const result = await Cart.updateOne(
+    const result = await Cart.updateOne(    //taking the cart by id
         {
             nick: req.params.nick
         },
@@ -69,7 +68,7 @@ export async function updateCartProducts(req: Request, res: Response) {
         }
     ).exec();
 
-    if (result.n <= 0) {
+    if (result.n <= 0) {    //if there's no cart it will create one
         const cart = await Cart.create({
             nick: req.params.nick,
             products: req.body

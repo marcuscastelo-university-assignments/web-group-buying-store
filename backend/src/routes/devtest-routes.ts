@@ -6,9 +6,9 @@ import Cart, { CartModel, CartProductModel } from '../models/cart';
 import { genMockProducts } from '../util/mock-products';
 import { genMockUsers } from '../util/mock-users';
 
-
-
 const router = Router();
+
+//to test the functions created we needed this others:
 
 async function clearProducts(req: Request, res: Response, next: NextFunction) {
     await Product.deleteMany({}).exec();
@@ -26,9 +26,9 @@ async function clearCarts(req: Request, res: Response, next: NextFunction) {
 }
 
 async function clearAll(req: Request, res: Response, next: NextFunction) {
-    clearCarts(req, res, () => {
-        clearProducts(req, res, () => {
-            clearUsers(req, res, () => {
+    clearCarts(req, res, () => {    //clear cart 
+        clearProducts(req, res, () => { //in cart clear products
+            clearUsers(req, res, () => {    //in products clear users
                 if (next) return next();
                 else return res.status(200).json({ message: "Ok" });
             });
@@ -36,6 +36,7 @@ async function clearAll(req: Request, res: Response, next: NextFunction) {
     });
 }
 
+//when testing the site we change so many values in products, so we can now reset it from 0
 async function resetMockProducts(req: Request, res: Response, next: NextFunction) {
     clearProducts(req, res, async () => {
         try {
@@ -46,6 +47,7 @@ async function resetMockProducts(req: Request, res: Response, next: NextFunction
     });
 }
 
+//same thing but with users
 async function resetMockUsers(req: Request, res: Response, next: NextFunction) {
     clearUsers(req, res, async () => {
         try {
@@ -56,6 +58,7 @@ async function resetMockUsers(req: Request, res: Response, next: NextFunction) {
     });
 }
 
+//routs for reset the database
 router.get('/reset-mock-products', resetMockProducts);
 router.get('/reset-mock-users', resetMockUsers);
 router.get('/clear-carts', clearCarts);

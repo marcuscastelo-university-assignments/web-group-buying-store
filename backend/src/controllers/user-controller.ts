@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import User, { UserModel } from '../models/user';
 
+//get all the users
 export async function getUsers(req: Request, res: Response) {
     try {
         const users = await User.find({}).exec();
@@ -10,13 +11,14 @@ export async function getUsers(req: Request, res: Response) {
     }
 }
 
+//get a user by his nickname
 export async function getUser(req: Request, res: Response) {
     try {
         const user = await User.findOne({ nick: req.params.nick }).exec();
         if (user) {
-            user.password = '-?-secret-?-'
-            res.status(200).json(user);
-        } else {
+            user.password = '-?-secret-?-'  //return a secret password to don't show the real one
+            res.status(200).json(user); //in case worked
+        } else {    //if not
             res.status(404).json({ message: 'User not found' });
         }
     }
@@ -26,18 +28,19 @@ export async function getUser(req: Request, res: Response) {
     }
 }
 
+//when creating new user
 export async function createUser(req: Request, res: Response) {
     try {
         const userDocument: Partial<UserModel> = {
-            ...req.body,
-            admin: false,
+            ...req.body,    //take the data
+            admin: false,   //admins are created in the application, you can't create one by accessing the site
         };
 
-        let user = await User.create(userDocument);
+        let user = await User.create(userDocument); //create the user
 
-        await user.save();
+        await user.save();  //saving in db...
 
-        res.status(201).json(user);
+        res.status(201).json(user); //if it's ok
     }
     catch (error) {
         console.trace(error);
@@ -45,13 +48,14 @@ export async function createUser(req: Request, res: Response) {
     }
 }
 
+//change the body of the user, nick, email...
 export async function updateUser(req: Request, res: Response) {
     try {
         const result = await User.updateOne({ nick: req.params.nick }, req.body);
         if (result.n > 0) {
-            if (result.nModified > 0)
+            if (result.nModified > 0)   //if the body was modified
                 res.status(200).json(req.body);
-            else
+            else    //if it wasan't
                 res.status(304).json(req.body);
         }
         else
@@ -63,6 +67,7 @@ export async function updateUser(req: Request, res: Response) {
     }
 }
 
+//deleting a user by nickname
 export async function deleteUser(req: Request, res: Response) {
     try {
         const result_ = await User.deleteOne({ nick: req.params.nick }).exec();
@@ -70,11 +75,11 @@ export async function deleteUser(req: Request, res: Response) {
         if (result?.n > 0) {
             if (result?.deletedCount > 0)
                 res.status(200).json({ message: 'User deleted' });
-            else {
+            else {  //if the user was found but can't deleted
                 console.trace('STATUS 500 ON DELETE: ', result);
                 res.status(404).json({ message: 'User not found' });
             }
-        } else {
+        } else {    //if the user was not found
             res.status(404).json({ message: 'User not found' });
         }
     }
@@ -84,12 +89,14 @@ export async function deleteUser(req: Request, res: Response) {
     }
 }
 
+//checks if the user is logged in
 export async function isAuth(req: Request, res: Response, next: NextFunction) {
     const user = await User.findOne({ nick: req.params.nick }).exec();
     if ((user?.nick === req.cookies.nick && user?.password === req.cookies.password)) return next();
     else return res.status(401).json({message: "Not authorized"});
 }
 
+//checs if the admin is logged in
 export async function isAdmin(req: Request, res: Response, next: NextFunction) {
     isAuth(req, res, async _ => {
         const user = await User.findOne({ nick: req.params.nick }).exec();
