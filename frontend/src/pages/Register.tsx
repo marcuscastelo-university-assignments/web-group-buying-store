@@ -7,15 +7,15 @@ import { UserProps, DEFAULTS } from '../types';
 
 
 const RegisterPage: React.FC = () => {
-    let [name, setName] = useState<string>('pau');
-    let [nick, setNick] = useState<string>('pau');
-    let [email, setEmail] = useState<string>('pau');
-    let [password, setPassword] = useState<string>('pau');
-    let [address, setAddress] = useState<string>('pau');
-    let [number, setNumber] = useState<string>('pau');
-    let [telephone, setTelephone] = useState<string>('pau');
-    let [passwordConfirm, setPasswordConfirm] = useState<string>('pau');
-    let [birthday, setBirthday] = useState<string>('pau');
+    let [name, setName] = useState<string>('');
+    let [nick, setNick] = useState<string>('');
+    let [email, setEmail] = useState<string>('');
+    let [password, setPassword] = useState<string>('');
+    let [address, setAddress] = useState<string>('');
+    let [number, setNumber] = useState<string>('');
+    let [telephone, setTelephone] = useState<string>('');
+    let [passwordConfirm, setPasswordConfirm] = useState<string>('');
+    let [birthday, setBirthday] = useState<string>('');
     let [profileImage, /*setProfileImage*/] = useState<string>(DEFAULTS.IMG_DEFAULT);
 
     let history = useHistory();
